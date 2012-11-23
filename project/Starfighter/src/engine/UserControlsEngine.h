@@ -12,10 +12,12 @@
 #include "__enumeration__ Shooter.h"
 #include "__enumeration__ Action.h"
 #include "Qt/QMap.h"
-#include "Qt/QKeyEvent .h"
+#include "Qt/QKeyEvent.h"
 
 class UserControlsEngine
 {
+    Q_OBJECT
+
 private:
 	Qt::QMap<int,Action> actions;
 

@@ -15,6 +15,8 @@
 
 class DisplayEngine
 {
+    Q_OBJECT;
+
 private:
 	Qt::QGraphicsScene scene;
 

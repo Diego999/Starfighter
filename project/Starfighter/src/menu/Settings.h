@@ -13,6 +13,8 @@
 
 class Settings
 {
+    Q_OBJECT
+
 private:
 	int musicVolume;
 

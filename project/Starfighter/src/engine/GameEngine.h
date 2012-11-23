@@ -18,6 +18,8 @@
 
 class GameEngine
 {
+    Q_OBJECT
+
 private:
 	DisplayEngine displayEngine;
 	SpawnEngine spawnEngine;
