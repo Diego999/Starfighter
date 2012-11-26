@@ -1,63 +1,44 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#include <string>
-#include <vector>
-#include <list>
-#include <iostream>
-#include <assert.h>
-
-#include "Action.h"
+#include "../enum/Enum.h"
 #include "GameEngine.h"
-#include "Qt/QString.h"
 
 class Settings
 {
     Q_OBJECT
 
+public:
+	Settings();
+	
+	bool save(QString file);
+	bool load(QString file);
+	int musicVolume();
+	int soundEffectsVolume();
+	
+	QString playerOneName();
+	QString playerTwoName();
+
+	Action playerOneControls();
+	Action playerTwoControls();
+
+	bool setMusicVolume(int volume);
+	bool setSoundEffectsVolume(int volume);
+	bool setPlayerOneName(QString name);
+	bool setPlayerTwoName(QString name);
+	bool setPlayerOneControls(Action controls);
+	bool setPlayerTwoControls(Action controls);
+	
 private:
 	int musicVolume;
-
 	int soundEffectsVolume;
 
-	Qt::QString playerOneName;
-
-	Qt::QString playerTwoName;
+	QString playerOneName;
+	QString playerTwoName;
 
 	Action playerOneControls;
-
 	Action playerTwoControls;
 
 	GameEngine gameEngine;
-
-public:
-	boolean save(Qt::QString file);
-
-	boolean load(Qt::QString file);
-
-	int musicVolume();
-
-	int soundEffectsVolume();
-
-	Qt::QString playerOneName();
-
-	Qt::QString playerTwoName();
-
-	Action playerOneControls();
-
-	Action playerTwoControls();
-
-	boolean setMusicVolume(int volume);
-
-	boolean setSoundEffectsVolume(int volume);
-
-	boolean setPlayerOneName(Qt::QString name);
-
-	boolean setPlayerTwoName(Qt::QString name);
-
-	boolean setPlayerOneControls(Action controls);
-
-	boolean setPlayerTwoControls(Action controls);
-
 };
 #endif

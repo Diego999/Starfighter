@@ -1,18 +1,16 @@
-#include <string>
-#include <vector>
-#include <list>
-#include <iostream>
-#include <assert.h>
-
 #include "Settings.h"
 
+Settings::Settings()
+{
 
-boolean Settings::save(Qt::QString file)
+}
+
+bool Settings::save(QString file)
 {
 	return 0;
 }
 
-boolean Settings::load(Qt::QString file)
+bool Settings::load(QString file)
 {
 	return 0;
 }
@@ -47,32 +45,32 @@ Action Settings::playerTwoControls()
 	return 0;
 }
 
-boolean Settings::setMusicVolume(int volume)
+bool Settings::setMusicVolume(int volume)
 {
 	return 0;
 }
 
-boolean Settings::setSoundEffectsVolume(int volume)
+bool Settings::setSoundEffectsVolume(int volume)
 {
 	return 0;
 }
 
-boolean Settings::setPlayerOneName(Qt::QString name)
+bool Settings::setPlayerOneName(QString name)
 {
 	return 0;
 }
 
-boolean Settings::setPlayerTwoName(Qt::QString name)
+bool Settings::setPlayerTwoName(QString name)
 {
 	return 0;
 }
 
-boolean Settings::setPlayerOneControls(Action controls)
+bool Settings::setPlayerOneControls(Action controls)
 {
 	return 0;
 }
 
-boolean Settings::setPlayerTwoControls(Action controls)
+bool Settings::setPlayerTwoControls(Action controls)
 {
 	return 0;
 }
