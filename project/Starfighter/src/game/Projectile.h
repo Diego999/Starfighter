@@ -1,48 +1,28 @@
 #ifndef PROJECTILE_H
 #define PROJECTILE_H
 
-#include <string>
-#include <vector>
-#include <list>
-#include <iostream>
-#include <assert.h>
-
-#include "Displayable.h"
-#include "GameEngine.h"
-#include "__enumeration__ Shooter.h"
-#include "shooter.h"
-#include "Qt/qreal.h"
-#include "Qt/QColor.h"
+#include "Enum.h"
+#include "../engine/Displayable.h"
 
 class Projectile : public Displayable
 {
-private:
-	GameEngine gameEngine;
-	__enumeration__ Shooter __enumeration__ Shooter;
+    Q_OBJECT
+public:
+    Projectile(int _originX, int _originY,shooter _from);
 
 protected:
 	int power;
-
 	int originX;
-
 	int originY;
 
-	Qt::qreal speed;
-
-	Qt::qreal direction;
-
-	Qt::QColor color;
+    qreal speed;
+    qreal direction;
+    QColor color;
 
 	int interval;
-
 	shooter from;
 
-
-protected:
-	virtual Qt::qreal trajectoryDraw(Qt::qreal x)=0;
-
-public:
-	void Projectile(int originX, int originY);
-
+    virtual void advance(int step);
+    virtual qreal trajectoryDraw(qreal x)=0;
 };
 #endif

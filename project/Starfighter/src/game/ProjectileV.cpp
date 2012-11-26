@@ -1,12 +1,22 @@
-#include <string>
-#include <vector>
-#include <list>
-#include <iostream>
-#include <assert.h>
-
 #include "ProjectileV.h"
+#include <math.h>
 
-
-void ProjectileV::ProjectileV(int x, int y, Qt::qreal a, Qt::qreal omega)
+void ProjectileV::ProjectileV(int _x, int _y,shooter _from, qreal _ampli, qreal _omega)
+	:Projectile(_x,_y,_from),ampli(_ampli),mod(_omega)
 {
+	interval = 4;
+}
+
+qreal ProjectileV::trajectoryDraw(qreal x)
+{
+    qreal _x = x**M_PI/180.0;
+    return ampli*sin(omega*_x);
+}
+
+void ProjectileV::advance(int step)
+{
+    Projectile::advance(step);
+
+    x+=interval;
+    setPos(x,y-trajectoryDraw(x));
 }
