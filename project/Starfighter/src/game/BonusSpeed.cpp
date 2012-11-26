@@ -1,12 +1,6 @@
-#include <string>
-#include <vector>
-#include <list>
-#include <iostream>
-#include <assert.h>
-
 #include "BonusSpeed.h"
 
 
-void BonusSpeed::BonusSpeed(int)( speed)
+void BonusSpeed::BonusSpeed(int speed)
 {
 }

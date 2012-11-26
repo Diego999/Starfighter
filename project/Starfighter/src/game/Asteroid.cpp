@@ -1,16 +1,10 @@
-#include <string>
-#include <vector>
-#include <list>
-#include <iostream>
-#include <assert.h>
-
 #include "Asteroid.h"
 
+Asteroid::Asteroid(int x, int y, int resistance, int healthPoint)
+{
+}
 
 void Asteroid::destroy()
 {
 }
 
-void Asteroid::Asteroid(int x, int y, int resistance, int healthPoint)
-{
-}

@@ -1,17 +1,12 @@
-#include <string>
-#include <vector>
-#include <list>
-#include <iostream>
-#include <assert.h>
-
 #include "Obstacle.h"
 
+Obstacle::Obstacle(int x, int y)
+{
+}
 
-Qt::qreal Obstacle::trajectoryDraw(Qt::qreal x)
+
+qreal Obstacle::trajectoryDraw(qreal x)
 {
 	return 0;
 }
 
-void Obstacle::Obstacle(int x, int y)
-{
-}

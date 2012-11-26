@@ -2,7 +2,7 @@
 #define PROJECTILE_H
 
 #include "Enum.h"
-#include "../engine/Displayable.h"
+#include "../enum/Displayable.h"
 
 class Projectile : public Displayable
 {

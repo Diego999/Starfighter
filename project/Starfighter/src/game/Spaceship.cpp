@@ -1,11 +1,9 @@
-#include <string>
-#include <vector>
-#include <list>
-#include <iostream>
-#include <assert.h>
-
 #include "Spaceship.h"
 
+Spaceship::Spaceship()
+{
+
+}
 
 void Spaceship::attack(int puissance)
 {

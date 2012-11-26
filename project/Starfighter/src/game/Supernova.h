@@ -1,22 +1,16 @@
 #ifndef SUPERNOVA_H
 #define SUPERNOVA_H
 
-#include <string>
-#include <vector>
-#include <list>
-#include <iostream>
-#include <assert.h>
-
 #include "Obstacle.h"
 
 class Supernova : public Obstacle
 {
-private:
-	static int nbSpirales;
-
-
+	Q_OBJECT
 public:
 	void Supernova(int x, int y);
+
+private:
+	static const int nbSpirales = 360;
 
 };
 #endif

@@ -1,11 +1,9 @@
-#include <string>
-#include <vector>
-#include <list>
-#include <iostream>
-#include <assert.h>
-
 #include "Destroyable.h"
 
+Destroyable::Destroyable()
+{
+
+}
 
 void Destroyable::receiveAttack(int puissance)
 {
