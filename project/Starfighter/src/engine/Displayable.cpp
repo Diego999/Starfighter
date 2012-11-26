@@ -1,23 +1,21 @@
-#include <string>
-#include <vector>
-#include <list>
-#include <iostream>
-#include <assert.h>
-
 #include "Displayable.h"
 
+Displayable::Displayable(int x, int y, Qt::QPixMap* pixmap = 0)
+{
 
-Qt::QRectF Displayable::boundingRect()
+}
+
+QRectF Displayable::boundingRect()
 {
 	return 0;
 }
 
-Qt::QPainterPath Displayable::shape()
+QPainterPath Displayable::shape()
 {
 	return 0;
 }
 
-Qt::QPixMap Displayable::pixmap()
+QPixMap Displayable::pixmap()
 {
 	return 0;
 }
@@ -30,6 +28,4 @@ void Displayable::advance(int step)
 {
 }
 
-void Displayable::Displayable(int x, int y, Qt::QPixMap* pixmap = 0)
-{
-}
+

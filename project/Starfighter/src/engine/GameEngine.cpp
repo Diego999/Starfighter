@@ -1,11 +1,9 @@
-#include <string>
-#include <vector>
-#include <list>
-#include <iostream>
-#include <assert.h>
-
 #include "GameEngine.h"
 
+GameEngine::GameEngine()
+{
+
+}
 
 int GameEngine::elapsedTime()
 {
@@ -25,8 +23,4 @@ double GameEngine::randDouble()
 int GameEngine::randInt(int range)
 {
 	return 0;
-}
-
-void GameEngine::GameEngine()
-{
 }
