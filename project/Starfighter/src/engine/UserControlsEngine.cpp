@@ -4,10 +4,10 @@ UserControlsEngine::UserControlsEngine()
 {
 }
 
-void UserControlsEngine::keyPressEvent(Qt::QKeyEvent * event)
+void UserControlsEngine::keyPressEvent(QKeyEvent * event)
 {
 }
 
-void UserControlsEngine::keyReleaseEvent(Qt::QKeyEvent * event)
+void UserControlsEngine::keyReleaseEvent(QKeyEvent * event)
 {
 }

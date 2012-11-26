@@ -1,26 +1,26 @@
 #include "Displayable.h"
 
-Displayable::Displayable(int x, int y, Qt::QPixMap* pixmap = 0)
+Displayable::Displayable(int x, int y, QPixmap* pixmap)
 {
 
 }
 
 QRectF Displayable::boundingRect()
 {
-	return 0;
+    return QRectF();
 }
 
 QPainterPath Displayable::shape()
 {
-	return 0;
+    return QPainterPath();
 }
 
-QPixMap Displayable::pixmap()
+QPixmap Displayable::pixmap()
 {
 	return 0;
 }
 
-void Displayable::paint(Qt::QPainter* painter, Qt::QStyleOptionGraphicsItem* option, Qt::QWidget* widget)
+void Displayable::paint(QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget)
 {
 }
 

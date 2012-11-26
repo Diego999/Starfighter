@@ -6,7 +6,7 @@
 class ProjectileSimple : public Projectile
 {
 public:
-    void ProjectileSimple(int _originX, int _originY, shooter _from);
+    void ProjectileSimple(int _originX, int _originY, Shooter _from);
 private:
     Qt::qreal trajectoryDraw(qreal x);
 };

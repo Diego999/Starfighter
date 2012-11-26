@@ -1,20 +1,20 @@
 #ifndef OBSTACLE_H
 #define OBSTACLE_H
 
-#include "Displayable.h"
-#include "GameEngine.h"
+#include "../engine/Displayable.h"
+#include "../engine/GameEngine.h"
 #include "../enum/Enum.h"
 
 class Obstacle : public Displayable
 {
 public:
-	Obstacle(int x, int y);
+    Obstacle(int x=0, int y=0);
 
 protected:
 	qreal trajectoryDraw(qreal x);
 	
 private:
-	GameEngine gameEngine;
+    //GameEngine gameEngine;
 
 };
 #endif

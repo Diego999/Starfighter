@@ -9,10 +9,14 @@ enum Action
     Escape
 };
 
-enum shooter
+enum Shooter
 {
     Player1,Player2,Other
 };
 
+enum TypeProjectiles
+{
+    ProjectileSimple,ProjectileCross,ProjectileV,ProjectileAlien,Nothing
+};
 
 #endif // ENUMERATION_H

@@ -7,7 +7,7 @@
 class BonusSpeed : public Bonus
 {
 public:
-	void BonusSpeed(int speed);
+    BonusSpeed(int speed);
 	
 private:
 	int speed;

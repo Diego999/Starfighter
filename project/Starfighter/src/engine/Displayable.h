@@ -1,27 +1,31 @@
 #ifndef DISPLAYABLE_H
 #define DISPLAYABLE_H
 
-#include "DisplayEngine.h"
+#include <QPixmap>
+#include <QPainter>
+#include <QStyleOptionGraphicsItem>
+#include <QWidget>
+#include <QRectF>
+#include <QPainterPath>
+#include <QGraphicsItem>
 
-class Displayable : public DisplayEngine
+class Displayable : QGraphicsItem
 {
+    Q_OBJECT
 public:
-	Displayable(int x, int y, Qt::QPixMap* pixmap = 0);
-	void paint(Qt::QPainter* painter, Qt::QStyleOptionGraphicsItem* option, Qt::QWidget* widget);
+    Displayable(int x, int y, QPixmap* pixmap = 0);
+    Displayable();
+    void paint(QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
 	
-	QRectF boundingRect();
-	QPainterPath shape();
-	QPixMap pixmap();
+    virtual QRectF boundingRect();
+    virtual QPainterPath shape();
+    virtual QPixmap pixmap();
 
 protected:
 	int x;
 	int y;
-	QPixMap pixmap;
+    QPixmap pixmapACHANGER;
 
 	void advance(int step);
-
-private:
-	DisplayEngine displayEngine;
-	Trajectoire trajectoire;
 };
 #endif

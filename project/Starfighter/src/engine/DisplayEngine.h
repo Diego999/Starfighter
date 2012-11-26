@@ -3,6 +3,8 @@
 
 #include "Displayable.h"
 #include "GameEngine.h"
+#include <QGraphicsView>
+#include <QGraphicsScene>
 
 class DisplayEngine
 {
@@ -17,8 +19,7 @@ private:
 
 	QGraphicsView view;
 
-	Displayable displayable[];
-	GameEngine gameEngine;
-	GameEngine gameEngine;
+    //Displayable displayable[];
+    //GameEngine gameEngine;
 };
 #endif

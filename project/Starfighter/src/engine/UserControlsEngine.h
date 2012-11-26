@@ -4,22 +4,22 @@
 
 #include "../enum/Enum.h"
 #include "GameEngine.h"
-#include "Qt/QMap.h"
-#include "Qt/QKeyEvent.h"
+#include "QMap.h"
+#include "QKeyEvent"
 
 class UserControlsEngine
 {
     Q_OBJECT
 
 public:
-	void UserControlsEngine();
+    UserControlsEngine();
 	
 protected:
-	void keyPressEvent(Qt::QKeyEvent * event);
-	void keyReleaseEvent(Qt::QKeyEvent * event);
+    void keyPressEvent(QKeyEvent * event);
+    void keyReleaseEvent(QKeyEvent * event);
 
 private:
 	QMap<int,Action> actions;
-	GameEngine gameEngine;
+    //GameEngine gameEngine;
 };
 #endif

@@ -1,7 +1,7 @@
 #include "ProjectileV.h"
 #include <math.h>
 
-void ProjectileV::ProjectileV(int _x, int _y,shooter _from, qreal _ampli, qreal _omega)
+void ProjectileV::ProjectileV(int _x, int _y,Shooter _from, qreal _ampli, qreal _omega)
 	:Projectile(_x,_y,_from),ampli(_ampli),mod(_omega)
 {
 	interval = 4;

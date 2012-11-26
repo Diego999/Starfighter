@@ -2,7 +2,7 @@
 #define SETTINGS_H
 
 #include "../enum/Enum.h"
-#include "GameEngine.h"
+#include "../engine/GameEngine.h"
 
 class Settings
 {
@@ -30,15 +30,15 @@ public:
 	bool setPlayerTwoControls(Action controls);
 	
 private:
-	int musicVolume;
-	int soundEffectsVolume;
+    int musicVolumeACHANGER;
+    int soundEffectsVolumeACHANGER;
 
-	QString playerOneName;
-	QString playerTwoName;
+    QString playerOneNameACHANGER;
+    QString playerTwoNameACHANGER;
 
-	Action playerOneControls;
-	Action playerTwoControls;
+    Action playerOneControlsACHANGER;
+    Action playerTwoControlsACHANGER;
 
-	GameEngine gameEngine;
+    //GameEngine gameEngine;
 };
 #endif

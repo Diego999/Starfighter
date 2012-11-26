@@ -1,6 +1,6 @@
 #include "BonusSpeed.h"
 
 
-void BonusSpeed::BonusSpeed(int speed)
+BonusSpeed::BonusSpeed(int speed)
 {
 }

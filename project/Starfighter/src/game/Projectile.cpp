@@ -1,6 +1,6 @@
 #include "Projectile.h"
 
-Projectile::Projectile(int _originX, int _originY,shooter _from)
+Projectile::Projectile(int _originX, int _originY,Shooter _from)
     :Displayable(_originX,_originY),originX(_originX),originY(_originY),from(_from)
 {
     x = _originX;

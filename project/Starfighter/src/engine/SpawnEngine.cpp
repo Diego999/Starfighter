@@ -4,6 +4,6 @@ SpawnEngine::SpawnEngine()
 {
 }
 
-void SpawnEngine::timerEvent(Qt::QTimerEvent * event)
+void SpawnEngine::timerEvent(QTimerEvent * event)
 {
 }

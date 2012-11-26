@@ -6,7 +6,7 @@
 class ProjectileCross : public Projectile
 {
 public:
-    ProjectileCross(int _originX, int _originY,shooter _from,int _nb);
+    ProjectileCross(int _originX, int _originY,Shooter _from,int _nb);
 
 private:
     int nb;

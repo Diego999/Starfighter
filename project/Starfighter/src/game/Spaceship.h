@@ -2,9 +2,9 @@
 #define SPACESHIP_H
 
 #include "Destroyable.h"
-#include "Displayable.h"
+#include "../engine/Displayable.h"
 #include "Bonus.h"
-#include "GameEngine.h"
+#include "../engine/GameEngine.h"
 #include "../enum/Enum.h"
 
 class Spaceship : public Destroyable, public Displayable
@@ -21,7 +21,7 @@ private:
 
 	int resistanceForceField;
 
-	Bonus bonus[3];
-	GameEngine gameEngine;
+    //Bonus bonus[3];
+    //GameEngine gameEngine;
 };
 #endif

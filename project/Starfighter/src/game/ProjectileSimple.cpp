@@ -7,7 +7,7 @@
 #include "ProjectileSimple.h"
 
 
-void ProjectileSimple::ProjectileSimple(int _originX, int _originY, shooter _from)
+void ProjectileSimple::ProjectileSimple(int _originX, int _originY, Shooter _from)
     :Projectile(_originX,_originY,_from)
 {
     interval = 7;

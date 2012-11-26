@@ -2,17 +2,17 @@
 #define SPAWN_ENGINE_H
 
 #include "GameEngine.h"
-#include "Qt/QTimerEvent .h"
+#include "QTimerEvent"
 
 class SpawnEngine
 {
 public:
 	SpawnEngine();
 	
-	void timerEvent(Qt::QTimerEvent * event);
+    void timerEvent(QTimerEvent * event);
 	
 private:
-	GameEngine gameEngine;
+    //GameEngine gameEngine;
 
 };
 #endif
