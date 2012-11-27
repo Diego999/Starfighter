@@ -4,7 +4,7 @@
 #include <iostream>
 #include <assert.h>
 
-#include "ProjectileSimple.h"
+#include "include/game/ProjectileSimple.h"
 
 
 void ProjectileSimple::ProjectileSimple(int _originX, int _originY, Shooter _from)

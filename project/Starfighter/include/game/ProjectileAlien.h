@@ -1,7 +1,7 @@
 #ifndef PROJECTILE_ALIEN_H
 #define PROJECTILE_ALIEN_H
 
-#include "Projectile.h"
+#include "include/game/Projectile.h"
 
 class ProjectileAlien : public Projectile
 {

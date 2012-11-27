@@ -1,8 +1,8 @@
 #ifndef ALIEN_SPACESHIP_H
 #define ALIEN_SPACESHIP_H
 
-#include "Obstacle.h"
-#include "Destroyable.h"
+#include "include/game/Obstacle.h"
+#include "include/game/Destroyable.h"
 
 class AlienSpaceship : public Obstacle, public Destroyable
 {

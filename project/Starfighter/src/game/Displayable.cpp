@@ -1,4 +1,4 @@
-#include "Displayable.h"
+#include "include/game/Displayable.h"
 
 Displayable::Displayable(int x, int y, QPixmap* pixmap)
 {

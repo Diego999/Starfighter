@@ -1,4 +1,4 @@
-#include "GameEngine.h"
+#include "include/engine/GameEngine.h"
 
 GameEngine::GameEngine()
 {
@@ -10,10 +10,10 @@ int GameEngine::elapsedTime()
 	return 0;
 }
 
-/*Obstacle* GameEngine::spawn(Obstacle* obstacle)
+Obstacle* GameEngine::spawn(Obstacle* obstacle)
 {
     return new Obstacle(0,0);
-}*/
+}
 
 double GameEngine::randDouble()
 {

@@ -1,5 +1,5 @@
-#include "math.h"
-#include "ProjectileAlien.h"
+#include <math.h>
+#include "include/game/ProjectileAlien.h"
 
 ProjectileAlien::ProjectileAlien(int _x, int _y, qreal _arg, qreal _mod, Shooter _from)
     :Projectile(_x,_y,_from),arg(_arg),mod(_mod)

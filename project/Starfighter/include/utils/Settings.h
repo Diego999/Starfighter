@@ -1,15 +1,15 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#include "../enum/Enum.h"
-#include "../engine/GameEngine.h"
+#include "include/enum/Enum.h"
+#include "include/engine/GameEngine.h"
 
 class Settings
 {
     Q_OBJECT
 
 public:
-	Settings();
+    Settings(GameEngine *ge);
 	
 	bool save(QString file);
 	bool load(QString file);
@@ -30,15 +30,15 @@ public:
 	bool setPlayerTwoControls(Action controls);
 	
 private:
-    int musicVolumeACHANGER;
-    int soundEffectsVolumeACHANGER;
+    int musicVolume;
+    int soundEffectsVolume;
 
-    QString playerOneNameACHANGER;
-    QString playerTwoNameACHANGER;
+    QString playerOneName;
+    QString playerTwoName;
 
-    Action playerOneControlsACHANGER;
-    Action playerTwoControlsACHANGER;
+    Action playerOneControls;
+    Action playerTwoControls;
 
-    //GameEngine gameEngine;
+    GameEngine *gameEngine;
 };
 #endif

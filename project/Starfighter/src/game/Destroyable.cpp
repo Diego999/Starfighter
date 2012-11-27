@@ -1,4 +1,4 @@
-#include "Destroyable.h"
+#include "include/game/Destroyable.h"
 
 Destroyable::Destroyable()
 {

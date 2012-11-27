@@ -4,6 +4,8 @@
 
 class Destroyable
 {
+    Q_OBJECT
+
 public:
 	Destroyable();
 	void receiveAttack(int puissance);

@@ -1,4 +1,4 @@
-#include "Obstacle.h"
+#include "include/game/Obstacle.h"
 
 Obstacle::Obstacle(int x, int y)
 {

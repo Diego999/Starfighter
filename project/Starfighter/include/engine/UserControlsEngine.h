@@ -2,17 +2,17 @@
 #define USER_CONTROLS_ENGINE_H
 
 
-#include "../enum/Enum.h"
-#include "GameEngine.h"
-#include "QMap.h"
-#include "QKeyEvent"
+#include "include/enum/Enum.h"
+#include "include/engine/GameEngine.h"
+#include <QMap.h>
+#include <QKeyEvent>
 
 class UserControlsEngine
 {
     Q_OBJECT
 
 public:
-    UserControlsEngine();
+    UserControlsEngine(GameEngine *ge);
 	
 protected:
     void keyPressEvent(QKeyEvent * event);
@@ -20,6 +20,6 @@ protected:
 
 private:
 	QMap<int,Action> actions;
-    //GameEngine gameEngine;
+    GameEngine *gameEngine;
 };
 #endif

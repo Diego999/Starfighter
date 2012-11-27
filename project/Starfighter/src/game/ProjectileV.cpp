@@ -1,4 +1,4 @@
-#include "ProjectileV.h"
+#include "include/game/ProjectileV.h"
 #include <math.h>
 
 void ProjectileV::ProjectileV(int _x, int _y,Shooter _from, qreal _ampli, qreal _omega)

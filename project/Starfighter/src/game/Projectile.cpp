@@ -1,4 +1,4 @@
-#include "Projectile.h"
+#include "include/game/Projectile.h"
 
 Projectile::Projectile(int _originX, int _originY,Shooter _from)
     :Displayable(_originX,_originY),originX(_originX),originY(_originY),from(_from)

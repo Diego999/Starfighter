@@ -1,16 +1,18 @@
 #ifndef SPACESHIP_H
 #define SPACESHIP_H
 
-#include "Destroyable.h"
-#include "../engine/Displayable.h"
-#include "Bonus.h"
-#include "../engine/GameEngine.h"
-#include "../enum/Enum.h"
+#include "include/game/Destroyable.h"
+#include "include/game/Displayable.h"
+#include "include/game/Bonus.h"
+#include "include/engine/GameEngine.h"
+#include "include/enum/Enum.h"
 
 class Spaceship : public Destroyable, public Displayable
 {
+    Q_OBJECT
+
 public:
-	Spaceship();
+    Spaceship(GameEngine *ge);
 	void attack(int puissance);
 	void top(int step);
 	void bottom(int step);
@@ -21,7 +23,7 @@ private:
 
 	int resistanceForceField;
 
-    //Bonus bonus[3];
-    //GameEngine gameEngine;
+    Bonus *bonus[3];
+    GameEngine *gameEngine;
 };
 #endif

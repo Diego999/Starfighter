@@ -1,4 +1,4 @@
-#include "Bonus.h"
+#include "include/game/Bonus.h"
 
 
 void Bonus::trajectoryDraw(qreal x, qreal y)

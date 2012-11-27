@@ -1,10 +1,12 @@
 #ifndef PROJECTILE_V_H
 #define PROJECTILE_V_H
 
-#include "Projectile.h"
+#include "include/game/Projectile.h"
 
 class ProjectileV : public Projectile
 {
+    Q_OBJECT
+
 public:
 	ProjectileV(int _x, int _y, qreal _ampli, qreal _omega);
 	

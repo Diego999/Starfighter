@@ -1,8 +1,8 @@
 #ifndef PROJECTILE_H
 #define PROJECTILE_H
 
-#include "../enum/Enum.h"
-#include "../engine/Displayable.h"
+#include "include/enum/Enum.h"
+#include "include/game/Displayable.h"
 
 class Projectile : public Displayable
 {

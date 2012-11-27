@@ -1,7 +1,7 @@
 #ifndef SUPERNOVA_H
 #define SUPERNOVA_H
 
-#include "Obstacle.h"
+#include "include/game/Obstacle.h"
 
 class Supernova : public Obstacle
 {

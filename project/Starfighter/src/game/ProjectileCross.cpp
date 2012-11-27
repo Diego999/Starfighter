@@ -1,4 +1,4 @@
-#include "ProjectileCross.h"
+#include "include/game/ProjectileCross.h"
 #include <math.h>
 
 void ProjectileCross::ProjectileCross(int _x, int _y, Shooter _from,int _nb)
