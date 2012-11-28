@@ -7,8 +7,9 @@
 
 class Asteroid : public Destroyable, public Obstacle, public Projectile
 {
+    //Q_OBJECT
 public:
-	Asteroid(int x, int y, int resistance, int healthPoint);
+    Asteroid(int x, int y, int resistance, int healthPoint, Shooter from);
 
 	void destroy();
 	

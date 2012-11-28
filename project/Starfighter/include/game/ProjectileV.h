@@ -5,14 +5,14 @@
 
 class ProjectileV : public Projectile
 {
-    Q_OBJECT
+    //Q_OBJECT
 
 public:
-	ProjectileV(int _x, int _y, qreal _ampli, qreal _omega);
+    ProjectileV(int _x, int _y, Shooter _from, qreal _ampli, qreal _omega);
 	
 private:
+    qreal ampli;
 	qreal omega;
-	qreal ampli;
 	
 	void advance(int step);
     qreal trajectoryDraw(qreal xx);

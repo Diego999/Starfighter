@@ -7,16 +7,14 @@
 
 class Obstacle : public Displayable
 {
-    Q_OBJECT
+    //Q_OBJECT
 
 public:
-    Obstacle(int x=0, int y=0, GameEngine *ge);
+    Obstacle(int x, int y);
 
 protected:
 	qreal trajectoryDraw(qreal x);
-	
-private:
-    GameEngine *gameEngine;
+
 
 };
 #endif

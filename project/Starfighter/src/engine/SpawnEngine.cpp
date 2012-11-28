@@ -1,6 +1,6 @@
 #include "include/engine/SpawnEngine.h"
 
-SpawnEngine::SpawnEngine()
+SpawnEngine::SpawnEngine(GameEngine *ge)
 {
 }
 

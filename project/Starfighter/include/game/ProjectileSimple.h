@@ -5,11 +5,12 @@
 
 class ProjectileSimple : public Projectile
 {
-    Q_OBJECT
+    //Q_OBJECT
 
 public:
-    void ProjectileSimple(int _originX, int _originY, Shooter _from);
+    ProjectileSimple(int _originX, int _originY, Shooter _from);
 private:
+    void advance(int step);
     qreal trajectoryDraw(qreal x);
 };
 #endif

@@ -1,7 +1,7 @@
 #include "include/game/ProjectileCross.h"
 #include <math.h>
 
-void ProjectileCross::ProjectileCross(int _x, int _y, Shooter _from,int _nb)
+ProjectileCross::ProjectileCross(int _x, int _y, Shooter _from,int _nb)
     :Projectile(_x,_y,_from),nb(_nb)
 {
 	interval = 8;

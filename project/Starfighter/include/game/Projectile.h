@@ -6,7 +6,7 @@
 
 class Projectile : public Displayable
 {
-    Q_OBJECT
+    //Q_OBJECT
 public:
     Projectile(int _originX, int _originY,Shooter _from);
     Projectile();

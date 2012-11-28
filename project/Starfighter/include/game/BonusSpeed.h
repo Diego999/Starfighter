@@ -6,7 +6,7 @@
 
 class BonusSpeed : public Bonus
 {
-    Q_OBJECT
+    //Q_OBJECT
 
 public:
     BonusSpeed(int speed);

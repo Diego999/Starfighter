@@ -5,7 +5,7 @@
 
 class BonusForceField : public Bonus
 {
-	Q_OBJECT
+    //Q_OBJECT
 
 public:
 	BonusForceField(int resistanceForceField);

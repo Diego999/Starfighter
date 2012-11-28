@@ -1,6 +1,6 @@
 #include "include/utils/Settings.h"
 
-Settings::Settings()
+Settings::Settings(GameEngine *ge)
 {
 
 }
@@ -25,24 +25,24 @@ int Settings::soundEffectsVolume()
 	return 0;
 }
 
-Qt::QString Settings::playerOneName()
+QString Settings::playerOneName()
 {
 	return 0;
 }
 
-Qt::QString Settings::playerTwoName()
+QString Settings::playerTwoName()
 {
 	return 0;
 }
 
 Action Settings::playerOneControls()
 {
-	return 0;
+    return Top;
 }
 
 Action Settings::playerTwoControls()
 {
-	return 0;
+    return Top;
 }
 
 bool Settings::setMusicVolume(int volume)

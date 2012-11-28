@@ -11,7 +11,7 @@
 
 class Displayable : QGraphicsItem
 {
-    Q_OBJECT
+    //Q_OBJECT
 public:
     Displayable(int x, int y, QPixmap* pixmap = 0);
     Displayable();
@@ -25,7 +25,7 @@ protected:
 	int x;
 	int y;
     QPixmap pixmapACHANGER;
-
+    void setPos(qreal x, qreal y);
 	void advance(int step);
 };
 #endif

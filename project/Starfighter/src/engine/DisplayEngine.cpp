@@ -1,6 +1,6 @@
 #include "include/engine/DisplayEngine.h"
 
-DisplayEngine::DisplayEngine(int width, int height)
+DisplayEngine::DisplayEngine(int width, int height, GameEngine *ge)
 {
 }
 

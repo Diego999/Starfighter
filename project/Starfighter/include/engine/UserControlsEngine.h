@@ -7,7 +7,7 @@
 #include <QMap.h>
 #include <QKeyEvent>
 
-class UserControlsEngine
+class UserControlsEngine : public QObject
 {
     Q_OBJECT
 

@@ -4,6 +4,10 @@ Displayable::Displayable(int x, int y, QPixmap* pixmap)
 {
 
 }
+Displayable::Displayable()
+{
+
+}
 
 QRectF Displayable::boundingRect()
 {
@@ -28,4 +32,8 @@ void Displayable::advance(int step)
 {
 }
 
+void Displayable::setPos(qreal x, qreal y)
+{
+    QGraphicsItem::setPos(x,y);
+}
 

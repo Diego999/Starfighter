@@ -6,7 +6,7 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 
-class DisplayEngine
+class DisplayEngine : public QObject
 {
     Q_OBJECT
 public:

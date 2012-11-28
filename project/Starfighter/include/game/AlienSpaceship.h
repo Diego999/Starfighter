@@ -6,7 +6,7 @@
 
 class AlienSpaceship : public Obstacle, public Destroyable
 {
-	Q_OBJECT
+    //Q_OBJECT
 	
 public:
     AlienSpaceship(QPoint P1, QPoint P2, QPoint P3, int nbSpirales);

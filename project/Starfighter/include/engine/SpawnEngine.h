@@ -4,7 +4,7 @@
 #include "include/engine/GameEngine.h"
 #include <QTimerEvent>
 
-class SpawnEngine
+class SpawnEngine : public QObject
 {
     Q_OBJECT
 

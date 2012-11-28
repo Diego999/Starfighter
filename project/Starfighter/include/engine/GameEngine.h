@@ -1,25 +1,27 @@
 #ifndef GAME_ENGINE_H
 #define GAME_ENGINE_H
 
-#include "include/engine/DisplayEngine.h"
-#include "include/engine/SpawnEngine.h"
-#include "include/engine/UserControlsEngine.h"
-#include "include/game/Projectile.h"
-#include "include/game/Obstacle.h"
-#include "include/game/Bonus.h"
-#include "include/game/Spaceship.h"
-#include "include/utils/Settings.h"
+class DisplayEngine;
+class SpawnEngine;
+class UserControlsEngine;
+class Projectile;
+class Obstacle;
+class Bonus;
+class Spaceship;
+class Settings;
 
-class GameEngine
+#include <QObject>
+
+class GameEngine : public QObject
 {
     Q_OBJECT
 
 public:
-	static double randDouble();
-	static int randInt(int range);
+    double randDouble();
+    int randInt(int range);
 	
     GameEngine();
-    Obstacle* spawn(Obstacle* obstacle);
+    void spawn(Obstacle* obstacle);
 	
 	int elapsedTime();
 	

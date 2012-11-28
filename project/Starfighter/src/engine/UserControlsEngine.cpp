@@ -1,6 +1,6 @@
 #include "include/engine/UserControlsEngine.h"
 
-UserControlsEngine::UserControlsEngine()
+UserControlsEngine::UserControlsEngine(GameEngine *ge)
 {
 }
 

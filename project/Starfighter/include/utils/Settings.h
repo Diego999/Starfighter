@@ -6,7 +6,7 @@
 
 class Settings
 {
-    Q_OBJECT
+    //Q_OBJECT
 
 public:
     Settings(GameEngine *ge);
@@ -30,14 +30,14 @@ public:
 	bool setPlayerTwoControls(Action controls);
 	
 private:
-    int musicVolume;
-    int soundEffectsVolume;
+    int musicVolumeA;
+    int soundEffectsVolumeA;
 
-    QString playerOneName;
-    QString playerTwoName;
+    QString playerOneNameA;
+    QString playerTwoNameA;
 
-    Action playerOneControls;
-    Action playerTwoControls;
+    Action playerOneControlsA;
+    Action playerTwoControlsA;
 
     GameEngine *gameEngine;
 };

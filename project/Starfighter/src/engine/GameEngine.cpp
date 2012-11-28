@@ -1,6 +1,7 @@
 #include "include/engine/GameEngine.h"
+#include "include/game/Obstacle.h"
 
-GameEngine::GameEngine()
+GameEngine::GameEngine():QObject()
 {
 
 }
@@ -10,9 +11,9 @@ int GameEngine::elapsedTime()
 	return 0;
 }
 
-Obstacle* GameEngine::spawn(Obstacle* obstacle)
+void GameEngine::spawn(Obstacle* obstacle)
 {
-    return new Obstacle(0,0);
+
 }
 
 double GameEngine::randDouble()

@@ -5,7 +5,7 @@
 
 class BonusHP : public Bonus
 {
-    Q_OBJECT
+    //Q_OBJECT
 
 public:
 	BonusHP(int healthPoint);

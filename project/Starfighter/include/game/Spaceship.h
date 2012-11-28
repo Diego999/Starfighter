@@ -9,7 +9,7 @@
 
 class Spaceship : public Destroyable, public Displayable
 {
-    Q_OBJECT
+    //Q_OBJECT
 
 public:
     Spaceship(GameEngine *ge);

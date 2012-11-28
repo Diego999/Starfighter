@@ -6,7 +6,7 @@
 
 class BonusProjectile : public Bonus
 {
-    Q_OBJECT
+    //Q_OBJECT
 
 public:
     BonusProjectile(TypeProjectiles type, int expiration);

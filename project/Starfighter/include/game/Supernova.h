@@ -5,9 +5,9 @@
 
 class Supernova : public Obstacle
 {
-	Q_OBJECT
+    //Q_OBJECT
 public:
-	void Supernova(int x, int y);
+     Supernova(int x, int y);
 
 private:
 	static const int nbSpirales = 360;

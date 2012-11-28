@@ -5,7 +5,7 @@
 
 class ProjectileCross : public Projectile
 {
-    Q_OBJECT
+    //Q_OBJECT
 public:
     ProjectileCross(int _originX, int _originY,Shooter _from,int _nb);
 
