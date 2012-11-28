@@ -9,10 +9,9 @@ class BonusSpeed : public Bonus
     //Q_OBJECT
 
 public:
-    BonusSpeed(int speed);
+    BonusSpeed(QPoint P1, QPoint P2, QPoint P3, qreal speed, int expiration, GameEngine *ge, Spaceship *ss);
 	
 private:
-	int speed;
 	int expiration;
 };
 #endif

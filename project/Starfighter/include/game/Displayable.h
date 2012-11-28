@@ -14,7 +14,6 @@ class Displayable : QGraphicsItem
     //Q_OBJECT
 public:
     Displayable(int x, int y, QPixmap* pixmap = 0);
-    Displayable();
     void paint(QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
 	
     virtual QRectF boundingRect();

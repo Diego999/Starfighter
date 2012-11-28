@@ -10,7 +10,6 @@ class Bonus : public Displayable
     //Q_OBJECT
 public:
     Bonus(QPoint P1, QPoint P2, QPoint P3, qreal speed, GameEngine *ge, Spaceship *ss);
-    Bonus();
 	void trajectoryDraw(qreal x, qreal y);
 	
 protected:

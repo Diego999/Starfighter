@@ -4,10 +4,6 @@ Displayable::Displayable(int x, int y, QPixmap* pixmap)
 {
 
 }
-Displayable::Displayable()
-{
-
-}
 
 QRectF Displayable::boundingRect()
 {

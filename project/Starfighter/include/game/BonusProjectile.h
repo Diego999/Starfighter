@@ -9,10 +9,10 @@ class BonusProjectile : public Bonus
     //Q_OBJECT
 
 public:
-    BonusProjectile(TypeProjectiles type, int expiration);
+    BonusProjectile(QPoint P1, QPoint P2, QPoint P3, qreal speed,TypeProjectiles type, int expiration, GameEngine *ge, Spaceship *ss);
 	
 private:
+    TypeProjectiles type;
 	int expiration;
-
-	};
+};
 #endif

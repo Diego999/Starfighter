@@ -12,7 +12,7 @@ class Spaceship : public Destroyable, public Displayable
     //Q_OBJECT
 
 public:
-    Spaceship(GameEngine *ge);
+    Spaceship(int x,int y,GameEngine *ge);
 	void attack(int puissance);
 	void top(int step);
 	void bottom(int step);

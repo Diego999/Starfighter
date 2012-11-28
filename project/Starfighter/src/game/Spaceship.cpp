@@ -1,6 +1,6 @@
 #include "include/game/Spaceship.h"
 
-Spaceship::Spaceship(GameEngine *ge)
+Spaceship::Spaceship(int x,int y,GameEngine *ge):Displayable(x,y)
 {
 
 }
