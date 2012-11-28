@@ -1,8 +1,14 @@
-#include <string>
-#include <vector>
-#include <list>
-#include <iostream>
-#include <assert.h>
+/*==============================================================*
+ | Implementation file ProjectileSimple.cpp
+ |    implements : ProjectileSimple class
+ |
+ | Creator : Diego Antognini
+ | Creation date : 26/11/2012
+ | Copyright: EIAJ, all rights reserved
+ |
+ | Version of the file : 0.0.1
+ |
+ *==============================================================*/
 
 #include "include/game/ProjectileSimple.h"
 
@@ -13,16 +19,16 @@ ProjectileSimple::ProjectileSimple(int _originX, int _originY, Shooter _from)
     interval = 7;
 }
 
-qreal ProjectileSimple::trajectoryDraw(qreal _x)
+qreal ProjectileSimple::trajectoryDraw(qreal _dX)
 {
     return 0;
 }
 
-void ProjectileSimple::advance(int step)
+void ProjectileSimple::advance(int _step)
 {
-    Projectile::advance(step);
+    Projectile::advance(_step);
 
     y+=trajectoryDraw(interval);
-    setPos(x,y);
     x+=interval;
+    setPos(x,y);
 }

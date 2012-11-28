@@ -1,7 +1,20 @@
+/*==============================================================*
+ | Implementation file ProjectileAlien.cpp
+ |    implements : ProjectileAlien class
+ |
+ | Creator : Diego Antognini
+ | Creation date : 26/11/2012
+ | Copyright: EIAJ, all rights reserved
+ |
+ | Version of the file : 0.0.1
+ |
+ *==============================================================*/
+
 #include "include/game/Projectile.h"
 
 Projectile::Projectile(int _originX, int _originY,Shooter _from)
-    :Displayable(_originX,_originY),originX(_originX),originY(_originY),from(_from)
+    :Displayable(_originX,_originY),
+      originX(_originX),originY(_originY),from(_from)
 {
     x = _originX;
     y = _originY;
@@ -9,27 +22,27 @@ Projectile::Projectile(int _originX, int _originY,Shooter _from)
 
 QRectF Projectile::boundingRect() const
 {
-    qreal adjust = 0.5;
-    return QRectF(originX - adjust, originY - adjust,
-                  10 + adjust, 10 + adjust);
+    qreal l_dAdjust = 0.5;
+    return QRectF(originX - l_dAdjust, originY - l_dAdjust,
+                  10 + l_dAdjust, 10 + l_dAdjust);
 }
 
 QPainterPath Projectile::shape() const
 {
-    QPainterPath path;
-    path.addRect(originX,originY, 10, 10);
-    return path;
+    QPainterPath l_path;
+    l_path.addRect(originX,originY, 10, 10);
+    return l_path;
 }
 
-void Projectile::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
+void Projectile::paint(QPainter *_painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->setBrush(color);
-    painter->drawEllipse(0,0,10,10);
+    _painter->setBrush(color);
+    _painter->drawEllipse(0,0,10,10);
 }
 
-void Projectile::advance(int step)
+void Projectile::advance(int _step)
 {
-    if (!step)
+    if (!_step)
         return;
 }
 

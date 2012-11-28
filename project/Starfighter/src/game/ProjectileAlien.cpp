@@ -1,20 +1,32 @@
+/*==============================================================*
+ | Implementation file ProjectileAlien.cpp
+ |    implements : ProjectileAlien class
+ |
+ | Creator : Diego Antognini
+ | Creation date : 26/11/2012
+ | Copyright: EIAJ, all rights reserved
+ |
+ | Version of the file : 0.0.1
+ |
+ *==============================================================*/
+
 #include <math.h>
 #include "include/game/ProjectileAlien.h"
 
-ProjectileAlien::ProjectileAlien(int _x, int _y, qreal _arg, qreal _mod, Shooter _from)
-    :Projectile(_x,_y,_from),arg(_arg),mod(_mod)
+ProjectileAlien::ProjectileAlien(int _originX, int _originY, qreal _dArgument, qreal _dModule, Shooter _from)
+    :Projectile(_originX,_originY,_from),dArgument(_dArgument),dModule(_dModule)
 {
 
 }
 
-void ProjectileAlien::advance(int step)
+void ProjectileAlien::advance(int _step)
 {
-    Projectile::advance(step);
-    mod+=ProjectileAlien::modInterval;
-    arg+=ProjectileAlien::argInterval;
+    Projectile::advance(_step);
+    dModule+=ProjectileAlien::kIntervalModule;
+    dArgument+=ProjectileAlien::kIntervalArgument;
 
-    x = originX+mod*cos(arg*M_PI/180.0);
-    y = originY-mod*sin(arg*M_PI/180.0);
+    x = originX+dModule*cos(dArgument*M_PI/180.0);
+    y = originY-dModule*sin(dArgument*M_PI/180.0);
 
     setPos(x,y);
 }

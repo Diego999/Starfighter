@@ -1,16 +1,30 @@
+/*=====================================================================*
+ | Declaration file ProjectileSimple.h
+ |    declares :  ProjectileSimple class
+ |
+ | For more informations (creation date, creator, etc.), please see the
+ | corresponding .cpp file
+ |
+ *=====================================================================*/
+
 #ifndef PROJECTILE_SIMPLE_H
 #define PROJECTILE_SIMPLE_H
 
 #include "include/game/Projectile.h"
 
+/**
+* Class that represents a projectile throwed by a spaceship.
+* The simple projectile follows a horizontal line.
+* @author Diego Antognini
+* @version 0.0.1
+*/
+
 class ProjectileSimple : public Projectile
 {
-    //Q_OBJECT
-
 public:
     ProjectileSimple(int _originX, int _originY, Shooter _from);
 private:
-    void advance(int step);
-    qreal trajectoryDraw(qreal x);
+    void advance(int _step);
+    qreal trajectoryDraw(qreal _dX);
 };
 #endif
