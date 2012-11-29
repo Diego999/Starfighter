@@ -2,17 +2,17 @@
 #define SETTINGS_H
 
 #include "include/enum/Enum.h"
-#include "include/engine/GameEngine.h"
+#include <QSettings>
+class QObject;
+class QString;
 
 class Settings
 {
     //Q_OBJECT
 
 public:
-    Settings(GameEngine *ge);
-	
-	bool save(QString file);
-	bool load(QString file);
+    static Settings& getGlobalSettings();
+
 	int musicVolume();
 	int soundEffectsVolume();
 	
@@ -22,23 +22,20 @@ public:
 	Action playerOneControls();
 	Action playerTwoControls();
 
-	bool setMusicVolume(int volume);
-	bool setSoundEffectsVolume(int volume);
-	bool setPlayerOneName(QString name);
-	bool setPlayerTwoName(QString name);
-	bool setPlayerOneControls(Action controls);
-	bool setPlayerTwoControls(Action controls);
+    void setMusicVolume(int volume);
+    void setSoundEffectsVolume(int volume);
+    void setPlayerOneName(QString name);
+    void setPlayerTwoName(QString name);
+    void setPlayerOneControls(Action controls);
+    void setPlayerTwoControls(Action controls);
 	
 private:
-    int musicVolumeA;
-    int soundEffectsVolumeA;
+    Settings();
+    ~Settings();
+    Settings(Settings const&);      // Don't Implement
+    void operator=(Settings const&);// Don't implement
 
-    QString playerOneNameA;
-    QString playerTwoNameA;
-
-    Action playerOneControlsA;
-    Action playerTwoControlsA;
-
-    GameEngine *gameEngine;
+    QSettings* qse;
 };
+
 #endif

@@ -1,76 +1,110 @@
 #include "include/utils/Settings.h"
+#include <QSettings>
 
-Settings::Settings(GameEngine *ge)
+#ifdef Q_WS_MAC
+    #define ORGANIZATION "ch.hearc"
+#else
+    #define ORGANIZATION "HE-Arc"
+#endif
+
+#define APPLICATION "Starfighter"
+
+#define P1_NAME "p1n"
+#define P2_NAME "p2n"
+#define P1_CONTROLS "p1c"
+#define P2_CONTROLS "p2c"
+#define MUSIC_VOLUME "mvol"
+#define SOUNDEFFECTS_VOLUME "sevol"
+
+const int kDefaultMusicVolume = 50;
+const int kDefaultSoundEffectsVolume = 50;
+const Action kDefaultPlayerOneControls = Top;
+const Action kDefaultPlayerTwoControls = Top;
+QString kDefaultPlayerOneName = QObject::tr("Player 1");
+QString kDefaultPlayerTwoName = QObject::tr("Player 2");
+
+Settings::Settings()
 {
-
+    qse = new QSettings(ORGANIZATION, APPLICATION);
 }
 
-bool Settings::save(QString file)
+Settings::~Settings()
 {
-	return 0;
+    delete qse;
+    qDebug("destroy");
 }
 
-bool Settings::load(QString file)
+Settings& Settings::getGlobalSettings()
 {
-	return 0;
+    static Settings globalSettings;
+
+    return globalSettings;
 }
 
 int Settings::musicVolume()
 {
-	return 0;
+    bool ok;
+    int volume = qse->value(MUSIC_VOLUME, kDefaultMusicVolume).toInt(&ok);
+    return ok ? volume : kDefaultMusicVolume;
 }
 
 int Settings::soundEffectsVolume()
 {
-	return 0;
+    bool ok;
+    int volume = qse->value(SOUNDEFFECTS_VOLUME, kDefaultSoundEffectsVolume).toInt(&ok);
+    return ok ? volume : kDefaultSoundEffectsVolume;
 }
 
 QString Settings::playerOneName()
 {
-	return 0;
+    return qse->value(P1_NAME, kDefaultPlayerOneName).toString();
 }
 
 QString Settings::playerTwoName()
 {
-	return 0;
+    return qse->value(P2_NAME, kDefaultPlayerTwoName).toString();
 }
 
 Action Settings::playerOneControls()
 {
-    return Top;
+    bool ok;
+    Action controls = (Action)qse->value(P1_CONTROLS, kDefaultPlayerOneControls).toInt(&ok);
+    return ok ? controls : kDefaultPlayerOneControls;
 }
 
 Action Settings::playerTwoControls()
 {
-    return Top;
+    bool ok;
+    Action controls = (Action)qse->value(P2_CONTROLS, kDefaultPlayerTwoControls).toInt(&ok);
+    return ok ? controls : kDefaultPlayerTwoControls;
 }
 
-bool Settings::setMusicVolume(int volume)
+void Settings::setMusicVolume(int volume)
 {
-	return 0;
+    qse->setValue(MUSIC_VOLUME, volume);
 }
 
-bool Settings::setSoundEffectsVolume(int volume)
+void Settings::setSoundEffectsVolume(int volume)
 {
-	return 0;
+    qse->setValue(SOUNDEFFECTS_VOLUME, volume);
 }
 
-bool Settings::setPlayerOneName(QString name)
+void Settings::setPlayerOneName(QString name)
 {
-	return 0;
+    qse->setValue(P1_NAME, name);
 }
 
-bool Settings::setPlayerTwoName(QString name)
+void Settings::setPlayerTwoName(QString name)
 {
-	return 0;
+    qse->setValue(P2_NAME, name);
 }
 
-bool Settings::setPlayerOneControls(Action controls)
+void Settings::setPlayerOneControls(Action controls)
 {
-	return 0;
+    qse->setValue(P1_CONTROLS, controls);
 }
 
-bool Settings::setPlayerTwoControls(Action controls)
+void Settings::setPlayerTwoControls(Action controls)
 {
-	return 0;
+    qse->setValue(P2_CONTROLS, controls);
 }
