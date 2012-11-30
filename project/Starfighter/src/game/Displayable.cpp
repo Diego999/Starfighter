@@ -1,35 +1,19 @@
 #include "include/game/Displayable.h"
 
-Displayable::Displayable(int x, int y, QPixmap* pixmap)
+Displayable::Displayable(int _x, int _y, QPixmap* _pxmPicture)
+    :x(_x),y(_y),pxmPicture(_pxmPicture)
 {
-
+    setPos(x,y);
 }
 
-QRectF Displayable::boundingRect()
+void Displayable::advance(int _step)
 {
-    return QRectF();
+    if (!_step)
+        return;
 }
 
-QPainterPath Displayable::shape()
+void Displayable::setPos(qreal _dX, qreal _dY)
 {
-    return QPainterPath();
-}
-
-QPixmap Displayable::pixmap()
-{
-	return 0;
-}
-
-void Displayable::paint(QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget)
-{
-}
-
-void Displayable::advance(int step)
-{
-}
-
-void Displayable::setPos(qreal x, qreal y)
-{
-    QGraphicsItem::setPos(x,y);
+    QGraphicsItem::setPos(_dX,_dY);
 }
 

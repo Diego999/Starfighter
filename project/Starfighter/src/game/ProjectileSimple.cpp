@@ -30,7 +30,7 @@ void ProjectileSimple::advance(int _step)
     Projectile::advance(_step);
 
     y+=trajectoryDraw(interval);
-    if(_from == Player1)
+    if(from == Player1)
         x+=interval;
     else//Player2
         x-=interval;

@@ -17,6 +17,10 @@ public:
 	void top(int step);
 	void bottom(int step);
 
+    QRectF boundingRect() const;
+    QPainterPath shape() const;
+    void paint(QPainter* _painter, QStyleOptionGraphicsItem* _option, QWidget* _widget);
+
 private:
 	QString playerName;
 	qreal speed;

@@ -25,8 +25,8 @@ public:
     ProjectileV(int _originX, int _originY, Shooter _from, qreal _ampli, qreal _omega);
 	
 private:
-    void advance(int step);
-    qreal trajectoryDraw(qreal xx);
+    void advance(int _step);
+    qreal trajectoryDraw(qreal _dX);
 
     qreal dAmplitude;
     qreal dOmega;

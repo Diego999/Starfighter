@@ -26,7 +26,7 @@ public:
 
     QRectF boundingRect() const;
     QPainterPath shape() const;
-    void paint(QPainter* _painter, const QStyleOptionGraphicsItem *, QWidget *);
+    void paint(QPainter* _painter, const QStyleOptionGraphicsItem *_option, QWidget *_widget);
 
 protected:
     virtual void advance(int _step);

@@ -22,27 +22,24 @@ Projectile::Projectile(int _originX, int _originY,Shooter _from)
 
 QRectF Projectile::boundingRect() const
 {
-    qreal l_dAdjust = 0.5;
-    return QRectF(originX - l_dAdjust, originY - l_dAdjust,
-                  10 + l_dAdjust, 10 + l_dAdjust);
+    return QRectF(x-RADIUS_PROJECTILE/2,y-RADIUS_PROJECTILE/2,RADIUS_PROJECTILE,RADIUS_PROJECTILE);
 }
 
 QPainterPath Projectile::shape() const
 {
     QPainterPath l_path;
-    l_path.addRect(originX,originY, 10, 10);
+    l_path.addEllipse(QPoint(x-RADIUS_PROJECTILE/2,y-RADIUS_PROJECTILE/2),RADIUS_PROJECTILE,RADIUS_PROJECTILE);
     return l_path;
 }
 
 void Projectile::paint(QPainter *_painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     _painter->setBrush(color);
-    _painter->drawEllipse(0,0,10,10);
+    _painter->drawEllipse(-RADIUS_PROJECTILE/2,-RADIUS_PROJECTILE/2,RADIUS_PROJECTILE,RADIUS_PROJECTILE);
 }
 
 void Projectile::advance(int _step)
 {
-    if (!_step)
-        return;
+    Displayable::advance(_step);
 }
 

@@ -9,22 +9,24 @@
 #include <QPainterPath>
 #include <QGraphicsItem>
 
+#define RADIUS_PROJECTILE 10
+
 class Displayable : QGraphicsItem
 {
     //Q_OBJECT
 public:
-    Displayable(int x, int y, QPixmap* pixmap = 0);
-    void paint(QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-	
-    virtual QRectF boundingRect();
-    virtual QPainterPath shape();
-    virtual QPixmap pixmap();
+    Displayable(int _x, int _y, QPixmap* _pixmap = 0);
+
+    virtual QRectF boundingRect()=0;
+    virtual QPainterPath shape()=0;
+    virtual void paint(QPainter* _painter, QStyleOptionGraphicsItem* _option, QWidget* _widget)=0;
 
 protected:
 	int x;
 	int y;
-    QPixmap pixmapACHANGER;
-    void setPos(qreal x, qreal y);
-	void advance(int step);
+    QPixmap* pxmPicture;
+
+    virtual void setPos(qreal x, qreal y);
+    virtual void advance(int step);
 };
 #endif

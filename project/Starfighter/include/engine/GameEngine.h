@@ -16,17 +16,17 @@ class GameEngine : public QObject
 {
     Q_OBJECT
 
-public:
+public:	
+    GameEngine();
+
+    void spawn(Obstacle* obstacle);
+	int elapsedTime();
     double randDouble();
     int randInt(int range);
-	
-    GameEngine();
-    void spawn(Obstacle* obstacle);
-	
-	int elapsedTime();
-	
+
+    DisplayEngine* displayEngine() const { return de;}
 private:
-    DisplayEngine *displayEngine;
+    DisplayEngine *de;
     SpawnEngine *spawnEngine;
     UserControlsEngine *userControlsEngine;
     Projectile *projectile[];
