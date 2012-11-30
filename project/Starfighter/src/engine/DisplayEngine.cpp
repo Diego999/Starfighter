@@ -1,17 +1,17 @@
 #include "include/engine/DisplayEngine.h"
 #include "include/utils/Settings.h"
+#include "include/enum/Enum.h"
+#include <QTimer>
 
 #define ESPACEMENT_OBJ 20
 #define BACKGROUND "background/black hole.png"
 
 #include "QtGui"
 
-DisplayEngine::DisplayEngine(int width, int height, GameEngine *ge)
+DisplayEngine::DisplayEngine(int width, int height, GameEngine *ge) : gameEngine(ge)
 {
-    //const int width = 750;
-    //const int height = 500;
 
-    QWidget * mainPart = new QWidget(this);
+    mainPart = new QWidget();
     mainPart->showFullScreen();
 
     //Settings set;
@@ -39,15 +39,19 @@ DisplayEngine::DisplayEngine(int width, int height, GameEngine *ge)
 
     QHBoxLayout * heathP1 = new QHBoxLayout();
     QLabel * lHP1 = new QLabel("HP:\t");
-    QProgressBar * HP1= new QProgressBar();
+    HP1= new QProgressBar();
+    HP1->setRange(0,100);
+
     heathP1->addWidget(lHP1);
     heathP1->addWidget(HP1);
 
     QHBoxLayout * shildP1 = new QHBoxLayout();
     QLabel * lShild1 = new QLabel("Shield:\t");
-    QProgressBar * Shield1= new QProgressBar();
+    shield1= new QProgressBar();
+    shield1->setRange(0,100);
+
     shildP1->addWidget(lShild1);
-    shildP1->addWidget(Shield1);
+    shildP1->addWidget(shield1);
 
     // Add all layout status
     statuePlayerOne->addLayout(heathP1);
@@ -88,15 +92,19 @@ DisplayEngine::DisplayEngine(int width, int height, GameEngine *ge)
 
     QHBoxLayout * heathP2 = new QHBoxLayout();
     QLabel * lHP2 = new QLabel("HP:\t");
-    QProgressBar * HP2= new QProgressBar();
+    HP2= new QProgressBar();
+    HP2->setRange(0,100);
+
     heathP2->addWidget(lHP2);
     heathP2->addWidget(HP2);
 
     QHBoxLayout * shildP2 = new QHBoxLayout();
     QLabel * lShild2 = new QLabel("Shield:\t");
-    QProgressBar * Shield2= new QProgressBar();
+    shield2= new QProgressBar();
+    shield2->setRange(0,100);
+
     shildP2->addWidget(lShild2);
-    shildP2->addWidget(Shield2);
+    shildP2->addWidget(shield2);
 
     // Add all layout status
     statuePlayerTwo->addLayout(heathP2);
@@ -122,9 +130,46 @@ DisplayEngine::DisplayEngine(int width, int height, GameEngine *ge)
 
     downShow->move(0,height-65);
 
+    //view->(&scene);
+
 }
 
-QSize DisplayEngine::sceneSize()
+DisplayEngine::~DisplayEngine()
 {
-    return QSize(scene->width(),scene->height());
+    delete mainPart;
+}
+
+QRect DisplayEngine::sceneSize()
+{
+    return QRect(0,0,scene->width(),scene->height());
+}
+
+void DisplayEngine::gameType()
+{
+    //if(gameEngine->)
+    {
+        timer->setDisabled(true);
+        scoreP1->setDisabled(true);
+        scoreP2->setDisabled(true);
+    }
+}
+
+void DisplayEngine::setProgressHP1(int _value)
+{
+    HP1->setValue(_value);
+}
+
+void DisplayEngine::setProgressHP2(int _value)
+{
+    HP2->setValue(_value);
+}
+
+void DisplayEngine::setProgressShield1(int _value)
+{
+    shield1->setValue(_value);
+}
+
+void DisplayEngine::setProgressShield2(int _value)
+{
+    shield2->setValue(_value);
 }
