@@ -19,7 +19,8 @@ protected:
     void keyReleaseEvent(QKeyEvent * event);
 
 private:
-	QMap<int,Action> actions;
-    GameEngine *gameEngine;
+    QMap<int,Action>        actions;
+    QMap<Action,Qt::Key>    myKey;
+    GameEngine *            gameEngine;
 };
 #endif

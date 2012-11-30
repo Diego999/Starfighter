@@ -3,9 +3,12 @@
 
 enum Action
 {
-    Top = 1,
-    Bottom = 2,
-    Shoot = 3,
+    Top1 = 11,
+    Top2 = 12,
+    Bottom1 = 21,
+    Bottom2 = 22,
+    Shoot1 = 31,
+    Shoot2 = 32,
     Escape = 4
 };
 
