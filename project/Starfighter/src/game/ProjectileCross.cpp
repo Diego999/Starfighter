@@ -13,10 +13,12 @@
 #include "include/game/ProjectileCross.h"
 #include <math.h>
 
+#define INTERVAL_X 8
+
 ProjectileCross::ProjectileCross(int _originX, int _originY, Shooter _from,int _nb)
     :Projectile(_originX,_originY,_from),nb(_nb)
 {
-	interval = 8;
+    interval = INTERVAL_X;
 }
 
 qreal ProjectileCross::trajectoryDraw(qreal _dX)

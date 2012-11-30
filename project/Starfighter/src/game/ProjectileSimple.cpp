@@ -12,11 +12,12 @@
 
 #include "include/game/ProjectileSimple.h"
 
+#define INTERVAL_X 7
 
 ProjectileSimple::ProjectileSimple(int _originX, int _originY, Shooter _from)
     :Projectile(_originX,_originY,_from)
 {
-    interval = 7;
+    interval = INTERVAL_X;
 }
 
 qreal ProjectileSimple::trajectoryDraw(qreal _dX)

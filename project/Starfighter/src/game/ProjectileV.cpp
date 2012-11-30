@@ -13,10 +13,12 @@
 #include "include/game/ProjectileV.h"
 #include <math.h>
 
+#define INTERVAL_X 4
+
 ProjectileV::ProjectileV(int _originX, int _originY,Shooter _from, qreal _ampli, qreal _omega)
     :Projectile(_originX,_originY,_from),dAmplitude(_ampli),dOmega(_omega)
 {
-	interval = 4;
+    interval = INTERVAL_X;
 }
 
 qreal ProjectileV::trajectoryDraw(qreal _dX)
