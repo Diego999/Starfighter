@@ -19,4 +19,9 @@ enum TypeProjectiles
     ProjectileSimple,ProjectileCross,ProjectileV,ProjectileAlien,Nothing
 };
 
+enum GameMode
+{
+    Timer,DeathMatch
+};
+
 #endif // ENUMERATION_H
