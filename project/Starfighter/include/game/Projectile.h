@@ -37,7 +37,6 @@ protected:
 	int originY;
 
     qreal dSpeed;
-    qreal dDirection;
     QColor color;
 
 	int interval;

@@ -35,6 +35,9 @@ void ProjectileCross::advance(int _step)
 {
     Projectile::advance(_step);
 
-	x+=interval;
+    if(_from == Player1)
+        x+=interval;
+    else//Player2
+        x-=interval;
     setPos(x,y-trajectoryDraw(x));
 }
