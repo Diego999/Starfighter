@@ -25,3 +25,5 @@ int GameEngine::randInt(int range)
 {
 	return 0;
 }
+
+int GameEngine::timeGamevalue(){return timeGame;}

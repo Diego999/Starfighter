@@ -23,8 +23,10 @@ public:
 	int elapsedTime();
     double randDouble();
     int randInt(int range);
+    int timeGamevalue();
 
     DisplayEngine* displayEngine() const { return de;}
+
 private:
     DisplayEngine *de;
     SpawnEngine *spawnEngine;
@@ -34,6 +36,7 @@ private:
     Bonus *bonus;
     Spaceship *spaceship[2];
     Settings *settings;
+    int timeGame;
 
 };
 #endif

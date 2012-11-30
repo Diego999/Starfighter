@@ -76,6 +76,10 @@ DisplayEngine::DisplayEngine(int width, int height, GameEngine *ge) : gameEngine
     score->addWidget(new QLabel(":"));
     score->addWidget(scoreP2);
 
+    timer->setDisabled(true);
+    scoreP1->setDisabled(true);
+    scoreP2->setDisabled(true);
+
     timeAndScore->addWidget(timer);
     timeAndScore->addLayout(score);
 
@@ -130,6 +134,9 @@ DisplayEngine::DisplayEngine(int width, int height, GameEngine *ge) : gameEngine
 
     downShow->move(0,height-65);
 
+    this->gameType();
+
+
     //view->(&scene);
 
 }
@@ -146,11 +153,13 @@ QRect DisplayEngine::sceneSize()
 
 void DisplayEngine::gameType()
 {
+    // si juste alors active le timer
     //if(gameEngine->)
     {
-        timer->setDisabled(true);
-        scoreP1->setDisabled(true);
-        scoreP2->setDisabled(true);
+        startTimer(500);
+        timer->setEnabled(true);
+        scoreP1->setEnabled(true);
+        scoreP2->setEnabled(true);
     }
 }
 
@@ -172,4 +181,31 @@ void DisplayEngine::setProgressShield1(int _value)
 void DisplayEngine::setProgressShield2(int _value)
 {
     shield2->setValue(_value);
+}
+
+void DisplayEngine::timerEvent(QTimerEvent * event)
+{
+    updateGameData();
+}
+
+void DisplayEngine::updateGameData()
+{
+    int deltaTime = gameEngine->timeGamevalue() - gameEngine->elapsedTime();
+
+
+    if(deltaTime == 0)
+    {
+        this->endGame();
+    }
+}
+
+void DisplayEngine::endGame()
+{
+    // get point player
+    //gameEngine->spaceship;
+
+    QMessageBox::information(mainPart,
+                             "Fin de partie",
+                             tr("Fin de partie"),
+                             QMessageBox::Ok);
 }

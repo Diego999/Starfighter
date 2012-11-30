@@ -23,6 +23,11 @@ public:
 
 private:
     void gameType();
+    void updateGameData();
+    void endGame();
+
+protected:
+    void timerEvent(QTimerEvent * event);
 	
 private:
     QGraphicsScene *scene;
