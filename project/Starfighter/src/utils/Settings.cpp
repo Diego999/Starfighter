@@ -1,5 +1,7 @@
 #include "include/utils/Settings.h"
 #include <QSettings>
+#include <QMap>
+#include <QStringListIterator>
 
 #ifdef Q_WS_MAC
     #define ORGANIZATION "ch.hearc"
@@ -11,15 +13,12 @@
 
 #define P1_NAME "p1n"
 #define P2_NAME "p2n"
-#define P1_CONTROLS "p1c"
-#define P2_CONTROLS "p2c"
+#define PLAYERS_CONTROLS "controls"
 #define MUSIC_VOLUME "mvol"
 #define SOUNDEFFECTS_VOLUME "sevol"
 
 const int kDefaultMusicVolume = 50;
 const int kDefaultSoundEffectsVolume = 50;
-const Action kDefaultPlayerOneControls = Top;
-const Action kDefaultPlayerTwoControls = Top;
 QString kDefaultPlayerOneName = QObject::tr("Player 1");
 QString kDefaultPlayerTwoName = QObject::tr("Player 2");
 
@@ -65,18 +64,36 @@ QString Settings::playerTwoName()
     return qse->value(P2_NAME, kDefaultPlayerTwoName).toString();
 }
 
-Action Settings::playerOneControls()
+QMap<Action, Qt::Key> Settings::playersControls()
 {
-    bool ok;
-    Action controls = (Action)qse->value(P1_CONTROLS, kDefaultPlayerOneControls).toInt(&ok);
-    return ok ? controls : kDefaultPlayerOneControls;
-}
+    QMap<Action, Qt::Key> defaultControls;
 
-Action Settings::playerTwoControls()
-{
-    bool ok;
-    Action controls = (Action)qse->value(P2_CONTROLS, kDefaultPlayerTwoControls).toInt(&ok);
-    return ok ? controls : kDefaultPlayerTwoControls;
+    defaultControls[Top1] = Qt::Key_W;
+    defaultControls[Top2] = Qt::Key_Up;
+    defaultControls[Bottom1] = Qt::Key_S;
+    defaultControls[Bottom2] = Qt::Key_Down;
+    defaultControls[Shoot1] = Qt::Key_E;
+    defaultControls[Shoot2] = Qt::Key_Enter;
+    defaultControls[Escape] = Qt::Key_Escape;
+
+    QMap<Action, Qt::Key> controls;
+
+    qse->beginGroup(PLAYERS_CONTROLS);
+    QStringListIterator it(qse->childKeys());
+    while (it.hasNext())
+    {
+        bool ok;
+        QString key = it.next();
+        Action ind = (Action)key.toInt(&ok);
+        if(ok)
+        {
+            Qt::Key value = (Qt::Key)qse->value(key, defaultControls[ind]).toInt(&ok);
+            controls[ind] = ok ? value : defaultControls[ind];
+        }
+    }
+    qse->endGroup();
+
+    return controls;
 }
 
 void Settings::setMusicVolume(int volume)
@@ -99,12 +116,14 @@ void Settings::setPlayerTwoName(QString name)
     qse->setValue(P2_NAME, name);
 }
 
-void Settings::setPlayerOneControls(Action controls)
+void Settings::setPlayersControls(QMap<Action, Qt::Key> controls)
 {
-    qse->setValue(P1_CONTROLS, controls);
-}
-
-void Settings::setPlayerTwoControls(Action controls)
-{
-    qse->setValue(P2_CONTROLS, controls);
+    qse->beginGroup(PLAYERS_CONTROLS);
+    QMapIterator<Action, Qt::Key> i(controls);
+    while (i.hasNext())
+    {
+        i.next();
+        qse->setValue(QString().setNum(i.key()), i.value());
+    }
+    qse->endGroup();
 }

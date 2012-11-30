@@ -3,6 +3,7 @@
 
 #include "include/enum/Enum.h"
 #include <QSettings>
+#include <QMap>
 class QObject;
 class QString;
 
@@ -19,15 +20,13 @@ public:
 	QString playerOneName();
 	QString playerTwoName();
 
-	Action playerOneControls();
-	Action playerTwoControls();
+    QMap<Action, Qt::Key> playersControls();
 
     void setMusicVolume(int volume);
     void setSoundEffectsVolume(int volume);
     void setPlayerOneName(QString name);
     void setPlayerTwoName(QString name);
-    void setPlayerOneControls(Action controls);
-    void setPlayerTwoControls(Action controls);
+    void setPlayersControls(QMap<Action, Qt::Key> controls);
 	
 private:
     Settings();
