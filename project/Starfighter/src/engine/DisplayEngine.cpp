@@ -1,15 +1,18 @@
 #include "include/engine/DisplayEngine.h"
 #include "include/utils/Settings.h"
 
+#define ESPACEMENT_OBJ 20
+#define BACKGROUND "background/black hole.png"
+
 #include "QtGui"
 
 DisplayEngine::DisplayEngine(int width, int height, GameEngine *ge)
 {
-    const int width = 750;
-    const int height = 500;
+    //const int width = 750;
+    //const int height = 500;
 
     QWidget * mainPart = new QWidget(this);
-    mainPart->resize(width,height);
+    mainPart->showFullScreen();
 
     //Settings set;
     //view = new QGraphicsView(mainPart);
