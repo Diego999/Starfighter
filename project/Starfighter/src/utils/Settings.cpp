@@ -66,17 +66,15 @@ QString Settings::playerTwoName()
 
 QMap<Action, Qt::Key> Settings::playersControls()
 {
-    QMap<Action, Qt::Key> defaultControls;
-
-    defaultControls[Top1] = Qt::Key_W;
-    defaultControls[Top2] = Qt::Key_Up;
-    defaultControls[Bottom1] = Qt::Key_S;
-    defaultControls[Bottom2] = Qt::Key_Down;
-    defaultControls[Shoot1] = Qt::Key_E;
-    defaultControls[Shoot2] = Qt::Key_Enter;
-    defaultControls[Escape] = Qt::Key_Escape;
-
     QMap<Action, Qt::Key> controls;
+
+    controls.insert(Top1, Qt::Key_W);
+    controls.insert(Top2, Qt::Key_Up);
+    controls.insert(Bottom1, Qt::Key_S);
+    controls.insert(Bottom2, Qt::Key_Down);
+    controls.insert(Shoot1, Qt::Key_E);
+    controls.insert(Shoot2, Qt::Key_Enter);
+    controls.insert(Escape, Qt::Key_Escape);
 
     qse->beginGroup(PLAYERS_CONTROLS);
     QStringListIterator it(qse->childKeys());
@@ -87,8 +85,9 @@ QMap<Action, Qt::Key> Settings::playersControls()
         Action ind = (Action)key.toInt(&ok);
         if(ok)
         {
-            Qt::Key value = (Qt::Key)qse->value(key, defaultControls[ind]).toInt(&ok);
-            controls[ind] = ok ? value : defaultControls[ind];
+            Qt::Key value = (Qt::Key)qse->value(key, controls[ind]).toInt(&ok);
+            if(ok)
+                controls[ind] = value;
         }
     }
     qse->endGroup();
