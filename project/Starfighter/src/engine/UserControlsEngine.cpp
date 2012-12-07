@@ -4,7 +4,7 @@
 
 UserControlsEngine::UserControlsEngine(GameEngine *ge): gameEngine(ge)
 {
-
+    //myKey = gameEngine;
 
     myKey[Top1];
     myKey[Bottom1];
@@ -35,31 +35,31 @@ void UserControlsEngine::keyPressEvent(QKeyEvent * event)
     switch(action)
     {
         case(Top1):
-        gameEngine;
+        //gameEngine;
         break;
 
         case(Bottom1):
-        gameEngine;
+        //gameEngine;
         break;
 
         case(Shoot1):
-        gameEngine;
+        //gameEngine;
         break;
 
         case(Top2):
-        gameEngine;
+        //gameEngine;
         break;
 
         case(Bottom2):
-        gameEngine;
+        //gameEngine;
         break;
 
         case(Shoot2):
-        gameEngine;
+        //gameEngine;
         break;
 
         case(Escape):
-        gameEngine;
+        //gameEngine;
         break;
     }
 }
@@ -72,27 +72,27 @@ void UserControlsEngine::keyReleaseEvent(QKeyEvent * event)
     switch(action)
     {
         case(Top1):
-        gameEngine;
+        //gameEngine;
         break;
 
         case(Bottom1):
-        gameEngine;
+        //gameEngine;
         break;
 
         case(Shoot1):
-        gameEngine;
+        //gameEngine;
         break;
 
         case(Top2):
-        gameEngine;
+        //gameEngine;
         break;
 
         case(Bottom2):
-        gameEngine;
+        //gameEngine;
         break;
 
         case(Shoot2):
-        gameEngine;
+        //gameEngine;
         break;
 
         case(Escape):

@@ -15,7 +15,7 @@
 #include "QtGui"
 
 //DisplayEngine::DisplayEngine(QWidget *parent) : QWidget(parent)
-DisplayEngine::DisplayEngine(GameEngine *ge) : gameEngine(ge), isFullScreen(true)
+DisplayEngine::DisplayEngine(QWidget *parent, GameEngine *ge): QWidget(parent), gameEngine(ge), isFullScreen(true)
 {
 
     QVBoxLayout * mainScreen = new QVBoxLayout(this);
@@ -144,9 +144,7 @@ void DisplayEngine::creatHUD()
     statuePlayerTwo->addLayout(heathP2);
     statuePlayerTwo->addLayout(shildP2);
 
-
     QHBoxLayout * bonusPlayerTwo = new QHBoxLayout();
-
 
     downPart->addLayout(playerOneNamu);
     downPart->addSpacing(SPACE_INPLAYER);

@@ -17,7 +17,7 @@ class DisplayEngine : public QWidget
     Q_OBJECT
 public:
     //DisplayEngine(QWidget *parent);
-    DisplayEngine(GameEngine *ge);
+    DisplayEngine(QWidget *parent,GameEngine *ge);
     ~DisplayEngine();
 
     QRect sceneSize();
@@ -50,14 +50,13 @@ private:
     QWidget * downHUD;
 
 
-    QList<Projectile*> listProjectile;
-    QList<Asteroid*> listAsteroide;
-    QList<Bonus*> listBonus;
-    QList<Spaceship*> listSpaceship;
-
+    QList<Projectile*>  listProjectile;
+    QList<Asteroid*>    listAsteroide;
+    QList<Bonus*>       listBonus;
+    QList<Spaceship*>   listSpaceship;
 
     QList<Displayable*> listDisplayable;
-    Displayable* displayable[];
+    Displayable*        displayable[];
 
     GameEngine *gameEngine;
 
