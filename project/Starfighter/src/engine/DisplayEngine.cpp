@@ -4,8 +4,11 @@
 #include "include/game/Projectile.h"
 #include "include/game/Spaceship.h"
 #include "include/utils/Settings.h"
-//#include "include/game/ProjectileSimple.h"
+
 #include "include/enum/Enum.h"
+
+#include <QDebug>
+#include "include/game/ProjectileSimple.h"
 
 #include <QTimerEvent>
 
@@ -22,7 +25,7 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     QVBoxLayout * mainScreen = new QVBoxLayout(this);
 
     downHUD = new QWidget(this);
-    scene = new QGraphicsScene(0,0,800,800,this);
+    scene = new QGraphicsScene(0,0,0,0,this);
     view = new QGraphicsView(scene,this);
 
     view->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
@@ -39,23 +42,42 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     //scene->setBackgroundBrush(bg);
     scene->setBackgroundBrush(Qt::black);
 
+    // place the HUD
+    QDesktopWidget * desktop = QApplication::desktop();
+
+    screenSizeHeight = desktop->height();
+    screenSizeWidth = desktop->width();
+
+    this->setFixedSize(screenSizeWidth,screenSizeHeight);
+
     // Param of the screen
-    //mainPart->showFullScreen();
-    showMaximized();
-    setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint);
+    this->showFullScreen();
+    //showMaximized();
+    //setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint);
 
     mainScreen->addWidget(view);
     mainScreen->addWidget(downHUD);
-
+    //qDebug() << view->height();
     this->creatHUD();
     this->gameType();
+    //qDebug() << downHUD->height();
+    scene->setSceneRect(0,0,screenSizeWidth,100);
+    view->setFixedSize(screenSizeWidth,100);
 
+    qDebug() << downHUD->height();
     //startTimer(100);
 
     //view->show();
     setLayout(mainScreen);
     //Projectile* p = new ProjectileSimple(10,10,Player1);
     //scene->addItem(p);
+    //Mouse* m = new Mouse();
+    //m->setPos(20,20);
+    //scene->addItem(m);
+    Spaceship* s = new Spaceship(0,screenSizeHeight/4,Player1,ge);
+    scene->addItem(s);
+    Spaceship* s2 = new Spaceship(500,screenSizeHeight/4,Player2,ge);
+    scene->addItem(s2);
 }
 
 DisplayEngine::~DisplayEngine()
@@ -67,7 +89,6 @@ void DisplayEngine::creatHUD()
 {
 
     QHBoxLayout * downPart = new QHBoxLayout(downHUD);
-
 
     /**
       * Player no1 part
@@ -170,14 +191,8 @@ void DisplayEngine::creatHUD()
     downPart->addSpacing(SPACE_INPLAYER);
     downPart->addLayout(bonusPlayerTwo);
 
-    // place the HUD
-    QDesktopWidget * desktop = QApplication::desktop();
-
-    screenSizeHeight = desktop->height();
-    screenSizeWidth = desktop->width();
-
-    downHUD->move(0,screenSizeHeight-125);
-
+    //scene->setSceneRect(0,0,screenSizeWidth,screenSizeHeight);
+    //downHUD->move(0,screenSizeHeight-125);
 }
 
 
