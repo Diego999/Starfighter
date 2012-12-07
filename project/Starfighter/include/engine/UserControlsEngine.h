@@ -16,7 +16,7 @@ public:
 	
 protected:
     void keyPressEvent(QKeyEvent * event);
-    void keyReleaseEvent(QKeyEvent * event);
+    //void keyReleaseEvent(QKeyEvent * event);
 
 private:
     QMap<int,Action>        actions;

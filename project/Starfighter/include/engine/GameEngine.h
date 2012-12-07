@@ -25,6 +25,9 @@ public:
     int randInt(int range);
     int timeGamevalue();
 
+    Spaceship * ship1() const {return spaceship[0];}
+    Spaceship * ship2() const {return spaceship[1];}
+
     DisplayEngine* displayEngine() const { return de;}
 
 private:
