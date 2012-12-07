@@ -3,40 +3,60 @@
 
 #include "include/game/Displayable.h"
 #include "include/engine/GameEngine.h"
+
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QLCDNumber>
 #include <QProgressBar>
 
-class DisplayEngine : public QObject
+class Asteroid;
+
+class DisplayEngine : public QWidget
 {
     Q_OBJECT
 public:
-    DisplayEngine(int width, int height, GameEngine *ge);
+    //DisplayEngine(QWidget *parent);
+    DisplayEngine(GameEngine *ge);
     ~DisplayEngine();
-	
+
     QRect sceneSize();
     void setProgressHP1(int _value);
     void setProgressHP2(int _value);
     void setProgressShield1(int _value);
     void setProgressShield2(int _value);
 
+protected:
+    void paintEvent(QPaintEvent * event);
+    void timerEvent(QTimerEvent *);
+
 private:
     void gameType();
+    void creatHUD();
     void updateGameData();
     void endGame();
 
-protected:
-    void timerEvent(QTimerEvent * event);
-	
-private:
-    QGraphicsScene *scene;
-    QGraphicsView *view;
+    QGraphicsScene * scene;
+    QGraphicsView * view;
+
     QWidget * mainPart;
+    QWidget * downHUD;
+
+    QList<Projectile*> listProjectile;
+
+    QList<Asteroid*> listAsteroide;
+    QList<Bonus*> listBonus;
+    QList<Spaceship*> listSpaceship;
+    QList<Displayable*> listDisplayable;
 
     Displayable* displayable[];
+
     GameEngine *gameEngine;
 
+    // dimension of the screeen
+    int screenSizeWidth;
+    int screenSizeHeight;
+
+    // widget used for the HUD
     QLCDNumber * timer;
     QLCDNumber * scoreP1;
     QLCDNumber * scoreP2;

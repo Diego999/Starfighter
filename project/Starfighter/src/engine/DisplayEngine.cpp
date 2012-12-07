@@ -1,28 +1,57 @@
 #include "include/engine/DisplayEngine.h"
 #include "include/utils/Settings.h"
 #include "include/enum/Enum.h"
-#include <QTimer>
+#include <QTimerEvent>
 
-#define ESPACEMENT_OBJ 20
+#define SPACE_BETWEEN         250
+#define SPACE_INPLAYER        50
 #define BACKGROUND "background/black hole.png"
 
 #include "QtGui"
 
-DisplayEngine::DisplayEngine(int width, int height, GameEngine *ge) : gameEngine(ge)
+//DisplayEngine::DisplayEngine(QWidget *parent) : QWidget(parent)
+DisplayEngine::DisplayEngine(GameEngine *ge) : gameEngine(ge)
 {
 
-    mainPart = new QWidget();
-    mainPart->showFullScreen();
+    QVBoxLayout * mainScreen = new QVBoxLayout(this);
 
-    //Settings set;
-    //view = new QGraphicsView(mainPart);
+    downHUD = new QWidget();
+    scene = new QGraphicsScene();
+    scene->setSceneRect(0,0,100,100);
+    view = new QGraphicsView(scene);
 
-    scene = new QGraphicsScene(mainPart);
+    // Set background
     QPixmap bg( BACKGROUND );
-    scene->setBackgroundBrush(bg);
+    //scene->setBackgroundBrush(bg);
+    scene->setBackgroundBrush(Qt::black);
 
-    QWidget * downShow = new QWidget(mainPart);
-    QHBoxLayout * downPart = new QHBoxLayout(downShow);
+    // Param of the screen
+    //mainPart->showFullScreen();
+    showMaximized();
+    setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint);
+
+    mainScreen->addWidget(view);
+    mainScreen->addWidget(downHUD);
+
+    this->creatHUD();
+    this->gameType();
+
+    startTimer(100);
+
+    //view->show();
+    setLayout(mainScreen);
+
+}
+
+DisplayEngine::~DisplayEngine()
+{
+    delete mainPart;
+}
+
+void DisplayEngine::creatHUD()
+{
+
+    QHBoxLayout * downPart = new QHBoxLayout(downHUD);
 
 
     /**
@@ -64,21 +93,17 @@ DisplayEngine::DisplayEngine(int width, int height, GameEngine *ge) : gameEngine
       */
     QVBoxLayout * timeAndScore   = new QVBoxLayout();
     QHBoxLayout * score = new QHBoxLayout();
-    QLCDNumber * timer = new QLCDNumber();
+    timer = new QLCDNumber();
     timer->setDigitCount(5);
 
-    QLCDNumber * scoreP1 = new QLCDNumber();
-    QLCDNumber * scoreP2 = new QLCDNumber();
+    scoreP1 = new QLCDNumber();
+    scoreP2 = new QLCDNumber();
 
     scoreP1->setDigitCount(2);
     scoreP2->setDigitCount(2);
     score->addWidget(scoreP1);
     score->addWidget(new QLabel(":"));
     score->addWidget(scoreP2);
-
-    timer->setDisabled(true);
-    scoreP1->setDisabled(true);
-    scoreP2->setDisabled(true);
 
     timeAndScore->addWidget(timer);
     timeAndScore->addLayout(score);
@@ -119,31 +144,42 @@ DisplayEngine::DisplayEngine(int width, int height, GameEngine *ge) : gameEngine
 
 
     downPart->addLayout(playerOneNamu);
-    downPart->addSpacing(ESPACEMENT_OBJ);
+    downPart->addSpacing(SPACE_INPLAYER);
     downPart->addLayout(statuePlayerOne);
-    downPart->addSpacing(ESPACEMENT_OBJ);
+    downPart->addSpacing(SPACE_INPLAYER);
     downPart->addLayout(bonusPlayerOne);
-    downPart->addSpacing(ESPACEMENT_OBJ);
+    downPart->addSpacing(SPACE_BETWEEN);
     downPart->addLayout(timeAndScore);
-    downPart->addSpacing(ESPACEMENT_OBJ);
+    downPart->addSpacing(SPACE_BETWEEN);
     downPart->addLayout(playerTwoNamu);
-    downPart->addSpacing(ESPACEMENT_OBJ);
+    downPart->addSpacing(SPACE_INPLAYER);
     downPart->addLayout(statuePlayerTwo);
-    downPart->addSpacing(ESPACEMENT_OBJ);
+    downPart->addSpacing(SPACE_INPLAYER);
     downPart->addLayout(bonusPlayerTwo);
 
-    downShow->move(0,height-65);
+    // place the HUD
+    QDesktopWidget * desktop = QApplication::desktop();
 
-    this->gameType();
+    screenSizeHeight = desktop->height();
+    screenSizeWidth = desktop->width();
 
-
-    //view->(&scene);
+    downHUD->move(0,screenSizeHeight-125);
 
 }
 
-DisplayEngine::~DisplayEngine()
+void DisplayEngine::paintEvent(QPaintEvent * event)
 {
-    delete mainPart;
+
+    scene->advance();
+
+}
+
+void DisplayEngine::timerEvent(QTimerEvent * event)
+{
+
+    //this->update();
+    scene->advance();
+
 }
 
 QRect DisplayEngine::sceneSize()
@@ -181,11 +217,6 @@ void DisplayEngine::setProgressShield1(int _value)
 void DisplayEngine::setProgressShield2(int _value)
 {
     shield2->setValue(_value);
-}
-
-void DisplayEngine::timerEvent(QTimerEvent * event)
-{
-    updateGameData();
 }
 
 void DisplayEngine::updateGameData()
