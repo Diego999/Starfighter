@@ -7,4 +7,8 @@
         <file alias="about">res/strings/about.html</file>
         <file alias="starfighter_fr">res/strings/starfighter_fr.qm</file>
     </qresource>
+    <qresource prefix="/images/game">
+        <file alias="bonus">res/images/game/satellite.png</file>
+        <file alias="spaceship">res/images/game/ship.png</file>
+    </qresource>
 </RCC>
