@@ -1,6 +1,11 @@
 #include "include/engine/DisplayEngine.h"
+
+#include "include/game/Displayable.h"
+#include "include/game/Projectile.h"
 #include "include/utils/Settings.h"
+
 #include "include/enum/Enum.h"
+
 #include <QTimerEvent>
 
 #define SPACE_BETWEEN         250
@@ -10,7 +15,7 @@
 #include "QtGui"
 
 //DisplayEngine::DisplayEngine(QWidget *parent) : QWidget(parent)
-DisplayEngine::DisplayEngine(GameEngine *ge) : gameEngine(ge)
+DisplayEngine::DisplayEngine(GameEngine *ge) : gameEngine(ge), isFullScreen(true)
 {
 
     QVBoxLayout * mainScreen = new QVBoxLayout(this);
@@ -167,6 +172,20 @@ void DisplayEngine::creatHUD()
 
 }
 
+
+
+void DisplayEngine::updateScreen()
+{
+    scene->advance();
+}
+
+void DisplayEngine::addProjectile(Projectile * _inProjectile)
+{
+    scene->addItem(_inProjectile);
+    listProjectile.append(_inProjectile);
+}
+
+/*
 void DisplayEngine::paintEvent(QPaintEvent * event)
 {
 
@@ -181,7 +200,7 @@ void DisplayEngine::timerEvent(QTimerEvent * event)
     scene->advance();
 
 }
-
+*/
 QRect DisplayEngine::sceneSize()
 {
     return QRect(0,0,scene->width(),scene->height());
@@ -192,7 +211,7 @@ void DisplayEngine::gameType()
     // si juste alors active le timer
     //if(gameEngine->)
     {
-        startTimer(500);
+        //startTimer(500);
         timer->setEnabled(true);
         scoreP1->setEnabled(true);
         scoreP2->setEnabled(true);
@@ -239,4 +258,29 @@ void DisplayEngine::endGame()
                              "Fin de partie",
                              tr("Fin de partie"),
                              QMessageBox::Ok);
+}
+
+void DisplayEngine::keyPressEvent(QKeyEvent *event)
+{
+    if(event->key() == Qt::Key_F12)
+    {
+        this->switchFullScreen();
+    }
+}
+
+void DisplayEngine::switchFullScreen()
+{
+    if(isFullScreen)
+    {
+        // Param of the screen
+        showFullScreen();
+    }
+
+    else
+    {
+        showMaximized();
+        setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint);
+    }
+
+    isFullScreen = !isFullScreen;
 }

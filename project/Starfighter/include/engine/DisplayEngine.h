@@ -10,6 +10,7 @@
 #include <QProgressBar>
 
 class Asteroid;
+class Projectile;
 
 class DisplayEngine : public QWidget
 {
@@ -24,14 +25,21 @@ public:
     void setProgressHP2(int _value);
     void setProgressShield1(int _value);
     void setProgressShield2(int _value);
+    void addProjectile(Projectile *_inProjectile);
+
 
 protected:
-    void paintEvent(QPaintEvent * event);
-    void timerEvent(QTimerEvent *);
+    //void paintEvent(QPaintEvent * event);
+    //void timerEvent(QTimerEvent *);
+    void keyPressEvent(QKeyEvent *event);
+
+private slots:
+    void updateScreen();
 
 private:
     void gameType();
     void creatHUD();
+    void switchFullScreen();
     void updateGameData();
     void endGame();
 
@@ -41,13 +49,14 @@ private:
     QWidget * mainPart;
     QWidget * downHUD;
 
-    QList<Projectile*> listProjectile;
 
+    QList<Projectile*> listProjectile;
     QList<Asteroid*> listAsteroide;
     QList<Bonus*> listBonus;
     QList<Spaceship*> listSpaceship;
-    QList<Displayable*> listDisplayable;
 
+
+    QList<Displayable*> listDisplayable;
     Displayable* displayable[];
 
     GameEngine *gameEngine;
@@ -65,5 +74,8 @@ private:
     QProgressBar * HP2;
     QProgressBar * shield1;
     QProgressBar * shield2;
+
+    //swtich fullscreen <->
+    bool isFullScreen;
 };
 #endif

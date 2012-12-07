@@ -11,7 +11,7 @@
 
 #define RADIUS_PROJECTILE 10
 
-class Displayable : QGraphicsItem
+class Displayable : public QGraphicsItem
 {
     //Q_OBJECT
 public:
