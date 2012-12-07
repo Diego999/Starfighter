@@ -20,6 +20,7 @@ public:
     GameEngine();
 
     void spawn(Obstacle* obstacle);
+    void createSpaceship();
 	int elapsedTime();
     double randDouble();
     int randInt(int range);

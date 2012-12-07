@@ -1,9 +1,20 @@
 #include "include/engine/GameEngine.h"
+#include "include/engine/DisplayEngine.h"
 #include "include/game/Obstacle.h"
+#include "include/game/Spaceship.h"
 
 GameEngine::GameEngine():QObject()
 {
 
+}
+
+void GameEngine::createSpaceship()
+{
+    int width = de->sceneSize().width();
+    int height = de->sceneSize().height();
+
+    spaceship[0] = new Spaceship(0,height/2,Player1,this);
+    spaceship[1] = new Spaceship(width,height/2,Player2,this);
 }
 
 int GameEngine::elapsedTime()
