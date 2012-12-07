@@ -14,17 +14,17 @@ enum Action
 
 enum Shooter
 {
-    Player1,Player2,Other
+    Player1 = 1,Player2 = 2,Other = 3
 };
 
 enum TypeProjectiles
 {
-    ProjectileSimple,ProjectileCross,ProjectileV,ProjectileAlien,Nothing
+    ProjSimple = 1,ProjCross = 2,ProjV = 3,ProjAlien = 4,Nothing = 5
 };
 
 enum GameMode
 {
-    Timer,DeathMatch
+    Timer = 1,DeathMatch = 2
 };
 
 #endif // ENUMERATION_H
