@@ -16,7 +16,7 @@
 Spaceship::Spaceship(int x,int y,Shooter _player,GameEngine *ge):Displayable(x,y),player(_player),gameEngine(ge)
 {
     type = ProjSimple;
-    pxmPicture = new QPixmap(":/images/game/ship.png");
+    pxmPicture = new QPixmap(":/images/game/spaceship");
     if(_player == Player2)
         *pxmPicture = pxmPicture->transformed(QTransform().rotate(180));
 }
@@ -44,12 +44,10 @@ QPainterPath Spaceship::shape() const
 
 void Spaceship::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option, QWidget *_widget)
 {
-   // if(player==Player1)
-   //     _painter->drawPixmap(x,y-pxmPicture->height()/2,*pxmPicture);
-   // else//Player2
-   //     _painter->drawPixmap(x-pxmPicture->width(),y-pxmPicture->height()/2,*pxmPicture);
-    _painter->setBrush(QColor(100,100,100));
-    _painter->drawEllipse(500,500,10,10);
+    if(player==Player1)
+        _painter->drawPixmap(x,y-pxmPicture->height()/2,*pxmPicture);
+    else//Player2
+        _painter->drawPixmap(x-pxmPicture->width(),y-pxmPicture->height()/2,*pxmPicture);
 }
 
 void Spaceship::addBonus(Bonus *bonus)
