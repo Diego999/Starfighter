@@ -15,10 +15,10 @@ class Displayable : QGraphicsItem
 {
     //Q_OBJECT
 public:
-    Displayable(int _x, int _y, QPixmap* _pixmap = 0);
+    Displayable(int _x=0, int _y=0, QPixmap* _pixmap = 0);
 
-    virtual QRectF boundingRect()=0;
-    virtual QPainterPath shape()=0;
+    virtual QRectF boundingRect() const=0;
+    virtual QPainterPath shape() const=0;
     virtual void paint(QPainter* _painter, QStyleOptionGraphicsItem* _option, QWidget* _widget)=0;
 
 protected:

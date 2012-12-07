@@ -19,14 +19,14 @@
 * @version 0.0.1
 */
 
-class Projectile : public Displayable
+class Projectile : public virtual Displayable
 {
 public:
     Projectile(int _originX, int _originY,Shooter _from);
 
-    QRectF boundingRect() const;
-    QPainterPath shape() const;
-    void paint(QPainter* _painter, const QStyleOptionGraphicsItem *_option, QWidget *_widget);
+    virtual QRectF boundingRect() const;
+    virtual QPainterPath shape() const;
+    virtual void paint(QPainter* _painter, const QStyleOptionGraphicsItem *_option, QWidget *_widget);
 
 protected:
     virtual void advance(int _step);

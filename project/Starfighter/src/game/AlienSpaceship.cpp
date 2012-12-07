@@ -37,7 +37,7 @@ QRectF AlienSpaceship::boundingRect() const
     int l_width = pxmPicture->rect().width();
     int l_height = pxmPicture->rect().height();
 
-    return QRectF(QPoint(x-l_width/2,y-l_height/2),QPoint(x+l_width/2,y+l_height/2));
+    return QRectF(QPoint(x,y),QPoint(x+l_width,y+l_height));
 }
 
 QPainterPath AlienSpaceship::shape() const

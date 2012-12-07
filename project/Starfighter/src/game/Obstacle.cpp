@@ -5,8 +5,8 @@ Obstacle::Obstacle(int x, int y):Displayable(x,y)
 }
 
 
-qreal Obstacle::trajectoryDraw(qreal x)
+/*qreal Obstacle::trajectoryDraw(qreal x)
 {
 	return 0;
-}
+}*/
 

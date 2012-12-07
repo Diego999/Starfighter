@@ -5,15 +5,18 @@
 #include "include/engine/GameEngine.h"
 #include "include/enum/Enum.h"
 
-class Obstacle : public Displayable
+class Obstacle : public virtual Displayable
 {
     //Q_OBJECT
 
 public:
     Obstacle(int x, int y);
 
-protected:
-	qreal trajectoryDraw(qreal x);
+   /* virtual QRectF boundingRect() const=0;
+    virtual QPainterPath shape() const=0;
+    virtual void paint(QPainter* _painter, QStyleOptionGraphicsItem* _option, QWidget* _widget)=0;*/
+//protected:
+    //qreal trajectoryDraw(qreal x);
 
 
 };
