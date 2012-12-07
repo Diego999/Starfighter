@@ -9,17 +9,22 @@
 #include "include/engine/DisplayEngine.h"
 
 #include <QTimer>
-#include <QList>
 
 #define AMPLI_PV 3
 #define OMEGA_PV 15
 
-Spaceship::Spaceship(int x,int y,Shooter _player,GameEngine *ge):Displayable(x,y),player(_player)
+Spaceship::Spaceship(int x,int y,Shooter _player,GameEngine *ge):Displayable(x,y),player(_player),gameEngine(ge)
 {
     type = ProjSimple;
     pxmPicture->load(":/images/game/ship.png");
     if(_player == Player2)
         *pxmPicture = pxmPicture->transformed(QTransform().rotate(180));
+}
+
+Spaceship::~Spaceship()
+{
+    delete bonusSpeed;
+    delete bonusProjectile;
 }
 
 QRectF Spaceship::boundingRect() const
@@ -37,7 +42,7 @@ QPainterPath Spaceship::shape() const
     return l_path;
 }
 
-void Spaceship::paint(QPainter *_painter,QStyleOptionGraphicsItem *_option, QWidget *_widget)
+void Spaceship::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option, QWidget *_widget)
 {
     if(player==Player1)
         _painter->drawPixmap(x,y-pxmPicture->height()/2,*pxmPicture);

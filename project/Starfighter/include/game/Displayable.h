@@ -16,10 +16,10 @@ class Displayable : public QGraphicsItem
     //Q_OBJECT
 public:
     Displayable(int _x=0, int _y=0, QPixmap* _pixmap = 0);
-
+    virtual ~Displayable();
     virtual QRectF boundingRect() const=0;
     virtual QPainterPath shape() const=0;
-    virtual void paint(QPainter* _painter, QStyleOptionGraphicsItem* _option, QWidget* _widget);
+    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0) = 0;
 
 protected:
 	int x;

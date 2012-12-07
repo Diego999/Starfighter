@@ -6,6 +6,11 @@ Displayable::Displayable(int _x, int _y, QPixmap* _pxmPicture)
     setPos(x,y);
 }
 
+Displayable::~Displayable()
+{
+    delete pxmPicture;
+}
+
 void Displayable::advance(int _step)
 {
     if (!_step)
@@ -17,7 +22,7 @@ void Displayable::setPos(qreal _dX, qreal _dY)
     QGraphicsItem::setPos(_dX,_dY);
 }
 
-void Displayable::paint(QPainter* _painter, QStyleOptionGraphicsItem* _option, QWidget* _widget)
+/*void Displayable::paint(QPainter* _painter, QStyleOptionGraphicsItem* _option, QWidget* _widget)
 {
 
-}
+}*/

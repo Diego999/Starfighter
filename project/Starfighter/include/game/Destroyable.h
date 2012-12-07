@@ -1,7 +1,9 @@
 #ifndef DESTROYABLE_H
 #define DESTROYABLE_H
 
-class Destroyable
+#include <QObject>
+
+class Destroyable : public QObject
 {
 public:
 	Destroyable();

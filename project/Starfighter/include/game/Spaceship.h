@@ -13,12 +13,13 @@
 class BonusSpeed;
 class BonusProjectile;
 
-class Spaceship : public Destroyable, public Displayable, public QObject
+class Spaceship : public Destroyable, public virtual Displayable
 {
-    //Q_OBJECT
+    Q_OBJECT
 
 public:
     Spaceship(int x,int y,Shooter _player,GameEngine *ge);
+    ~Spaceship();
     void receiveAttack(int puissance);
     void attack();
     void top();
@@ -28,7 +29,7 @@ public:
 
     QRectF boundingRect() const;
     QPainterPath shape() const;
-    void paint(QPainter* _painter, QStyleOptionGraphicsItem* _option, QWidget* _widget);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
 
 private slots:
     void removeSpeedBonus();
