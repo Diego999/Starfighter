@@ -2,6 +2,7 @@
 
 #include "include/game/Displayable.h"
 #include "include/game/Projectile.h"
+#include "include/game/Spaceship.h"
 #include "include/utils/Settings.h"
 
 #include "include/enum/Enum.h"
