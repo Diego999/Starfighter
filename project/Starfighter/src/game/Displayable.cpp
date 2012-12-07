@@ -17,3 +17,7 @@ void Displayable::setPos(qreal _dX, qreal _dY)
     QGraphicsItem::setPos(_dX,_dY);
 }
 
+void Displayable::paint(QPainter* _painter, QStyleOptionGraphicsItem* _option, QWidget* _widget)
+{
+
+}

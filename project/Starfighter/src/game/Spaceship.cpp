@@ -1,15 +1,22 @@
 #include "include/game/Spaceship.h"
-#include "include/engine/DisplayEngine.h"
+#include "include/game/ProjectileCross.h"
+#include "include/game/ProjectileSimple.h"
+#include "include/game/ProjectileV.h"
 #include "include/game/BonusForceField.h"
 #include "include/game/BonusHP.h"
 #include "include/game/BonusProjectile.h"
 #include "include/game/BonusSpeed.h"
+#include "include/engine/DisplayEngine.h"
 
 #include <QTimer>
 #include <QList>
 
-Spaceship::Spaceship(int x,int y,Shooter _player,GameEngine *ge):Displayable(x,y)
+#define AMPLI_PV 3
+#define OMEGA_PV 15
+
+Spaceship::Spaceship(int x,int y,Shooter _player,GameEngine *ge):Displayable(x,y),player(_player)
 {
+    type = ProjSimple;
     pxmPicture->load(":/images/game/ship.png");
     if(_player == Player2)
         *pxmPicture = pxmPicture->transformed(QTransform().rotate(180));
@@ -32,9 +39,7 @@ QPainterPath Spaceship::shape() const
 
 void Spaceship::paint(QPainter *_painter,QStyleOptionGraphicsItem *_option, QWidget *_widget)
 {
-    QRect l_rectSize = gameEngine->displayEngine()->sceneSize();
-
-    if(x<l_rectSize.width()/2)
+    if(player==Player1)
         _painter->drawPixmap(x,y-pxmPicture->height()/2,*pxmPicture);
     else//Player2
         _painter->drawPixmap(x-pxmPicture->width(),y-pxmPicture->height()/2,*pxmPicture);
@@ -88,14 +93,51 @@ void Spaceship::removeSpeedBonus()
     bonusSpeed = NULL;
 }
 
-void Spaceship::attack(int puissance)
+void Spaceship::receiveAttack(int puissance)
 {
+
 }
 
-void Spaceship::top(int step)
+void Spaceship::attack()
 {
+    int l_x = 0;
+    int l_y = 0;
+
+    if(player==Player1)
+        l_x = x+pxmPicture->width();
+    else
+        l_x = x-pxmPicture->width();
+
+    l_y = y+pxmPicture->height()/2;
+
+    switch(type)
+    {
+        case ProjSimple:
+            gameEngine->displayEngine()->addProjectile(new ProjectileSimple(l_x,l_y,player));
+            break;
+
+        case ProjCross:
+            for(int i = 0;i<3;i++)
+                gameEngine->displayEngine()->addProjectile(new ProjectileCross(l_x,l_y,player,i-1));
+            break;
+
+        case ProjV:
+            gameEngine->displayEngine()->addProjectile(new ProjectileV(l_x,l_y,player,AMPLI_PV,OMEGA_PV));
+            break;
+        case ProjAlien:
+            break;
+
+        case Nothing:
+            break;
+    }
 }
 
-void Spaceship::bottom(int step)
+void Spaceship::top()
 {
+    y-=speed;
+}
+
+void Spaceship::bottom()
+{
+    y+=speed;
 }

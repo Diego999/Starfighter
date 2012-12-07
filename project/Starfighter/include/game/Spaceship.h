@@ -19,20 +19,24 @@ class Spaceship : public Destroyable, public Displayable, public QObject
 
 public:
     Spaceship(int x,int y,Shooter _player,GameEngine *ge);
-	void attack(int puissance);
-	void top(int step);
-	void bottom(int step);
+    void receiveAttack(int puissance);
+    void attack();
+    void top();
+    void bottom();
 
     void addBonus(Bonus* bonus);
 
     QRectF boundingRect() const;
     QPainterPath shape() const;
     void paint(QPainter* _painter, QStyleOptionGraphicsItem* _option, QWidget* _widget);
+
 private slots:
     void removeSpeedBonus();
     void removeProjectileBonus();
+
 private:
 	QString playerName;
+    Shooter player;
 	qreal speed;
 
     TypeProjectiles type;

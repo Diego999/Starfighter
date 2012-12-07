@@ -19,7 +19,7 @@ public:
 
     virtual QRectF boundingRect() const=0;
     virtual QPainterPath shape() const=0;
-    virtual void paint(QPainter* _painter, QStyleOptionGraphicsItem* _option, QWidget* _widget)=0;
+    virtual void paint(QPainter* _painter, QStyleOptionGraphicsItem* _option, QWidget* _widget);
 
 protected:
 	int x;
