@@ -1,6 +1,6 @@
 #include "include/game/Destroyable.h"
 
-Destroyable::Destroyable()
+Destroyable::Destroyable():QObject()
 {
 
 }

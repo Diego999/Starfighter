@@ -16,6 +16,10 @@ Projectile::Projectile(int _originX, int _originY,Shooter _from)
     :Displayable(_originX,_originY),
       originX(_originX),originY(_originY),from(_from)
 {
+    if(from == Player1)
+        color = QColor(100,100,100);
+    else
+        color = QColor(200,200,200);
     x = _originX;
     y = _originY;
 }

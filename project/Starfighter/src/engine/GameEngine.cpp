@@ -5,7 +5,11 @@
 
 GameEngine::GameEngine():QObject()
 {
+    de = new DisplayEngine(this,0);
+    de->show();
 
+    createSpaceship();
+    startTimer(10);
 }
 
 void GameEngine::createSpaceship()
@@ -15,6 +19,11 @@ void GameEngine::createSpaceship()
 
     spaceship[0] = new Spaceship(0,height/2,Player1,this);
     spaceship[1] = new Spaceship(width,height/2,Player2,this);
+}
+
+void GameEngine::timerEvent(QTimerEvent *)
+{
+    de->updateScreen();
 }
 
 int GameEngine::elapsedTime()

@@ -4,7 +4,7 @@
 #include "include/game/Projectile.h"
 #include "include/game/Spaceship.h"
 #include "include/utils/Settings.h"
-
+//#include "include/game/ProjectileSimple.h"
 #include "include/enum/Enum.h"
 
 #include <QTimerEvent>
@@ -16,15 +16,23 @@
 #include "QtGui"
 
 //DisplayEngine::DisplayEngine(QWidget *parent) : QWidget(parent)
-DisplayEngine::DisplayEngine(QWidget *parent, GameEngine *ge): QWidget(parent), gameEngine(ge), isFullScreen(true)
+DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), gameEngine(ge), isFullScreen(true)
 {
 
     QVBoxLayout * mainScreen = new QVBoxLayout(this);
 
-    downHUD = new QWidget();
-    scene = new QGraphicsScene();
-    scene->setSceneRect(0,0,100,100);
-    view = new QGraphicsView(scene);
+    downHUD = new QWidget(this);
+    scene = new QGraphicsScene(0,0,800,800,this);
+    view = new QGraphicsView(scene,this);
+
+    view->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
+    view->setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
+    view->setCacheMode(QGraphicsView::CacheBackground);
+    view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
+    view->setOptimizationFlags(QGraphicsView::DontClipPainter
+                                 | QGraphicsView::DontSavePainterState
+                                 | QGraphicsView::DontAdjustForAntialiasing);
+    view->viewport()->setFocusProxy( this );
 
     // Set background
     QPixmap bg( BACKGROUND );
@@ -42,11 +50,12 @@ DisplayEngine::DisplayEngine(QWidget *parent, GameEngine *ge): QWidget(parent), 
     this->creatHUD();
     this->gameType();
 
-    startTimer(100);
+    //startTimer(100);
 
     //view->show();
     setLayout(mainScreen);
-
+    //Projectile* p = new ProjectileSimple(10,10,Player1);
+    //scene->addItem(p);
 }
 
 DisplayEngine::~DisplayEngine()
@@ -190,8 +199,8 @@ void DisplayEngine::addShip(Spaceship *_inSpaceship)
     listSpaceship.append(_inSpaceship);
 }
 
-/*
-void DisplayEngine::paintEvent(QPaintEvent * event)
+
+/*void DisplayEngine::paintEvent(QPaintEvent * event)
 {
 
     scene->advance();

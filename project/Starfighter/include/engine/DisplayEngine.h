@@ -17,7 +17,7 @@ class DisplayEngine : public QWidget
     Q_OBJECT
 public:
     //DisplayEngine(QWidget *parent);
-    DisplayEngine(QWidget *parent,GameEngine *ge);
+    DisplayEngine(GameEngine *ge,QWidget *parent);
     ~DisplayEngine();
 
     QRect sceneSize();
@@ -35,7 +35,7 @@ protected:
     //void timerEvent(QTimerEvent *);
     void keyPressEvent(QKeyEvent *event);
 
-private slots:
+public slots:
     void updateScreen();
 
 private:

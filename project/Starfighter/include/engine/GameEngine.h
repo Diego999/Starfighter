@@ -11,6 +11,7 @@ class Spaceship;
 class Settings;
 
 #include <QObject>
+#include <QTimerEvent>
 
 class GameEngine : public QObject
 {
@@ -30,6 +31,8 @@ public:
     Spaceship * ship2() const {return spaceship[1];}
 
     DisplayEngine* displayEngine() const { return de;}
+
+    void timerEvent(QTimerEvent *);
 
 private:
     DisplayEngine *de;

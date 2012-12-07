@@ -2,7 +2,7 @@
 
 Bonus::Bonus(QPoint P1, QPoint P2, QPoint P3, /*qreal speed,*/ GameEngine *ge, Spaceship *ss):Displayable(x,y)
 {
-    pxmPicture->load(":/images/game/bonus");
+    pxmPicture = new QPixmap(":/images/game/bonus");
 }
 
 QRectF Bonus::boundingRect() const
