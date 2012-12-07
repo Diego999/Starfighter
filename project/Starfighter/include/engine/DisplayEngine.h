@@ -27,8 +27,9 @@ public:
     void setProgressShield2(int _value);
 
     void addProjectile(Projectile *_inProjectile);
-    void addShip(Spaceship *_inSpaceship);
-
+    void addShip(Spaceship *_inSpaceship);  
+    void addAsteroide(Asteroid *_inAsteroide);
+    void addBonus(Bonus *_inBonus);
 
 protected:
     //void paintEvent(QPaintEvent * event);
@@ -52,13 +53,13 @@ private:
     QWidget * downHUD;
 
 
-    QList<Projectile*>  listProjectile;
-    QList<Asteroid*>    listAsteroide;
-    QList<Bonus*>       listBonus;
-    QList<Spaceship*>   listSpaceship;
+    QList<Projectile*>      listProjectile;
+    QList<Asteroid*>        listAsteroide;
+    QList<Bonus*>           listBonus;
+    QList<Spaceship*>       listSpaceship;
 
     QList<Displayable*> listDisplayable;
-    Displayable*        displayable[];
+    //Displayable*        displayable[];
 
     GameEngine *gameEngine;
 
@@ -78,5 +79,6 @@ private:
 
     //swtich fullscreen <->
     bool isFullScreen;
+    bool isTimer;
 };
 #endif

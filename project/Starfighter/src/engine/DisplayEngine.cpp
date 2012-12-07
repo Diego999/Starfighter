@@ -3,6 +3,10 @@
 #include "include/game/Displayable.h"
 #include "include/game/Projectile.h"
 #include "include/game/Spaceship.h"
+#include "include/game/Obstacle.h"
+#include "include/game/Bonus.h"
+#include "include/game/Asteroid.h"
+
 #include "include/utils/Settings.h"
 
 #include "include/enum/Enum.h"
@@ -18,66 +22,73 @@
 
 #include "QtGui"
 
-//DisplayEngine::DisplayEngine(QWidget *parent) : QWidget(parent)
-DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), gameEngine(ge), isFullScreen(true)
+//DisplayEngine::DisplayEngine(QWidget *parent) : QWidget(parent), isFullScreen(true)
+DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), gameEngine(ge), isFullScreen(true), isTimer(false)
 {
+
+    // get screen dimension
+    QDesktopWidget * desktop = QApplication::desktop();
+
+    screenSizeHeight = desktop->height();
+    screenSizeWidth = desktop->width();
+
+    qDebug() << "screenSize: " <<screenSizeWidth << ":" <<screenSizeHeight;
 
     QVBoxLayout * mainScreen = new QVBoxLayout(this);
 
     downHUD = new QWidget(this);
-    scene = new QGraphicsScene(0,0,0,0,this);
+
+    // configuration of QGraphicsScene and QGraphicsview
+    scene = new QGraphicsScene(0,0,screenSizeWidth*0.95,screenSizeHeight*0.8,this);
     view = new QGraphicsView(scene,this);
 
-    view->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
-    view->setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
-    view->setCacheMode(QGraphicsView::CacheBackground);
-    view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
-    view->setOptimizationFlags(QGraphicsView::DontClipPainter
-                                 | QGraphicsView::DontSavePainterState
-                                 | QGraphicsView::DontAdjustForAntialiasing);
-    view->viewport()->setFocusProxy( this );
 
     // Set background
     QPixmap bg( BACKGROUND );
     //scene->setBackgroundBrush(bg);
     scene->setBackgroundBrush(Qt::black);
 
-    // place the HUD
-    QDesktopWidget * desktop = QApplication::desktop();
-
-    screenSizeHeight = desktop->height();
-    screenSizeWidth = desktop->width();
-
     this->setFixedSize(screenSizeWidth,screenSizeHeight);
 
     // Param of the screen
-    this->showFullScreen();
-    //showMaximized();
-    //setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint);
+    //showFullScreen();
+    showMaximized();
+    setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint);
 
     mainScreen->addWidget(view);
     mainScreen->addWidget(downHUD);
+
     //qDebug() << view->height();
     this->creatHUD();
     this->gameType();
-    //qDebug() << downHUD->height();
-    scene->setSceneRect(0,0,screenSizeWidth,100);
-    view->setFixedSize(screenSizeWidth,100);
+    //scene->setSceneRect(0,0,screenSizeWidth,100);
+    //view->setFixedSize(screenSizeWidth,100);
 
-    qDebug() << downHUD->height();
-    //startTimer(100);
+    qDebug() << "Size HUD" << downHUD->height();
 
-    //view->show();
     setLayout(mainScreen);
     //Projectile* p = new ProjectileSimple(10,10,Player1);
     //scene->addItem(p);
     //Mouse* m = new Mouse();
     //m->setPos(20,20);
     //scene->addItem(m);
+
     Spaceship* s = new Spaceship(0,screenSizeHeight/4,Player1,ge);
     scene->addItem(s);
-    Spaceship* s2 = new Spaceship(500,screenSizeHeight/4,Player2,ge);
+    qDebug() << "Vaisseau A__ 0 :" << screenSizeHeight/4;
+
+    /* debug */
+    int intervaleDroite = scene->width()/2;
+
+    /* test top/bottom */
+    //Spaceship* s2 = new Spaceship(intervaleDroite,screenSizeHeight/4,Player2,ge);
+    Spaceship* s2 = new Spaceship(intervaleDroite,scene->height()/2,Player2,ge);
     scene->addItem(s2);
+    qDebug() << "Vaisseau B__ "<< intervaleDroite <<" :" << screenSizeHeight/4;
+
+    qDebug() << "Taille view: " << view->width() <<":"<<view->height();
+    qDebug() << "Taille scene: " << scene->width() <<":"<<scene->height();
+
 }
 
 DisplayEngine::~DisplayEngine()
@@ -195,8 +206,6 @@ void DisplayEngine::creatHUD()
     //downHUD->move(0,screenSizeHeight-125);
 }
 
-
-
 void DisplayEngine::updateScreen()
 {
     scene->advance();
@@ -214,6 +223,17 @@ void DisplayEngine::addShip(Spaceship *_inSpaceship)
     listSpaceship.append(_inSpaceship);
 }
 
+void DisplayEngine::addBonus(Bonus *_inBonus)
+{
+    scene->addItem(_inBonus);
+    listBonus.append(_inBonus);
+}
+
+void DisplayEngine::addAsteroide(Asteroid *_inAsteroide)
+{
+    scene->addItem(_inAsteroide);
+    listAsteroide.append(_inAsteroide);
+}
 
 /*void DisplayEngine::paintEvent(QPaintEvent * event)
 {
@@ -230,6 +250,7 @@ void DisplayEngine::timerEvent(QTimerEvent * event)
 
 }
 */
+
 QRect DisplayEngine::sceneSize()
 {
     return QRect(0,0,scene->width(),scene->height());
@@ -239,6 +260,7 @@ void DisplayEngine::gameType()
 {
     // si juste alors active le timer
     //if(gameEngine->)
+    if(isTimer)
     {
         //startTimer(500);
         timer->setEnabled(true);
