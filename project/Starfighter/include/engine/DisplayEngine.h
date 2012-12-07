@@ -25,7 +25,9 @@ public:
     void setProgressHP2(int _value);
     void setProgressShield1(int _value);
     void setProgressShield2(int _value);
+
     void addProjectile(Projectile *_inProjectile);
+    void addShip(Spaceship *_inSpaceship);
 
 
 protected:

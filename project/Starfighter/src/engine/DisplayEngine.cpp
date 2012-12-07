@@ -183,6 +183,12 @@ void DisplayEngine::addProjectile(Projectile * _inProjectile)
     listProjectile.append(_inProjectile);
 }
 
+void DisplayEngine::addShip(Spaceship *_inSpaceship)
+{
+    scene->addItem(_inSpaceship);
+    listSpaceship.append(_inSpaceship);
+}
+
 /*
 void DisplayEngine::paintEvent(QPaintEvent * event)
 {
