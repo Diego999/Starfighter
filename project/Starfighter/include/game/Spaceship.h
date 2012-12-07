@@ -7,27 +7,39 @@
 #include "include/engine/GameEngine.h"
 #include "include/enum/Enum.h"
 
-class Spaceship : public Destroyable, public Displayable
+#define MAX_BONUS 2
+#define MAX_PV 100
+
+class BonusSpeed;
+class BonusProjectile;
+
+class Spaceship : public Destroyable, public Displayable, public QObject
 {
     //Q_OBJECT
 
 public:
-    Spaceship(int x,int y,GameEngine *ge);
+    Spaceship(int x,int y,Shooter _player,GameEngine *ge);
 	void attack(int puissance);
 	void top(int step);
 	void bottom(int step);
 
+    void addBonus(Bonus* bonus);
+
     QRectF boundingRect() const;
     QPainterPath shape() const;
     void paint(QPainter* _painter, QStyleOptionGraphicsItem* _option, QWidget* _widget);
-
+private slots:
+    void removeSpeedBonus();
+    void removeProjectileBonus();
 private:
 	QString playerName;
 	qreal speed;
 
+    TypeProjectiles type;
 	int resistanceForceField;
 
-    Bonus *bonus[3];
+    BonusSpeed *bonusSpeed;
+    BonusProjectile *bonusProjectile;
     GameEngine *gameEngine;
 };
 #endif
