@@ -8,8 +8,8 @@ class BonusForceField : public Bonus
     //Q_OBJECT
 
 public:
-    BonusForceField(QPoint P1, QPoint P2, QPoint P3, qreal speed,int resistanceForceField, GameEngine *ge, Spaceship *ss);
-	
+    BonusForceField(QPoint P1, QPoint P2, QPoint P3, /*qreal speed,*/int resistanceForceField, GameEngine *ge, Spaceship *ss);
+    int getResistanceForceField() const;
 private:
 	int resistanceForceField;
 };

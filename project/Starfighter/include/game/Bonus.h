@@ -9,11 +9,15 @@ class Bonus : public Displayable
 {
     //Q_OBJECT
 public:
-    Bonus(QPoint P1, QPoint P2, QPoint P3, qreal speed, GameEngine *ge, Spaceship *ss);
-	void trajectoryDraw(qreal x, qreal y);
-	
+    Bonus(QPoint P1, QPoint P2, QPoint P3, /*qreal speed,*/ GameEngine *ge, Spaceship *ss);
+
+    QRectF boundingRect() const;
+    QPainterPath shape() const;
+    void paint(QPainter* _painter, QStyleOptionGraphicsItem* _option, QWidget* _widget);
+
 protected:
-	qreal speed;
+    void trajectoryDraw(qreal x, qreal y);
+    //qreal speed;
 	qreal interval;
 	
 private:
