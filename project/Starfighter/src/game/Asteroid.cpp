@@ -1,7 +1,7 @@
 #include "include/game/Asteroid.h"
 
 Asteroid::Asteroid(int x, int y, int resistance, int healthPoint,Shooter from,GameEngine *ge,qreal slope)
-    :Destroyable(),Obstacle(x,y),Projectile(x,y,from)
+    :Displayable(x,y),Destroyable(),Obstacle(x,y),Projectile(x,y,from)
 {
     //TODO
     //fonction qui genère M & N, cf spéc P 11

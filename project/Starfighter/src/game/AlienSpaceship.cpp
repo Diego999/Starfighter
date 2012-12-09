@@ -2,7 +2,7 @@
 #include <math.h>
 
 AlienSpaceship::AlienSpaceship(QPoint P1, QPoint P2, QPoint P3, int nbSpirales)
-    :Obstacle(P1.x(),P1.y()),Destroyable()
+    :Displayable(P1.x(),P2.y()),Obstacle(P1.x(),P1.y()),Destroyable()
 {
     int x1 = P1.x();
     int x2 = P2.x();

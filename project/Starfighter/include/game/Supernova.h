@@ -2,6 +2,7 @@
 #define SUPERNOVA_H
 
 #include "include/game/Obstacle.h"
+#include "include/game/Displayable.h"
 
 class Supernova : public Obstacle
 {

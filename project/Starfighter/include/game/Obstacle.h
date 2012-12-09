@@ -2,7 +2,6 @@
 #define OBSTACLE_H
 
 #include "include/game/Displayable.h"
-#include "include/engine/GameEngine.h"
 #include "include/enum/Enum.h"
 
 class Obstacle : public virtual Displayable

@@ -3,6 +3,7 @@
 
 #include "include/game/Obstacle.h"
 #include "include/game/Destroyable.h"
+#include "include/game/Displayable.h"
 
 class AlienSpaceship : public Obstacle, public Destroyable
 {

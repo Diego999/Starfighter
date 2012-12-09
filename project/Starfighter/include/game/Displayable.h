@@ -15,7 +15,7 @@ class Displayable : public QGraphicsItem
 {
     //Q_OBJECT
 public:
-    Displayable(int _x=0, int _y=0, QPixmap* _pixmap = 0);
+    Displayable(int _x, int _y, QPixmap* _pixmap = 0);
     virtual ~Displayable();
     virtual QRectF boundingRect() const=0;
     virtual QPainterPath shape() const=0;

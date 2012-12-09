@@ -4,6 +4,7 @@
 #include "include/game/Destroyable.h"
 #include "include/game/Obstacle.h"
 #include "include/game/Projectile.h"
+#include "include/engine/GameEngine.h"
 #include "include/enum/Enum.h"
 
 class Asteroid : public Destroyable, public Obstacle, public Projectile
