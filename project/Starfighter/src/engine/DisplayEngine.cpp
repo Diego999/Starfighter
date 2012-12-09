@@ -83,7 +83,7 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     this->gameType();
 
     setLayout(mainScreen);
-    scene->addItem(new Supernova(sceneWidth/2,sceneHeigth/2,gameEngine));
+    //scene->addItem(new Supernova(sceneWidth/2,sceneHeigth/2,gameEngine));
 }
 
 DisplayEngine::~DisplayEngine()
@@ -245,12 +245,12 @@ void DisplayEngine::addAsteroide(Asteroid *_inAsteroide)
 void DisplayEngine::timerEvent(QTimerEvent * event)
 {
     scene->advance();
-    static int i = 0;
-    if(i++==0)
-        delete scene->items().last();
+    //static int i = 0;
+    //if(i++==0)
+    //    delete scene->items().last();
 }
 
-QRect DisplayEngine::sceneSize()
+QRect DisplayEngine::sceneSize() const
 {
     return QRect(0,0,scene->width(),scene->height());
 }
@@ -258,11 +258,20 @@ QRect DisplayEngine::sceneSize()
 /**
 *   QPoint(0->xmin,xmax->sceneWidth)
 */
-QPoint  DisplayEngine::warzoneValue()
+QPoint  DisplayEngine::warzoneValueMin() const
 {
-    int xmin = gameEngine->ship1()->sizePixmap().width();
-    int xmax = sceneWidth-(gameEngine->ship2()->sizePixmap().width());
-    return QPoint(xmin,xmax);
+    int xmin = gameEngine->ship1()->sizePixmap().width()*2;
+    int ymin = 0;
+
+    return QPoint(xmin,ymin);
+}
+
+QPoint DisplayEngine::warzoneValueMax() const
+{
+    int xmax = sceneWidth-2*(gameEngine->ship2()->sizePixmap().width());
+    int ymax = scene->height();
+
+    return QPoint(xmax,ymax);
 }
 
 void DisplayEngine::recoveryTime()

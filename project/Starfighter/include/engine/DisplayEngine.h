@@ -20,8 +20,10 @@ public:
     DisplayEngine(GameEngine *ge,QWidget *parent);
     ~DisplayEngine();
 
-    QRect   sceneSize();
-    QPoint  warzoneValue();
+    QRect   sceneSize() const;
+    QPoint  warzoneValueMin() const;
+    QPoint  warzoneValueMax() const;
+
     void setProgressHP1(int _value);
     void setProgressHP2(int _value);
     void setProgressShield1(int _value);

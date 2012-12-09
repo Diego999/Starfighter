@@ -49,7 +49,7 @@ double GameEngine::randDouble()
 
 int GameEngine::randInt(int range)
 {
-	return 0;
+    return qrand() % range;
 }
 
 int GameEngine::timeGamevalue(){return timeGame;}
