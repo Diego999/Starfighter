@@ -18,6 +18,8 @@ Spaceship::Spaceship(qreal x,qreal y,Shooter _player,GameEngine *ge):Displayable
 {
     speed = SPEED_DEFAULT;
     type = ProjCross;
+    bonusSpeed = 0;
+    bonusProjectile = 0;
     pxmPicture = new QPixmap(":/images/game/spaceship");
     if(_player == Player2)
     {

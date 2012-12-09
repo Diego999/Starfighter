@@ -31,11 +31,11 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     // get screen dimension
     QDesktopWidget * desktop = QApplication::desktop();
 
-    //screenSizeHeight = 900;
-    screenSizeHeight = desktop->height();
+    screenSizeHeight = 900;
+    //screenSizeHeight = desktop->height();
 
-    //screenSizeWidth = 1440;
-    screenSizeWidth = desktop->width();
+    screenSizeWidth = 1440;
+    //screenSizeWidth = desktop->width();
 
     sceneWidth = screenSizeWidth;
     sceneHeigth = screenSizeHeight*0.85;
@@ -246,7 +246,7 @@ void DisplayEngine::timerEvent(QTimerEvent * event)
 {
     scene->advance();
     //static int i = 0;
-    //if(i++==0)
+    //if(i++<=2)
     //    delete scene->items().last();
 }
 
