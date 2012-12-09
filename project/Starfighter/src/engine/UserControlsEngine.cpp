@@ -17,7 +17,7 @@ UserControlsEngine::UserControlsEngine(GameEngine *ge): gameEngine(ge)
 
     actions.insert(myKey[Top2],Top2);
     actions.insert(myKey[Bottom2],Bottom2);
-    actions.insert(myKey[Escape],Shoot2);
+    actions.insert(myKey[Shoot2],Shoot2);
 }
 
 void UserControlsEngine::keyPressEvent(QKeyEvent * event)
