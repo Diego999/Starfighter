@@ -8,9 +8,3 @@ Obstacle::~Obstacle()
 {
 
 }
-
-/*qreal Obstacle::trajectoryDraw(qreal x)
-{
-	return 0;
-}*/
-
