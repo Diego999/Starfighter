@@ -11,5 +11,6 @@ class Obstacle : public virtual Displayable
 public:
     Obstacle(int x, int y);
     virtual ~Obstacle();
+
 };
 #endif

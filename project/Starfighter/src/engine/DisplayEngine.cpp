@@ -14,6 +14,8 @@
 
 #include <QDebug>
 #include "include/game/ProjectileSimple.h"
+#include "include/game/Supernova.h"
+
 #include <QTimerEvent>
 
 #define SPACE_BETWEEN         250
@@ -29,11 +31,11 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     // get screen dimension
     QDesktopWidget * desktop = QApplication::desktop();
 
-    //screenSizeHeight = 900;
-    screenSizeHeight = desktop->height();
+    screenSizeHeight = 900;
+    //screenSizeHeight = desktop->height();
 
-    //screenSizeWidth = 1440;
-    screenSizeWidth = desktop->width();
+    screenSizeWidth = 1440;
+    //screenSizeWidth = desktop->width();
 
     sceneWidth = screenSizeWidth;
     sceneHeigth = screenSizeHeight*0.85;
@@ -81,6 +83,7 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     this->gameType();
 
     setLayout(mainScreen);
+    scene->addItem(new Supernova(sceneWidth/2,sceneHeigth/2,gameEngine));
 }
 
 DisplayEngine::~DisplayEngine()
@@ -242,6 +245,9 @@ void DisplayEngine::addAsteroide(Asteroid *_inAsteroide)
 void DisplayEngine::timerEvent(QTimerEvent * event)
 {
     scene->advance();
+    static int i = 0;
+    if(i++==0)
+        delete scene->items().last();
 }
 
 QRect DisplayEngine::sceneSize()
