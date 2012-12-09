@@ -6,7 +6,7 @@
 #include "include/utils/Settings.h"
 #include <QDebug>
 
-GameEngine::GameEngine():QObject()
+GameEngine::GameEngine():QObject(), isRunning(false)
 {
     de = new DisplayEngine(this,0);
     uc = new UserControlsEngine(this);
@@ -54,16 +54,22 @@ int GameEngine::randInt(int range)
 
 int GameEngine::timeGamevalue(){return timeGame;}
 
-void GameEngine::timerControle()
+void GameEngine::timerControle(int tps)
 {
-    if(idTimer != -1)
+    if(isRunning)
     {
-        idTimer = startTimer(10);
+        qDebug() << isRunning << "Stop Timer 1:" <<idTimer;
+        killTimer(idTimer);
+        idTimer = -1;
+        qDebug() << isRunning<< "Stop Timer 2:" <<idTimer;
+
     }
 
     else
     {
-        killTimer(idTimer);
-        idTimer = -1;
+        idTimer = startTimer(tps);
+        qDebug() << isRunning<< "startTimer:" <<idTimer;
     }
+    isRunning = !isRunning;
+
 }

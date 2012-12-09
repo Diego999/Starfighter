@@ -31,11 +31,11 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     // get screen dimension
     QDesktopWidget * desktop = QApplication::desktop();
 
-    screenSizeHeight = 900;
-    //screenSizeHeight = desktop->height();
+    //screenSizeHeight = 900;
+    screenSizeHeight = desktop->height();
 
-    screenSizeWidth = 1440;
-    //screenSizeWidth = desktop->width();
+    //screenSizeWidth = 1440;
+    screenSizeWidth = desktop->width();
 
     sceneWidth = screenSizeWidth;
     sceneHeigth = screenSizeHeight*0.85;
@@ -331,14 +331,18 @@ void DisplayEngine::escapeGame()
     gameEngine->timerControle();
 
     QMessageBox messageExit;
+
     messageExit.setWindowTitle("Fin de partie");
     messageExit.setText(tr("Voulez-vous arrêter la partie?"));
     messageExit.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    messageExit.setDefaultButton(QMessageBox::No);
+
 
     if(messageExit.exec() == QMessageBox::Yes)
     {
         this->close();
     }
+     gameEngine->timerControle();
 }
 
 void DisplayEngine::keyPressEvent(QKeyEvent *event)

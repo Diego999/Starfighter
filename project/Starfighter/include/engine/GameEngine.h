@@ -27,7 +27,7 @@ public:
     int randInt(int range);
     int timeGamevalue();
 
-    void timerControle();
+    void timerControle(int tps = 10);
 
     Spaceship * ship1() const {return spaceship[0];}
     Spaceship * ship2() const {return spaceship[1];}
@@ -49,6 +49,7 @@ private:
     int timeGame;
 
     int idTimer;
+    bool isRunning;
 
 };
 #endif
