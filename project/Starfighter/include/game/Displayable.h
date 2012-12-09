@@ -17,6 +17,9 @@ class Displayable : public QGraphicsItem
 public:
     Displayable(int _x, int _y, QPixmap* _pixmap = 0);
     virtual ~Displayable();
+
+    QSize sizePixmap() const {return pxmPicture->size();}
+
     virtual QRectF boundingRect() const=0;
     virtual QPainterPath shape() const=0;
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) = 0;
