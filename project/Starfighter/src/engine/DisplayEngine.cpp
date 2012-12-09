@@ -1,4 +1,5 @@
 #include "include/engine/DisplayEngine.h"
+#include "include/engine/UserControlsEngine.h"
 
 #include "include/game/Displayable.h"
 #include "include/game/Projectile.h"
@@ -299,6 +300,10 @@ void DisplayEngine::keyPressEvent(QKeyEvent *event)
     if(event->key() == Qt::Key_F12)
     {
         this->switchFullScreen();
+    }
+    else
+    {
+        gameEngine->userControlsEngine()->keyPressEvent(event);
     }
 }
 

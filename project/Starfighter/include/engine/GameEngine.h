@@ -31,13 +31,14 @@ public:
     Spaceship * ship2() const {return spaceship[1];}
 
     DisplayEngine* displayEngine() const { return de;}
+    UserControlsEngine* userControlsEngine() const {return uc;}
 
     void timerEvent(QTimerEvent *);
 
 private:
     DisplayEngine *de;
     SpawnEngine *spawnEngine;
-    UserControlsEngine *userControlsEngine;
+    UserControlsEngine *uc;
     Projectile *projectile[];
     Obstacle *obstacle[];
     Bonus *bonus;

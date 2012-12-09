@@ -2,13 +2,14 @@
 #include "include/engine/DisplayEngine.h"
 #include "include/game/Obstacle.h"
 #include "include/game/Spaceship.h"
-
+#include "include/engine/UserControlsEngine.h"
+#include "include/utils/Settings.h"
 #include <QDebug>
 
 GameEngine::GameEngine():QObject()
 {
     de = new DisplayEngine(this,0);
-    de->show();
+    uc = new UserControlsEngine(this);
 
     createSpaceship();
     startTimer(10);
