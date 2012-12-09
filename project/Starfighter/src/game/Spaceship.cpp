@@ -9,6 +9,7 @@
 #include "include/engine/DisplayEngine.h"
 
 #include <QTimer>
+#include <QDebug>
 
 #define AMPLI_PV 3
 #define OMEGA_PV 15
@@ -18,7 +19,11 @@ Spaceship::Spaceship(int x,int y,Shooter _player,GameEngine *ge):Displayable(x,y
     type = ProjSimple;
     pxmPicture = new QPixmap(":/images/game/spaceship");
     if(_player == Player2)
+    {
         *pxmPicture = pxmPicture->transformed(QTransform().rotate(180));
+        x-=pxmPicture->size().width();
+        setPos(x,y);
+    }
 }
 
 Spaceship::~Spaceship()
@@ -29,10 +34,7 @@ Spaceship::~Spaceship()
 
 QRectF Spaceship::boundingRect() const
 {
-    int l_width = pxmPicture->rect().width();
-    int l_height = pxmPicture->rect().height();
-
-    return QRectF(QPoint(x,y),QPoint(x+l_width,y+l_height));
+    return QRectF(pxmPicture->rect());
 }
 
 QPainterPath Spaceship::shape() const
@@ -44,10 +46,9 @@ QPainterPath Spaceship::shape() const
 
 void Spaceship::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option, QWidget *_widget)
 {
-    if(player==Player1)
-        _painter->drawPixmap(x,y-pxmPicture->height()/2,*pxmPicture);
-    else//Player2
-        _painter->drawPixmap(x-pxmPicture->width(),y-pxmPicture->height()/2,*pxmPicture);
+    _painter->drawPixmap(0,0,*pxmPicture);
+    _painter->setPen(QPen(QColor(20,20,20)));
+    _painter->drawRect(boundingRect());
 }
 
 void Spaceship::addBonus(Bonus *bonus)
