@@ -13,7 +13,7 @@
 #include "include/game/ProjectileCross.h"
 #include <math.h>
 
-#define INTERVAL_X 8
+#define INTERVAL_X 3
 
 ProjectileCross::ProjectileCross(int _originX, int _originY, Shooter _from,int _nb)
     :Displayable(_originX,_originY),Projectile(_originX,_originY,_from),nb(_nb)
