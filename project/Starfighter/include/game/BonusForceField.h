@@ -9,6 +9,7 @@ class BonusForceField : public Bonus
 
 public:
     BonusForceField(QPoint P1, QPoint P2, QPoint P3, /*qreal speed,*/int resistanceForceField, GameEngine *ge, Spaceship *ss);
+    ~BonusForceField();
     int getResistanceForceField() const;
 private:
 	int resistanceForceField;

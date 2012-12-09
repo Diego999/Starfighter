@@ -22,7 +22,8 @@
 class ProjectileAlien : public Projectile
 {
 public:
-    ProjectileAlien(int _originX, int _originY, qreal _dArgument, qreal _dModule, Shooter _from);
+    ProjectileAlien(int _originX, int _originY,Shooter _from, qreal _dArgument, qreal _dModule);
+    ~ProjectileAlien();
 
 private:
     void advance(int step);

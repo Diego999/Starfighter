@@ -21,6 +21,11 @@ ProjectileSimple::ProjectileSimple(int _originX, int _originY, Shooter _from)
     dSpeed = INTERVAL_X;
 }
 
+ProjectileSimple::~ProjectileSimple()
+{
+
+}
+
 qreal ProjectileSimple::trajectoryDraw(qreal _dX)
 {
     return 0;

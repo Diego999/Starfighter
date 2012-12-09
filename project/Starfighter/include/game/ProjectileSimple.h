@@ -23,6 +23,8 @@ class ProjectileSimple : public Projectile
 {
 public:
     ProjectileSimple(int _originX, int _originY, Shooter _from);
+    ~ProjectileSimple();
+
 private:
     void advance(int _step);
     qreal trajectoryDraw(qreal _dX);

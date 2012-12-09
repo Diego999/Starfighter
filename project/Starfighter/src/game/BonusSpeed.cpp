@@ -7,6 +7,11 @@ BonusSpeed::BonusSpeed(QPoint P1, QPoint P2, QPoint P3, int _speed, int expirati
 
 }
 
+BonusSpeed::~BonusSpeed()
+{
+
+}
+
 int BonusSpeed::getSpeed() const
 {
     return speed;

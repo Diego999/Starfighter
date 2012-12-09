@@ -6,6 +6,11 @@ BonusProjectile::BonusProjectile(QPoint P1, QPoint P2, QPoint P3, /*qreal speed,
 {
 }
 
+BonusProjectile::~BonusProjectile()
+{
+
+}
+
 TypeProjectiles BonusProjectile::getType() const
 {
     return type;

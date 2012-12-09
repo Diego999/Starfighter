@@ -23,6 +23,7 @@ class Projectile : public virtual Displayable
 {
 public:
     Projectile(int _originX, int _originY,Shooter _from);
+    virtual ~Projectile();
 
     QRectF boundingRect() const;
     QPainterPath shape() const;

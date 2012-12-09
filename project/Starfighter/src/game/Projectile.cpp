@@ -23,6 +23,11 @@ Projectile::Projectile(int _originX, int _originY,Shooter _from)
         color = QColor(200,200,200);
 }
 
+Projectile::~Projectile()
+{
+
+}
+
 QRectF Projectile::boundingRect() const
 {
     return QRectF(-RADIUS_PROJECTILE/2,-RADIUS_PROJECTILE/2,RADIUS_PROJECTILE,RADIUS_PROJECTILE);

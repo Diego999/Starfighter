@@ -9,6 +9,7 @@ class BonusHP : public Bonus
 
 public:
     BonusHP(QPoint P1, QPoint P2, QPoint P3, /*qreal speed,*/int healthPoint, GameEngine *ge, Spaceship *ss);
+    ~BonusHP();
     int getHealthPoint() const;
 private:
 	int healthPoint;

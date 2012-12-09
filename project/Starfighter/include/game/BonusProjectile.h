@@ -10,6 +10,8 @@ class BonusProjectile : public Bonus
 
 public:
     BonusProjectile(QPoint P1, QPoint P2, QPoint P3, /*qreal speed,*/TypeProjectiles type, int expiration, GameEngine *ge, Spaceship *ss);
+    ~BonusProjectile();
+
     TypeProjectiles getType() const;
     int getExpiration() const;
 private:

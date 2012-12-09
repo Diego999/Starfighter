@@ -5,6 +5,11 @@ Bonus::Bonus(QPoint P1, QPoint P2, QPoint P3, /*qreal speed,*/ GameEngine *ge, S
     pxmPicture = new QPixmap(":/images/game/bonus");
 }
 
+Bonus::~Bonus()
+{
+
+}
+
 QRectF Bonus::boundingRect() const
 {
     int l_width = pxmPicture->rect().width();

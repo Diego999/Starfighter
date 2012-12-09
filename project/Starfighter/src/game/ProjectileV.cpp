@@ -22,6 +22,11 @@ ProjectileV::ProjectileV(int _originX, int _originY,Shooter _from, qreal _ampli,
     dSpeed = INTERVAL_X;
 }
 
+ProjectileV::~ProjectileV()
+{
+
+}
+
 qreal ProjectileV::trajectoryDraw(qreal _dX)
 {
     qreal l_dX = _dX*M_PI/180.0;

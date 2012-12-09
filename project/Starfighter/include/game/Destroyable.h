@@ -7,6 +7,8 @@ class Destroyable : public QObject
 {
 public:
 	Destroyable();
+    virtual ~Destroyable();
+
 	void receiveAttack(int puissance);
 	
 protected:

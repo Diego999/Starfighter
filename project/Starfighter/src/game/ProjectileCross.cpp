@@ -21,6 +21,11 @@ ProjectileCross::ProjectileCross(int _originX, int _originY, Shooter _from,int _
     dSpeed = INTERVAL_X;
 }
 
+ProjectileCross::~ProjectileCross()
+{
+
+}
+
 qreal ProjectileCross::trajectoryDraw(qreal _dX)
 {
     if(nb == 0)

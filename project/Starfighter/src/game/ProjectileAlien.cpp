@@ -13,8 +13,13 @@
 #include <math.h>
 #include "include/game/ProjectileAlien.h"
 
-ProjectileAlien::ProjectileAlien(int _originX, int _originY, qreal _dArgument, qreal _dModule, Shooter _from)
+ProjectileAlien::ProjectileAlien(int _originX, int _originY,Shooter _from, qreal _dArgument, qreal _dModule)
     :Displayable(_originX,_originY),Projectile(_originX,_originY,_from),dArgument(_dArgument),dModule(_dModule)
+{
+
+}
+
+ProjectileAlien::~ProjectileAlien()
 {
 
 }

@@ -6,6 +6,11 @@ BonusForceField::BonusForceField(QPoint P1, QPoint P2, QPoint P3, /*qreal speed,
 {
 }
 
+BonusForceField::~BonusForceField()
+{
+
+}
+
 int BonusForceField::getResistanceForceField() const
 {
     return resistanceForceField;
