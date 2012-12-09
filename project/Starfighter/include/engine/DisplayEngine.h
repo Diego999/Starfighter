@@ -30,10 +30,10 @@ public:
     void addShip(Spaceship *_inSpaceship);  
     void addAsteroide(Asteroid *_inAsteroide);
     void addBonus(Bonus *_inBonus);
-
+void timerEvent(QTimerEvent *);
 protected:
     //void paintEvent(QPaintEvent * event);
-    void timerEvent(QTimerEvent *);
+
     void keyPressEvent(QKeyEvent *event);
 
 public slots:

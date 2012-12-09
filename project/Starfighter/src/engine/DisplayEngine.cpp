@@ -29,11 +29,11 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     // get screen dimension
     QDesktopWidget * desktop = QApplication::desktop();
 
-    //screenSizeHeight = 900;
-    screenSizeHeight = desktop->height();
+    screenSizeHeight = 900;
+    //screenSizeHeight = desktop->height();
 
-    //screenSizeWidth = 1440;
-    screenSizeWidth = desktop->width();
+    screenSizeWidth = 1440;
+    //screenSizeWidth = desktop->width();
 
     double sceneWidth = screenSizeWidth;
     double sceneHeigth = screenSizeHeight*0.85;
@@ -46,7 +46,6 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     scene = new QGraphicsScene(0,0,sceneWidth,sceneHeigth,this);
     view = new QGraphicsView(scene,this);
 
-    startTimer(10);
     view->setFixedSize(sceneWidth,sceneHeigth);
 
     view->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
@@ -75,7 +74,7 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
 
     mainScreen->addWidget(view);
     mainScreen->addWidget(downHUD);
-    //scene->addEllipse(1400,500,40,40,QPen(QColor(20,20,20)),QBrush(QColor(20,20,20)));
+    //scene->addEllipse(500,500,40,40,QPen(QColor(20,20,20)),QBrush(QColor(20,20,20)))->setPos(100,100);
     this->creatHUD();
     this->gameType();
 
@@ -211,7 +210,6 @@ void DisplayEngine::addProjectile(Projectile * _inProjectile)
 void DisplayEngine::addShip(Spaceship *_inSpaceship)
 {
     scene->addItem(_inSpaceship);
-    qDebug() << _inSpaceship->pos();
     listSpaceship.append(_inSpaceship);
 }
 

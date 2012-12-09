@@ -24,36 +24,29 @@ void UserControlsEngine::keyPressEvent(QKeyEvent * event)
 {
     Action action = actions[event->key()];
 
-    qDebug() << event->key();
     switch(action)
     {
         case(Top1):
-        qDebug() << "T1";
         gameEngine->ship1()->top();
         break;
 
         case(Bottom1):
-        qDebug() << "B1";
         gameEngine->ship1()->bottom();
         break;
 
         case(Shoot1):
-        qDebug() << "S1";
         gameEngine->ship1()->attack();
         break;
 
         case(Top2):
-        qDebug() << "T2";
         gameEngine->ship2()->top();
         break;
 
         case(Bottom2):
-        qDebug() << "B2";
         gameEngine->ship2()->bottom();
         break;
 
         case(Shoot2):
-        qDebug() << "S2";
         gameEngine->ship2()->attack();
         break;
     }

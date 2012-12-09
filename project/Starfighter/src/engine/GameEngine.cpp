@@ -11,25 +11,25 @@ GameEngine::GameEngine():QObject()
     de = new DisplayEngine(this,0);
     uc = new UserControlsEngine(this);
 
-    createSpaceship();
     startTimer(10);
+    createSpaceship();
 }
 
 void GameEngine::createSpaceship()
 {
     int width = de->sceneSize().width();
     int height = de->sceneSize().height();
-    qDebug() <<"Vaisseau:"<< width;
+
     spaceship[0] = new Spaceship(0,height/2,Player1,this);
-    spaceship[1] = new Spaceship(width-42,height/2,Player2,this);
+    spaceship[1] = new Spaceship(width,height/2,Player2,this);
 
     de->addShip(spaceship[0]);
     de->addShip(spaceship[1]);
 }
 
-void GameEngine::timerEvent(QTimerEvent *)
+void GameEngine::timerEvent(QTimerEvent *event)
 {
-    de->updateScreen();
+    de->timerEvent(event);
 }
 
 int GameEngine::elapsedTime()
