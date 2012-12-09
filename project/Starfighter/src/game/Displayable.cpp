@@ -1,6 +1,6 @@
 #include "include/game/Displayable.h"
 
-Displayable::Displayable(int _x, int _y, QPixmap* _pxmPicture)
+Displayable::Displayable(qreal _x, qreal _y, QPixmap* _pxmPicture)
     :x(_x),y(_y),pxmPicture(_pxmPicture)
 {
     setPos(x,y);

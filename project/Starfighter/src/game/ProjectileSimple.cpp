@@ -15,7 +15,7 @@
 
 #define INTERVAL_X 3
 
-ProjectileSimple::ProjectileSimple(int _originX, int _originY, Shooter _from)
+ProjectileSimple::ProjectileSimple(qreal _originX, qreal _originY, Shooter _from)
     :Displayable(_originX,_originY),Projectile(_originX,_originY,_from)
 {
     power = POWER_S;

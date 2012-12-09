@@ -15,7 +15,7 @@
 
 #define INTERVAL_X 3
 
-ProjectileCross::ProjectileCross(int _originX, int _originY, Shooter _from,int _nb)
+ProjectileCross::ProjectileCross(qreal _originX, qreal _originY, Shooter _from,int _nb)
     :Displayable(_originX,_originY),Projectile(_originX,_originY,_from),nb(_nb)
 {
     dSpeed = INTERVAL_X;

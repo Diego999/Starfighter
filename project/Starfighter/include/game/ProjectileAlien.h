@@ -24,7 +24,7 @@
 class ProjectileAlien : public Projectile
 {
 public:
-    ProjectileAlien(int _originX, int _originY,Shooter _from, qreal _dArgument, qreal _dModule);
+    ProjectileAlien(qreal _originX, qreal _originY,Shooter _from, qreal _dArgument, qreal _dModule);
     ~ProjectileAlien();
 
 private:

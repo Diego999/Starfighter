@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
     MainDialog md;
     md.show();*/
     GameEngine* ge = new GameEngine;
+    for(int i = 0;i<200;i++)
     ge->displayEngine()->addAsteroide(new Asteroid(0,0,Other,0,0,ge,0));
 
     return app.exec();

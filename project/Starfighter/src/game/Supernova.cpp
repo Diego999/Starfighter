@@ -2,7 +2,7 @@
 #include "include/game/ProjectileAlien.h"
 #include "include/enum/Enum.h"
 
-Supernova::Supernova(int x, int y,GameEngine *ge):Displayable(x,y),Obstacle(x,y),gameEngine(ge)
+Supernova::Supernova(qreal x, qreal y,GameEngine *ge):Displayable(x,y),Obstacle(x,y),gameEngine(ge)
 {
 }
 

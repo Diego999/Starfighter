@@ -13,7 +13,7 @@
 #include "include/game/Projectile.h"
 #include <QDebug>
 
-Projectile::Projectile(int _originX, int _originY,Shooter _from)
+Projectile::Projectile(qreal _originX, qreal _originY,Shooter _from)
     :Displayable(_originX,_originY),
       originX(_originX),originY(_originY),from(_from)
 {

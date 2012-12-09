@@ -12,7 +12,7 @@ class Asteroid : public Destroyable, public Obstacle, public Projectile
     //Q_OBJECT
 public:
     //Slope is define ONLY FOR THE LITTLE ASTEROIDES
-    Asteroid(int x, int y,Shooter from, int resistance, int healthPoint, GameEngine *ge,qreal slope=0);
+    Asteroid(qreal x, qreal y,Shooter from, int resistance, int healthPoint, GameEngine *ge,qreal slope=0);
     ~Asteroid();
 
     QRectF boundingRect() const;

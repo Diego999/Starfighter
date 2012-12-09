@@ -9,7 +9,7 @@ class Obstacle : public virtual Displayable
     //Q_OBJECT
 
 public:
-    Obstacle(int x, int y);
+    Obstacle(qreal x, qreal y);
     virtual ~Obstacle();
 
 };

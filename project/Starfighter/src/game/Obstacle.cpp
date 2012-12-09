@@ -1,6 +1,6 @@
 #include "include/game/Obstacle.h"
 
-Obstacle::Obstacle(int x, int y):Displayable(x,y)
+Obstacle::Obstacle(qreal x, qreal y):Displayable(x,y)
 {
 }
 

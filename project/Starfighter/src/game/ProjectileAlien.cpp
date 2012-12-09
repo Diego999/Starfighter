@@ -13,7 +13,7 @@
 #include <math.h>
 #include "include/game/ProjectileAlien.h"
 
-ProjectileAlien::ProjectileAlien(int _originX, int _originY,Shooter _from, qreal _dArgument, qreal _dModule)
+ProjectileAlien::ProjectileAlien(qreal _originX, qreal _originY,Shooter _from, qreal _dArgument, qreal _dModule)
     :Displayable(_originX,_originY),Projectile(_originX,_originY,_from),dArgument(_dArgument),dModule(_dModule)
 {
     power = POWER_A;

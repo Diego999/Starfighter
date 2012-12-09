@@ -22,7 +22,7 @@
 class Projectile : public virtual Displayable
 {
 public:
-    Projectile(int _originX, int _originY,Shooter _from);
+    Projectile(qreal _originX, qreal _originY,Shooter _from);
     virtual ~Projectile();
 
     QRectF boundingRect() const;
@@ -33,9 +33,9 @@ public:
 protected:
     virtual qreal trajectoryDraw(qreal _dX)=0;
 
-    int power;
-	int originX;
-	int originY;
+    qreal power;
+    qreal originX;
+    qreal originY;
 
     qreal dSpeed;
     QColor color;

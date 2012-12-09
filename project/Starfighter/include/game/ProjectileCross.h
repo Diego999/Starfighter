@@ -24,7 +24,7 @@
 class ProjectileCross : public Projectile
 {
 public:
-    ProjectileCross(int _originX, int _originY,Shooter _from,int _nb);
+    ProjectileCross(qreal _originX, qreal _originY,Shooter _from,int _nb);
     ~ProjectileCross();
 
 private:

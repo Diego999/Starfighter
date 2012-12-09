@@ -19,7 +19,7 @@ class Spaceship : public Destroyable, public virtual Displayable
     Q_OBJECT
 
 public:
-    Spaceship(int x,int y,Shooter _player,GameEngine *ge);
+    Spaceship(qreal x,qreal y,Shooter _player,GameEngine *ge);
     ~Spaceship();
     void receiveAttack(int puissance);
     void attack();

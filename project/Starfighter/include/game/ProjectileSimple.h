@@ -24,7 +24,7 @@
 class ProjectileSimple : public Projectile
 {
 public:
-    ProjectileSimple(int _originX, int _originY, Shooter _from);
+    ProjectileSimple(qreal _originX, qreal _originY, Shooter _from);
     ~ProjectileSimple();
 
 private:

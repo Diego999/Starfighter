@@ -15,7 +15,7 @@ class Displayable : public QGraphicsItem
 {
     //Q_OBJECT
 public:
-    Displayable(int _x, int _y, QPixmap* _pixmap = 0);
+    Displayable(qreal _x, qreal _y, QPixmap* _pixmap = 0);
     virtual ~Displayable();
 
     QSize sizePixmap() const {return pxmPicture->size();}
@@ -27,8 +27,8 @@ public:
     virtual void advance(int step);
 
 protected:
-	int x;
-	int y;
+    qreal x;
+    qreal y;
     QPixmap* pxmPicture;
 };
 #endif
