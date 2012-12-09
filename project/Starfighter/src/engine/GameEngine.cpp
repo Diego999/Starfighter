@@ -19,7 +19,7 @@ void GameEngine::createSpaceship()
 {
     int width = de->sceneSize().width();
     int height = de->sceneSize().height();
-    qDebug() << width;
+    qDebug() <<"Vaisseau:"<< width;
     spaceship[0] = new Spaceship(0,height/2,Player1,this);
     spaceship[1] = new Spaceship(width-42,height/2,Player2,this);
 

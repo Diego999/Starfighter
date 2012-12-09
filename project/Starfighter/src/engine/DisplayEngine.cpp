@@ -29,8 +29,11 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     // get screen dimension
     QDesktopWidget * desktop = QApplication::desktop();
 
-    screenSizeHeight = 900;//desktop->height();
-    screenSizeWidth = 1440;//desktop->width();
+    //screenSizeHeight = 900;
+    screenSizeHeight = desktop->height();
+
+    //screenSizeWidth = 1440;
+    screenSizeWidth = desktop->width();
 
     double sceneWidth = screenSizeWidth;
     double sceneHeigth = screenSizeHeight*0.85;
@@ -54,6 +57,7 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
                                  | QGraphicsView::DontSavePainterState
                                  | QGraphicsView::DontAdjustForAntialiasing);
     view->viewport()->setFocusProxy( this );
+    view->setFocusPolicy(Qt::NoFocus);
 
     // Set background
     QPixmap bg( BACKGROUND );
