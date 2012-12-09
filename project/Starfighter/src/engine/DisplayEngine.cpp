@@ -29,14 +29,15 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     // get screen dimension
     QDesktopWidget * desktop = QApplication::desktop();
 
-    screenSizeHeight = 900;
-    //screenSizeHeight = desktop->height();
+    //screenSizeHeight = 900;
+    screenSizeHeight = desktop->height();
 
-    screenSizeWidth = 1440;
-    //screenSizeWidth = desktop->width();
+    //screenSizeWidth = 1440;
+    screenSizeWidth = desktop->width();
 
     double sceneWidth = screenSizeWidth;
     double sceneHeigth = screenSizeHeight*0.85;
+    //double sceneHeigth = screenSizeHeight;
 
     QVBoxLayout * mainScreen = new QVBoxLayout(this);
 
@@ -66,7 +67,6 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
 
     // Param of the screen
     showFullScreen();
-    //showMaximized();
     //setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint);
 
     mainScreen->setMargin(0);
@@ -96,8 +96,8 @@ void DisplayEngine::creatHUD()
       */
     QHBoxLayout * playerOneNamu = new QHBoxLayout();
     QLabel * player1Name = new QLabel();
-    player1Name->setText("Name: player1");
-    //player1Name->setText(tr("Name : %1").arg(set.playerOneName()));
+    //player1Name->setText("Name: player1");
+    player1Name->setText(tr("Name : %1").arg(Settings::getGlobalSettings().playerOneName()));
     playerOneNamu->addWidget(player1Name);
 
 
@@ -107,6 +107,7 @@ void DisplayEngine::creatHUD()
     QLabel * lHP1 = new QLabel("HP:\t");
     HP1= new QProgressBar();
     HP1->setRange(0,100);
+    HP1->setValue(100);
 
     heathP1->addWidget(lHP1);
     heathP1->addWidget(HP1);
@@ -115,6 +116,7 @@ void DisplayEngine::creatHUD()
     QLabel * lShild1 = new QLabel("Shield:\t");
     shield1= new QProgressBar();
     shield1->setRange(0,100);
+    shield1->setValue(100);
 
     shildP1->addWidget(lShild1);
     shildP1->addWidget(shield1);
@@ -150,8 +152,8 @@ void DisplayEngine::creatHUD()
       */
     QHBoxLayout * playerTwoNamu = new QHBoxLayout();
     QLabel * player2Name = new QLabel();
-    player2Name->setText("Name: player2");
-    //player2Name->setText(tr("Name : %1").arg(set.playerTwoName()));
+    //player2Name->setText("Name: player2");
+    player2Name->setText(tr("Name : %1").arg(Settings::getGlobalSettings().playerTwoName()));
     playerTwoNamu->addWidget(player2Name);
 
     QVBoxLayout * statuePlayerTwo = new QVBoxLayout();
@@ -160,6 +162,7 @@ void DisplayEngine::creatHUD()
     QLabel * lHP2 = new QLabel("HP:\t");
     HP2= new QProgressBar();
     HP2->setRange(0,100);
+    HP2->setValue(100);
 
     heathP2->addWidget(lHP2);
     heathP2->addWidget(HP2);
@@ -168,6 +171,7 @@ void DisplayEngine::creatHUD()
     QLabel * lShild2 = new QLabel("Shield:\t");
     shield2= new QProgressBar();
     shield2->setRange(0,100);
+    shield2->setValue(100);
 
     shildP2->addWidget(lShild2);
     shildP2->addWidget(shield2);
@@ -297,16 +301,36 @@ void DisplayEngine::endGame()
                              QMessageBox::Ok);
 }
 
+void DisplayEngine::escapeGame()
+{
+    QMessageBox messageExit;
+    messageExit.setWindowTitle("Fin de partie");
+    messageExit.setText(tr("Voulez-vous arrêter la partie?"));
+    messageExit.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+
+    if(messageExit.exec() == QMessageBox::Yes)
+    {
+        this->close();
+    }
+}
+
 void DisplayEngine::keyPressEvent(QKeyEvent *event)
 {
-    if(event->key() == Qt::Key_F12)
+    switch(event->key())
     {
+        case Qt::Key_F12:
         this->switchFullScreen();
-    }
-    else
-    {
+        break;
+
+        case Qt::Key_Escape:
+        this->escapeGame();
+        break;
+
+        default:
         gameEngine->userControlsEngine()->keyPressEvent(event);
+        break;
     }
+
 }
 
 void DisplayEngine::switchFullScreen()
@@ -320,7 +344,6 @@ void DisplayEngine::switchFullScreen()
     else
     {
         showMaximized();
-        setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint);
     }
 
     isFullScreen = !isFullScreen;

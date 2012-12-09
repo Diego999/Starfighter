@@ -45,6 +45,7 @@ private:
     void switchFullScreen();
     void updateGameData();
     void endGame();
+    void escapeGame();
 
     QGraphicsScene * scene;
     QGraphicsView * view;
