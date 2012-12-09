@@ -19,6 +19,8 @@
 * @version 0.0.1
 */
 
+#define POWER_C 10
+
 class ProjectileCross : public Projectile
 {
 public:

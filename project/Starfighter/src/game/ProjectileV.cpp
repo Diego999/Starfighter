@@ -19,6 +19,7 @@
 ProjectileV::ProjectileV(int _originX, int _originY,Shooter _from, qreal _ampli, qreal _omega)
     :Displayable(_originX,_originY),Projectile(_originX,_originY,_from),dAmplitude(_ampli),dOmega(_omega)
 {
+    power = POWER_V;
     dSpeed = INTERVAL_X;
 }
 

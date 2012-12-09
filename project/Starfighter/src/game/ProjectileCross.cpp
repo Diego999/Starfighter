@@ -19,6 +19,7 @@ ProjectileCross::ProjectileCross(int _originX, int _originY, Shooter _from,int _
     :Displayable(_originX,_originY),Projectile(_originX,_originY,_from),nb(_nb)
 {
     dSpeed = INTERVAL_X;
+    power = POWER_C;
 }
 
 ProjectileCross::~ProjectileCross()

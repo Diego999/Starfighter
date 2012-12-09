@@ -19,6 +19,8 @@
 * @version 0.0.1
 */
 
+#define POWER_S 1
+
 class ProjectileSimple : public Projectile
 {
 public:

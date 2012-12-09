@@ -19,6 +19,8 @@
 * @version 0.0.1
 */
 
+#define POWER_V 5
+
 class ProjectileV : public Projectile
 {
 public:

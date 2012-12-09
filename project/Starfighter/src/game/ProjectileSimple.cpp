@@ -18,6 +18,7 @@
 ProjectileSimple::ProjectileSimple(int _originX, int _originY, Shooter _from)
     :Displayable(_originX,_originY),Projectile(_originX,_originY,_from)
 {
+    power = POWER_S;
     dSpeed = INTERVAL_X;
 }
 

@@ -19,6 +19,8 @@
 * @version 0.0.1
 */
 
+#define POWER_A 50
+
 class ProjectileAlien : public Projectile
 {
 public:
