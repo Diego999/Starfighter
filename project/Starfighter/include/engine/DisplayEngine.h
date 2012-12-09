@@ -20,7 +20,8 @@ public:
     DisplayEngine(GameEngine *ge,QWidget *parent);
     ~DisplayEngine();
 
-    QRect sceneSize();
+    QRect   sceneSize();
+    QPoint  warzoneValue();
     void setProgressHP1(int _value);
     void setProgressHP2(int _value);
     void setProgressShield1(int _value);
@@ -47,6 +48,8 @@ private:
     void endGame();
     void escapeGame();
 
+    void recoveryTime();
+
     QGraphicsScene * scene;
     QGraphicsView * view;
 
@@ -67,6 +70,9 @@ private:
     // dimension of the screeen
     int screenSizeWidth;
     int screenSizeHeight;
+
+    double sceneWidth;
+    double sceneHeigth;
 
     // widget used for the HUD
     QLCDNumber * timer;

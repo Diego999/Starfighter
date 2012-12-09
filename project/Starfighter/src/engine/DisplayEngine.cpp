@@ -35,11 +35,12 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     //screenSizeWidth = 1440;
     screenSizeWidth = desktop->width();
 
-    double sceneWidth = screenSizeWidth;
-    double sceneHeigth = screenSizeHeight*0.85;
+    sceneWidth = screenSizeWidth;
+    sceneHeigth = screenSizeHeight*0.85;
     //double sceneHeigth = screenSizeHeight;
 
     QVBoxLayout * mainScreen = new QVBoxLayout(this);
+    //QGridLayout * mainScreen = new QGridLayout(this);
 
     downHUD = new QWidget(this);
 
@@ -68,6 +69,7 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     // Param of the screen
     showFullScreen();
     //setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint);
+    view->move(0,0);
 
     mainScreen->setMargin(0);
     mainScreen->setSpacing(0);
@@ -236,6 +238,7 @@ void DisplayEngine::addAsteroide(Asteroid *_inAsteroide)
 
 }
 */
+
 void DisplayEngine::timerEvent(QTimerEvent * event)
 {
     scene->advance();
@@ -244,6 +247,22 @@ void DisplayEngine::timerEvent(QTimerEvent * event)
 QRect DisplayEngine::sceneSize()
 {
     return QRect(0,0,scene->width(),scene->height());
+}
+
+/**
+*   QPoint(0->xmin,xmax->sceneWidth)
+*/
+QPoint  DisplayEngine::warzoneValue()
+{
+    int xmin = gameEngine->ship1()->sizePixmap().width();
+    int xmax = sceneWidth-(gameEngine->ship2()->sizePixmap().width());
+    return QPoint(xmin,xmax);
+}
+
+void DisplayEngine::recoveryTime()
+{
+    //gameEngine->
+
 }
 
 void DisplayEngine::gameType()
@@ -303,6 +322,8 @@ void DisplayEngine::endGame()
 
 void DisplayEngine::escapeGame()
 {
+    gameEngine->timerControle();
+
     QMessageBox messageExit;
     messageExit.setWindowTitle("Fin de partie");
     messageExit.setText(tr("Voulez-vous arrêter la partie?"));

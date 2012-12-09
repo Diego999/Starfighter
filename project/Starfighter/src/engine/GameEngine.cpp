@@ -11,7 +11,7 @@ GameEngine::GameEngine():QObject()
     de = new DisplayEngine(this,0);
     uc = new UserControlsEngine(this);
 
-    startTimer(10);
+    timerControle();
     createSpaceship();
 }
 
@@ -53,3 +53,17 @@ int GameEngine::randInt(int range)
 }
 
 int GameEngine::timeGamevalue(){return timeGame;}
+
+void GameEngine::timerControle()
+{
+    if(idTimer != -1)
+    {
+        idTimer = startTimer(10);
+    }
+
+    else
+    {
+        killTimer(idTimer);
+        idTimer = -1;
+    }
+}
