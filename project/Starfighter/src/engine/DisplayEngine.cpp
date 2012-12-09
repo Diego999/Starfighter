@@ -13,7 +13,6 @@
 
 #include <QDebug>
 #include "include/game/ProjectileSimple.h"
-
 #include <QTimerEvent>
 
 #define SPACE_BETWEEN         250
@@ -29,66 +28,53 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     // get screen dimension
     QDesktopWidget * desktop = QApplication::desktop();
 
-    screenSizeHeight = desktop->height();
-    screenSizeWidth = desktop->width();
+    screenSizeHeight = 900;//desktop->height();
+    screenSizeWidth = 1440;//desktop->width();
 
-    qDebug() << "screenSize: " <<screenSizeWidth << ":" <<screenSizeHeight;
+    double sceneWidth = screenSizeWidth;
+    double sceneHeigth = screenSizeHeight*0.85;
 
     QVBoxLayout * mainScreen = new QVBoxLayout(this);
 
     downHUD = new QWidget(this);
 
     // configuration of QGraphicsScene and QGraphicsview
-    scene = new QGraphicsScene(0,0,screenSizeWidth*0.95,screenSizeHeight*0.8,this);
+    scene = new QGraphicsScene(0,0,sceneWidth,sceneHeigth,this);
     view = new QGraphicsView(scene,this);
 
+    startTimer(10);
+    view->setFixedSize(sceneWidth,sceneHeigth);
+
+    view->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
+    view->setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
+    view->setCacheMode(QGraphicsView::CacheBackground);
+    view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
+    view->setOptimizationFlags(QGraphicsView::DontClipPainter
+                                 | QGraphicsView::DontSavePainterState
+                                 | QGraphicsView::DontAdjustForAntialiasing);
+    view->viewport()->setFocusProxy( this );
 
     // Set background
     QPixmap bg( BACKGROUND );
     //scene->setBackgroundBrush(bg);
     scene->setBackgroundBrush(Qt::black);
-
     this->setFixedSize(screenSizeWidth,screenSizeHeight);
 
     // Param of the screen
-    //showFullScreen();
-    showMaximized();
-    setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint);
+    showFullScreen();
+    //showMaximized();
+    //setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint);
+
+    mainScreen->setMargin(0);
+    mainScreen->setSpacing(0);
 
     mainScreen->addWidget(view);
     mainScreen->addWidget(downHUD);
-
-    //qDebug() << view->height();
+    //scene->addEllipse(1400,500,40,40,QPen(QColor(20,20,20)),QBrush(QColor(20,20,20)));
     this->creatHUD();
     this->gameType();
-    //scene->setSceneRect(0,0,screenSizeWidth,100);
-    //view->setFixedSize(screenSizeWidth,100);
-
-    qDebug() << "Size HUD" << downHUD->height();
 
     setLayout(mainScreen);
-    //Projectile* p = new ProjectileSimple(10,10,Player1);
-    //scene->addItem(p);
-    //Mouse* m = new Mouse();
-    //m->setPos(20,20);
-    //scene->addItem(m);
-
-    Spaceship* s = new Spaceship(0,screenSizeHeight/4,Player1,ge);
-    scene->addItem(s);
-    qDebug() << "Vaisseau A__ 0 :" << screenSizeHeight/4;
-
-    /* debug */
-    int intervaleDroite = scene->width()/2;
-
-    /* test top/bottom */
-    //Spaceship* s2 = new Spaceship(intervaleDroite,screenSizeHeight/4,Player2,ge);
-    Spaceship* s2 = new Spaceship(intervaleDroite,scene->height()/2,Player2,ge);
-    scene->addItem(s2);
-    qDebug() << "Vaisseau B__ "<< intervaleDroite <<" :" << screenSizeHeight/4;
-
-    qDebug() << "Taille view: " << view->width() <<":"<<view->height();
-    qDebug() << "Taille scene: " << scene->width() <<":"<<scene->height();
-
 }
 
 DisplayEngine::~DisplayEngine()
@@ -220,6 +206,7 @@ void DisplayEngine::addProjectile(Projectile * _inProjectile)
 void DisplayEngine::addShip(Spaceship *_inSpaceship)
 {
     scene->addItem(_inSpaceship);
+    qDebug() << _inSpaceship->pos();
     listSpaceship.append(_inSpaceship);
 }
 
@@ -241,15 +228,11 @@ void DisplayEngine::addAsteroide(Asteroid *_inAsteroide)
     scene->advance();
 
 }
-
+*/
 void DisplayEngine::timerEvent(QTimerEvent * event)
 {
-
-    //this->update();
     scene->advance();
-
 }
-*/
 
 QRect DisplayEngine::sceneSize()
 {

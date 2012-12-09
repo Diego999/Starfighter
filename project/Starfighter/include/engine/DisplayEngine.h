@@ -33,7 +33,7 @@ public:
 
 protected:
     //void paintEvent(QPaintEvent * event);
-    //void timerEvent(QTimerEvent *);
+    void timerEvent(QTimerEvent *);
     void keyPressEvent(QKeyEvent *event);
 
 public slots:

@@ -3,6 +3,8 @@
 #include "include/game/Obstacle.h"
 #include "include/game/Spaceship.h"
 
+#include <QDebug>
+
 GameEngine::GameEngine():QObject()
 {
     de = new DisplayEngine(this,0);
@@ -16,9 +18,12 @@ void GameEngine::createSpaceship()
 {
     int width = de->sceneSize().width();
     int height = de->sceneSize().height();
-
+    qDebug() << width;
     spaceship[0] = new Spaceship(0,height/2,Player1,this);
-    spaceship[1] = new Spaceship(width,height/2,Player2,this);
+    spaceship[1] = new Spaceship(width-42,height/2,Player2,this);
+
+    de->addShip(spaceship[0]);
+    de->addShip(spaceship[1]);
 }
 
 void GameEngine::timerEvent(QTimerEvent *)
