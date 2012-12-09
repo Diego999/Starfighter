@@ -30,7 +30,6 @@ Settings::Settings()
 Settings::~Settings()
 {
     delete qse;
-    qDebug("destroy");
 }
 
 Settings& Settings::getGlobalSettings()
