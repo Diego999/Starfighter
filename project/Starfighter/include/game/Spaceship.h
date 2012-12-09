@@ -9,6 +9,7 @@
 
 #define MAX_BONUS 2
 #define MAX_PV 100
+#define SPEED_DEFAULT 5
 
 class BonusSpeed;
 class BonusProjectile;

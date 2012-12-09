@@ -26,6 +26,7 @@ public:
 
 private:
     void advance(int step);
+    qreal trajectoryDraw(qreal _dX);
 
     static const qreal kIntervalModule = 0.5;
     static const qreal kIntervalArgument = 1.0;

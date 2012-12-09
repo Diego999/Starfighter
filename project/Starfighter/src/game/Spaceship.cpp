@@ -11,12 +11,13 @@
 #include <QTimer>
 #include <QDebug>
 
-#define AMPLI_PV 3
-#define OMEGA_PV 15
+#define AMPLI_PV 60.0
+#define OMEGA_PV 1.0
 
 Spaceship::Spaceship(int x,int y,Shooter _player,GameEngine *ge):Displayable(x,y),player(_player),gameEngine(ge)
 {
-    type = ProjSimple;
+    speed = SPEED_DEFAULT;
+    type = ProjAlien;
     pxmPicture = new QPixmap(":/images/game/spaceship");
     if(_player == Player2)
     {
@@ -141,9 +142,11 @@ void Spaceship::attack()
 void Spaceship::top()
 {
     y-=speed;
+    setPos(x,y);
 }
 
 void Spaceship::bottom()
 {
     y+=speed;
+    setPos(x,y);
 }

@@ -27,9 +27,9 @@ public:
     QRectF boundingRect() const;
     QPainterPath shape() const;
     void paint(QPainter* _painter, const QStyleOptionGraphicsItem *_option, QWidget *_widget=0);
+    virtual void advance(int _step);
 
 protected:
-    virtual void advance(int _step);
     virtual qreal trajectoryDraw(qreal _dX)=0;
 
     int power;
@@ -39,7 +39,6 @@ protected:
     qreal dSpeed;
     QColor color;
 
-	int interval;
     Shooter from;
 };
 #endif

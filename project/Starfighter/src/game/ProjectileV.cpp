@@ -16,9 +16,9 @@
 #define INTERVAL_X 4
 
 ProjectileV::ProjectileV(int _originX, int _originY,Shooter _from, qreal _ampli, qreal _omega)
-    :Projectile(_originX,_originY,_from),dAmplitude(_ampli),dOmega(_omega)
+    :Displayable(_originX,_originY),Projectile(_originX,_originY,_from),dAmplitude(_ampli),dOmega(_omega)
 {
-    interval = INTERVAL_X;
+    dSpeed = INTERVAL_X;
 }
 
 qreal ProjectileV::trajectoryDraw(qreal _dX)
@@ -32,8 +32,8 @@ void ProjectileV::advance(int _step)
     Projectile::advance(_step);
 
     if(from == Player1)
-        x+=interval;
+        x+=dSpeed;
     else//Player2
-        x-=interval;
+        x-=dSpeed;
     setPos(x,y-trajectoryDraw(x));
 }

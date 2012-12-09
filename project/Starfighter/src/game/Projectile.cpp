@@ -11,6 +11,7 @@
  *==============================================================*/
 
 #include "include/game/Projectile.h"
+#include <QDebug>
 
 Projectile::Projectile(int _originX, int _originY,Shooter _from)
     :Displayable(_originX,_originY),
@@ -20,19 +21,17 @@ Projectile::Projectile(int _originX, int _originY,Shooter _from)
         color = QColor(100,100,100);
     else
         color = QColor(200,200,200);
-    x = _originX;
-    y = _originY;
 }
 
 QRectF Projectile::boundingRect() const
 {
-    return QRectF(x-RADIUS_PROJECTILE/2,y-RADIUS_PROJECTILE/2,RADIUS_PROJECTILE,RADIUS_PROJECTILE);
+    return QRectF(-RADIUS_PROJECTILE/2,-RADIUS_PROJECTILE/2,RADIUS_PROJECTILE,RADIUS_PROJECTILE);
 }
 
 QPainterPath Projectile::shape() const
 {
     QPainterPath l_path;
-    l_path.addEllipse(QPoint(x-RADIUS_PROJECTILE/2,y-RADIUS_PROJECTILE/2),RADIUS_PROJECTILE,RADIUS_PROJECTILE);
+    l_path.addEllipse(-RADIUS_PROJECTILE/2,-RADIUS_PROJECTILE/2,RADIUS_PROJECTILE,RADIUS_PROJECTILE);
     return l_path;
 }
 
@@ -40,6 +39,8 @@ void Projectile::paint(QPainter *_painter, const QStyleOptionGraphicsItem *, QWi
 {
     _painter->setBrush(color);
     _painter->drawEllipse(-RADIUS_PROJECTILE/2,-RADIUS_PROJECTILE/2,RADIUS_PROJECTILE,RADIUS_PROJECTILE);
+    _painter->setPen(QPen(QColor(255,0,0)));
+    _painter->drawPath(shape());
 }
 
 void Projectile::advance(int _step)

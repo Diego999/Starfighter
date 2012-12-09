@@ -16,9 +16,9 @@
 #define INTERVAL_X 8
 
 ProjectileCross::ProjectileCross(int _originX, int _originY, Shooter _from,int _nb)
-    :Projectile(_originX,_originY,_from),nb(_nb)
+    :Displayable(_originX,_originY),Projectile(_originX,_originY,_from),nb(_nb)
 {
-    interval = INTERVAL_X;
+    dSpeed = INTERVAL_X;
 }
 
 qreal ProjectileCross::trajectoryDraw(qreal _dX)
@@ -36,8 +36,8 @@ void ProjectileCross::advance(int _step)
     Projectile::advance(_step);
 
     if(from == Player1)
-        x+=interval;
+        x+=dSpeed;
     else//Player2
-        x-=interval;
+        x-=dSpeed;
     setPos(x,y-trajectoryDraw(x));
 }

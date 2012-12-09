@@ -14,9 +14,14 @@
 #include "include/game/ProjectileAlien.h"
 
 ProjectileAlien::ProjectileAlien(int _originX, int _originY, qreal _dArgument, qreal _dModule, Shooter _from)
-    :Projectile(_originX,_originY,_from),dArgument(_dArgument),dModule(_dModule)
+    :Displayable(_originX,_originY),Projectile(_originX,_originY,_from),dArgument(_dArgument),dModule(_dModule)
 {
 
+}
+
+qreal ProjectileAlien::trajectoryDraw(qreal _dX)
+{
+    return 0;
 }
 
 void ProjectileAlien::advance(int _step)

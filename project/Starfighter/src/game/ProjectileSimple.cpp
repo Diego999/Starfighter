@@ -11,13 +11,14 @@
  *==============================================================*/
 
 #include "include/game/ProjectileSimple.h"
+#include <QDebug>
 
-#define INTERVAL_X 7
+#define INTERVAL_X 3
 
 ProjectileSimple::ProjectileSimple(int _originX, int _originY, Shooter _from)
-    :Projectile(_originX,_originY,_from)
+    :Displayable(_originX,_originY),Projectile(_originX,_originY,_from)
 {
-    interval = INTERVAL_X;
+    dSpeed = INTERVAL_X;
 }
 
 qreal ProjectileSimple::trajectoryDraw(qreal _dX)
@@ -29,10 +30,10 @@ void ProjectileSimple::advance(int _step)
 {
     Projectile::advance(_step);
 
-    y+=trajectoryDraw(interval);
+    y+=trajectoryDraw(dSpeed);
     if(from == Player1)
-        x+=interval;
+        x+=dSpeed;
     else//Player2
-        x-=interval;
+        x-=dSpeed;
     setPos(x,y);
 }
