@@ -17,7 +17,7 @@
 Spaceship::Spaceship(int x,int y,Shooter _player,GameEngine *ge):Displayable(x,y),player(_player),gameEngine(ge)
 {
     speed = SPEED_DEFAULT;
-    type = ProjSimple;
+    type = ProjCross;
     pxmPicture = new QPixmap(":/images/game/spaceship");
     if(_player == Player2)
     {
@@ -113,7 +113,7 @@ void Spaceship::attack()
     if(player==Player1)
         l_x = x+pxmPicture->width();
     else
-        l_x = x-pxmPicture->width();
+        l_x = x;//Don't need to remove the width of the QPixmap,already done in the constructor
 
     l_y = y+pxmPicture->height()/2;
 

@@ -39,5 +39,5 @@ void ProjectileCross::advance(int _step)
         x+=dSpeed;
     else//Player2
         x-=dSpeed;
-    setPos(x,y-trajectoryDraw(x));
+    setPos(x,originY-trajectoryDraw(originX-x));
 }

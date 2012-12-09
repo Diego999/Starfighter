@@ -19,5 +19,7 @@ void Displayable::advance(int _step)
 
 void Displayable::setPos(qreal _dX, qreal _dY)
 {
-    QGraphicsItem::setPos(_dX,_dY);
+    x=_dX;
+    y=_dY;
+    QGraphicsItem::setPos(x,y);
 }

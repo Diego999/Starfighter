@@ -12,6 +12,7 @@
 
 #include "include/game/ProjectileV.h"
 #include <math.h>
+#include <QDebug>
 
 #define INTERVAL_X 4
 
@@ -35,5 +36,5 @@ void ProjectileV::advance(int _step)
         x+=dSpeed;
     else//Player2
         x-=dSpeed;
-    setPos(x,y-trajectoryDraw(x));
+    setPos(x,originY-trajectoryDraw(originX-x));
 }
