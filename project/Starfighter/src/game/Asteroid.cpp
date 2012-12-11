@@ -8,7 +8,7 @@
 #define MIN_A 3
 
 Asteroid::Asteroid(qreal _x, qreal _y,Shooter from, int _resistance, int _healthPoint,GameEngine *_ge,qreal _slope,bool small)
-    :Displayable(_x,_y),Destroyable(),Obstacle(x,y),Projectile(x,y,from),resistance(_resistance),healthPoint(_healthPoint),ge(_ge),slope(_slope),smallA(small)
+    :Displayable(_x,_y),Destroyable(),Obstacle(_x,_y),Projectile(_x,_y,from),resistance(_resistance),healthPoint(_healthPoint),ge(_ge),slope(_slope),smallA(small)
 {
     if(smallA)
     {
@@ -79,10 +79,6 @@ Asteroid::~Asteroid()
     }
 }
 
-void Asteroid::destroy()
-{
-}
-
 QRectF Asteroid::boundingRect() const
 {
     return QRectF(pxmPicture->rect());
@@ -95,11 +91,11 @@ QPainterPath Asteroid::shape() const
     return l_path;
 }
 
-void Asteroid::paint(QPainter* _painter, QStyleOptionGraphicsItem* _option, QWidget* _widget)
+void Asteroid::paint(QPainter* _painter,const QStyleOptionGraphicsItem* _option, QWidget* _widget)
 {
     _painter->drawPixmap(0,0,*pxmPicture);
-    //_painter->setPen(QPen(QColor(255,0,0)));
-    //_painter->drawPath(shape());
+    _painter->setPen(QPen(QColor(255,0,0)));
+    _painter->drawPath(shape());
 }
 
 void Asteroid::advance(int _step)

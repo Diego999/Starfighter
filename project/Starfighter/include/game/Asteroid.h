@@ -9,7 +9,6 @@
 
 class Asteroid : public Destroyable, public Obstacle, public Projectile
 {
-    //Q_OBJECT
 public:
     //Slope is define ONLY FOR THE LITTLE ASTEROIDES
     Asteroid(qreal x, qreal y,Shooter from, int resistance, int healthPoint, GameEngine *ge,qreal slope=0,bool small=false);
@@ -17,20 +16,18 @@ public:
 
     QRectF boundingRect() const;
     QPainterPath shape() const;
-    void paint(QPainter* _painter, QStyleOptionGraphicsItem* _option, QWidget* _widget);
+    void paint(QPainter* _painter,const QStyleOptionGraphicsItem* _option, QWidget* _widget);
 
-	void destroy();
-	
 private:
     void advance(int _step);
     qreal trajectoryDraw(qreal _dX);
 
-    bool smallA;
     int resistance;
     int healthPoint;
     int direction;
+
     GameEngine* ge;
-	qreal slope;
-	
+    qreal slope;
+    bool smallA;
 };
 #endif
