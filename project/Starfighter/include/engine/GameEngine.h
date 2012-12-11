@@ -1,6 +1,8 @@
 #ifndef GAME_ENGINE_H
 #define GAME_ENGINE_H
 
+#include "include/enum/Enum.h"
+
 class DisplayEngine;
 class SpawnEngine;
 class UserControlsEngine;
@@ -15,7 +17,7 @@ class GameEngine : public QObject
     Q_OBJECT
 
 public:	
-    GameEngine();
+    GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject*);
 
     void spawn(Obstacle* obstacle);
     void createSpaceship();
@@ -31,12 +33,13 @@ public:
 
     DisplayEngine* displayEngine() const { return de;}
     UserControlsEngine* userControlsEngine() const {return uc;}
+    SpawnEngine* spawnEngine() const {return se;}
 
     void timerEvent(QTimerEvent *);
 
 private:
     DisplayEngine *de;
-    SpawnEngine *spawnEngine;
+    SpawnEngine *se;
     UserControlsEngine *uc;
     Projectile *projectile[];
     Obstacle *obstacle[];
@@ -47,6 +50,9 @@ private:
 
     int idTimer;
     bool isRunning;
+
+signals:
+    void endGame();
 
 };
 #endif

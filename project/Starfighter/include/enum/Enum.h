@@ -27,4 +27,14 @@ enum GameMode
     Timer = 1,DeathMatch = 2
 };
 
+enum SpaceshipType
+{
+    SpaceshipType1 = 1, SpaceshipType2 = 2
+};
+
+enum Difficulty
+{
+    Asteroids = 0x00000001, AlienMothership = 0x00000010, Satellites = 0x00000100, Supernovae = 0x00001000
+};
+
 #endif // ENUMERATION_H

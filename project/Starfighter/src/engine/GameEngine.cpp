@@ -1,13 +1,15 @@
 #include "include/engine/GameEngine.h"
 #include "include/engine/DisplayEngine.h"
+#include "include/engine/SpawnEngine.h"
 #include "include/game/Obstacle.h"
 #include "include/game/Spaceship.h"
 #include "include/engine/UserControlsEngine.h"
 #include "include/utils/Settings.h"
 #include <QDebug>
 
-GameEngine::GameEngine():QObject(), isRunning(false)
+GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject *parent = 0):QObject(parent), isRunning(false)
 {
+    se = new SpawnEngine(difficulty);
     de = new DisplayEngine(this,0);
     uc = new UserControlsEngine(this);
 

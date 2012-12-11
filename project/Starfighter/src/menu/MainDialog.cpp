@@ -33,3 +33,15 @@ void MainDialog::on_btnAbout_clicked()
     AboutDialog *ad = new AboutDialog(this);
     ad->exec();
 }
+
+void MainDialog::setGameEngine(GameEngine *ge)
+{
+    if(ge != NULL)
+        this->ge = ge;
+}
+
+void MainDialog::endGame()
+{
+    if(ge != NULL)
+        delete ge;
+}

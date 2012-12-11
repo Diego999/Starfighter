@@ -11,6 +11,9 @@ SetKeyDialog::SetKeyDialog(QWidget *parent) :
 void SetKeyDialog::keyPressEvent(QKeyEvent *event)
 {
     Qt::Key key = (Qt::Key)event->key();
-    emit keySelected(key);
-    close();
+    if(key != Qt::Key_Escape && key != Qt::Key_F12)
+    {
+        emit keySelected(key);
+        close();
+    }
 }

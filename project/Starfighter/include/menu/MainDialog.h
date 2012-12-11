@@ -1,6 +1,8 @@
 #ifndef MAINDIALOG_H
 #define MAINDIALOG_H
 
+class GameEngine;
+
 namespace Ui {
 class MainDialog;
 }
@@ -12,6 +14,10 @@ class MainDialog : public QDialog
 public:
     explicit MainDialog(QWidget *parent = 0);
     ~MainDialog();
+    void setGameEngine(GameEngine *);
+
+public slots:
+    void endGame();
     
 private slots:
     void on_btnPlay_clicked();
@@ -22,6 +28,7 @@ private slots:
 
 private:
     Ui::MainDialog *ui;
+    GameEngine *ge;
 };
 
 #endif // MAINDIALOG_H

@@ -1,9 +1,22 @@
 #include "include/engine/SpawnEngine.h"
+#include "include/game/AlienSpaceship.h"
+#include <math.h>
 
-SpawnEngine::SpawnEngine(GameEngine *ge)
+SpawnEngine::SpawnEngine(int difficulty)
 {
+    spawnAsteroids = (bool)(difficulty & Asteroids);
+    spawnAlienMothership = (bool)(difficulty & AlienMothership);
+    spawnSatellites = (bool)(difficulty & Satellites);
+    spawnSupernovae = (bool)(difficulty & Supernovae);
 }
 
-void SpawnEngine::timerEvent(QTimerEvent * event)
+SpawnEngine::~SpawnEngine()
 {
+
+}
+
+void SpawnEngine::timerFired()
+{
+
+
 }

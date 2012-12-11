@@ -1,6 +1,8 @@
 #ifndef NEWGAMEDIALOG_H
 #define NEWGAMEDIALOG_H
 
+class MainDialog;
+
 namespace Ui {
 class NewGameDialog;
 }
@@ -22,6 +24,7 @@ private slots:
 
 private:
     Ui::NewGameDialog *ui;
+    MainDialog *md;
 };
 
 #endif // NEWGAMEDIALOG_H

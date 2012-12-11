@@ -7,12 +7,19 @@ class SpawnEngine : public QObject
     Q_OBJECT
 
 public:
-    SpawnEngine(GameEngine *ge);
-	
-    void timerEvent(QTimerEvent * event);
-	
-private:
-    GameEngine *gameEngine;
+    SpawnEngine(int difficulty);
+    ~SpawnEngine();
 
+private slots:
+    void timerFired();
+
+signals:
+    void obstacleShouldSpawn(Obstacle *);
+
+private:
+    bool spawnAsteroids;
+    bool spawnAlienMothership;
+    bool spawnSatellites;
+    bool spawnSupernovae;
 };
 #endif
