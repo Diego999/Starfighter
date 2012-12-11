@@ -6,8 +6,6 @@
 
 class BonusProjectile : public Bonus
 {
-    //Q_OBJECT
-
 public:
     BonusProjectile(QPoint P1, QPoint P2, QPoint P3, /*qreal speed,*/TypeProjectiles type, int expiration, GameEngine *ge, Spaceship *ss);
     ~BonusProjectile();

@@ -4,6 +4,7 @@
 
 TEMPLATE = app
 TARGET = 
+PRECOMPILED_HEADER = include\stable.h
 DEPENDPATH += . \
               src \
               include\engine \
@@ -46,7 +47,8 @@ HEADERS += include/engine/DisplayEngine.h \
            include/menu/NewGameDialog.h \
            include/menu/OptionsDialog.h \
            include/utils/Settings.h \
-	   include/menu/SetKeyDialog.h
+	   include/menu/SetKeyDialog.h \
+    include/stable.h
 FORMS += res/ui/AboutDialog.ui \
          res/ui/MainDialog.ui \
          res/ui/NewGameDialog.ui \

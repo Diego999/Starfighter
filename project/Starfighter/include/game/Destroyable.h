@@ -1,8 +1,6 @@
 #ifndef DESTROYABLE_H
 #define DESTROYABLE_H
 
-#include <QObject>
-
 class Destroyable : public QObject
 {
 public:

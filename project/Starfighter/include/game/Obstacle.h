@@ -6,8 +6,6 @@
 
 class Obstacle : public virtual Displayable
 {
-    //Q_OBJECT
-
 public:
     Obstacle(qreal x, qreal y);
     virtual ~Obstacle();

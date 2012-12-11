@@ -1,8 +1,6 @@
 #ifndef OPTIONSDIALOG_H
 #define OPTIONSDIALOG_H
 
-#include <QDialog>
-#include <QButtonGroup>
 #include "include/enum/Enum.h"
 
 namespace Ui {

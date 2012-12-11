@@ -4,8 +4,6 @@
 
 #include "include/enum/Enum.h"
 #include "include/engine/GameEngine.h"
-#include <QMap.h>
-#include <QKeyEvent>
 
 class UserControlsEngine : public QObject
 {

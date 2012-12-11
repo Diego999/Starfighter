@@ -4,11 +4,6 @@
 #include "include/game/Displayable.h"
 #include "include/engine/GameEngine.h"
 
-#include <QGraphicsView>
-#include <QGraphicsScene>
-#include <QLCDNumber>
-#include <QProgressBar>
-
 class Asteroid;
 class Projectile;
 
@@ -16,7 +11,6 @@ class DisplayEngine : public QWidget
 {
     Q_OBJECT
 public:
-    //DisplayEngine(QWidget *parent);
     DisplayEngine(GameEngine *ge,QWidget *parent);
     ~DisplayEngine();
 

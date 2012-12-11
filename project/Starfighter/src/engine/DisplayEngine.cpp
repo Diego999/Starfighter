@@ -31,11 +31,11 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     // get screen dimension
     QDesktopWidget * desktop = QApplication::desktop();
 
-    screenSizeHeight = 900;
-    //screenSizeHeight = desktop->height();
+    //screenSizeHeight = 900;
+    screenSizeHeight = desktop->height();
 
-    screenSizeWidth = 1440;
-    //screenSizeWidth = desktop->width();
+    //screenSizeWidth = 1440;
+    screenSizeWidth = desktop->width();
 
     sceneWidth = screenSizeWidth;
     sceneHeigth = screenSizeHeight*0.85;
@@ -58,7 +58,8 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
     view->setOptimizationFlags(QGraphicsView::DontClipPainter
                                  | QGraphicsView::DontSavePainterState
-                                 | QGraphicsView::DontAdjustForAntialiasing);
+                                 /*| QGraphicsView::DontAdjustForAntialiasing*/);
+    //RENDU OPENGL,mettre anti-aliasing
     view->viewport()->setFocusProxy( this );
     view->setFocusPolicy(Qt::NoFocus);
 
@@ -246,8 +247,73 @@ void DisplayEngine::timerEvent(QTimerEvent * event)
 {
     scene->advance();
     //static int i = 0;
-    //if(i++<=2)
+    //if(i++<=0)
     //    delete scene->items().last();
+
+    for(QList<Asteroid*>::iterator i = listAsteroide.begin();i != listAsteroide.end();i++)
+        {
+        if((*i)->pos().x() > view->width() || (*i)->pos().x() < 0 ||
+                    (*i)->pos().y() > view->height() || (*i)->pos().y() < 0)
+            {
+                if((i+1)==listAsteroide.end())
+                {
+                    delete (*i);
+                    listAsteroide.erase(i);
+                    break;
+                }
+                delete (*i);
+                listAsteroide.erase(i);
+                continue;
+            }
+        }
+
+    for(QList<Projectile*>::iterator i = listProjectile.begin();i != listProjectile.end();i++)
+        {
+            /*if((*i)->x() > view.width() || (*i)->x() < 0 ||
+                    (*i)->y() > view.height() || (*i)->y() < 0)
+            {
+                if((i+1)==missiles.end())
+                {
+                    delete (*i);
+                    missiles.erase(i);
+                    break;
+                }
+                delete (*i);
+                missiles.erase(i);
+                continue;
+            }*/
+
+            /*if((*i)->collidesWithItem(ship, Qt::IntersectsItemShape))
+                ship->hide();*/
+
+            for(QList<Asteroid*>::iterator i2 = listAsteroide.begin();i2 != listAsteroide.end();i2++)
+                if((*i2)->collidesWithItem(*i, Qt::IntersectsItemShape))
+                {
+                    if((i2+1)==listAsteroide.end())
+                    {
+                        delete (*i2);
+                        listAsteroide.erase(i2);
+                        break;
+                    }
+                    delete (*i);
+                    listAsteroide.erase(i2);
+                    continue;
+                }
+
+            /*for(QList<Satellite*>::iterator i3 = sats.begin();i3 != sats.end();i3++)
+                if((*i3)->collidesWithItem(*i, Qt::IntersectsItemShape))
+                {
+                    if((i3+1)==sats.end())
+                    {
+                        delete (*i3);
+                        sats.erase(i3);
+                        break;
+                    }
+                    delete (*i3);
+                    sats.erase(i3);
+                    continue;
+                }*/
+        }
 }
 
 QRect DisplayEngine::sceneSize() const

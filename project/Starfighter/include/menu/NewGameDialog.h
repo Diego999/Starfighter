@@ -1,8 +1,6 @@
 #ifndef NEWGAMEDIALOG_H
 #define NEWGAMEDIALOG_H
 
-#include <QDialog>
-
 namespace Ui {
 class NewGameDialog;
 }

@@ -1,8 +1,6 @@
 #ifndef SETKEYDIALOG_H
 #define SETKEYDIALOG_H
 
-#include <QDialog>
-
 class SetKeyDialog : public QDialog
 {
     Q_OBJECT

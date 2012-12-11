@@ -1,8 +1,6 @@
 #ifndef MAINDIALOG_H
 #define MAINDIALOG_H
 
-#include <QDialog>
-
 namespace Ui {
 class MainDialog;
 }

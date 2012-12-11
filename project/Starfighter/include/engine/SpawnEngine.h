@@ -2,8 +2,6 @@
 #define SPAWN_ENGINE_H
 
 #include "include/engine/GameEngine.h"
-#include <QTimerEvent>
-
 class SpawnEngine : public QObject
 {
     Q_OBJECT

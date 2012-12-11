@@ -10,9 +10,6 @@ class Bonus;
 class Spaceship;
 class Settings;
 
-#include <QObject>
-#include <QTimerEvent>
-
 class GameEngine : public QObject
 {
     Q_OBJECT
