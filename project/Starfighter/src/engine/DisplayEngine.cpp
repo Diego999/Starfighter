@@ -243,6 +243,26 @@ void DisplayEngine::addAsteroide(Asteroid *_inAsteroide)
 }
 */
 
+/*void DisplayEngine::checkOutsideScene(QList<Displayable*> &list)
+{
+    for(QList<Displayable*>::iterator i = list.begin();i != list.end();i++)
+        {
+        if((*i)->pos().x() > screenSizeWidth || (*i)->pos().x() < 0 ||
+                    (*i)->pos().y() > screenSizeHeight || (*i)->pos().y() < 0)
+            {
+                if((i+1)==list.end())
+                {
+                    delete (*i);
+                    list.erase(i);
+                    break;
+                }
+                delete (*i);
+                list.erase(i);
+                continue;
+            }
+        }
+}*/
+
 void DisplayEngine::timerEvent(QTimerEvent * event)
 {
     scene->advance();
@@ -250,10 +270,12 @@ void DisplayEngine::timerEvent(QTimerEvent * event)
     //if(i++<=0)
     //    delete scene->items().last();
 
-    for(QList<Asteroid*>::iterator i = listAsteroide.begin();i != listAsteroide.end();i++)
+    //checkOutsideScene(listAsteroide);
+
+    /*for(QList<Asteroid*>::iterator i = listAsteroide.begin();i != listAsteroide.end();i++)
         {
-        if((*i)->pos().x() > view->width() || (*i)->pos().x() < 0 ||
-                    (*i)->pos().y() > view->height() || (*i)->pos().y() < 0)
+        if((*i)->pos().x() > screenSizeWidth || (*i)->pos().x() < 0 ||
+                    (*i)->pos().y() > screenSizeHeight || (*i)->pos().y() < 0)
             {
                 if((i+1)==listAsteroide.end())
                 {
@@ -265,55 +287,7 @@ void DisplayEngine::timerEvent(QTimerEvent * event)
                 listAsteroide.erase(i);
                 continue;
             }
-        }
-
-    for(QList<Projectile*>::iterator i = listProjectile.begin();i != listProjectile.end();i++)
-        {
-            /*if((*i)->x() > view.width() || (*i)->x() < 0 ||
-                    (*i)->y() > view.height() || (*i)->y() < 0)
-            {
-                if((i+1)==missiles.end())
-                {
-                    delete (*i);
-                    missiles.erase(i);
-                    break;
-                }
-                delete (*i);
-                missiles.erase(i);
-                continue;
-            }*/
-
-            /*if((*i)->collidesWithItem(ship, Qt::IntersectsItemShape))
-                ship->hide();*/
-
-            for(QList<Asteroid*>::iterator i2 = listAsteroide.begin();i2 != listAsteroide.end();i2++)
-                if((*i2)->collidesWithItem(*i, Qt::IntersectsItemShape))
-                {
-                    if((i2+1)==listAsteroide.end())
-                    {
-                        delete (*i2);
-                        listAsteroide.erase(i2);
-                        break;
-                    }
-                    delete (*i);
-                    listAsteroide.erase(i2);
-                    continue;
-                }
-
-            /*for(QList<Satellite*>::iterator i3 = sats.begin();i3 != sats.end();i3++)
-                if((*i3)->collidesWithItem(*i, Qt::IntersectsItemShape))
-                {
-                    if((i3+1)==sats.end())
-                    {
-                        delete (*i3);
-                        sats.erase(i3);
-                        break;
-                    }
-                    delete (*i3);
-                    sats.erase(i3);
-                    continue;
-                }*/
-        }
+        }*/
 }
 
 QRect DisplayEngine::sceneSize() const

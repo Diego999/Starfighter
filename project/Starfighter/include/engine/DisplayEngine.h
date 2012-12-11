@@ -6,6 +6,8 @@
 
 class Asteroid;
 class Projectile;
+class Bonus;
+class Spaceship;
 
 class DisplayEngine : public QWidget
 {
@@ -27,6 +29,7 @@ public:
     void addShip(Spaceship *_inSpaceship);  
     void addAsteroide(Asteroid *_inAsteroide);
     void addBonus(Bonus *_inBonus);
+
     void timerEvent(QTimerEvent *);
 
 protected:
@@ -44,6 +47,8 @@ private:
     void endGame();
     void escapeGame();
 
+    //void checkOutsideScene(QList<Displayable*> &list);
+
     void recoveryTime();
 
     QGraphicsScene * scene;
@@ -58,7 +63,7 @@ private:
     QList<Bonus*>           listBonus;
     QList<Spaceship*>       listSpaceship;
 
-    QList<Displayable*> listDisplayable;
+    //QList<Displayable*> listDisplayable;
     //Displayable*        displayable[];
 
     GameEngine *gameEngine;
