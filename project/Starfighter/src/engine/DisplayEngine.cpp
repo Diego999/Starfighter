@@ -20,8 +20,6 @@
 #define SPACE_INPLAYER        50
 #define BACKGROUND "background/black hole.png"
 
-#include "QtGui"
-
 //DisplayEngine::DisplayEngine(QWidget *parent) : QWidget(parent), isFullScreen(true)
 DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), gameEngine(ge), isFullScreen(true), isTimer(false)
 {
@@ -29,11 +27,11 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     // get screen dimension
     QDesktopWidget * desktop = QApplication::desktop();
 
-    screenSizeHeight = 900;
-    //screenSizeHeight = desktop->height();
+    //screenSizeHeight = 900;
+    screenSizeHeight = desktop->height();
 
-    screenSizeWidth = 1440;
-    //screenSizeWidth = desktop->width();
+    //screenSizeWidth = 1440;
+    screenSizeWidth = desktop->width();
 
     sceneWidth = screenSizeWidth;
     sceneHeigth = screenSizeHeight*0.85;
@@ -319,6 +317,20 @@ bool DisplayEngine::checkCollisionItemAndList(const int i_list1,QList<Displayabl
     return false;
 }
 
+bool DisplayEngine::checkCollisionSpaceshipAndList(const int i,QList<Displayable*> &list)
+{
+    /*for(int j = 0;j<listSpaceship.size();j++)
+        if(list1[i]->collidesWithItem(listSpaceship[j],Qt::IntersectsItemShape))
+        {
+            listSpaceship[j]->receiveAttack(list1[i]);
+            delete list1[i];
+            list1[i] = 0;
+            return true;
+        }
+    return false;  */
+    return false;
+}
+
 void DisplayEngine::timerEvent(QTimerEvent * event)
 {
     scene->advance();
@@ -340,7 +352,6 @@ void DisplayEngine::timerEvent(QTimerEvent * event)
         || checkCollisionItemAndList(i,listProjectile,listBonus)
         || checkCollisionItemAndList(i,listProjectile,listAlienSpaceship))
             continue;
-
     }
 
     clearList(listProjectile);

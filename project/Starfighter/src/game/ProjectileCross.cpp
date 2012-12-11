@@ -11,7 +11,6 @@
  *==============================================================*/
 
 #include "include/game/ProjectileCross.h"
-#include <math.h>
 
 #define INTERVAL_X 3
 

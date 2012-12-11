@@ -1,7 +1,4 @@
 #include "include/utils/Settings.h"
-#include <QSettings>
-#include <QMap>
-#include <QStringListIterator>
 
 #ifdef Q_WS_MAC
     #define ORGANIZATION "ch.hearc"

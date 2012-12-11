@@ -2,8 +2,7 @@
 #define SETTINGS_H
 
 #include "include/enum/Enum.h"
-#include <QSettings>
-#include <QMap>
+
 class QObject;
 class QString;
 

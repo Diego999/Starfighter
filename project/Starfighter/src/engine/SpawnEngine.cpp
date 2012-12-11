@@ -1,6 +1,5 @@
 #include "include/engine/SpawnEngine.h"
 #include "include/game/AlienSpaceship.h"
-#include <math.h>
 
 SpawnEngine::SpawnEngine(int difficulty)
 {

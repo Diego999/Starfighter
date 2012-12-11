@@ -6,7 +6,7 @@
 #define MIN_A 3
 
 Asteroid::Asteroid(qreal _x, qreal _y,Shooter from, int _resistance, int _healthPoint,GameEngine *_ge,qreal _slope,bool small)
-    :Displayable(_x,_y),Destroyable(),Obstacle(_x,_y),Projectile(_x,_y,from),resistance(_resistance),healthPoint(_healthPoint),ge(_ge),slope(_slope),smallA(small)
+    :Displayable(_x,_y),Destroyable(_healthPoint,_resistance),Obstacle(_x,_y),Projectile(_x,_y,from),ge(_ge),slope(_slope),smallA(small)
 {
     if(smallA)
     {

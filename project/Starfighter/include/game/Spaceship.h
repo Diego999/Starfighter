@@ -9,7 +9,6 @@
 
 #define MAX_BONUS 2
 #define MAX_PV 100
-#define SPEED_DEFAULT 5
 
 class BonusSpeed;
 class BonusProjectile;
@@ -19,9 +18,9 @@ class Spaceship : public Destroyable, public virtual Displayable
     Q_OBJECT
 
 public:
-    Spaceship(qreal x,qreal y,Shooter _player,GameEngine *ge);
+    Spaceship(qreal x,qreal y,Shooter _player,QString _playerName,qreal _speed,qreal _healthPoint,qreal _resistance,qreal _resistanceForceField,GameEngine *ge);
     ~Spaceship();
-    void receiveAttack(int puissance);
+    void receiveAttack(qreal power);
     void attack();
     void top();
     void bottom();
@@ -37,12 +36,12 @@ private slots:
     void removeProjectileBonus();
 
 private:
-	QString playerName;
     Shooter player;
+	QString playerName;
 	qreal speed;
 
     TypeProjectiles type;
-	int resistanceForceField;
+    qreal resistanceForceField;
 
     BonusSpeed *bonusSpeed;
     BonusProjectile *bonusProjectile;

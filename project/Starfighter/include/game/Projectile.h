@@ -25,6 +25,7 @@ public:
     Projectile(qreal _originX, qreal _originY,Shooter _from);
     virtual ~Projectile();
 
+    qreal getPower() const {return power;}
     QRectF boundingRect() const;
     QPainterPath shape() const;
     void paint(QPainter* _painter, const QStyleOptionGraphicsItem *_option, QWidget *_widget=0);

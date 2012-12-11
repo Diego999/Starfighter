@@ -22,8 +22,6 @@ private:
     void advance(int _step);
     qreal trajectoryDraw(qreal _dX);
 
-    int resistance;
-    int healthPoint;
     int direction;
 
     GameEngine* ge;

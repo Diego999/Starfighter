@@ -11,7 +11,6 @@
  *==============================================================*/
 
 #include "include/game/Projectile.h"
-#include <QDebug>
 
 Projectile::Projectile(qreal _originX, qreal _originY,Shooter _from)
     :Displayable(_originX,_originY),

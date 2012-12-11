@@ -1,8 +1,7 @@
 #include "include/game/AlienSpaceship.h"
-#include <math.h>
 
-AlienSpaceship::AlienSpaceship(QPoint P1, QPoint P2, QPoint P3, int nbSpirales)
-    :Displayable(P1.x(),P2.y()),Obstacle(P1.x(),P1.y()),Destroyable()
+AlienSpaceship::AlienSpaceship(QPoint P1, QPoint P2, QPoint P3, int _nbSpirales,qreal _healthPoint,qreal _resistance)
+    :Displayable(P1.x(),P2.y()),Obstacle(P1.x(),P1.y()),Destroyable(_healthPoint,_resistance),nbSpirales(_nbSpirales)
 {
     int x1 = P1.x();
     int x2 = P2.x();

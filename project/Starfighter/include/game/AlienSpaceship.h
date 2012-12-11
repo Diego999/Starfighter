@@ -8,7 +8,7 @@
 class AlienSpaceship : public Obstacle, public Destroyable
 {
 public:
-    AlienSpaceship(QPoint P1, QPoint P2, QPoint P3, int nbSpirales);
+    AlienSpaceship(QPoint P1, QPoint P2, QPoint P3, int _nbSpirales,qreal _healthPoint,qreal _resistance);
 	
     QRectF boundingRect() const;
     QPainterPath shape() const;

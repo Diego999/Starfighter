@@ -5,7 +5,7 @@
 #include "include/game/Spaceship.h"
 #include "include/engine/UserControlsEngine.h"
 #include "include/utils/Settings.h"
-#include <QDebug>
+#include "include/game/Destroyable.h"
 
 GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject *parent = 0):QObject(parent), isRunning(false)
 {
@@ -15,6 +15,8 @@ GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Shi
 
     timerControle();
     createSpaceship();
+    //TODO
+    //connect signal from DESTROYABLE to something
 }
 
 void GameEngine::createSpaceship()
@@ -22,8 +24,8 @@ void GameEngine::createSpaceship()
     int width = de->sceneSize().width();
     int height = de->sceneSize().height();
 
-    spaceship[0] = new Spaceship(0,height/2,Player1,this);
-    spaceship[1] = new Spaceship(width,height/2,Player2,this);
+    spaceship[0] = new Spaceship(0,height/2,Player1,"Diego",5,100,100,50,this);//Change with the parameter of a spaceship
+    spaceship[1] = new Spaceship(width,height/2,Player2,"Bianca",5,100,100,50,this);
 
     de->addShip(spaceship[0]);
     de->addShip(spaceship[1]);
@@ -55,6 +57,11 @@ int GameEngine::randInt(int range)
 }
 
 int GameEngine::timeGamevalue(){return timeGame;}
+
+void GameEngine::elemenDestroyed(Destroyable* destroyItem)
+{
+
+}
 
 void GameEngine::timerControle(int tps)
 {

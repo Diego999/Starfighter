@@ -56,6 +56,7 @@ private:
     void checkPlayerOutsideScene(QList<Spaceship*> &list);
     void clearList(QList<Displayable*> &list);
     bool checkCollisionItemAndList(const int i_list1,QList<Displayable*> &list1,QList<Displayable*> &list2);
+    bool checkCollisionSpaceshipAndList(const int i_list1,QList<Displayable*> &list);
 
     void recoveryTime();
 

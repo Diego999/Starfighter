@@ -4,8 +4,6 @@
 #include "include/game/Spaceship.h"
 
 #include "include/enum/Enum.h"
-#include <QtGui>
-#include <QDebug>
 
 UserControlsEngine::UserControlsEngine(GameEngine *ge): gameEngine(ge)
 {

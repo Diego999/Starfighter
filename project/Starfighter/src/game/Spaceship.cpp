@@ -8,15 +8,12 @@
 #include "include/game/BonusSpeed.h"
 #include "include/engine/DisplayEngine.h"
 
-#include <QTimer>
-#include <QDebug>
-
 #define AMPLI_PV 60.0
 #define OMEGA_PV 1.0
 
-Spaceship::Spaceship(qreal x,qreal y,Shooter _player,GameEngine *ge):Displayable(x,y),player(_player),gameEngine(ge)
+Spaceship::Spaceship(qreal x,qreal y,Shooter _player,QString _playerName,qreal _speed,qreal _healthPoint,qreal _resistance,qreal _resistanceForceField,GameEngine *ge)
+    :Displayable(x,y),Destroyable(_healthPoint,_resistance),player(_player),playerName(_playerName),speed(_speed),resistanceForceField(_resistanceForceField),gameEngine(ge)
 {
-    speed = SPEED_DEFAULT;
     type = ProjCross;
     bonusSpeed = 0;
     bonusProjectile = 0;
@@ -102,9 +99,10 @@ void Spaceship::removeSpeedBonus()
     bonusSpeed = NULL;
 }
 
-void Spaceship::receiveAttack(int puissance)
+void Spaceship::receiveAttack(qreal power)
 {
-
+    //TODO
+    isDead();
 }
 
 void Spaceship::attack()

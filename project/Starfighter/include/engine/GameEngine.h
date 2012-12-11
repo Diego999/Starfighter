@@ -11,6 +11,7 @@ class Obstacle;
 class Bonus;
 class Spaceship;
 class Settings;
+class Destroyable;
 
 class GameEngine : public QObject
 {
@@ -36,7 +37,8 @@ public:
     SpawnEngine* spawnEngine() const {return se;}
 
     void timerEvent(QTimerEvent *);
-
+public slots:
+    void elemenDestroyed(Destroyable* destroyItem);
 private:
     DisplayEngine *de;
     SpawnEngine *se;

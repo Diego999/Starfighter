@@ -10,7 +10,6 @@
  |
  *==============================================================*/
 
-#include <math.h>
 #include "include/game/ProjectileAlien.h"
 
 ProjectileAlien::ProjectileAlien(qreal _originX, qreal _originY,Shooter _from, qreal _dArgument, qreal _dModule)

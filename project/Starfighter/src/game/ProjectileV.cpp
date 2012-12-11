@@ -11,8 +11,6 @@
  *==============================================================*/
 
 #include "include/game/ProjectileV.h"
-#include <math.h>
-#include <QDebug>
 
 #define INTERVAL_X 3
 
