@@ -10,7 +10,7 @@ public:
     virtual ~Displayable();
 
     QSize sizePixmap() const {return isPixmap()?pxmPicture->size():QSize();}
-    bool isPixmap() const {return pxmPicture!=0;}
+    bool isPixmap() const {return !pxmPicture==0;}
 
     virtual QRectF boundingRect() const=0;
     virtual QPainterPath shape() const=0;

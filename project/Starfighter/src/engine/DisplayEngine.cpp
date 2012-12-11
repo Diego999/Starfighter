@@ -7,16 +7,14 @@
 #include "include/game/Obstacle.h"
 #include "include/game/Bonus.h"
 #include "include/game/Asteroid.h"
+#include "include/game/AlienSpaceship.h"
 
 #include "include/utils/Settings.h"
 
 #include "include/enum/Enum.h"
 
-#include <QDebug>
 #include "include/game/ProjectileSimple.h"
 #include "include/game/Supernova.h"
-
-#include <QTimerEvent>
 
 #define SPACE_BETWEEN         250
 #define SPACE_INPLAYER        50
@@ -31,11 +29,11 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     // get screen dimension
     QDesktopWidget * desktop = QApplication::desktop();
 
-    //screenSizeHeight = 900;
-    screenSizeHeight = desktop->height();
+    screenSizeHeight = 900;
+    //screenSizeHeight = desktop->height();
 
-    //screenSizeWidth = 1440;
-    screenSizeWidth = desktop->width();
+    screenSizeWidth = 1440;
+    //screenSizeWidth = desktop->width();
 
     sceneWidth = screenSizeWidth;
     sceneHeigth = screenSizeHeight*0.85;
@@ -229,10 +227,28 @@ void DisplayEngine::addBonus(Bonus *_inBonus)
     listBonus.append(_inBonus);
 }
 
-void DisplayEngine::addAsteroide(Asteroid *_inAsteroide)
+void DisplayEngine::addAsteroid(Asteroid *_inAsteroid)
 {
-    scene->addItem(_inAsteroide);
-    listAsteroide.append(_inAsteroide);
+    scene->addItem(_inAsteroid);
+    listAsteroide.append(_inAsteroid);
+}
+
+void DisplayEngine::addSmallAsteroid(Asteroid *_inAsteroid)
+{
+    scene->addItem(_inAsteroid);
+    listSmallAsteroide.append(_inAsteroid);
+}
+
+void DisplayEngine::addAlienSpaceship(AlienSpaceship *_inAlienSpaceship)
+{
+    scene->addItem(_inAlienSpaceship);
+    listAlienSpaceship.append(_inAlienSpaceship);
+}
+
+void DisplayEngine::addSupernova(Supernova *_inSupernova)
+{
+    scene->addItem(_inSupernova);
+    listSupernova.append(_inSupernova);
 }
 
 /*void DisplayEngine::paintEvent(QPaintEvent * event)
@@ -243,51 +259,95 @@ void DisplayEngine::addAsteroide(Asteroid *_inAsteroide)
 }
 */
 
-/*void DisplayEngine::checkOutsideScene(QList<Displayable*> &list)
+void DisplayEngine::clearList(QList<Displayable*> &list)
 {
-    for(QList<Displayable*>::iterator i = list.begin();i != list.end();i++)
+    int size = list.size();
+    for(int i = 0;i<size;i++)
+      if(list[i]==0)
+      {
+          list.removeAt(i--);
+          size--;
+      }
+}
+
+void DisplayEngine::checkOutsideScene(QList<Displayable*> &list)
+{
+
+    //list[] -> O(1)
+
+    for(int i = 0;i<list.size();i++)
+    {
+        int l_w = 0;
+        int l_h = 0;
+
+        if(list[i]->isPixmap())
         {
-        if((*i)->pos().x() > screenSizeWidth || (*i)->pos().x() < 0 ||
-                    (*i)->pos().y() > screenSizeHeight || (*i)->pos().y() < 0)
-            {
-                if((i+1)==list.end())
-                {
-                    delete (*i);
-                    list.erase(i);
-                    break;
-                }
-                delete (*i);
-                list.erase(i);
-                continue;
-            }
+            l_w = list[i]->sizePixmap().width();
+            l_h = list[i]->sizePixmap().height();
         }
-}*/
+
+        if(list[i]->pos().x()-l_w > screenSizeWidth || list[i]->pos().x()+l_w < 0
+        || list[i]->pos().y() > screenSizeHeight || list[i]->pos().y()+l_h < 0)
+            {
+                delete list[i];
+                list[i] = 0;
+            }
+    }
+    clearList(list);
+}
+
+void DisplayEngine::checkPlayerOutsideScene(QList<Spaceship*> &list)
+{
+    for(QList<Spaceship*>::iterator i = list.begin();i != list.end();i++)
+        if((*i)->pos().y()+(*i)->sizePixmap().height() > screenSizeHeight)
+            (*i)->top();
+        else if((*i)->pos().y() < 0)
+            (*i)->bottom();
+}
+
+bool DisplayEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*> &list1,QList<Displayable*> &list2)
+{
+    for(int j = 0;j<list2.size();j++)
+        if(list1[i_list1]->collidesWithItem(list2[j],Qt::IntersectsItemShape))
+        {
+            delete list1[i_list1];
+            delete list2[j];
+            list1[i_list1] = 0;
+            list2[j] = 0;
+            return true;
+        }
+    return false;
+}
 
 void DisplayEngine::timerEvent(QTimerEvent * event)
 {
     scene->advance();
-    //static int i = 0;
-    //if(i++<=0)
-    //    delete scene->items().last();
 
-    //checkOutsideScene(listAsteroide);
+    checkPlayerOutsideScene(listSpaceship);
 
-    /*for(QList<Asteroid*>::iterator i = listAsteroide.begin();i != listAsteroide.end();i++)
-        {
-        if((*i)->pos().x() > screenSizeWidth || (*i)->pos().x() < 0 ||
-                    (*i)->pos().y() > screenSizeHeight || (*i)->pos().y() < 0)
-            {
-                if((i+1)==listAsteroide.end())
-                {
-                    delete (*i);
-                    listAsteroide.erase(i);
-                    break;
-                }
-                delete (*i);
-                listAsteroide.erase(i);
-                continue;
-            }
-        }*/
+    checkOutsideScene(listBonus);
+    checkOutsideScene(listAsteroide);
+    checkOutsideScene(listSmallAsteroide);
+    checkOutsideScene(listProjectile);
+    checkOutsideScene(listAlienSpaceship);
+
+    listSupernova.clear();//Explode all the supernova
+
+    for(int i = 0;i<listProjectile.size();i++)
+    {
+        if(checkCollisionItemAndList(i,listProjectile,listAsteroide)
+        || checkCollisionItemAndList(i,listProjectile,listSmallAsteroide)
+        || checkCollisionItemAndList(i,listProjectile,listBonus)
+        || checkCollisionItemAndList(i,listProjectile,listAlienSpaceship))
+            continue;
+
+    }
+
+    clearList(listProjectile);
+    clearList(listAsteroide);
+    clearList(listSmallAsteroide);
+    clearList(listBonus);
+    clearList(listAlienSpaceship);
 }
 
 QRect DisplayEngine::sceneSize() const

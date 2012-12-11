@@ -3,5 +3,6 @@
 
 #include <QtGUI>
 #include <QDebug>
+#include <cmath>
 
 #endif // STABLE_H

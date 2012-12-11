@@ -1,7 +1,5 @@
 #include "include/game/Asteroid.h"
 #include "include/engine/DisplayEngine.h"
-#include <QDebug>
-#include <math.h>
 
 #define SPEED_A 1
 #define MAX_A 5
@@ -75,7 +73,7 @@ Asteroid::~Asteroid()
         int hp = 0;
 
         for(int i = 0;i<nb;i++)
-            ge->displayEngine()->addAsteroide(new Asteroid(x,y,Other,res,hp,ge,M_PI*2/(double)nb*i,true));
+            ge->displayEngine()->addSmallAsteroid(new Asteroid(x,y,Other,res,hp,ge,M_PI*2.0/(double)nb*i,true));
     }
 }
 

@@ -8,6 +8,8 @@ class Asteroid;
 class Projectile;
 class Bonus;
 class Spaceship;
+class AlienSpaceship;
+class Supernova;
 
 class DisplayEngine : public QWidget
 {
@@ -27,8 +29,11 @@ public:
 
     void addProjectile(Projectile *_inProjectile);
     void addShip(Spaceship *_inSpaceship);  
-    void addAsteroide(Asteroid *_inAsteroide);
+    void addAsteroid(Asteroid *_inAsteroide);
+    void addSmallAsteroid(Asteroid *_inAsteroide);
     void addBonus(Bonus *_inBonus);
+    void addAlienSpaceship(AlienSpaceship *_inAlienSpaceship);
+    void addSupernova(Supernova *_inSupernova);
 
     void timerEvent(QTimerEvent *);
 
@@ -47,7 +52,10 @@ private:
     void endGame();
     void escapeGame();
 
-    //void checkOutsideScene(QList<Displayable*> &list);
+    void checkOutsideScene(QList<Displayable*> &list);
+    void checkPlayerOutsideScene(QList<Spaceship*> &list);
+    void clearList(QList<Displayable*> &list);
+    bool checkCollisionItemAndList(const int i_list1,QList<Displayable*> &list1,QList<Displayable*> &list2);
 
     void recoveryTime();
 
@@ -58,10 +66,13 @@ private:
     QWidget * downHUD;
 
 
-    QList<Projectile*>      listProjectile;
-    QList<Asteroid*>        listAsteroide;
-    QList<Bonus*>           listBonus;
-    QList<Spaceship*>       listSpaceship;
+    QList<Displayable*>  listProjectile;
+    QList<Displayable*>  listAsteroide;
+    QList<Displayable*>  listSmallAsteroide;
+    QList<Displayable*>  listBonus;
+    QList<Spaceship*>    listSpaceship;
+    QList<Displayable*>  listAlienSpaceship;
+    QList<Displayable*>  listSupernova;
 
     //QList<Displayable*> listDisplayable;
     //Displayable*        displayable[];
