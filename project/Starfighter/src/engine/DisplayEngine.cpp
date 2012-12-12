@@ -52,10 +52,7 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     view->setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
     view->setCacheMode(QGraphicsView::CacheBackground);
     view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
-    view->setOptimizationFlags(QGraphicsView::DontClipPainter
-                                 | QGraphicsView::DontSavePainterState
-                                 /*| QGraphicsView::DontAdjustForAntialiasing*/);
-    //RENDU OPENGL,mettre anti-aliasing
+
     view->viewport()->setFocusProxy( this );
     view->setFocusPolicy(Qt::NoFocus);
 
