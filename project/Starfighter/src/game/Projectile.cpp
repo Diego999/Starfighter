@@ -18,8 +18,10 @@ Projectile::Projectile(qreal _originX, qreal _originY,Shooter _from)
 {
     if(from == Player1)
         color = QColor(0,0,255);
-    else
+    else if(from == Player2)
         color = QColor(255,0,0);
+    else if(from == Other)
+        color = QColor(qrand() % 256, qrand() % 256, qrand() % 256);
 }
 
 Projectile::~Projectile()

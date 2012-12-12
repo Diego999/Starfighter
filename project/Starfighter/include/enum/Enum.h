@@ -14,7 +14,7 @@ enum Action
 
 enum Shooter
 {
-    Player1 = 1,Player2 = 2,Other = 3
+    Player1 = 1,Player2 = 2,Alien = 3,Other = 4
 };
 
 enum TypeProjectiles

@@ -4,26 +4,36 @@
 #include "include/game/Obstacle.h"
 #include "include/game/Destroyable.h"
 #include "include/game/Displayable.h"
+#include "include/engine/GameEngine.h"
+#include "include/enum/Enum.h"
 
-class AlienSpaceship : public Obstacle, public Destroyable
+class AlienSpaceship : public Destroyable,public Obstacle
 {
 public:
-    AlienSpaceship(QPoint P1, QPoint P2, QPoint P3, int _nbSpirales,qreal _healthPoint,qreal _resistance);
-	
+    AlienSpaceship(int _nbSpirales,qreal _healthPoint,qreal _resistance,GameEngine* _ge);
+    ~AlienSpaceship();
+
     QRectF boundingRect() const;
     QPainterPath shape() const;
-    void paint(QPainter* _painter, QStyleOptionGraphicsItem* _option, QWidget* _widget);
+    void paint(QPainter* _painter, const QStyleOptionGraphicsItem* _option, QWidget* _widget);
+    Shooter getTypeObject() const {return Alien;}
 private:
     void advance(int step);
-
-    static const qreal kIntervalArgument = 1.0;
+    static const qreal kIntervalArgument = 0.010;
+    void attacking();
 
 	int nbSpirales;
 
+    GameEngine* gameEngine;
+
+    qreal yStop;
+    bool isAttacking;
+    bool hasAttacked;
     qreal dArgument;
     qreal dModule;
     qreal dX0;
     qreal dY0;
-    qreal dTheta;
+    int directionX;
+    int direction;
 };
 #endif

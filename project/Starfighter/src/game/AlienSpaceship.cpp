@@ -1,42 +1,91 @@
 #include "include/game/AlienSpaceship.h"
+#include "include/engine/DisplayEngine.h"
+#include "include/game/ProjectileAlien.h"
 
-AlienSpaceship::AlienSpaceship(QPoint P1, QPoint P2, QPoint P3, int _nbSpirales,qreal _healthPoint,qreal _resistance)
-    :Displayable(P1.x(),P2.y()),Obstacle(P1.x(),P1.y()),Destroyable(_healthPoint,_resistance),nbSpirales(_nbSpirales)
+#define MARGIN_Y 10
+#define DELTA_X 100
+
+AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _healthPoint,qreal _resistance,GameEngine* _ge)
+    :Displayable(0,0),
+      Destroyable(_healthPoint,_resistance),nbSpirales(_nbSpirales),
+      Obstacle(0,0),
+      gameEngine(_ge),yStop(gameEngine->displayEngine()->sceneSize().y()),isAttacking(false),hasAttacked(false),directionX(1),direction(1)
 {
-    int x1 = P1.x();
-    int x2 = P2.x();
-    int x3 = P3.x();
-    int y1 = P1.y();
-    int y2 = P2.y();
-    int y3 = P3.y();
+    int xmin = gameEngine->displayEngine()->xminWarzone();
+    int xmax = gameEngine->displayEngine()->xmaxWarZone();
 
-    dX0 = (x3*x3*(y2-y1)+x2*x2*(y1-y3)-(x1*x1+(y1-y2)*(y1-y3))*(y2-y3))
-            /(2*(x3*(y2-y1)+x2*(y1-y3)+y1*(y3-y2)));
-    dY0 = (-x2*x2*x3+x1*x1*(-x2+x3)+x3*(y1*y1-y2*y2)+y1*(x2*x2-x3*x3+y2*y2-y3*y3)+x2*(x3*x3-y1*y1+y3*y3))
-            /(2*(x3*(y1-y2)+x1*(y2-y3)+x2*(-y1+y3)));
+    int x1 = gameEngine->randInt((xmax-DELTA_X)-(xmin+DELTA_X))+xmin;
+    int x2 = gameEngine->randInt(2*DELTA_X)-DELTA_X+x1;
+    int x3 = x1;
+
+    int y1 = gameEngine->displayEngine()->sceneSize().y();
+    int y2 = gameEngine->displayEngine()->sceneSize().height()/2.0;
+    int y3 = gameEngine->displayEngine()->sceneSize().height();
+
+    if(x2<x1)
+    {
+        dArgument+=180.0;
+        directionX=-1;
+        direction=-1;
+    }
+    if(gameEngine->randInt(2)==1)//1 = bottom,0 = top
+    {
+        direction*=-1;
+        y1=gameEngine->displayEngine()->sceneSize().height();
+        y3=gameEngine->displayEngine()->sceneSize().y();
+    }
+
+    yStop = y2;
+
+    dX0 = (x3*x3*(y1-y2)+(x1*x1+(y1-y2)*(y1-y3))*(y2-y3)+x2*x2*(y3-y1))
+            /(2.0*(x3*(y1-y2)+x1*(y2-y3)+x2*(y3-y1)));
+
+    dY0 = (-x2*x2*x3+x1*x1*(x3-x2)+x3*(y1-y2)*(y1+y2)+x1*(x2*x2-x3*x3+y2*y2-y3*y3)+x2*(x3*x3-y1*y1+y3*y3))
+            /(2.0*(x3*(y1-y2)+x1*(y2-y3)+x2*(y3-y1)));
+
+    x=x1;
+    y=y1;
     dModule = sqrt((x1-dX0)*(x1-dX0)+(y1-dY0)*(y1-dY0));
+    dArgument = atan((dY0-y1)/(x1-dX0))*180.0/M_PI;
+    pxmPicture = new QPixmap(":/images/game/spaceship");
+}
 
-    dTheta = acos((dX0+x1)/dModule);
+AlienSpaceship::~AlienSpaceship()
+{
+
 }
 
 void AlienSpaceship::advance(int _step)
 {
     Obstacle::advance(_step);
 
-    dTheta-=kIntervalArgument;
+    if(!isAttacking)
+    {
+        if(!hasAttacked && y>=(yStop-MARGIN_Y) && y<=(yStop+MARGIN_Y))
+            attacking();
 
-    x = dX0+dModule*cos(dArgument*M_PI/180.0);
-    y = dY0-dModule*sin(dArgument*M_PI/180.0);
+        dArgument-=direction*kIntervalArgument;
 
-    setPos(x,y);
+        x = dX0+directionX*dModule*cos(dArgument*M_PI/180.0);
+        y = dY0-dModule*sin(dArgument*M_PI/180.0);
+        setPos(x,y);
+    }
+}
+
+void AlienSpaceship::attacking()
+{
+    isAttacking=true;
+
+    for(int i = 0;i<nbSpirales;i++)
+        gameEngine->displayEngine()->addProjectile(new ProjectileAlien(x,y,Other,360.0/nbSpirales*(i+1),0));
+
+    hasAttacked=true;
+    isAttacking=false;
 }
 
 QRectF AlienSpaceship::boundingRect() const
 {
-    int l_width = pxmPicture->rect().width();
-    int l_height = pxmPicture->rect().height();
-
-    return QRectF(QPoint(x,y),QPoint(x+l_width,y+l_height));
+    return QRectF(pxmPicture->rect());
 }
 
 QPainterPath AlienSpaceship::shape() const
@@ -46,7 +95,9 @@ QPainterPath AlienSpaceship::shape() const
     return l_path;
 }
 
-void AlienSpaceship::paint(QPainter* _painter, QStyleOptionGraphicsItem* _option, QWidget* _widget)
+void AlienSpaceship::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option, QWidget *_widget)
 {
-    _painter->drawPixmap(x,y,*pxmPicture);
+    _painter->drawPixmap(0,0,*pxmPicture);
+    _painter->setPen(QPen(QColor(255,0,0)));
+    _painter->drawPath(shape());
 }

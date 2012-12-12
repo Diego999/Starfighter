@@ -6,7 +6,6 @@
 #include "include/engine/UserControlsEngine.h"
 #include "include/utils/Settings.h"
 #include "include/game/Destroyable.h"
-#include "include/game/Asteroid.h"
 
 GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject *parent = 0):QObject(parent), isRunning(false)
 {
@@ -14,8 +13,13 @@ GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Shi
     de = new DisplayEngine(this,0);
     uc = new UserControlsEngine(this);
 
+    qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
+
     timerControle();
     createSpaceship();
+    QPoint p1(500,0);
+    QPoint p2(550,displayEngine()->sceneSize().height()/2);
+    QPoint p3(500,displayEngine()->sceneSize().height());
     //TODO
     //connect signal from DESTROYABLE to something
 }

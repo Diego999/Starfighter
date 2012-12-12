@@ -29,6 +29,7 @@ public:
     QRectF boundingRect() const;
     QPainterPath shape() const;
     void paint(QPainter* _painter, const QStyleOptionGraphicsItem *_option, QWidget *_widget=0);
+    Shooter getTypeObject() const {return from;}
     virtual void advance(int _step);
 
 protected:

@@ -301,6 +301,8 @@ void DisplayEngine::checkPlayerOutsideScene(QList<Spaceship*> &list)
 
 bool DisplayEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*> &list1,QList<Displayable*> &list2)
 {
+    if(list2.size()==0 || list1[i_list1]->getTypeObject() == Other && list2[0]->getTypeObject() == Alien)
+        return false;
     for(int j = 0;j<list2.size();j++)
         if(list1[i_list1]->collidesWithItem(list2[j],Qt::IntersectsItemShape))
         {

@@ -1,6 +1,8 @@
 #ifndef DISPLAYABLE_H
 #define DISPLAYABLE_H
 
+#include "include/enum/Enum.h"
+
 #define RADIUS_PROJECTILE 10
 
 class Displayable : public QGraphicsItem
@@ -11,6 +13,8 @@ public:
 
     QSize sizePixmap() const {return isPixmap()?pxmPicture->size():QSize();}
     bool isPixmap() const {return !pxmPicture==0;}
+
+    virtual Shooter getTypeObject() const {return Other;}
 
     virtual QRectF boundingRect() const=0;
     virtual QPainterPath shape() const=0;
