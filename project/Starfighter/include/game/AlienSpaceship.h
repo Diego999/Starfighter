@@ -22,10 +22,9 @@ private:
     static const qreal kIntervalArgument = 0.010;
     void attacking();
 
-	int nbSpirales;
-
     GameEngine* gameEngine;
 
+	int nbSpirales;
     qreal yStop;
     bool isAttacking;
     bool hasAttacked;

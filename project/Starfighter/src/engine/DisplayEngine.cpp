@@ -8,13 +8,11 @@
 #include "include/game/Bonus.h"
 #include "include/game/Asteroid.h"
 #include "include/game/AlienSpaceship.h"
+#include "include/game/Supernova.h"
 
 #include "include/utils/Settings.h"
 
 #include "include/enum/Enum.h"
-
-#include "include/game/ProjectileSimple.h"
-#include "include/game/Supernova.h"
 
 #define SPACE_BETWEEN         250
 #define SPACE_INPLAYER        50
@@ -27,11 +25,11 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     // get screen dimension
     QDesktopWidget * desktop = QApplication::desktop();
 
-    screenSizeHeight = 900;
-    //screenSizeHeight = desktop->height();
+    //screenSizeHeight = 900;
+    screenSizeHeight = desktop->height();
 
-    screenSizeWidth = 1440;
-    //screenSizeWidth = desktop->width();
+    //screenSizeWidth = 1440;
+    screenSizeWidth = desktop->width();
 
     sceneWidth = screenSizeWidth;
     sceneHeigth = screenSizeHeight*0.85;
@@ -301,7 +299,7 @@ void DisplayEngine::checkPlayerOutsideScene(QList<Spaceship*> &list)
 
 bool DisplayEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*> &list1,QList<Displayable*> &list2)
 {
-    if(list2.size()==0 || list1[i_list1]->getTypeObject() == Other && list2[0]->getTypeObject() == Alien)
+    if(list2.size()==0 || (list1[i_list1]->getTypeObject() == Other && list2[0]->getTypeObject() == Alien))
         return false;
     for(int j = 0;j<list2.size();j++)
         if(list1[i_list1]->collidesWithItem(list2[j],Qt::IntersectsItemShape))

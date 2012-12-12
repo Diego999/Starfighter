@@ -4,12 +4,13 @@
 
 #define MARGIN_Y 10
 #define DELTA_X 100
+#define NB_SEC 1
 
 AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _healthPoint,qreal _resistance,GameEngine* _ge)
     :Displayable(0,0),
-      Destroyable(_healthPoint,_resistance),nbSpirales(_nbSpirales),
+      Destroyable(_healthPoint,_resistance),
       Obstacle(0,0),
-      gameEngine(_ge),yStop(gameEngine->displayEngine()->sceneSize().y()),isAttacking(false),hasAttacked(false),directionX(1),direction(1)
+      gameEngine(_ge),nbSpirales(_nbSpirales),yStop(gameEngine->displayEngine()->sceneSize().y()),isAttacking(false),hasAttacked(false),directionX(1),direction(1)
 {
     int xmin = gameEngine->displayEngine()->xminWarzone();
     int xmax = gameEngine->displayEngine()->xmaxWarZone();
@@ -48,6 +49,7 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _healthPoint,qreal _resista
     dModule = sqrt((x1-dX0)*(x1-dX0)+(y1-dY0)*(y1-dY0));
     dArgument = atan((dY0-y1)/(x1-dX0))*180.0/M_PI;
     pxmPicture = new QPixmap(":/images/game/spaceship");
+    QTimer::singleShot(NB_SEC*1000,this,SLOT(playSoun));
 }
 
 AlienSpaceship::~AlienSpaceship()

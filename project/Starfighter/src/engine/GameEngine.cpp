@@ -17,9 +17,7 @@ GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Shi
 
     timerControle();
     createSpaceship();
-    QPoint p1(500,0);
-    QPoint p2(550,displayEngine()->sceneSize().height()/2);
-    QPoint p3(500,displayEngine()->sceneSize().height());
+
     //TODO
     //connect signal from DESTROYABLE to something
 }
@@ -72,17 +70,17 @@ void GameEngine::timerControle(int tps)
 {
     if(isRunning)
     {
-        qDebug() << isRunning << "Stop Timer 1:" <<idTimer;
+        //qDebug() << isRunning << "Stop Timer 1:" <<idTimer;
         killTimer(idTimer);
         idTimer = -1;
-        qDebug() << isRunning<< "Stop Timer 2:" <<idTimer;
+        //qDebug() << isRunning<< "Stop Timer 2:" <<idTimer;
 
     }
 
     else
     {
         idTimer = startTimer(tps);
-        qDebug() << isRunning<< "startTimer:" <<idTimer;
+        //qDebug() << isRunning<< "startTimer:" <<idTimer;
     }
     isRunning = !isRunning;
 
