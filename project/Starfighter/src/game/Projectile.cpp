@@ -17,9 +17,9 @@ Projectile::Projectile(qreal _originX, qreal _originY,Shooter _from)
       originX(_originX),originY(_originY),from(_from)
 {
     if(from == Player1)
-        color = QColor(100,100,100);
+        color = QColor(0,0,255);
     else
-        color = QColor(200,200,200);
+        color = QColor(255,0,0);
 }
 
 Projectile::~Projectile()

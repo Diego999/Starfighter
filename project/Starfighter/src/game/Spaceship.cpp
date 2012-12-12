@@ -14,7 +14,7 @@
 Spaceship::Spaceship(qreal x,qreal y,Shooter _player,QString _playerName,qreal _speed,qreal _healthPoint,qreal _resistance,qreal _resistanceForceField,GameEngine *ge)
     :Displayable(x,y),Destroyable(_healthPoint,_resistance),player(_player),playerName(_playerName),speed(_speed),resistanceForceField(_resistanceForceField),gameEngine(ge)
 {
-    type = ProjCross;
+    type = ProjSimple;
     bonusSpeed = 0;
     bonusProjectile = 0;
     pxmPicture = new QPixmap(":/images/game/spaceship");

@@ -27,11 +27,11 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     // get screen dimension
     QDesktopWidget * desktop = QApplication::desktop();
 
-    //screenSizeHeight = 900;
-    screenSizeHeight = desktop->height();
+    screenSizeHeight = 900;
+    //screenSizeHeight = desktop->height();
 
-    //screenSizeWidth = 1440;
-    screenSizeWidth = desktop->width();
+    screenSizeWidth = 1440;
+    //screenSizeWidth = desktop->width();
 
     sceneWidth = screenSizeWidth;
     sceneHeigth = screenSizeHeight*0.85;
@@ -75,12 +75,11 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
 
     mainScreen->addWidget(view);
     mainScreen->addWidget(downHUD);
-    //scene->addEllipse(500,500,40,40,QPen(QColor(20,20,20)),QBrush(QColor(20,20,20)))->setPos(100,100);
+
     this->creatHUD();
     this->gameType();
 
     setLayout(mainScreen);
-    //scene->addItem(new Supernova(sceneWidth/2,sceneHeigth/2,gameEngine));
 }
 
 DisplayEngine::~DisplayEngine()
@@ -366,23 +365,14 @@ QRect DisplayEngine::sceneSize() const
     return QRect(0,0,scene->width(),scene->height());
 }
 
-/**
-*   QPoint(0->xmin,xmax->sceneWidth)
-*/
-QPoint  DisplayEngine::warzoneValueMin() const
+qreal DisplayEngine::xminWarzone() const
 {
-    int xmin = gameEngine->ship1()->sizePixmap().width()*2;
-    int ymin = 0;
-
-    return QPoint(xmin,ymin);
+    return gameEngine->ship1()->sizePixmap().width()*2;
 }
 
-QPoint DisplayEngine::warzoneValueMax() const
+qreal DisplayEngine::xmaxWarZone() const
 {
-    int xmax = sceneWidth-2*(gameEngine->ship2()->sizePixmap().width());
-    int ymax = scene->height();
-
-    return QPoint(xmax,ymax);
+    return sceneWidth-2*(gameEngine->ship2()->sizePixmap().width());
 }
 
 void DisplayEngine::recoveryTime()

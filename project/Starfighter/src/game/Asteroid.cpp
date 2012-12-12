@@ -4,6 +4,7 @@
 #define SPEED_A 1
 #define MAX_A 5
 #define MIN_A 3
+#define ANGLE_A 15
 
 Asteroid::Asteroid(qreal _x, qreal _y,Shooter from, int _resistance, int _healthPoint,GameEngine *_ge,qreal _slope,bool small)
     :Displayable(_x,_y),Destroyable(_healthPoint,_resistance),Obstacle(_x,_y),Projectile(_x,_y,from),ge(_ge),slope(_slope),smallA(small)
@@ -22,24 +23,29 @@ Asteroid::Asteroid(qreal _x, qreal _y,Shooter from, int _resistance, int _health
     else
     {
         pxmPicture = new QPixmap(":/images/game/asteroids/rock10000");
-        qreal xmin = ge->displayEngine()->warzoneValueMin().x();
-        qreal ymin = ge->displayEngine()->warzoneValueMin().y();
+        QRect sceneSize = ge->displayEngine()->sceneSize();
+        qreal xmin = sceneSize.topLeft().x();
+        qreal xmax = sceneSize.topRight().x();
 
-        qreal xmax = ge->displayEngine()->warzoneValueMax().x();
-        qreal ymax = ge->displayEngine()->warzoneValueMax().y();
+        qreal ymin = sceneSize.topLeft().y();
+        qreal ymax = sceneSize.bottomRight().y();
 
-        qreal xc = (xmax-xmin)/2+xmin;
-        qreal yc = (ymax-ymin)/2+ymin;
+        qreal m = ge->displayEngine()->xminWarzone();
+        qreal n = ge->displayEngine()->xmaxWarZone();
 
-        qreal xg = ge->randInt(xmax-xmin)+xmin;
+        qreal xc = (xmax-xmin)/2.0+xmin;
+        qreal yc = (ymax-ymin)/2.0+ymin;
+
+        qreal xg = ge->randInt(n-m)+m;
         qreal yg = ge->randInt(2);
 
         //LEFT
         if(xg <= xc)
         {
             direction = 1;
-            qreal xl = xmax+(xmax-xc)/2;
+            qreal xl = (xc*yc-n*ymax)/(yc-ymax);
             qreal xf = ge->randInt(xl-xc)+xc;
+
             if(yg == 0)//Top Left
                 slope = -ymax/(xf-xg);
             else
@@ -49,12 +55,12 @@ Asteroid::Asteroid(qreal _x, qreal _y,Shooter from, int _resistance, int _health
         else
         {
             direction = -1;
-            qreal xl = xmin-(xc-xmin)/2;
-            qreal xf = ge->randInt(xc-xl)-xl;
+            qreal xl = (xc*yc-m*ymax)/(yc-ymax);
+            qreal xf = xc-ge->randInt(fabs(xl-xc));
             if(yg == 0)//Top Left
-                slope = -ymax/(xf-xg);
-            else
                 slope = ymax/(xf-xg);
+            else
+                slope = -ymax/(xf-xg);
         }
         x=xg;
         if(yg == 0)
@@ -68,12 +74,15 @@ Asteroid::~Asteroid()
 {
     if(!smallA)
     {
-        int nb = ge->randInt(MAX_A-MIN_A)+MIN_A;
+        int nb = ge->randInt(MAX_A-MIN_A+1)+MIN_A;
         int res = 0;
         int hp = 0;
 
         for(int i = 0;i<nb;i++)
-            ge->displayEngine()->addSmallAsteroid(new Asteroid(x,y,Other,res,hp,ge,M_PI*2.0/(double)nb*i,true));
+            if(i%2==0)
+                ge->displayEngine()->addSmallAsteroid(new Asteroid(x,y,Other,res,hp,ge,ANGLE_A*i,true));
+            else
+                ge->displayEngine()->addSmallAsteroid(new Asteroid(x,y,Other,res,hp,ge,-ANGLE_A*i,true));
     }
 }
 

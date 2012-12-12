@@ -18,9 +18,9 @@ public:
     DisplayEngine(GameEngine *ge,QWidget *parent);
     ~DisplayEngine();
 
-    QRect   sceneSize() const;
-    QPoint  warzoneValueMin() const;
-    QPoint  warzoneValueMax() const;
+    QRect sceneSize() const;
+    qreal xminWarzone() const;
+    qreal xmaxWarZone() const;
 
     void setProgressHP1(int _value);
     void setProgressHP2(int _value);
