@@ -60,6 +60,7 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     scene->setBackgroundBrush(Qt::black);
     this->setFixedSize(screenSizeWidth,screenSizeHeight);
 
+    this->setWindowModality(Qt::ApplicationModal);
     // Param of the screen
     showFullScreen();
     //setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint);
