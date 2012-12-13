@@ -45,6 +45,7 @@ private:
     qreal dSpeed;
 
     TypeProjectiles type;
+    qreal dHealthForceField;
     qreal dResistanceForceField;
 
     BonusSpeed *bonusSpeed;

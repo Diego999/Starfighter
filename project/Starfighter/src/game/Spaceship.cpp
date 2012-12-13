@@ -13,6 +13,7 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
       Destroyable(_dHealthPoint,_dResistance),
       player(_player),playerName(_playerName),dSpeed(_dSpeed),dResistanceForceField(_dResistanceForceField),gameEngine(_gameEngine)
 {
+    dHealthForceField = MAX_SPACESHIP_PV; // TO_DEFINE : Whether the player starts with full force field or not.
     type = PROJ_SPACESHIP_DEF;
     bonusSpeed = 0;
     bonusProjectile = 0;
@@ -70,9 +71,8 @@ void Spaceship::addBonus(Bonus *bonus)
     }
     else if(BonusForceField* bff = dynamic_cast<BonusForceField*>(bonus))
     {
-        dResistanceForceField+=bff->getResistanceForceField();
-        if(dResistanceForceField>MAX_SPACESHIP_PV)
-            dResistanceForceField = MAX_SPACESHIP_PV;
+        dResistanceForceField = bff->getResistanceForceField();
+        dHealthForceField = MAX_SPACESHIP_PV;
         delete bff;
     }
     else if(BonusSpeed* bs = dynamic_cast<BonusSpeed*>(bonus))
@@ -100,9 +100,16 @@ void Spaceship::removeSpeedBonus()
     bonusSpeed = NULL;
 }
 
-void Spaceship::receiveAttack(qreal power)
+void Spaceship::receiveAttack(qreal _dPower)
 {
-    //TODO
+    double power1 = _dPower * (100.0 - dHealthForceField) / 100.0;
+    double power2 = _dPower - power1;
+
+    dHealthPoint -= power1 / dResistance;
+    dHealthForceField -= power2 / dResistanceForceField;
+    if(dHealthForceField < 0)
+        dHealthForceField = 0;
+
     isDead();
 }
 
