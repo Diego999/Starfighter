@@ -471,6 +471,11 @@ void DisplayEngine::keyPressEvent(QKeyEvent *event)
 
 }
 
+void DisplayEngine::keyReleaseEvent(QKeyEvent * event)
+{
+    gameEngine->userControlsEngine()->keyReleaseEvent(event);
+}
+
 void DisplayEngine::switchFullScreen()
 {
     if(isFullScreen)
