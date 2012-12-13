@@ -1,6 +1,3 @@
-#include <QApplication>
-#include <QTranslator>
-#include <QLocale>
 #include "include/menu/MainDialog.h"
 
 int main(int argc, char *argv[])

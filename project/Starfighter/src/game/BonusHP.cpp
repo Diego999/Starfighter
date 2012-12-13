@@ -1,7 +1,8 @@
 #include "include/game/BonusHP.h"
 
-BonusHP::BonusHP(int healthPoint, GameEngine *ge, Spaceship *ss)
-    :Bonus(ge,ss),healthPoint(healthPoint)
+BonusHP::BonusHP(qreal _dHealthPoint, GameEngine *_gameEngine, Spaceship *_spaceShip)
+    :Bonus(_gameEngine,_spaceShip),
+      dHealthPoint(_dHealthPoint)
 {
 
 }
@@ -9,9 +10,4 @@ BonusHP::BonusHP(int healthPoint, GameEngine *ge, Spaceship *ss)
 BonusHP::~BonusHP()
 {
 
-}
-
-int BonusHP::getHealthPoint() const
-{
-    return healthPoint;
 }

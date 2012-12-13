@@ -1,6 +1,8 @@
 #include "include/game/Destroyable.h"
 
-Destroyable::Destroyable(qreal _healthPoint,qreal _resistance):QObject(),healthPoint(_healthPoint),resistance(_resistance)
+Destroyable::Destroyable(qreal _dHealthPoint,qreal _dResistance)
+    :QObject(),
+      dHealthPoint(_dHealthPoint),dResistance(_dResistance)
 {
 
 }
@@ -10,14 +12,14 @@ Destroyable::~Destroyable()
 
 }
 
-void Destroyable::receiveAttack(qreal power)
+void Destroyable::receiveAttack(qreal _dPower)
 {
-    healthPoint = healthPoint-power/resistance;
+    dHealthPoint = dHealthPoint-_dPower/dResistance;
     isDead();
 }
 
 void Destroyable::isDead()
 {
-    if(healthPoint<=0)
+    if(dHealthPoint<=0)
         emit destroyed(this);
 }

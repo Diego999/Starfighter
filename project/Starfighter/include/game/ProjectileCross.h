@@ -1,30 +1,15 @@
-/*=====================================================================*
- | Declaration file ProjectileCross.h
- |    declares :  ProjectileCross class
- |
- | For more informations (creation date, creator, etc.), please see the
- | corresponding .cpp file
- |
- *=====================================================================*/
-
 #ifndef PROJECTILE_CROSS_H
 #define PROJECTILE_CROSS_H
 
 #include "include/game/Projectile.h"
 
-/**
-* Class that represents a cross-projectile throwed by a spaceship.
-* A cross-projectile is a superposition of simple projectile with different angles
-* @author Diego Antognini
-* @version 0.0.1
-*/
-
-#define POWER_C 10
+#define POWER_CROSS 10
+#define SPEED_CROSS_DEF 3
 
 class ProjectileCross : public Projectile
 {
 public:
-    ProjectileCross(qreal _originX, qreal _originY,Shooter _from,int _nb);
+    ProjectileCross(qreal _dXOrigin, qreal _dYOrigin,Shooter _from,int _nb);
     ~ProjectileCross();
 
 private:

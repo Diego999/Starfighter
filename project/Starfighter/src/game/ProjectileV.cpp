@@ -1,24 +1,12 @@
-/*==============================================================*
- | Implementation file ProjectileV.cpp
- |    implements : ProjectileV class
- |
- | Creator : Diego Antognini
- | Creation date : 26/11/2012
- | Copyright: EIAJ, all rights reserved
- |
- | Version of the file : 0.0.1
- |
- *==============================================================*/
-
 #include "include/game/ProjectileV.h"
 
-#define INTERVAL_X 3
-
-ProjectileV::ProjectileV(qreal _originX, qreal _originY,Shooter _from, qreal _ampli, qreal _omega)
-    :Displayable(_originX,_originY),Projectile(_originX,_originY,_from),dAmplitude(_ampli),dOmega(_omega)
+ProjectileV::ProjectileV(qreal _dXOrigin, qreal _dYOrigin,Shooter _from, qreal _ampli, qreal _omega)
+    :Displayable(_dXOrigin,_dYOrigin),
+      Projectile(_dXOrigin,_dYOrigin,_from),
+      dAmplitude(_ampli),dOmega(_omega)
 {
-    power = POWER_V;
-    dSpeed = INTERVAL_X;
+    dPower = POWER_V;
+    dSpeed = SPEED_V_DEF;
 }
 
 ProjectileV::~ProjectileV()
@@ -37,8 +25,8 @@ void ProjectileV::advance(int _step)
     Projectile::advance(_step);
 
     if(from == Player1)
-        x+=dSpeed;
+        setPos(pos().x()+dSpeed,dYOrigin-trajectoryDraw(dXOrigin-pos().x()));
     else//Player2
-        x-=dSpeed;
-    setPos(x,originY-trajectoryDraw(originX-x));
+        setPos(pos().x()-dSpeed,dYOrigin-trajectoryDraw(dXOrigin-pos().x()));
+
 }

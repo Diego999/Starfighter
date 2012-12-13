@@ -2,12 +2,11 @@
 #define OBSTACLE_H
 
 #include "include/game/Displayable.h"
-#include "include/enum/Enum.h"
 
 class Obstacle : public virtual Displayable
 {
 public:
-    Obstacle(qreal x, qreal y);
+    Obstacle(qreal _dX, qreal _dY);
     virtual ~Obstacle();
 
 };

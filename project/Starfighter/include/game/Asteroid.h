@@ -4,14 +4,15 @@
 #include "include/game/Destroyable.h"
 #include "include/game/Obstacle.h"
 #include "include/game/Projectile.h"
-#include "include/engine/GameEngine.h"
 #include "include/enum/Enum.h"
+
+class GameEngine;
 
 class Asteroid : public Destroyable, public Obstacle, public Projectile
 {
 public:
     //Slope is define ONLY FOR THE LITTLE ASTEROIDES
-    Asteroid(qreal x, qreal y,Shooter from, int resistance, int healthPoint, GameEngine *ge,qreal slope=0,bool small=false);
+    Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint, GameEngine *_gameEngine,qreal _dSlope=0,bool _bSmall=false);
     ~Asteroid();
 
     QRectF boundingRect() const;
@@ -24,8 +25,8 @@ private:
 
     int direction;
 
-    GameEngine* ge;
-    qreal slope;
-    bool smallA;
+    GameEngine* gameEngine;
+    qreal dSlope;
+    bool bSmall;
 };
 #endif

@@ -1,27 +1,15 @@
-/*==============================================================*
- | Implementation file ProjectileAlien.cpp
- |    implements : ProjectileAlien class
- |
- | Creator : Diego Antognini
- | Creation date : 26/11/2012
- | Copyright: EIAJ, all rights reserved
- |
- | Version of the file : 0.0.1
- |
- *==============================================================*/
-
 #include "include/game/Projectile.h"
 
-Projectile::Projectile(qreal _originX, qreal _originY,Shooter _from)
-    :Displayable(_originX,_originY),
-      originX(_originX),originY(_originY),from(_from)
+Projectile::Projectile(qreal _XOrigin, qreal _YOrigin,Shooter _from)
+    :Displayable(_XOrigin,_YOrigin),
+      dXOrigin(_XOrigin),dYOrigin(_YOrigin),from(_from)
 {
     if(from == Player1)
-        color = QColor(0,0,255);
+        color = new QColor(0,0,255);
     else if(from == Player2)
-        color = QColor(255,0,0);
+        color = new QColor(255,0,0);
     else if(from == Other)
-        color = QColor(qrand() % 256, qrand() % 256, qrand() % 256);
+        color = new QColor(qrand() % 256, qrand() % 256, qrand() % 256);
 }
 
 Projectile::~Projectile()
@@ -43,7 +31,7 @@ QPainterPath Projectile::shape() const
 
 void Projectile::paint(QPainter *_painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    _painter->setBrush(color);
+    _painter->setBrush(*color);
     _painter->drawEllipse(-RADIUS_PROJECTILE/2,-RADIUS_PROJECTILE/2,RADIUS_PROJECTILE,RADIUS_PROJECTILE);
     _painter->setPen(QPen(QColor(255,0,0)));
     _painter->drawPath(shape());

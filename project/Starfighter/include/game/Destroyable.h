@@ -5,17 +5,17 @@ class Destroyable : public QObject
 {
     Q_OBJECT
 public:
-    Destroyable(qreal _healthPoint,qreal _resistance);
+    Destroyable(qreal _dHealthPoint,qreal _dResistance);
     virtual ~Destroyable();
 
-    virtual void receiveAttack(qreal power);
+    virtual void receiveAttack(qreal _dPower);
     void isDead();
 
 signals:
-    void destroyed(Destroyable* destroyItem);
+    void destroyed(Destroyable* _destroyItem);
 protected:
-    qreal healthPoint;
-    qreal resistance;
+    qreal dHealthPoint;
+    qreal dResistance;
 
 };
 #endif

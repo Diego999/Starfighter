@@ -2,20 +2,18 @@
 #define SUPERNOVA_H
 
 #include "include/game/Obstacle.h"
-#include "include/game/Displayable.h"
-#include "include/engine/GameEngine.h"
-#include "include/engine/DisplayEngine.h"
+
+class GameEngine;
 
 class Supernova : public Obstacle
 {
-    //Q_OBJECT
 public:
-    Supernova(qreal x, qreal y,GameEngine* ge);
+    Supernova(qreal _dX, qreal _dY,GameEngine *_gameEngine);
     ~Supernova();
 
     QRectF boundingRect() const;
     QPainterPath shape() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=0);
 
 private:
 	static const int nbSpirales = 360;

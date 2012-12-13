@@ -1,8 +1,9 @@
 #include "include/game/BonusSpeed.h"
 
 
-BonusSpeed::BonusSpeed(int _speed, int expiration, GameEngine *ge, Spaceship *ss)
-    :Bonus(ge,ss),speed(_speed),expiration(expiration)
+BonusSpeed::BonusSpeed(qreal _dSpeed, int _expiration, GameEngine *_gameEngine, Spaceship *_spaceShip)
+    :Bonus(_gameEngine,_spaceShip),
+      dSpeed(_dSpeed),expiration(_expiration)
 {
 
 }
@@ -10,13 +11,4 @@ BonusSpeed::BonusSpeed(int _speed, int expiration, GameEngine *ge, Spaceship *ss
 BonusSpeed::~BonusSpeed()
 {
 
-}
-
-int BonusSpeed::getSpeed() const
-{
-    return speed;
-}
-int BonusSpeed::getExpiration() const
-{
-    return expiration;
 }

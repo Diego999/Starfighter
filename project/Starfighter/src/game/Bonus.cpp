@@ -6,20 +6,30 @@
 #define DELTA_X_B 100
 #define NB_SEC 1
 
-Bonus::Bonus(GameEngine *ge, Spaceship *ss):Displayable(x,y),gameEngine(ge),spaceship(ss),directionX(1),direction(1)
+Bonus::Bonus(GameEngine *_gameEngine, Spaceship *_spaceShip)
+    :Displayable(0,0,new QPixmap(":/images/game/bonus")),
+    gameEngine(_gameEngine),spaceship(_spaceShip),directionX(1),direction(1)
 {
-    int xmin = gameEngine->displayEngine()->xminWarzone();
-    int xmax = gameEngine->displayEngine()->xmaxWarZone();
+    /*Generate the position of the AlienSpaceship
+      For more informations cf the specification file*/
+    int l_xmin = gameEngine->displayEngine()->xminWarzone();
+    int l_xmax = gameEngine->displayEngine()->xmaxWarZone();
 
-    int x1 = gameEngine->randInt((xmax-DELTA_X_B)-(xmin+DELTA_X_B))+xmin;
-    int x2 = gameEngine->randInt(2*DELTA_X_B)-DELTA_X_B+x1;
-    int x3 = x1;
+    int l_x1 = gameEngine->randInt((l_xmax-DELTA_X_B)-(l_xmin+DELTA_X_B))+l_xmin;
+    int l_x2 = gameEngine->randInt(2*DELTA_X_B)-DELTA_X_B+l_x1;
+    int l_x3 = l_x1;
 
-    int y1 = gameEngine->displayEngine()->sceneSize().y();
-    int y2 = gameEngine->displayEngine()->sceneSize().height()/2.0;
-    int y3 = gameEngine->displayEngine()->sceneSize().height();
+    int l_y1 = gameEngine->displayEngine()->sceneSize().y();
+    int l_y2 = gameEngine->displayEngine()->sceneSize().height()/2.0;
+    int l_y3 = gameEngine->displayEngine()->sceneSize().height();
 
-    if(x2<x1)
+    /*Calculate the trajectory. There are 4 possibilities :
+    1) Top->Bottom x2<xg
+    2) Top->Bottom x2>=xg
+    3) Bottom->Top x2<xg
+    4) Bottom->Top x2>=xg
+    */
+    if(l_x2<l_x1)
     {
         dArgument+=180.0;
         directionX=-1;
@@ -28,29 +38,29 @@ Bonus::Bonus(GameEngine *ge, Spaceship *ss):Displayable(x,y),gameEngine(ge),spac
     if(gameEngine->randInt(2)==1)//1 = bottom,0 = top
     {
         direction*=-1;
-        y1=gameEngine->displayEngine()->sceneSize().height();
-        y3=gameEngine->displayEngine()->sceneSize().y();
+        l_y1=gameEngine->displayEngine()->sceneSize().height();
+        l_y3=gameEngine->displayEngine()->sceneSize().y();
     }
 
-    yStop = y2;
+    dYStop = l_y2;
 
-    dX0 = (x3*x3*(y1-y2)+(x1*x1+(y1-y2)*(y1-y3))*(y2-y3)+x2*x2*(y3-y1))
-            /(2.0*(x3*(y1-y2)+x1*(y2-y3)+x2*(y3-y1)));
+    dX0 = (l_x3*l_x3*(l_y1-l_y2)+(l_x1*l_x1+(l_y1-l_y2)*(l_y1-l_y3))*(l_y2-l_y3)+l_x2*l_x2*(l_y3-l_y1))
+            /(2.0*(l_x3*(l_y1-l_y2)+l_x1*(l_y2-l_y3)+l_x2*(l_y3-l_y1)));
 
-    dY0 = (-x2*x2*x3+x1*x1*(x3-x2)+x3*(y1-y2)*(y1+y2)+x1*(x2*x2-x3*x3+y2*y2-y3*y3)+x2*(x3*x3-y1*y1+y3*y3))
-            /(2.0*(x3*(y1-y2)+x1*(y2-y3)+x2*(y3-y1)));
+    dY0 = (-l_x2*l_x2*l_x3+l_x1*l_x1*(l_x3-l_x2)+l_x3*(l_y1-l_y2)*(l_y1+l_y2)+l_x1*(l_x2*l_x2-l_x3*l_x3+l_y2*l_y2-l_y3*l_y3)+l_x2*(l_x3*l_x3-l_y1*l_y1+l_y3*l_y3))
+            /(2.0*(l_x3*(l_y1-l_y2)+l_x1*(l_y2-l_y3)+l_x2*(l_y3-l_y1)));
 
-    x=x1;
-    y=y1;
-    dModule = sqrt((x1-dX0)*(x1-dX0)+(y1-dY0)*(y1-dY0));
-    dArgument = atan((dY0-y1)/(x1-dX0))*180.0/M_PI;
+    setPos(l_x1,l_y1);
 
-    pxmPicture = new QPixmap(":/images/game/bonus");
+    dModule = sqrt((l_x1-dX0)*(l_x1-dX0)+(l_y1-dY0)*(l_y1-dY0));
+    dArgument = atan((dY0-l_y1)/(l_x1-dX0))*180.0/M_PI;
 
     playSound();
+
     QTimer* timer = new QTimer(this);
     timer->setInterval(NB_SEC*1000);
     timer->start();
+
     connect(timer,SIGNAL(timeout()),this,SLOT(playSound()));
 }
 
@@ -70,14 +80,13 @@ void Bonus::advance(int _step)
 
     dArgument-=direction*kIntervalArgument;
 
-    x = dX0+directionX*dModule*cos(dArgument*M_PI/180.0);
-    y = dY0-dModule*sin(dArgument*M_PI/180.0);
-    setPos(x,y);
+    setPos(dX0+directionX*dModule*cos(dArgument*M_PI/180.0),
+           dY0-dModule*sin(dArgument*M_PI/180.0));
 }
 
 QRectF Bonus::boundingRect() const
 {
-    return QRectF(pxmPicture->rect());
+    return QRectF(getPixmap()->rect());
 }
 
 QPainterPath Bonus::shape() const
@@ -89,7 +98,7 @@ QPainterPath Bonus::shape() const
 
 void Bonus::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option, QWidget *_widget)
 {
-    _painter->drawPixmap(0,0,*pxmPicture);
+    _painter->drawPixmap(0,0,*getPixmap());
     _painter->setPen(QPen(QColor(255,0,0)));
     _painter->drawPath(shape());
 }

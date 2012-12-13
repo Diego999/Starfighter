@@ -3,13 +3,16 @@
 
 #include "include/game/Bonus.h"
 
+class GameEngine;
+class Spaceship;
+
 class BonusHP : public Bonus
 {
 public:
-    BonusHP(int healthPoint, GameEngine *ge, Spaceship *ss);
+    BonusHP(qreal _dHealthPoint, GameEngine *_gameEngine, Spaceship *_spaceShip);
     ~BonusHP();
-    int getHealthPoint() const;
+    qreal getHealthPoint() const {return dHealthPoint;}
 private:
-	int healthPoint;
+    qreal dHealthPoint;
 };
 #endif

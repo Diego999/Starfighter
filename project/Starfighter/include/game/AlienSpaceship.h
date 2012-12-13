@@ -3,14 +3,14 @@
 
 #include "include/game/Obstacle.h"
 #include "include/game/Destroyable.h"
-#include "include/game/Displayable.h"
-#include "include/engine/GameEngine.h"
 #include "include/enum/Enum.h"
+
+class GameEngine;
 
 class AlienSpaceship : public Destroyable,public Obstacle
 {
 public:
-    AlienSpaceship(int _nbSpirales,qreal _healthPoint,qreal _resistance,GameEngine* _ge);
+    AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResistance,GameEngine* _gameEngine);
     ~AlienSpaceship();
 
     QRectF boundingRect() const;
@@ -25,7 +25,7 @@ private:
     GameEngine* gameEngine;
 
 	int nbSpirales;
-    qreal yStop;
+    qreal dYStop;
     bool isAttacking;
     bool hasAttacked;
     qreal dArgument;

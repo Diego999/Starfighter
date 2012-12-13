@@ -2,14 +2,15 @@
 #define BONUS_H
 
 #include "include/game/Displayable.h"
-#include "include/game/Spaceship.h"
-#include "include/engine/GameEngine.h"
+
+class GameEngine;
+class Spaceship;
 
 class Bonus : public QObject, public Displayable
 {
     Q_OBJECT
 public:
-    Bonus(GameEngine *ge, Spaceship *ss);
+    Bonus(GameEngine *_gameEngine, Spaceship *_spaceShip);
     virtual ~Bonus();
 
     QRectF boundingRect() const;
@@ -26,7 +27,7 @@ private:
 
     static const qreal kIntervalArgument = 0.10;
 
-    qreal yStop;
+    qreal dYStop;
     qreal dArgument;
     qreal dModule;
     qreal dX0;

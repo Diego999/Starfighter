@@ -6,89 +6,96 @@
 #define MIN_A 3
 #define ANGLE_A 15
 
-Asteroid::Asteroid(qreal _x, qreal _y,Shooter from, int _resistance, int _healthPoint,GameEngine *_ge,qreal _slope,bool small)
-    :Displayable(_x,_y),Destroyable(_healthPoint,_resistance),Obstacle(_x,_y),Projectile(_x,_y,from),ge(_ge),slope(_slope),smallA(small)
+//If _dSlop & _bSmall are defined together. It means that it's a small asteroid
+Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint,GameEngine *_gameEngine,qreal _dSlope,bool _bSmall)
+    :Displayable(_dX,_dY),
+      Destroyable(_dHealthPoint,_dResistance),
+      Obstacle(_dX,_dY),
+      Projectile(_dX,_dY,_from),
+      gameEngine(_gameEngine),dSlope(_dSlope),bSmall(_bSmall)
 {
-    if(smallA)
+    //If it's a small asteroid, we use dSlope and generate and X-direction
+    if(bSmall)
     {
-        pxmPicture = new QPixmap(":/images/game/asteroids/rock20000");
-        int left = ge->randInt(2);
+        setPixmap(new QPixmap(":/images/game/asteroids/rock20000"));
+        int l_X = gameEngine->randInt(2);
 
-        slope=tan(slope);
-        if(left==0)
+        dSlope=tan(dSlope);
+        if(l_X==0)
             direction = 1;
         else
             direction = -1;
     }
     else
     {
-        pxmPicture = new QPixmap(":/images/game/asteroids/rock10000");
-        QRect sceneSize = ge->displayEngine()->sceneSize();
-        qreal xmin = sceneSize.topLeft().x();
-        qreal xmax = sceneSize.topRight().x();
+        setPixmap(new QPixmap(":/images/game/asteroids/rock10000"));
+        QRect sceneSize = gameEngine->displayEngine()->sceneSize();
+        /*Generate the position of the Asteroid and its trajectory
+          For more informations cf the specification file*/
+        int l_xmin = sceneSize.topLeft().x();
+        int l_xmax = sceneSize.topRight().x();
 
-        qreal ymin = sceneSize.topLeft().y();
-        qreal ymax = sceneSize.bottomRight().y();
+        int l_ymin = sceneSize.topLeft().y();
+        int l_ymax = sceneSize.bottomRight().y();
 
-        qreal m = ge->displayEngine()->xminWarzone();
-        qreal n = ge->displayEngine()->xmaxWarZone();
+        int l_m = gameEngine->displayEngine()->xminWarzone();
+        int l_n = gameEngine->displayEngine()->xmaxWarZone();
 
-        qreal xc = (xmax-xmin)/2.0+xmin;
-        qreal yc = (ymax-ymin)/2.0+ymin;
+        int l_xc = (l_xmax-l_xmin)/2.0+l_xmin;
+        int l_yc = (l_ymax-l_ymin)/2.0+l_ymin;
 
-        qreal xg = ge->randInt(n-m)+m;
-        qreal yg = ge->randInt(2);
+        int l_xg = gameEngine->randInt(l_n-l_m)+l_m;
+        int l_yg = gameEngine->randInt(2);
 
         //LEFT
-        if(xg <= xc)
+        if(l_xg <= l_xc)
         {
             direction = 1;
-            qreal xl = (xc*yc-n*ymax)/(yc-ymax);
-            qreal xf = ge->randInt(xl-xc)+xc;
+            qreal l_dXl = (l_xc*l_yc-l_n*l_ymax)/(l_yc-l_ymax);
+            qreal l_dXf = gameEngine->randInt(l_dXl-l_xc)+l_xc;
 
-            if(yg == 0)//Top Left
-                slope = -ymax/(xf-xg);
+            if(l_yg == 0)//Top Left
+                dSlope = -l_ymax/(l_dXf-l_xg);
             else
-                slope = ymax/(xf-xg);
+                dSlope = l_ymax/(l_dXf-l_xg);
         }
         //RIGHT
         else
         {
             direction = -1;
-            qreal xl = (xc*yc-m*ymax)/(yc-ymax);
-            qreal xf = xc-ge->randInt(fabs(xl-xc));
-            if(yg == 0)//Top Left
-                slope = ymax/(xf-xg);
+            qreal l_dXl = (l_xc*l_yc-l_m*l_ymax)/(l_yc-l_ymax);
+            qreal l_dXf = l_xc-gameEngine->randInt(fabs(l_dXl-l_xc));
+            if(l_yg == 0)//Top Left
+                dSlope = l_ymax/(l_dXf-l_xg);
             else
-                slope = -ymax/(xf-xg);
+                dSlope = -l_ymax/(l_dXf-l_xg);
         }
-        x=xg;
-        if(yg == 0)
-            y = ymin;
+        if(l_yg == 0)
+            setPos(l_xg,l_ymin);
         else
-            y = ymax;
+            setPos(l_xg,l_ymax);
     }
 }
 
 Asteroid::~Asteroid()
 {
-    if(!smallA)
+    if(!bSmall)
     {
-        int nb = ge->randInt(MAX_A-MIN_A+1)+MIN_A;
-        int res = 0;
-        int hp = 0;
+        int l_nb = gameEngine->randInt(MAX_A-MIN_A+1)+MIN_A;
+        int l_res = 0;
+        int l_hp = 0;
 
-        for(int i = 0;i<nb;i++)
+        for(int i = 0;i<l_nb;i++)
             if(i%2==0)
-                ge->displayEngine()->addSmallAsteroid(new Asteroid(x,y,Other,res,hp,ge,ANGLE_A*i,true));
+                gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x(),pos().y(),Other,l_res,l_hp,gameEngine,ANGLE_A*i,true));
             else
-                ge->displayEngine()->addSmallAsteroid(new Asteroid(x,y,Other,res,hp,ge,-ANGLE_A*i,true));
+                gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x(),pos().y(),Other,l_res,l_hp,gameEngine,-ANGLE_A*i,true));
     }
 }
 
 QRectF Asteroid::boundingRect() const
 {
-    return QRectF(pxmPicture->rect());
+    return QRectF(getPixmap()->rect());
 }
 
 QPainterPath Asteroid::shape() const
@@ -100,7 +107,7 @@ QPainterPath Asteroid::shape() const
 
 void Asteroid::paint(QPainter* _painter,const QStyleOptionGraphicsItem* _option, QWidget* _widget)
 {
-    _painter->drawPixmap(0,0,*pxmPicture);
+    _painter->drawPixmap(0,0,*getPixmap());
     _painter->setPen(QPen(QColor(255,0,0)));
     _painter->drawPath(shape());
 }
@@ -109,13 +116,12 @@ void Asteroid::advance(int _step)
 {
     Obstacle::advance(_step);
 
-    y-=trajectoryDraw(SPEED_A);
-    x+=direction*SPEED_A;
-    setPos(x,y);
+    setPos(pos().x()+direction*SPEED_A,
+           pos().y()-trajectoryDraw(SPEED_A));
 }
 
 qreal Asteroid::trajectoryDraw(qreal _dX)
 {
-    return slope*_dX;
+    return dSlope*_dX;
 }
 

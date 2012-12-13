@@ -8,21 +8,20 @@
 #include "include/game/BonusSpeed.h"
 #include "include/engine/DisplayEngine.h"
 
-#define AMPLI_PV 60.0
-#define OMEGA_PV 1.0
-
-Spaceship::Spaceship(qreal x,qreal y,Shooter _player,QString _playerName,qreal _speed,qreal _healthPoint,qreal _resistance,qreal _resistanceForceField,GameEngine *ge)
-    :Displayable(x,y),Destroyable(_healthPoint,_resistance),player(_player),playerName(_playerName),speed(_speed),resistanceForceField(_resistanceForceField),gameEngine(ge)
+Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerName,qreal _dSpeed,qreal _dHealthPoint,qreal _dResistance,qreal _dResistanceForceField,GameEngine *_gameEngine)
+    :Displayable(_dX,_dY),
+      Destroyable(_dHealthPoint,_dResistance),
+      player(_player),playerName(_playerName),dSpeed(_dSpeed),dResistanceForceField(_dResistanceForceField),gameEngine(_gameEngine)
 {
-    type = ProjSimple;
+    type = PROJ_SPACESHIP_DEF;
     bonusSpeed = 0;
     bonusProjectile = 0;
-    pxmPicture = new QPixmap(":/images/game/spaceship");
+    setPixmap(new QPixmap(":/images/game/spaceship"));
+
     if(_player == Player2)
     {
-        *pxmPicture = pxmPicture->transformed(QTransform().rotate(180));
-        x-=pxmPicture->size().width();
-        setPos(x,y);
+        setPixmap(new QPixmap(getPixmap()->transformed(QTransform().rotate(180))));
+        setPos(_dX-getPixmap()->size().width(),_dY);
     }
 }
 
@@ -34,7 +33,7 @@ Spaceship::~Spaceship()
 
 QRectF Spaceship::boundingRect() const
 {
-    return QRectF(pxmPicture->rect());
+    return QRectF(getPixmap()->rect());
 }
 
 QPainterPath Spaceship::shape() const
@@ -46,7 +45,7 @@ QPainterPath Spaceship::shape() const
 
 void Spaceship::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option, QWidget *_widget)
 {
-    _painter->drawPixmap(0,0,*pxmPicture);
+    _painter->drawPixmap(0,0,*getPixmap());
     _painter->setPen(QPen(QColor(255,0,0)));
     _painter->drawPath(shape());
 }
@@ -55,9 +54,9 @@ void Spaceship::addBonus(Bonus *bonus)
 {
     if(BonusHP* bhp = dynamic_cast<BonusHP*>(bonus))
     {
-        healthPoint+=bhp->getHealthPoint();
-        if(healthPoint>MAX_PV)
-            healthPoint=MAX_PV;
+        dHealthPoint+=bhp->getHealthPoint();
+        if(dHealthPoint>MAX_SPACESHIP_PV)
+            dHealthPoint=MAX_SPACESHIP_PV;
         delete bhp;
     }
     else if(BonusProjectile* bp = dynamic_cast<BonusProjectile*>(bonus))
@@ -71,9 +70,9 @@ void Spaceship::addBonus(Bonus *bonus)
     }
     else if(BonusForceField* bff = dynamic_cast<BonusForceField*>(bonus))
     {
-        resistanceForceField+=bff->getResistanceForceField();
-        if(resistanceForceField>MAX_PV)
-            resistanceForceField = MAX_PV;
+        dResistanceForceField+=bff->getResistanceForceField();
+        if(dResistanceForceField>MAX_SPACESHIP_PV)
+            dResistanceForceField = MAX_SPACESHIP_PV;
         delete bff;
     }
     else if(BonusSpeed* bs = dynamic_cast<BonusSpeed*>(bonus))
@@ -81,7 +80,7 @@ void Spaceship::addBonus(Bonus *bonus)
         if(bonusSpeed==NULL)
         {
             bonusSpeed = bs;
-            speed+=bs->getSpeed();
+            dSpeed+=bs->getSpeed();
             QTimer::singleShot(bs->getExpiration(),this,SLOT(removeSpeedBonus()));
         }
     }
@@ -91,10 +90,12 @@ void Spaceship::removeProjectileBonus()
 {
     delete bonusProjectile;
     bonusProjectile = NULL;
+    type = PROJ_SPACESHIP_DEF;
 }
 
 void Spaceship::removeSpeedBonus()
 {
+    dSpeed-=bonusSpeed->getSpeed();
     delete bonusSpeed;
     bonusSpeed = NULL;
 }
@@ -111,11 +112,11 @@ void Spaceship::attack()
     int l_y = 0;
 
     if(player==Player1)
-        l_x = x+pxmPicture->width();
+        l_x = pos().x()+getPixmap()->width();
     else
-        l_x = x;//Don't need to remove the width of the QPixmap,already done in the constructor
+        l_x = pos().x();//Don't need to remove the width of the QPixmap,already done in the constructor
 
-    l_y = y+pxmPicture->height()/2;
+    l_y = pos().y()+getPixmap()->height()/2;
 
     switch(type)
     {
@@ -129,7 +130,7 @@ void Spaceship::attack()
             break;
 
         case ProjV:
-            gameEngine->displayEngine()->addProjectile(new ProjectileV(l_x,l_y,player,AMPLI_PV,OMEGA_PV));
+            gameEngine->displayEngine()->addProjectile(new ProjectileV(l_x,l_y,player,AMPLI_SPACESHIP_PROJ_V,AMPLI_SPACESHIP_PROJ_V));
             break;
         case ProjAlien:
             break;
@@ -141,12 +142,10 @@ void Spaceship::attack()
 
 void Spaceship::top()
 {
-    y-=speed;
-    setPos(x,y);
+    setPos(pos().x(),pos().y()-dSpeed);
 }
 
 void Spaceship::bottom()
 {
-    y+=speed;
-    setPos(x,y);
+    setPos(pos().x(),pos().y()+dSpeed);
 }

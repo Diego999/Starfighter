@@ -3,13 +3,16 @@
 
 #include "include/game/Bonus.h"
 
+class GameEngine;
+class Spaceship;
+
 class BonusForceField : public Bonus
 {
 public:
-    BonusForceField(int resistanceForceField, GameEngine *ge, Spaceship *ss);
+    BonusForceField(qreal _dResistanceForceField, GameEngine *_gameEngine, Spaceship *_spaceShip);
     ~BonusForceField();
-    int getResistanceForceField() const;
+    qreal getResistanceForceField() const {return dResistanceForceField;}
 private:
-	int resistanceForceField;
+    qreal dResistanceForceField;
 };
 #endif

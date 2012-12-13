@@ -4,14 +4,17 @@
 #include "include/game/Bonus.h"
 #include "include/enum/Enum.h"
 
+class GameEngine;
+class Spaceship;
+
 class BonusProjectile : public Bonus
 {
 public:
-    BonusProjectile(TypeProjectiles type, int expiration, GameEngine *ge, Spaceship *ss);
+    BonusProjectile(TypeProjectiles _type, int _expiration, GameEngine *_gameEngine, Spaceship *_spaceShip);
     ~BonusProjectile();
 
-    TypeProjectiles getType() const;
-    int getExpiration() const;
+    TypeProjectiles getType() const {return type;}
+    int getExpiration() const {return expiration;}
 private:
     TypeProjectiles type;
 	int expiration;

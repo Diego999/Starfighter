@@ -1,24 +1,12 @@
-/*==============================================================*
- | Implementation file ProjectileAlien.cpp
- |    implements : ProjectileAlien class
- |
- | Creator : Diego Antognini
- | Creation date : 26/11/2012
- | Copyright: EIAJ, all rights reserved
- |
- | Version of the file : 0.0.1
- |
- *==============================================================*/
-
 #include "include/game/ProjectileCross.h"
 
-#define INTERVAL_X 3
-
-ProjectileCross::ProjectileCross(qreal _originX, qreal _originY, Shooter _from,int _nb)
-    :Displayable(_originX,_originY),Projectile(_originX,_originY,_from),nb(_nb)
+ProjectileCross::ProjectileCross(qreal _dXOrigin, qreal _dYOrigin, Shooter _from,int _nb)
+    :Displayable(_dXOrigin,_dYOrigin),
+      Projectile(_dXOrigin,_dYOrigin,_from),
+      nb(_nb)
 {
-    dSpeed = INTERVAL_X;
-    power = POWER_C;
+    dSpeed = SPEED_CROSS_DEF;
+    dPower = POWER_CROSS;
 }
 
 ProjectileCross::~ProjectileCross()
@@ -41,8 +29,10 @@ void ProjectileCross::advance(int _step)
     Projectile::advance(_step);
 
     if(from == Player1)
-        x+=dSpeed;
+        setPos(pos().x()+dSpeed,
+               dYOrigin-trajectoryDraw(dXOrigin-pos().x()));
     else//Player2
-        x-=dSpeed;
-    setPos(x,originY-trajectoryDraw(originX-x));
+        setPos(pos().x()-dSpeed,
+               dYOrigin-trajectoryDraw(dXOrigin-pos().x()));
+
 }

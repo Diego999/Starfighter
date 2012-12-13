@@ -1,9 +1,9 @@
 #include "include/game/Displayable.h"
 
-Displayable::Displayable(qreal _x, qreal _y, QPixmap* _pxmPicture)
-    :x(_x),y(_y),pxmPicture(_pxmPicture)
+Displayable::Displayable(qreal _dX, qreal _dY, QPixmap* _pixmap)
+    :dX(_dX),dY(_dY),pxmPicture(_pixmap)
 {
-    setPos(x,y);
+    setPos(dX,dY);
 }
 
 Displayable::~Displayable()
@@ -19,7 +19,14 @@ void Displayable::advance(int _step)
 
 void Displayable::setPos(qreal _dX, qreal _dY)
 {
-    x=_dX;
-    y=_dY;
-    QGraphicsItem::setPos(x,y);
+    dX=_dX;
+    dY=_dY;
+    QGraphicsItem::setPos(dX,dY);
+}
+
+void Displayable::setPixmap(QPixmap *_pxmPixmap)
+{
+    if(pxmPicture!=0)
+        delete pxmPicture;
+    pxmPicture = _pxmPixmap;
 }

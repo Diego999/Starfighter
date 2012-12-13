@@ -1,46 +1,35 @@
-/*=====================================================================*
- | Declaration file Projectile.h
- |    declares :  Projectile class
- |
- | For more informations (creation date, creator, etc.), please see the
- | corresponding .cpp file
- |
- *=====================================================================*/
-
 #ifndef PROJECTILE_H
 #define PROJECTILE_H
 
 #include "include/enum/Enum.h"
 #include "include/game/Displayable.h"
 
-/**
-* Class that represents a projectile throwed by a spaceship or an alien-spaceship
-* @author Diego Antognini
-* @version 0.0.1
-*/
+class QColor;
 
 class Projectile : public virtual Displayable
 {
 public:
-    Projectile(qreal _originX, qreal _originY,Shooter _from);
+    Projectile(qreal _XOrigin, qreal _YOrigin,Shooter _from);
     virtual ~Projectile();
 
-    qreal getPower() const {return power;}
+    qreal getPower() const {return dPower;}
+    Shooter getTypeObject() const {return from;}
+
     QRectF boundingRect() const;
     QPainterPath shape() const;
     void paint(QPainter* _painter, const QStyleOptionGraphicsItem *_option, QWidget *_widget=0);
-    Shooter getTypeObject() const {return from;}
+
     virtual void advance(int _step);
 
 protected:
     virtual qreal trajectoryDraw(qreal _dX)=0;
 
-    qreal power;
-    qreal originX;
-    qreal originY;
+    qreal dPower;
+    qreal dXOrigin;
+    qreal dYOrigin;
 
     qreal dSpeed;
-    QColor color;
+    QColor* color;
 
     Shooter from;
 };

@@ -12,10 +12,12 @@
 
 #include "include/game/ProjectileAlien.h"
 
-ProjectileAlien::ProjectileAlien(qreal _originX, qreal _originY,Shooter _from, qreal _dArgument, qreal _dModule)
-    :Displayable(_originX,_originY),Projectile(_originX,_originY,_from),dArgument(_dArgument),dModule(_dModule)
+ProjectileAlien::ProjectileAlien(qreal _dXOrigin, qreal _dYOrigin,Shooter _from, qreal _dArgument, qreal _dModule)
+    :Displayable(_dXOrigin,_dYOrigin),
+      Projectile(_dXOrigin,_dYOrigin,_from),
+      dArgument(_dArgument),dModule(_dModule)
 {
-    power = POWER_A;
+    dPower = POWER_ALIEN;
 }
 
 ProjectileAlien::~ProjectileAlien()
@@ -25,7 +27,7 @@ ProjectileAlien::~ProjectileAlien()
 
 qreal ProjectileAlien::trajectoryDraw(qreal _dX)
 {
-    return 0;
+    return 0*_dX;
 }
 
 void ProjectileAlien::advance(int _step)
@@ -34,8 +36,6 @@ void ProjectileAlien::advance(int _step)
     dModule+=ProjectileAlien::kIntervalModule;
     dArgument+=ProjectileAlien::kIntervalArgument;
 
-    x = originX+dModule*cos(dArgument*M_PI/180.0);
-    y = originY-dModule*sin(dArgument*M_PI/180.0);
-
-    setPos(x,y);
+    setPos(dXOrigin+dModule*cos(dArgument*M_PI/180.0),
+           dYOrigin-dModule*sin(dArgument*M_PI/180.0));
 }
