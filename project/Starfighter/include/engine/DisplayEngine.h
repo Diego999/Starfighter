@@ -26,6 +26,8 @@ public:
     void setProgressHP2(int _value);
     void setProgressShield1(int _value);
     void setProgressShield2(int _value);
+    void setGameScore1(int _value);
+    void setGameScore2(int _value);
 
     void addProjectile(Projectile *_inProjectile);
     void addShip(Spaceship *_inSpaceship);  
@@ -50,6 +52,7 @@ private:
     void creatHUD();
     void switchFullScreen();
     void updateGameData();
+    void endGameTimer();
     void endGame();
     void escapeGame();
 
@@ -90,6 +93,7 @@ private:
 
     // widget used for the HUD
     QLCDNumber * timer;
+    QTime      * affiche;
     QLCDNumber * scoreP1;
     QLCDNumber * scoreP2;
 
@@ -98,7 +102,6 @@ private:
     QProgressBar * shield1;
     QProgressBar * shield2;
 
-    //swtich fullscreen <->
     bool isFullScreen;
     bool isTimer;
 };

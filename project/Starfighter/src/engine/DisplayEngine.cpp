@@ -72,6 +72,9 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     mainScreen->addWidget(view);
     mainScreen->addWidget(downHUD);
 
+    affiche = new QTime();
+    affiche->setHMS(0,0,0,0);
+
     this->creatHUD();
     this->gameType();
 
@@ -356,6 +359,11 @@ void DisplayEngine::timerEvent(QTimerEvent * event)
     clearList(listSmallAsteroide);
     clearList(listBonus);
     clearList(listAlienSpaceship);
+
+    if(isTimer)
+    {
+        this->updateGameData();
+    }
 }
 
 QRect DisplayEngine::sceneSize() const
@@ -412,15 +420,32 @@ void DisplayEngine::setProgressShield2(int _value)
     shield2->setValue(_value);
 }
 
+void DisplayEngine::setGameScore1(int _value)
+{
+    scoreP1->display(_value);
+}
+
+void DisplayEngine::setGameScore2(int _value)
+{
+    scoreP2->display(_value);
+}
+
 void DisplayEngine::updateGameData()
 {
     int deltaTime = gameEngine->timeGamevalue() - gameEngine->elapsedTime();
 
+    timer->display(affiche->toString("mm:ss"));
 
-    if(deltaTime == 0)
+    if(deltaTime <= 0)
     {
-        this->endGame();
+        this->endGameTimer();
     }
+}
+
+void DisplayEngine::endGameTimer()
+{
+    int score1;
+    int score2;
 }
 
 void DisplayEngine::endGame()
