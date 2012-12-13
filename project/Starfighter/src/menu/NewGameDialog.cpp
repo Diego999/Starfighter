@@ -38,10 +38,10 @@ void NewGameDialog::on_btnStart_clicked()
     SpaceshipType player1 = (SpaceshipType)(int)(ui->cbbP1ship->userData(ui->cbbP1ship->currentIndex()));
     SpaceshipType player2 = (SpaceshipType)(int)(ui->cbbP2ship->userData(ui->cbbP2ship->currentIndex()));
     int difficulty = 0;
-    difficulty |= ((ui->cbxAlien->checkState() / Qt::Checked) & AlienMothership);
-    difficulty |= ((ui->cbxAsteroid->checkState() / Qt::Checked) & Asteroids);
-    difficulty |= ((ui->cbxSatellite->checkState() / Qt::Checked) & Satellites);
-    difficulty |= ((ui->cbxSupernova->checkState() / Qt::Checked) & Supernovae);
+    difficulty |= ((ui->cbxAlien->checkState() / Qt::Checked) * AlienMothership);
+    difficulty |= ((ui->cbxAsteroid->checkState() / Qt::Checked) * Asteroids);
+    difficulty |= ((ui->cbxSatellite->checkState() / Qt::Checked) * Satellites);
+    difficulty |= ((ui->cbxSupernova->checkState() / Qt::Checked) * Supernovae);
 
 
     GameEngine *ge = new GameEngine(gameMode, duration, player1, player2, difficulty, this);
