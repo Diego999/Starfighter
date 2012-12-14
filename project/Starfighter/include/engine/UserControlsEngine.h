@@ -4,6 +4,8 @@
 
 #include "include/enum/Enum.h"
 #include "include/engine/GameEngine.h"
+#include "include/engine/DisplayEngine.h"
+#include "include/game/Supernova.h"
 
 #include "QKeyEvent"
 
@@ -21,11 +23,18 @@ public:
 
 
 
+public slots:
+    void callSupernovae();
+
 private:
     QMap<int,Action>        actions;
     QMap<Action,Qt::Key>    myKey;
     GameEngine *            gameEngine;
+    DisplayEngine *         display;
     QList<Action>           actionList;
+    QTimer *                novaeCall;
+
+    bool hasShoot;
 
 
 };

@@ -34,8 +34,8 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     //screenSizeWidth = 1440;
     screenSizeWidth = desktop->width();
 
-    sceneWidth = screenSizeWidth;
-    sceneHeigth = screenSizeHeight*0.85;
+    sceneWidth = (screenSizeWidth)/desktop->screenCount();
+    sceneHeigth = (screenSizeHeight*0.85)/desktop->screenCount();
     //double sceneHeigth = screenSizeHeight;
 
     QVBoxLayout * mainScreen = new QVBoxLayout(this);
@@ -498,9 +498,11 @@ void DisplayEngine::timerEvent(QTimerEvent * event)
     runTestCollision(listAsteroide);
     runTestCollision(listSmallAsteroide);
 
+    updateGameData();
+
     if(isTimer)
     {
-        this->updateGameData();
+        this->updateGameDataTimer();
     }
 }
 
@@ -569,6 +571,16 @@ void DisplayEngine::setGameScore2(int _value)
 }
 
 void DisplayEngine::updateGameData()
+{
+    this->setProgressHP1(gameEngine->ship1()->getHealthPoint());
+    this->setProgressHP2(gameEngine->ship2()->getHealthPoint());
+
+    this->setProgressShield1(gameEngine->ship1()->getHealthForceField());
+    this->setProgressShield2(gameEngine->ship2()->getHealthForceField());
+
+}
+
+void DisplayEngine::updateGameDataTimer()
 {
     int deltaTime = gameEngine->timeGamevalue() - gameEngine->elapsedTime();
 

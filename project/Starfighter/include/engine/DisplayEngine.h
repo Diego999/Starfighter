@@ -49,6 +49,7 @@ public:
 
     void timerEvent(QTimerEvent *);
     void endGame(Spaceship* _ship=0);
+
 protected:
     //void paintEvent(QPaintEvent * event);
     void keyPressEvent(QKeyEvent *event);
@@ -61,7 +62,9 @@ private:
     void gameType();
     void creatHUD();
     void switchFullScreen();
+    void updateGameDataTimer();
     void updateGameData();
+
     void endGameTimer();
     void escapeGame();
 
