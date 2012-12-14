@@ -30,11 +30,11 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     // get screen dimension
     QDesktopWidget * desktop = QApplication::desktop();
 
-//    screenSizeHeight = desktop->height();
-//    screenSizeWidth = desktop->width();
+    screenSizeHeight = desktop->height();
+    screenSizeWidth = desktop->width();
 
-    screenSizeWidth = 1440;
-    screenSizeHeight = 900;
+//    screenSizeWidth = 1440;
+//    screenSizeHeight = 900;
 
     sceneWidth = (screenSizeWidth);///desktop->screenCount();
     sceneHeigth = (screenSizeHeight*0.85);///desktop->screenCount();
