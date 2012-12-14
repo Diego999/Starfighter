@@ -10,6 +10,7 @@
 #define AMPLI_SPACESHIP_PROJ_V 60.0
 #define OMEGA_SPACESHIP_PROJ_V 1.0
 #define PROJ_SPACESHIP_DEF ProjSimple
+#define RESISTANCE_FORCE_FIELD 100
 
 class Bonus;
 class BonusSpeed;
@@ -20,7 +21,7 @@ class Spaceship : public Destroyable, public virtual Displayable
 {
     Q_OBJECT
 public:
-    Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerName,qreal _dSpeed,qreal _dHealthPoint,qreal _dResistance,qreal _dResistanceForceField,GameEngine *_gameEngine);
+    Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerName,qreal _dSpeed,qreal _dHealthPoint,qreal _dResistance,GameEngine *_gameEngine);
     ~Spaceship();
 
     void receiveAttack(qreal _dPower);

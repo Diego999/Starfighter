@@ -15,11 +15,11 @@
 #include "include/game/BonusSpeed.h"
 #include "include/game/Supernova.h"
 
-GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject *parent = 0):QObject(parent), isRunning(false)
+GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject *parent = 0):QObject(parent), isRunning(false), settings(Settings::getGlobalSettings())
 {
-    se = new SpawnEngine(difficulty);
     de = new DisplayEngine(this,0);
     uc = new UserControlsEngine(this);
+    se = new SpawnEngine(difficulty, this);
 
     qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
 
@@ -32,8 +32,8 @@ void GameEngine::createSpaceship()
     int width = de->sceneSize().width();
     int height = de->sceneSize().height();
 
-    spaceship[0] = new Spaceship(0,height/2,Player1,"Diego",5,100,100,100,this);//Change with the parameter of a spaceship
-    spaceship[1] = new Spaceship(width,height/2,Player2,"Bianca",5,100,100,100,this);
+    spaceship[0] = new Spaceship(0,height/2,Player1,settings.playerOneName(),5,100,100,this);//Change with the parameter of a spaceship
+    spaceship[1] = new Spaceship(width,height/2,Player2,settings.playerTwoName(),5,100,100,this);
 
     de->addShip(spaceship[0]);
     de->addShip(spaceship[1]);
@@ -56,7 +56,7 @@ void GameEngine::spawn(Obstacle* obstacle)
 
 double GameEngine::randDouble()
 {
-	return 0;
+    return (double)qrand() / (double)RAND_MAX;
 }
 
 int GameEngine::randInt(int range)

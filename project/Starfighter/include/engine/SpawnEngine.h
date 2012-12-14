@@ -3,24 +3,57 @@
 
 #include "include/engine/GameEngine.h"
 
+#define SPAWN_INTERVAL 500
+
+#define RESISTANCE_ASTEROID 20
+#define RESISTANCE_ALIEN 20
+#define ALIEN_SWIRL_MIN 10
+#define ALIEN_SWIRL_MAX 20
+#define BONUS_HEALTH_MIN 30
+#define BONUS_HEALTH_MAX MAX_SPACESHIP_PV
+#define BONUS_PROJECTILE_DURATION 20
+#define BONUS_TYPE_PROJECTILES_MIN 1
+#define BONUS_TYPE_PROJECTILES_MAX 3
+#define BONUS_SPEED_MIN 8
+#define BONUS_SPEED_MAX 20
+#define BONUS_SPEED_DURATION 20
+
 class SpawnEngine : public QObject
 {
     Q_OBJECT
 
 public:
-    SpawnEngine(int difficulty);
+    SpawnEngine(int difficulty, GameEngine*);
     ~SpawnEngine();
+
+public slots:
+    void pause(bool);
 
 private slots:
     void timerFired();
 
-signals:
-    void obstacleShouldSpawn(Obstacle *);
-
 private:
+    GameEngine *ge;
+    DisplayEngine *de;
     bool spawnAsteroids;
     bool spawnAlienMothership;
     bool spawnSatellites;
     bool spawnSupernovae;
+    QTimer *timer;
+
+    const static int kProbAsteroid = 100;
+    const static int kProbAlien = 50;
+    const static int kProbSat = 20;
+    const static int kProbSupernova = 1;
+
+    int totalProba;
+    int intervalAsteroid;
+    int intervalAlien;
+    int intervalSat;
+    int intervalSupernova;
+
+    static int irand(int min, int max);
+
+    static double proba(double t);
 };
 #endif

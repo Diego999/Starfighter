@@ -9,10 +9,7 @@ class Spaceship;
 class BonusForceField : public Bonus
 {
 public:
-    BonusForceField(qreal _dResistanceForceField, GameEngine *_gameEngine, Spaceship *_spaceShip);
+    BonusForceField(GameEngine *_gameEngine, Spaceship *_spaceShip);
     ~BonusForceField();
-    qreal getResistanceForceField() const {return dResistanceForceField;}
-private:
-    qreal dResistanceForceField;
 };
 #endif

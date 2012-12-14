@@ -8,12 +8,12 @@
 #include "include/game/BonusSpeed.h"
 #include "include/engine/DisplayEngine.h"
 
-Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerName,qreal _dSpeed,qreal _dHealthPoint,qreal _dResistance,qreal _dResistanceForceField,GameEngine *_gameEngine)
+Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerName,qreal _dSpeed,qreal _dHealthPoint,qreal _dResistance,GameEngine *_gameEngine)
     :Displayable(_dX,_dY),
       Destroyable(_dHealthPoint,_dResistance),
-      player(_player),playerName(_playerName),dSpeed(_dSpeed),dResistanceForceField(_dResistanceForceField),gameEngine(_gameEngine)
+      player(_player),playerName(_playerName),dSpeed(_dSpeed),dResistanceForceField(RESISTANCE_FORCE_FIELD),gameEngine(_gameEngine)
 {
-    dHealthForceField = MAX_SPACESHIP_PV; // TO_DEFINE : Whether the player starts with full force field or not.
+    dHealthForceField = MAX_SPACESHIP_PV;
     type = PROJ_SPACESHIP_DEF;
     bonusSpeed = 0;
     bonusProjectile = 0;
@@ -79,7 +79,6 @@ void Spaceship::addBonus(Bonus *_bonus)
     }
     else if(BonusForceField* bff = dynamic_cast<BonusForceField*>(_bonus))
     {
-        dResistanceForceField = bff->getResistanceForceField();
         dHealthForceField = MAX_SPACESHIP_PV;
         delete bff;
     }

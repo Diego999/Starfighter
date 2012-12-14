@@ -23,8 +23,8 @@ public:
     void spawn(Obstacle* obstacle);
     void createSpaceship();
 	int elapsedTime();
-    double randDouble();
-    int randInt(int range);
+    static double randDouble();
+    static int randInt(int range);
     int timeGamevalue();
 
     void timerControle(int tps = 15);
@@ -47,7 +47,7 @@ private:
     Obstacle *obstacle[];
     Bonus *bonus;
     Spaceship *spaceship[2];
-    Settings *settings;
+    Settings& settings;
     int timeGame;
 
 
