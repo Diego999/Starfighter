@@ -19,6 +19,7 @@ class GameEngine : public QObject
 
 public:	
     GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject*);
+    ~GameEngine();
 
     void spawn(Obstacle* obstacle);
     void createSpaceship();
@@ -43,9 +44,9 @@ private:
     DisplayEngine *de;
     SpawnEngine *se;
     UserControlsEngine *uc;
-    Projectile *projectile[];
-    Obstacle *obstacle[];
-    Bonus *bonus;
+    //Projectile *projectile[];
+    //Obstacle *obstacle[];
+    //Bonus *bonus;
     Spaceship *spaceship[2];
     Settings& settings;
     int timeGame;

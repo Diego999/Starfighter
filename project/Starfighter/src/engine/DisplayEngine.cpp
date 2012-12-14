@@ -55,7 +55,10 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     view->setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
     //view->setCacheMode(QGraphicsView::CacheBackground);
     //view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
-    //view->setViewport(new QGLWidget(QGLFormat(QGL::SampleBuffers)));
+
+    view->setViewport(new QGLWidget(QGLFormat(QGL::SampleBuffers),this));
+    scene->setItemIndexMethod(QGraphicsScene::NoIndex);
+
     view->viewport()->setFocusProxy( this );
     view->setFocusPolicy(Qt::NoFocus);
 
@@ -89,8 +92,18 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
 
 DisplayEngine::~DisplayEngine()
 {
-    delete mainPart;
-    qDebug() << "Bye";
+    delete affiche;
+    delete mutex;
+
+    qDeleteAll(listProjectile);
+    qDeleteAll(listAsteroide);
+    qDeleteAll(listSmallAsteroide);
+    qDeleteAll(listBonus);
+    qDeleteAll(listSpaceship);
+    qDeleteAll(listAlienSpaceship);
+    qDeleteAll(listSupernova);
+
+    //GameEnfine call ~DisplayEngine
 }
 
 void DisplayEngine::creatHUD()
@@ -102,7 +115,7 @@ void DisplayEngine::creatHUD()
       * Player no1 part
       */
     QHBoxLayout * playerOneNamu = new QHBoxLayout();
-    QLabel * player1Name = new QLabel();
+    QLabel * player1Name = new QLabel(downHUD);
     //player1Name->setText("Name: player1");
     player1Name->setText(tr("Name : %1").arg(Settings::getGlobalSettings().playerOneName()));
     playerOneNamu->addWidget(player1Name);
@@ -111,8 +124,8 @@ void DisplayEngine::creatHUD()
     QVBoxLayout * statuePlayerOne = new QVBoxLayout();
 
     QHBoxLayout * heathP1 = new QHBoxLayout();
-    QLabel * lHP1 = new QLabel("HP:\t");
-    HP1= new QProgressBar();
+    QLabel * lHP1 = new QLabel("HP:\t",downHUD);
+    HP1= new QProgressBar(downHUD);
     HP1->setRange(0,100);
     HP1->setValue(100);
 
@@ -120,8 +133,8 @@ void DisplayEngine::creatHUD()
     heathP1->addWidget(HP1);
 
     QHBoxLayout * shildP1 = new QHBoxLayout();
-    QLabel * lShild1 = new QLabel("Shield:\t");
-    shield1= new QProgressBar();
+    QLabel * lShild1 = new QLabel("Shield:\t",downHUD);
+    shield1= new QProgressBar(downHUD);
     shield1->setRange(0,100);
     shield1->setValue(100);
 
@@ -139,11 +152,11 @@ void DisplayEngine::creatHUD()
       */
     QVBoxLayout * timeAndScore   = new QVBoxLayout();
     QHBoxLayout * score = new QHBoxLayout();
-    timer = new QLCDNumber();
+    timer = new QLCDNumber(downHUD);
     timer->setDigitCount(5);
 
-    scoreP1 = new QLCDNumber();
-    scoreP2 = new QLCDNumber();
+    scoreP1 = new QLCDNumber(downHUD);
+    scoreP2 = new QLCDNumber(downHUD);
 
     scoreP1->setDigitCount(2);
     scoreP2->setDigitCount(2);
@@ -158,7 +171,7 @@ void DisplayEngine::creatHUD()
       * Player no2 part
       */
     QHBoxLayout * playerTwoNamu = new QHBoxLayout();
-    QLabel * player2Name = new QLabel();
+    QLabel * player2Name = new QLabel(downHUD);
     //player2Name->setText("Name: player2");
     player2Name->setText(tr("Name : %1").arg(Settings::getGlobalSettings().playerTwoName()));
     playerTwoNamu->addWidget(player2Name);
@@ -166,8 +179,8 @@ void DisplayEngine::creatHUD()
     QVBoxLayout * statuePlayerTwo = new QVBoxLayout();
 
     QHBoxLayout * heathP2 = new QHBoxLayout();
-    QLabel * lHP2 = new QLabel("HP:\t");
-    HP2= new QProgressBar();
+    QLabel * lHP2 = new QLabel("HP:\t",downHUD);
+    HP2= new QProgressBar(downHUD);
     HP2->setRange(0,100);
     HP2->setValue(100);
 
@@ -175,8 +188,8 @@ void DisplayEngine::creatHUD()
     heathP2->addWidget(HP2);
 
     QHBoxLayout * shildP2 = new QHBoxLayout();
-    QLabel * lShild2 = new QLabel("Shield:\t");
-    shield2= new QProgressBar();
+    QLabel * lShild2 = new QLabel("Shield:\t",downHUD);
+    shield2= new QProgressBar(downHUD);
     shield2->setRange(0,100);
     shield2->setValue(100);
 
@@ -221,6 +234,7 @@ void DisplayEngine::addProjectile(Projectile * _inProjectile)
 
 void DisplayEngine::addShip(Spaceship *_inSpaceship)
 {
+
     scene->addItem(_inSpaceship);
     listSpaceship.append(_inSpaceship);
     connect(_inSpaceship,SIGNAL(destroyed(Destroyable*)),gameEngine,SLOT(elemenDestroyed(Destroyable*)));
@@ -575,12 +589,12 @@ void DisplayEngine::setGameScore2(int _value)
 
 void DisplayEngine::updateGameData()
 {
+
     this->setProgressHP1(gameEngine->ship1()->getHealthPoint());
     this->setProgressHP2(gameEngine->ship2()->getHealthPoint());
 
     this->setProgressShield1(gameEngine->ship1()->getHealthForceField());
     this->setProgressShield2(gameEngine->ship2()->getHealthForceField());
-
 }
 
 void DisplayEngine::updateGameDataTimer()
@@ -616,15 +630,13 @@ void DisplayEngine::endGame(Spaceship* _ship)
     {
         QString playerName;
         if(_ship==gameEngine->ship1())
-            playerName = QString(gameEngine->ship1()->getPlayerName());
-        else if(_ship==gameEngine->ship2())
             playerName = QString(gameEngine->ship2()->getPlayerName());
+        else if(_ship==gameEngine->ship2())
+            playerName = QString(gameEngine->ship1()->getPlayerName());
         QMessageBox::information(this,
                                  "End of the game",
                                  QString(tr("%1 has won !")).arg(playerName),
                                  QMessageBox::Ok);
-        gameEngine->timerControle();
-        delete this;
     }
 }
 

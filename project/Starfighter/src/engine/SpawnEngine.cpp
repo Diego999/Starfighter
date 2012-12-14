@@ -43,7 +43,9 @@ SpawnEngine::SpawnEngine(int difficulty, GameEngine *_ge)
 
 SpawnEngine::~SpawnEngine()
 {
+    delete timer;
 
+    //GameEngine delete DisplayEngine and call ~SpawnEngine
 }
 
 void SpawnEngine::timerFired()

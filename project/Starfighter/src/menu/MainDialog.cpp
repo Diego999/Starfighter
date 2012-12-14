@@ -42,6 +42,6 @@ void MainDialog::setGameEngine(GameEngine *ge)
 
 void MainDialog::endGame()
 {
-    if(ge != NULL)
+    if(ge != 0)
         delete ge;
 }

@@ -15,6 +15,7 @@ class UserControlsEngine : public QObject
 
 public:
     UserControlsEngine(GameEngine *ge);
+    ~UserControlsEngine();
 
     void keyPressEvent(QKeyEvent * event);
     void keyReleaseEvent(QKeyEvent * event);

@@ -27,6 +27,17 @@ GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Shi
     createSpaceship();
 }
 
+GameEngine::~GameEngine()
+{
+    delete uc;
+    delete se;
+    delete de;
+
+    Spaceship* s = spaceship[0];
+    delete [] spaceship;
+    s;
+}
+
 void GameEngine::createSpaceship()
 {
     int width = de->sceneSize().width();
@@ -72,7 +83,10 @@ int GameEngine::timeGamevalue(){return timeGame;}
 void GameEngine::elemenDestroyed(Destroyable* _destroyItem)
 {
     if(Spaceship* s = dynamic_cast<Spaceship*>(_destroyItem))
+    {
         de->endGame(s);
+        emit endGame();
+    }
     else if(Asteroid* a = dynamic_cast<Asteroid*>(_destroyItem))
     {
         if(a->isSmall())

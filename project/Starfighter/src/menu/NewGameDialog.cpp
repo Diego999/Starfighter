@@ -45,6 +45,7 @@ void NewGameDialog::on_btnStart_clicked()
 
 
     GameEngine *ge = new GameEngine(gameMode, duration, player1, player2, difficulty, this);
+    md->setGameEngine(ge);
     connect(ge, SIGNAL(endGame()), md, SLOT(endGame()));
     close();
 }
