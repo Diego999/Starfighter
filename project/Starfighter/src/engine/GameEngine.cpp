@@ -74,6 +74,7 @@ void GameEngine::timerControle(int tps)
         killTimer(idTimer);
         idTimer = -1;
         //qDebug() << isRunning<< "Stop Timer 2:" <<idTimer;
+        emit signalPause(true);
 
     }
 
@@ -81,6 +82,7 @@ void GameEngine::timerControle(int tps)
     {
         idTimer = startTimer(tps);
         //qDebug() << isRunning<< "startTimer:" <<idTimer;
+        emit signalPause(false);
     }
     isRunning = !isRunning;
 

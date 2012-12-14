@@ -50,11 +50,13 @@ private:
     Settings *settings;
     int timeGame;
 
+
     int idTimer;
     bool isRunning;
 
 signals:
     void endGame();
+    void signalPause(bool); // true = isPause
 
 };
 #endif
