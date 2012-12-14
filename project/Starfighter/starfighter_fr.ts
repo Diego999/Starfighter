@@ -36,8 +36,24 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DisplayEngine</name>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="209"/>
-        <source>Fin de partie</source>
+        <location filename="src/engine/DisplayEngine.cpp" line="105"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="161"/>
+        <source>Name : %1</source>
+        <translation type="unfinished">Nom : %1</translation>
+    </message>
+    <message>
+        <location filename="src/engine/DisplayEngine.cpp" line="597"/>
+        <source>End of the game</source>
+        <translation type="unfinished">Fin du jeu</translation>
+    </message>
+    <message>
+        <location filename="src/engine/DisplayEngine.cpp" line="609"/>
+        <source>%1 has won !</source>
+        <translation type="unfinished">%1 a gagné !</translation>
+    </message>
+    <message>
+        <location filename="src/engine/DisplayEngine.cpp" line="623"/>
+        <source>Voulez-vous arrêter la partie?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -87,58 +103,75 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Durée</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="45"/>
+        <location filename="res/ui/NewGameDialog.ui" line="42"/>
         <source>Player 1 spaceship</source>
         <translation type="unfinished">Vaisseau joueur 1</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="55"/>
+        <location filename="res/ui/NewGameDialog.ui" line="52"/>
         <source>Player 2 spaceship</source>
         <translation type="unfinished">Vaisseau joueur 2</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="67"/>
+        <location filename="res/ui/NewGameDialog.ui" line="62"/>
+        <source> s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="res/ui/NewGameDialog.ui" line="80"/>
         <source>Difficulty</source>
         <translation type="unfinished">Difficulté</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="74"/>
+        <location filename="res/ui/NewGameDialog.ui" line="87"/>
         <source>Asteroids</source>
         <translation type="unfinished">Astéroïdes</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="84"/>
+        <location filename="res/ui/NewGameDialog.ui" line="97"/>
         <source>Alien mothership</source>
         <translation type="unfinished">Vaisseau mère alien</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="94"/>
+        <location filename="res/ui/NewGameDialog.ui" line="107"/>
         <source>Satellites</source>
         <translation type="unfinished">Satellites</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="104"/>
+        <location filename="res/ui/NewGameDialog.ui" line="117"/>
         <source>Supernovae</source>
         <translation type="unfinished">Supernovas</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="129"/>
+        <location filename="res/ui/NewGameDialog.ui" line="142"/>
         <source>Back</source>
         <translation type="unfinished">Retour</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="136"/>
+        <location filename="res/ui/NewGameDialog.ui" line="149"/>
         <source>Start</source>
         <translation type="unfinished">Démarrer partie</translation>
     </message>
     <message>
-        <location filename="src/menu/NewGameDialog.cpp" line="11"/>
+        <location filename="src/menu/NewGameDialog.cpp" line="15"/>
         <source>Deathmatch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/menu/NewGameDialog.cpp" line="12"/>
+        <location filename="src/menu/NewGameDialog.cpp" line="16"/>
         <source>Timer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/menu/NewGameDialog.cpp" line="18"/>
+        <location filename="src/menu/NewGameDialog.cpp" line="20"/>
+        <source>Vaisseau 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/menu/NewGameDialog.cpp" line="19"/>
+        <location filename="src/menu/NewGameDialog.cpp" line="21"/>
+        <source>Vaisseau 2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -233,12 +266,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QObject</name>
     <message>
-        <location filename="src/utils/Settings.cpp" line="22"/>
+        <location filename="src/utils/Settings.cpp" line="19"/>
         <source>Player 1</source>
         <translation type="unfinished">Joueur 1</translation>
     </message>
     <message>
-        <location filename="src/utils/Settings.cpp" line="23"/>
+        <location filename="src/utils/Settings.cpp" line="20"/>
         <source>Player 2</source>
         <translation type="unfinished">Joueur 2</translation>
     </message>
@@ -248,7 +281,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="src/menu/SetKeyDialog.cpp" line="8"/>
         <source>Please press the key now</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Veuillez appuyer sur la touche voulue</translation>
     </message>
 </context>
 </TS>
