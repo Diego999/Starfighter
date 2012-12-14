@@ -7,5 +7,6 @@
 #include <QApplication>
 #include <QTranslator>
 #include <QLocale>
+#include <QtOpenGL/QGLWidget>
 
 #endif // STABLE_H

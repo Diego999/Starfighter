@@ -86,3 +86,4 @@ SOURCES += src/main.cpp \
            src/utils/Settings.cpp
 RESOURCES += ressources.qrc
 TRANSLATIONS += starfighter_fr.ts
+QT += opengl

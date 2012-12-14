@@ -17,13 +17,13 @@ UserControlsEngine::UserControlsEngine(GameEngine *ge): gameEngine(ge), hasShoot
 
     display = gameEngine->displayEngine();
 
-    actions.insert(myKey[Top1],Top1);
-    actions.insert(myKey[Bottom1],Bottom1);
-    actions.insert(myKey[Shoot1],Shoot1);
+    actions.insert(myKey[aTop1],aTop1);
+    actions.insert(myKey[aBottom1],aBottom1);
+    actions.insert(myKey[aShoot1],aShoot1);
 
-    actions.insert(myKey[Top2],Top2);
-    actions.insert(myKey[Bottom2],Bottom2);
-    actions.insert(myKey[Shoot2],Shoot2);
+    actions.insert(myKey[aTop2],aTop2);
+    actions.insert(myKey[aBottom2],aBottom2);
+    actions.insert(myKey[aShoot2],aShoot2);
 
     novaeCall = new QTimer(this);
     novaeCall->setSingleShot(true);
@@ -41,36 +41,36 @@ void UserControlsEngine::keyPressEvent(QKeyEvent * event)
 
     switch(action)
     {
-        case(Top1):
-        actionList.append(Top1);
+        case(aTop1):
+        actionList.append(aTop1);
         break;
 
-        case(Bottom1):
-        actionList.append(Bottom1);
+        case(aBottom1):
+        actionList.append(aBottom1);
         break;
 
-        case(Shoot1):
+        case(aShoot1):
         break;
 
-        case(Top2):
-        actionList.append(Top2);
+        case(aTop2):
+        actionList.append(aTop2);
         break;
 
-        case(Bottom2):
-        actionList.append(Bottom2);
+        case(aBottom2):
+        actionList.append(aBottom2);
         break;
 
-        case(Shoot2):
+        case(aShoot2):
         break;
     }
 
-    if((!event->isAutoRepeat() && (action == Shoot1)))
+    if((!event->isAutoRepeat() && (action == aShoot1)))
     {
         gameEngine->ship1()->attack();
         novaeCall->start(NOVATIMER);
     }
 
-    if((!event->isAutoRepeat() && (action == Shoot2)))
+    if((!event->isAutoRepeat() && (action == aShoot2)))
     {
         gameEngine->ship2()->attack();
         novaeCall->start(NOVATIMER);
@@ -85,26 +85,26 @@ void UserControlsEngine::keyReleaseEvent(QKeyEvent * event)
 
     switch(action)
     {
-        case(Top1):
-        actionList.removeAll(Top1);
+        case(aTop1):
+        actionList.removeAll(aTop1);
         break;
 
-        case(Bottom1):
-        actionList.removeAll(Bottom1);
+        case(aBottom1):
+        actionList.removeAll(aBottom1);
         break;
 
-        case(Shoot1):
+        case(aShoot1):
         break;
 
-        case(Top2):
-        actionList.removeAll(Top2);
+        case(aTop2):
+        actionList.removeAll(aTop2);
         break;
 
-        case(Bottom2):
-        actionList.removeAll(Bottom2);
+        case(aBottom2):
+        actionList.removeAll(aBottom2);
         break;
 
-        case(Shoot2):
+        case(aShoot2):
         break;
     }
 }
@@ -118,26 +118,26 @@ void UserControlsEngine::timerEvent(QTimerEvent *event)
         {
             switch(*values)
             {
-                case(Top1):
+                case(aTop1):
                 gameEngine->ship1()->top();
                 break;
 
-                case(Bottom1):
+                case(aBottom1):
                 gameEngine->ship1()->bottom();
                 break;
 
-                case(Shoot1):
+                case(aShoot1):
                 break;
 
-                case(Top2):
+                case(aTop2):
                 gameEngine->ship2()->top();
                 break;
 
-                case(Bottom2):
+                case(aBottom2):
                 gameEngine->ship2()->bottom();
                 break;
 
-                case(Shoot2):
+                case(aShoot2):
                 break;
             }
         }

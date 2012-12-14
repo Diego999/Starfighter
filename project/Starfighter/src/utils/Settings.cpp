@@ -64,13 +64,13 @@ QMap<Action, Qt::Key> Settings::playersControls()
 {
     QMap<Action, Qt::Key> controls;
 
-    controls.insert(Top1, Qt::Key_W);
-    controls.insert(Top2, Qt::Key_Up);
-    controls.insert(Bottom1, Qt::Key_S);
-    controls.insert(Bottom2, Qt::Key_Down);
-    controls.insert(Shoot1, Qt::Key_E);
-    controls.insert(Shoot2, Qt::Key_Enter);
-    controls.insert(Escape, Qt::Key_Escape);
+    controls.insert(aTop1, Qt::Key_W);
+    controls.insert(aTop2, Qt::Key_Up);
+    controls.insert(aBottom1, Qt::Key_S);
+    controls.insert(aBottom2, Qt::Key_Down);
+    controls.insert(aShoot1, Qt::Key_E);
+    controls.insert(aShoot2, Qt::Key_Enter);
+    controls.insert(aEscape, Qt::Key_Escape);
 
     qse->beginGroup(PLAYERS_CONTROLS);
     QStringListIterator it(qse->childKeys());

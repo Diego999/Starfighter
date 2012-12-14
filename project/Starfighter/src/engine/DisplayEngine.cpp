@@ -17,9 +17,11 @@
 #include <QList>
 #include <QMutex>
 #include <QGraphicsScene>
+
 #define SPACE_BETWEEN         250
 #define SPACE_INPLAYER        50
 #define BACKGROUND "background/black hole.png"
+
 
 //DisplayEngine::DisplayEngine(QWidget *parent) : QWidget(parent), isFullScreen(true)
 DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), gameEngine(ge), isFullScreen(true), isTimer(false)
@@ -28,14 +30,14 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     // get screen dimension
     QDesktopWidget * desktop = QApplication::desktop();
 
-    //screenSizeHeight = 900;
-    screenSizeHeight = desktop->height();
+//    screenSizeHeight = desktop->height();
+//    screenSizeWidth = desktop->width();
 
-    //screenSizeWidth = 1440;
-    screenSizeWidth = desktop->width();
+    screenSizeWidth = 1440;
+    screenSizeHeight = 900;
 
-    sceneWidth = (screenSizeWidth)/desktop->screenCount();
-    sceneHeigth = (screenSizeHeight*0.85)/desktop->screenCount();
+    sceneWidth = (screenSizeWidth);///desktop->screenCount();
+    sceneHeigth = (screenSizeHeight*0.85);///desktop->screenCount();
     //double sceneHeigth = screenSizeHeight;
 
     QVBoxLayout * mainScreen = new QVBoxLayout(this);
@@ -53,7 +55,7 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     view->setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
     //view->setCacheMode(QGraphicsView::CacheBackground);
     //view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
-
+    //view->setViewport(new QGLWidget(QGLFormat(QGL::SampleBuffers)));
     view->viewport()->setFocusProxy( this );
     view->setFocusPolicy(Qt::NoFocus);
 
@@ -207,6 +209,7 @@ void DisplayEngine::creatHUD()
 
 void DisplayEngine::updateScreen()
 {
+    scene->update();
     scene->advance();
 }
 
@@ -467,7 +470,7 @@ void DisplayEngine::runTestCollision(QList<Displayable*> &list)
 
 void DisplayEngine::timerEvent(QTimerEvent * event)
 {
-    scene->advance();
+    updateScreen();
 
     checkPlayerOutsideScene(listSpaceship);
 
