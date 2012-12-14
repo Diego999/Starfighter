@@ -222,6 +222,16 @@ void DisplayEngine::addShip(Spaceship *_inSpaceship)
     connect(_inSpaceship,SIGNAL(destroyed(Destroyable*)),gameEngine,SLOT(elemenDestroyed(Destroyable*)));
 }
 
+void DisplayEngine::removeShip(Spaceship *_inSpaceship)
+{
+    int l_index = listSpaceship.indexOf(_inSpaceship);
+    if(l_index!=-1)
+    {
+        delete listSpaceship[l_index];
+        listSpaceship[l_index]=0;
+    }
+}
+
 void DisplayEngine::addBonus(Bonus *_inBonus)
 {
     scene->addItem(_inBonus);
@@ -333,11 +343,13 @@ void DisplayEngine::checkOutsideScene(QList<Displayable*> &list)
 
 void DisplayEngine::checkPlayerOutsideScene(QList<Spaceship*> &list)
 {
-    for(QList<Spaceship*>::iterator i = list.begin();i != list.end();i++)
-        if((*i)->pos().y()+(*i)->sizePixmap().height() > screenSizeHeight)
-            (*i)->top();
-        else if((*i)->pos().y() < 0)
-            (*i)->bottom();
+    mutex->lock();
+    for(int i = 0;i < list.size();i++)
+        if(list[i]->pos().y()+list[i]->sizePixmap().height() > screenSizeHeight)
+            list[i]->top();
+        else if(list[i]->pos().y() < 0)
+            list[i]->bottom();
+    mutex->unlock();
 }
 
 bool DisplayEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*> &list1,QList<Displayable*> &list2)
@@ -573,22 +585,30 @@ void DisplayEngine::endGameTimer()
     int score2;
 }
 
-void DisplayEngine::endGame(const QString &_playerName)
+void DisplayEngine::endGame(Spaceship* _ship)
 {
     // get point player
     //gameEngine->spaceship;
-    if(_playerName == "")
+    if(_ship==0)
     {
-        QMessageBox::information(mainPart,
+        QMessageBox::information(this,
                                  "Fin de partie",
                                  tr("Fin de partie"),
                                  QMessageBox::Ok);
     }
     else
-        QMessageBox::information(mainPart,
+    {
+        QString playerName;
+        if(_ship==gameEngine->ship1())
+            playerName = QString(gameEngine->ship2()->getPlayerName());
+        else if(_ship==gameEngine->ship2())
+            playerName = QString(gameEngine->ship2()->getPlayerName());
+        QMessageBox::information(this,
                                  "Fin de partie",
-                                 QString(tr("Le joueur %1 a gagné !")).arg(_playerName),
+                                 QString(tr("Le joueur %1 a gagné !")).arg(playerName),
                                  QMessageBox::Ok);
+        gameEngine->timerControle();
+    }
 }
 
 void DisplayEngine::escapeGame()

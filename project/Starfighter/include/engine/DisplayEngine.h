@@ -31,19 +31,24 @@ public:
     void setGameScore2(int _value);
 
     void addProjectile(Projectile *_inProjectile);
-    void addShip(Spaceship *_inSpaceship);  
-    void addAsteroid(Asteroid *_inAsteroide);
-    void addSmallAsteroid(Asteroid *_inAsteroide);
-    void addBonus(Bonus *_inBonus);
-    void addAlienSpaceship(AlienSpaceship *_inAlienSpaceship);
     void addSupernova(Supernova *_inSupernova);
 
-    void removeAlienSpaceship(AlienSpaceship *_inAlienSpaceship);
+    void addShip(Spaceship *_inSpaceship);  
+    void removeShip(Spaceship *_inSpaceship);
+
+    void addAsteroid(Asteroid *_inAsteroide);
     void removeAsteroid(Asteroid *_inAsteroide);
+
+    void addSmallAsteroid(Asteroid *_inAsteroide);
     void removeSmallAsteroid(Asteroid *_inAsteroide);
 
+    void addBonus(Bonus *_inBonus);
+
+    void addAlienSpaceship(AlienSpaceship *_inAlienSpaceship);
+    void removeAlienSpaceship(AlienSpaceship *_inAlienSpaceship);
+
     void timerEvent(QTimerEvent *);
-    void endGame(const QString& _playerName="");
+    void endGame(Spaceship* _ship=0);
 protected:
     //void paintEvent(QPaintEvent * event);
     void keyPressEvent(QKeyEvent *event);

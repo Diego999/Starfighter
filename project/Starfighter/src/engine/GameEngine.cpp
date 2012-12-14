@@ -69,7 +69,7 @@ int GameEngine::timeGamevalue(){return timeGame;}
 void GameEngine::elemenDestroyed(Destroyable* _destroyItem)
 {
     if(Spaceship* s = dynamic_cast<Spaceship*>(_destroyItem))
-        de->endGame(s->getPlayerName());
+        de->endGame(s);
     else if(Asteroid* a = dynamic_cast<Asteroid*>(_destroyItem))
     {
         if(a->isSmall())
