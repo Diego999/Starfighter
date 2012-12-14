@@ -16,7 +16,7 @@
 
 #include <QList>
 #include <QMutex>
-
+#include <QGraphicsScene>
 #define SPACE_BETWEEN         250
 #define SPACE_INPLAYER        50
 #define BACKGROUND "background/black hole.png"
@@ -51,8 +51,8 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
 
     view->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
     view->setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
-    view->setCacheMode(QGraphicsView::CacheBackground);
-    view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
+    //view->setCacheMode(QGraphicsView::CacheBackground);
+    //view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
 
     view->viewport()->setFocusProxy( this );
     view->setFocusPolicy(Qt::NoFocus);
@@ -88,6 +88,7 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
 DisplayEngine::~DisplayEngine()
 {
     delete mainPart;
+    qDebug() << "Bye";
 }
 
 void DisplayEngine::creatHUD()
@@ -592,8 +593,8 @@ void DisplayEngine::endGame(Spaceship* _ship)
     if(_ship==0)
     {
         QMessageBox::information(this,
-                                 "Fin de partie",
-                                 tr("Fin de partie"),
+                                 "End of the game",
+                                 tr("End of the game"),
                                  QMessageBox::Ok);
     }
     else
@@ -604,10 +605,11 @@ void DisplayEngine::endGame(Spaceship* _ship)
         else if(_ship==gameEngine->ship2())
             playerName = QString(gameEngine->ship2()->getPlayerName());
         QMessageBox::information(this,
-                                 "Fin de partie",
-                                 QString(tr("Le joueur %1 a gagné !")).arg(playerName),
+                                 "End of the game",
+                                 QString(tr("%1 has won !")).arg(playerName),
                                  QMessageBox::Ok);
         gameEngine->timerControle();
+        delete this;
     }
 }
 
