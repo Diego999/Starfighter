@@ -2,10 +2,6 @@
 #include "include/engine/DisplayEngine.h"
 #include "include/game/ProjectileAlien.h"
 
-#define MARGIN_Y 10
-#define DELTA_X 100
-#define NB_SEC 1
-
 AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResistance,GameEngine* _gameEngine)
     :Displayable(0,0),
       Destroyable(_dHealthPoint,_dResistance),

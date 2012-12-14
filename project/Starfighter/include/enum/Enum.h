@@ -14,12 +14,17 @@ enum Action
 
 enum Shooter
 {
-    Player1 = 1,Player2 = 2,Alien = 3,Other = 4
+    Player1 = 1,Player2 = 2,Other = 3
 };
 
 enum TypeProjectiles
 {
     ProjSimple = 1,ProjCross = 2,ProjV = 3,ProjAlien = 4,Nothing = 5
+};
+
+enum TypeItem
+{
+    tProj = 1,tAsteroid = 2,tSmallAsteroid = 3,tBonus = 4,tAlien = 5,tSupernova = 6,tSpaceship = 7
 };
 
 enum GameMode

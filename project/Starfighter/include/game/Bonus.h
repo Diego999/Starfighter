@@ -6,6 +6,9 @@
 class GameEngine;
 class Spaceship;
 
+#define DELTA_X_B 100
+#define NB_SEC 1
+
 class Bonus : public QObject, public Displayable
 {
     Q_OBJECT
@@ -13,9 +16,10 @@ public:
     Bonus(GameEngine *_gameEngine, Spaceship *_spaceShip);
     virtual ~Bonus();
 
+    TypeItem getTypeObject() const {return tBonus;}
     QRectF boundingRect() const;
     QPainterPath shape() const;
-    void paint(QPainter* _painter,const QStyleOptionGraphicsItem* _option, QWidget* _widget);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void advance(int _step);
 
 private slots:

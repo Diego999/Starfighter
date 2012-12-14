@@ -16,7 +16,7 @@ private:
     qreal trajectoryDraw(qreal _dX);
 
     static const qreal kIntervalModule = 2.0;
-    static const qreal kIntervalArgument = 1.0;
+    static const qreal kIntervalArgument = 0.00;
 
     qreal dArgument;
     qreal dModule;

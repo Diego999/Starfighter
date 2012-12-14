@@ -51,16 +51,24 @@ void Spaceship::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option
     _painter->drawPath(shape());
 }
 
-void Spaceship::addBonus(Bonus *bonus)
+qreal Spaceship::getPercentageSpeed() const
 {
-    if(BonusHP* bhp = dynamic_cast<BonusHP*>(bonus))
+    if(bonusSpeed==0)
+        return 100.0;
+    else
+        return 100+bonusSpeed->getSpeed()/(dSpeed-bonusSpeed->getSpeed())*100;
+}
+
+void Spaceship::addBonus(Bonus *_bonus)
+{
+    if(BonusHP* bhp = dynamic_cast<BonusHP*>(_bonus))
     {
         dHealthPoint+=bhp->getHealthPoint();
         if(dHealthPoint>MAX_SPACESHIP_PV)
             dHealthPoint=MAX_SPACESHIP_PV;
         delete bhp;
     }
-    else if(BonusProjectile* bp = dynamic_cast<BonusProjectile*>(bonus))
+    else if(BonusProjectile* bp = dynamic_cast<BonusProjectile*>(_bonus))
     {
         if(bonusSpeed==NULL)
         {
@@ -69,13 +77,13 @@ void Spaceship::addBonus(Bonus *bonus)
             QTimer::singleShot(bp->getExpiration(),this,SLOT(removeProjectileBonus()));
         }
     }
-    else if(BonusForceField* bff = dynamic_cast<BonusForceField*>(bonus))
+    else if(BonusForceField* bff = dynamic_cast<BonusForceField*>(_bonus))
     {
         dResistanceForceField = bff->getResistanceForceField();
         dHealthForceField = MAX_SPACESHIP_PV;
         delete bff;
     }
-    else if(BonusSpeed* bs = dynamic_cast<BonusSpeed*>(bonus))
+    else if(BonusSpeed* bs = dynamic_cast<BonusSpeed*>(_bonus))
     {
         if(bonusSpeed==NULL)
         {
@@ -104,8 +112,8 @@ void Spaceship::receiveAttack(qreal _dPower)
 {
     double power1 = _dPower * (100.0 - dHealthForceField) / 100.0;
     double power2 = _dPower - power1;
-
-    dHealthPoint -= power1 / dResistance;
+	
+	dHealthPoint -= power1 / dResistance;
     dHealthForceField -= power2 / dResistanceForceField;
     if(dHealthForceField < 0)
         dHealthForceField = 0;

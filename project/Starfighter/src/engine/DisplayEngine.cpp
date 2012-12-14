@@ -14,6 +14,9 @@
 
 #include "include/enum/Enum.h"
 
+#include <QList>
+#include <QMutex>
+
 #define SPACE_BETWEEN         250
 #define SPACE_INPLAYER        50
 #define BACKGROUND "background/black hole.png"
@@ -79,6 +82,7 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     this->gameType();
 
     setLayout(mainScreen);
+    mutex = new QMutex();
 }
 
 DisplayEngine::~DisplayEngine()
@@ -215,6 +219,7 @@ void DisplayEngine::addShip(Spaceship *_inSpaceship)
 {
     scene->addItem(_inSpaceship);
     listSpaceship.append(_inSpaceship);
+    connect(_inSpaceship,SIGNAL(destroyed(Destroyable*)),gameEngine,SLOT(elemenDestroyed(Destroyable*)));
 }
 
 void DisplayEngine::addBonus(Bonus *_inBonus)
@@ -227,24 +232,57 @@ void DisplayEngine::addAsteroid(Asteroid *_inAsteroid)
 {
     scene->addItem(_inAsteroid);
     listAsteroide.append(_inAsteroid);
+    connect(_inAsteroid,SIGNAL(destroyed(Destroyable*)),gameEngine,SLOT(elemenDestroyed(Destroyable*)));
 }
 
 void DisplayEngine::addSmallAsteroid(Asteroid *_inAsteroid)
 {
     scene->addItem(_inAsteroid);
     listSmallAsteroide.append(_inAsteroid);
+    connect(_inAsteroid,SIGNAL(destroyed(Destroyable*)),gameEngine,SLOT(elemenDestroyed(Destroyable*)));
 }
 
 void DisplayEngine::addAlienSpaceship(AlienSpaceship *_inAlienSpaceship)
 {
     scene->addItem(_inAlienSpaceship);
     listAlienSpaceship.append(_inAlienSpaceship);
+    connect(_inAlienSpaceship,SIGNAL(destroyed(Destroyable*)),gameEngine,SLOT(elemenDestroyed(Destroyable*)));
 }
 
 void DisplayEngine::addSupernova(Supernova *_inSupernova)
 {
-    scene->addItem(_inSupernova);
+    //scene->addItem(_inSupernova);
     listSupernova.append(_inSupernova);
+}
+
+void DisplayEngine::removeAlienSpaceship(AlienSpaceship *_inAlienSpaceship)
+{
+    int l_index = listAlienSpaceship.indexOf(_inAlienSpaceship);
+    if(l_index!=-1)
+    {
+        delete listAlienSpaceship[l_index];
+        listAlienSpaceship[l_index]=0;  
+    }
+}
+
+void DisplayEngine::removeAsteroid(Asteroid *_inAsteroide)
+{
+    int l_index = listAsteroide.indexOf(_inAsteroide);
+    if(l_index!=-1)
+    {   
+        delete listAsteroide[l_index];
+        listAsteroide[l_index]=0;
+    }
+}
+
+void DisplayEngine::removeSmallAsteroid(Asteroid *_inAsteroide)
+{
+    int l_index = listSmallAsteroide.indexOf(_inAsteroide);
+    if(l_index!=-1)
+    {  
+        delete listSmallAsteroide[l_index];
+        listSmallAsteroide[l_index]=0;
+    }
 }
 
 /*void DisplayEngine::paintEvent(QPaintEvent * event)
@@ -257,13 +295,9 @@ void DisplayEngine::addSupernova(Supernova *_inSupernova)
 
 void DisplayEngine::clearList(QList<Displayable*> &list)
 {
-    int size = list.size();
-    for(int i = 0;i<size;i++)
+    for(int i = 0;i<list.size();i++)
       if(list[i]==0)
-      {
           list.removeAt(i--);
-          size--;
-      }
 }
 
 void DisplayEngine::checkOutsideScene(QList<Displayable*> &list)
@@ -276,6 +310,9 @@ void DisplayEngine::checkOutsideScene(QList<Displayable*> &list)
         int l_w = 0;
         int l_h = 0;
 
+        if(list[i]==0)
+            continue;
+        mutex->lock();
         if(list[i]->isPixmap())
         {
             l_w = list[i]->sizePixmap().width();
@@ -288,7 +325,9 @@ void DisplayEngine::checkOutsideScene(QList<Displayable*> &list)
                 delete list[i];
                 list[i] = 0;
             }
+        mutex->unlock();
     }
+
     clearList(list);
 }
 
@@ -303,32 +342,114 @@ void DisplayEngine::checkPlayerOutsideScene(QList<Spaceship*> &list)
 
 bool DisplayEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*> &list1,QList<Displayable*> &list2)
 {
-    if(list2.size()==0 || (list1[i_list1]->getTypeObject() == Other && list2[0]->getTypeObject() == Alien))
+
+    if(list2.size()==0 || list1.size()==0)
         return false;
+    if(list2[0] == 0 || list1[i_list1]==0)
+        return false;
+
+    mutex->lock();
+    if(list2[0]->getTypeObject() == tAlien && (list1[i_list1]->getTypeObject() == tProj))
+        if(Projectile* p = dynamic_cast<Projectile*>(list1[i_list1]))
+            if(p->getFrom()==Other)
+            {
+                mutex->unlock();
+                return false;
+            }
+    mutex->unlock();
+
     for(int j = 0;j<list2.size();j++)
-        if(list1[i_list1]->collidesWithItem(list2[j],Qt::IntersectsItemShape))
+    {
+        if(list2[j]==0)
+            continue;
+        mutex->lock();
+        if(list1[i_list1] != list2[j] && list1[i_list1]->collidesWithItem(list2[j],Qt::IntersectsItemShape))
         {
+            if(list1[i_list1]->getTypeObject() == tProj)
+            {
+                if(Destroyable* d = dynamic_cast<Destroyable*>(list2[j]))
+                {
+                    d->receiveAttack(list1[i_list1]->getPower());
+                    delete list1[i_list1];
+                    list1[i_list1] = 0;
+
+                    mutex->unlock();
+                    return false;
+                }
+            }
+            else if(list1[i_list1]->getTypeObject() == tAlien)
+            {
+                if(Destroyable* d = dynamic_cast<Destroyable*>(list1[i_list1]))
+                {
+                    d->receiveAttack(list2[j]->getPower());
+                    delete list2[j];
+                    list2[j] = 0;
+
+                    mutex->unlock();
+                    return false;
+                }
+            }
+
             delete list1[i_list1];
-            delete list2[j];
             list1[i_list1] = 0;
-            list2[j] = 0;
+
+            if(list1!=list2)
+            {
+                delete list2[j];
+                list2[j] = 0;
+            }
+            mutex->unlock();
             return true;
         }
+        mutex->unlock();
+    }
+
     return false;
 }
 
 bool DisplayEngine::checkCollisionSpaceshipAndList(const int i,QList<Displayable*> &list)
 {
-    /*for(int j = 0;j<listSpaceship.size();j++)
-        if(list1[i]->collidesWithItem(listSpaceship[j],Qt::IntersectsItemShape))
+    if(list.size()==0 || listSpaceship.size()==0)
+        return false;
+
+    for(int j = 0;j<list.size();j++)
+    {
+        mutex->lock();
+        if(list[j]==0)
         {
-            listSpaceship[j]->receiveAttack(list1[i]);
-            delete list1[i];
-            list1[i] = 0;
+            mutex->unlock();
+            return false;
+        }
+
+        if(listSpaceship[i]->collidesWithItem(list[j],Qt::IntersectsItemShape))
+        {
+            listSpaceship[i]->receiveAttack(list[j]->getPower());
+            delete list[j];
+            list[j] = 0;
+            clearList(list);
+            mutex->unlock();
             return true;
         }
-    return false;  */
+        mutex->unlock();
+    }
+
     return false;
+}
+
+void DisplayEngine::runTestCollision(QList<Displayable*> &list)
+{
+    for(int i = 0;i<list.size();i++)
+    {
+        if(checkCollisionItemAndList(i,list,listAsteroide)
+        || checkCollisionItemAndList(i,list,listSmallAsteroide)
+        || checkCollisionItemAndList(i,list,listBonus)
+        || checkCollisionItemAndList(i,list,listAlienSpaceship))
+            continue;
+    }
+    clearList(listAsteroide);
+    clearList(listSmallAsteroide);
+    clearList(listBonus);
+    clearList(listAlienSpaceship);
 }
 
 void DisplayEngine::timerEvent(QTimerEvent * event)
@@ -337,28 +458,32 @@ void DisplayEngine::timerEvent(QTimerEvent * event)
 
     checkPlayerOutsideScene(listSpaceship);
 
-    checkOutsideScene(listBonus);
+    checkOutsideScene(listProjectile);
     checkOutsideScene(listAsteroide);
     checkOutsideScene(listSmallAsteroide);
-    checkOutsideScene(listProjectile);
+    checkOutsideScene(listBonus);
     checkOutsideScene(listAlienSpaceship);
 
-    listSupernova.clear();//Explode all the supernova
-
-    for(int i = 0;i<listProjectile.size();i++)
+    for(int i = 0;i<listSpaceship.size();i++)
     {
-        if(checkCollisionItemAndList(i,listProjectile,listAsteroide)
-        || checkCollisionItemAndList(i,listProjectile,listSmallAsteroide)
-        || checkCollisionItemAndList(i,listProjectile,listBonus)
-        || checkCollisionItemAndList(i,listProjectile,listAlienSpaceship))
-            continue;
+        checkCollisionSpaceshipAndList(i,listProjectile);
+        checkCollisionSpaceshipAndList(i,listAsteroide);
+        checkCollisionSpaceshipAndList(i,listSmallAsteroide);
     }
 
+    //Explode all the supernova
+    for(int i = 0;i<listSupernova.size();i++)
+    {
+        delete listSupernova[i];
+        listSupernova[i]=0;
+    }
+    listSupernova.clear();
+
+    runTestCollision(listProjectile);
     clearList(listProjectile);
-    clearList(listAsteroide);
-    clearList(listSmallAsteroide);
-    clearList(listBonus);
-    clearList(listAlienSpaceship);
+
+    runTestCollision(listAsteroide);
+    runTestCollision(listSmallAsteroide);
 
     if(isTimer)
     {
@@ -448,15 +573,22 @@ void DisplayEngine::endGameTimer()
     int score2;
 }
 
-void DisplayEngine::endGame()
+void DisplayEngine::endGame(const QString &_playerName)
 {
     // get point player
     //gameEngine->spaceship;
-
-    QMessageBox::information(mainPart,
-                             "Fin de partie",
-                             tr("Fin de partie"),
-                             QMessageBox::Ok);
+    if(_playerName == "")
+    {
+        QMessageBox::information(mainPart,
+                                 "Fin de partie",
+                                 tr("Fin de partie"),
+                                 QMessageBox::Ok);
+    }
+    else
+        QMessageBox::information(mainPart,
+                                 "Fin de partie",
+                                 QString(tr("Le joueur %1 a gagné !")).arg(_playerName),
+                                 QMessageBox::Ok);
 }
 
 void DisplayEngine::escapeGame()

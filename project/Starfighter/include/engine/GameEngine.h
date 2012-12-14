@@ -27,7 +27,7 @@ public:
     int randInt(int range);
     int timeGamevalue();
 
-    void timerControle(int tps = 10);
+    void timerControle(int tps = 15);
 
     Spaceship * ship1() const {return spaceship[0];}
     Spaceship * ship2() const {return spaceship[1];}

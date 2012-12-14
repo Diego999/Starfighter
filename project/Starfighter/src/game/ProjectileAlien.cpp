@@ -1,15 +1,3 @@
-/*==============================================================*
- | Implementation file ProjectileAlien.cpp
- |    implements : ProjectileAlien class
- |
- | Creator : Diego Antognini
- | Creation date : 26/11/2012
- | Copyright: EIAJ, all rights reserved
- |
- | Version of the file : 0.0.1
- |
- *==============================================================*/
-
 #include "include/game/ProjectileAlien.h"
 
 ProjectileAlien::ProjectileAlien(qreal _dXOrigin, qreal _dYOrigin,Shooter _from, qreal _dArgument, qreal _dModule)

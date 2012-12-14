@@ -1,11 +1,6 @@
 #include "include/game/Asteroid.h"
 #include "include/engine/DisplayEngine.h"
 
-#define SPEED_A 1
-#define MAX_A 5
-#define MIN_A 3
-#define ANGLE_A 15
-
 //If _dSlop & _bSmall are defined together. It means that it's a small asteroid
 Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint,GameEngine *_gameEngine,qreal _dSlope,bool _bSmall)
     :Displayable(_dX,_dY),
@@ -17,6 +12,7 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
     //If it's a small asteroid, we use dSlope and generate and X-direction
     if(bSmall)
     {
+        dPower = POWER_SMALL_ASTEROID;
         setPixmap(new QPixmap(":/images/game/asteroids/rock20000"));
         int l_X = gameEngine->randInt(2);
 
@@ -28,6 +24,7 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
     }
     else
     {
+        dPower = POWER_ASTEROID;
         setPixmap(new QPixmap(":/images/game/asteroids/rock10000"));
         QRect sceneSize = gameEngine->displayEngine()->sceneSize();
         /*Generate the position of the Asteroid and its trajectory
@@ -77,19 +74,24 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
     }
 }
 
+TypeItem Asteroid::getTypeObject() const
+{
+    return (bSmall)?tSmallAsteroid:tAsteroid;
+}
+
 Asteroid::~Asteroid()
 {
     if(!bSmall)
     {
-        int l_nb = gameEngine->randInt(MAX_A-MIN_A+1)+MIN_A;
+        int l_nb = gameEngine->randInt(MAX_ASTEROID-MIN_ASTEROID+1)+MIN_ASTEROID;
         int l_res = 0;
         int l_hp = 0;
 
         for(int i = 0;i<l_nb;i++)
             if(i%2==0)
-                gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x(),pos().y(),Other,l_res,l_hp,gameEngine,ANGLE_A*i,true));
+                gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x(),pos().y(),Other,l_res,l_hp,gameEngine,ANGLE_ASTEROID*i,true));
             else
-                gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x(),pos().y(),Other,l_res,l_hp,gameEngine,-ANGLE_A*i,true));
+                gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x(),pos().y(),Other,l_res,l_hp,gameEngine,-ANGLE_ASTEROID*i,true));
     }
 }
 
@@ -116,8 +118,8 @@ void Asteroid::advance(int _step)
 {
     Obstacle::advance(_step);
 
-    setPos(pos().x()+direction*SPEED_A,
-           pos().y()-trajectoryDraw(SPEED_A));
+    setPos(pos().x()+direction*SPEED_ASTEROID,
+           pos().y()-trajectoryDraw(SPEED_ASTEROID));
 }
 
 qreal Asteroid::trajectoryDraw(qreal _dX)

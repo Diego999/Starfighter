@@ -10,6 +10,7 @@ class Bonus;
 class Spaceship;
 class AlienSpaceship;
 class Supernova;
+class QMutex;
 
 class DisplayEngine : public QWidget
 {
@@ -37,8 +38,12 @@ public:
     void addAlienSpaceship(AlienSpaceship *_inAlienSpaceship);
     void addSupernova(Supernova *_inSupernova);
 
-    void timerEvent(QTimerEvent *);
+    void removeAlienSpaceship(AlienSpaceship *_inAlienSpaceship);
+    void removeAsteroid(Asteroid *_inAsteroide);
+    void removeSmallAsteroid(Asteroid *_inAsteroide);
 
+    void timerEvent(QTimerEvent *);
+    void endGame(const QString& _playerName="");
 protected:
     //void paintEvent(QPaintEvent * event);
     void keyPressEvent(QKeyEvent *event);
@@ -53,7 +58,6 @@ private:
     void switchFullScreen();
     void updateGameData();
     void endGameTimer();
-    void endGame();
     void escapeGame();
 
     void checkOutsideScene(QList<Displayable*> &list);
@@ -61,6 +65,7 @@ private:
     void clearList(QList<Displayable*> &list);
     bool checkCollisionItemAndList(const int i_list1,QList<Displayable*> &list1,QList<Displayable*> &list2);
     bool checkCollisionSpaceshipAndList(const int i_list1,QList<Displayable*> &list);
+    void runTestCollision(QList<Displayable*> &list);
 
     void recoveryTime();
 
@@ -70,6 +75,7 @@ private:
     QWidget * mainPart;
     QWidget * downHUD;
 
+    QMutex* mutex;
 
     QList<Displayable*>  listProjectile;
     QList<Displayable*>  listAsteroide;

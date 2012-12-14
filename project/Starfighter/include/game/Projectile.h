@@ -13,11 +13,11 @@ public:
     virtual ~Projectile();
 
     qreal getPower() const {return dPower;}
-    Shooter getTypeObject() const {return from;}
-
+    TypeItem getTypeObject() const {return tProj;}
+    Shooter getFrom() const {return from;}
     QRectF boundingRect() const;
     QPainterPath shape() const;
-    void paint(QPainter* _painter, const QStyleOptionGraphicsItem *_option, QWidget *_widget=0);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
     virtual void advance(int _step);
 

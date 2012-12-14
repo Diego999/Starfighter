@@ -7,6 +7,14 @@
 #include "include/utils/Settings.h"
 #include "include/game/Destroyable.h"
 
+#include "include/game/AlienSpaceship.h"
+#include "include/game/Asteroid.h"
+#include "include/game/BonusForceField.h"
+#include "include/game/BonusHP.h"
+#include "include/game/BonusProjectile.h"
+#include "include/game/BonusSpeed.h"
+#include "include/game/Supernova.h"
+
 GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject *parent = 0):QObject(parent), isRunning(false)
 {
     se = new SpawnEngine(difficulty);
@@ -17,9 +25,6 @@ GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Shi
 
     timerControle();
     createSpaceship();
-
-    //TODO
-    //connect signal from DESTROYABLE to something
 }
 
 void GameEngine::createSpaceship()
@@ -61,9 +66,19 @@ int GameEngine::randInt(int range)
 
 int GameEngine::timeGamevalue(){return timeGame;}
 
-void GameEngine::elemenDestroyed(Destroyable* destroyItem)
+void GameEngine::elemenDestroyed(Destroyable* _destroyItem)
 {
-
+    if(Spaceship* s = dynamic_cast<Spaceship*>(_destroyItem))
+        de->endGame(s->getPlayerName());
+    else if(Asteroid* a = dynamic_cast<Asteroid*>(_destroyItem))
+    {
+        if(a->isSmall())
+            de->removeSmallAsteroid(a);
+        else
+            de->removeAsteroid(a);
+    }
+    else if(AlienSpaceship* a = dynamic_cast<AlienSpaceship*>(_destroyItem))
+        de->removeAlienSpaceship(a);
 }
 
 void GameEngine::timerControle(int tps)

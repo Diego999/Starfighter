@@ -31,5 +31,5 @@ void Supernova::paint(QPainter *_painter, const QStyleOptionGraphicsItem *_optio
 Supernova::~Supernova()
 {
     for(int i = 0;i<nbSpirales;i++)
-        gameEngine->displayEngine()->addProjectile(new ProjectileAlien(pos().x(),pos().y(),Other,(i+1),0));
+        gameEngine->displayEngine()->addProjectile(new ProjectileAlien(pos().x(),pos().y(),Other,360.0/nbSpirales*(i+1),0));
 }

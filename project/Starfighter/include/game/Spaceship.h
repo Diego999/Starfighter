@@ -28,9 +28,16 @@ public:
     void top();
     void bottom();
 
-    Shooter getTypeObject() const {return player;}
+    TypeItem getTypeObject() const {return tSpaceship;}
+    Shooter getPlayer() const {return player;}
+    QString getPlayerName() const {return playerName;}
+    qreal getHealthPoint() const {return dHealthPoint;}
+    qreal getHealthForceField() const {return dHealthForceField;}
+    BonusSpeed* getBonusSpeed() const {return bonusSpeed;}
+    BonusProjectile* getBonusProjectile() const {return bonusProjectile;}
+    qreal getPercentageSpeed() const;
 
-    void addBonus(Bonus* bonus);
+    void addBonus(Bonus* _bonus);
     QRectF boundingRect() const;
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);

@@ -16,8 +16,10 @@ public:
     QSize sizePixmap() const {return isPixmap()?pxmPicture->size():QSize();}
     bool isPixmap() const {return !pxmPicture==0;}
 
-    virtual Shooter getTypeObject() const {return Other;}
+    virtual TypeItem getTypeObject() const=0;
+    virtual qreal getPower() const {return 0.0;}
     virtual void advance(int _step);
+    //virtual void receiveAttack(qreal _dPower) {}
 
     virtual QRectF boundingRect() const=0;
     virtual QPainterPath shape() const=0;

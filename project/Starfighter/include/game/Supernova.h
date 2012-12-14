@@ -5,18 +5,21 @@
 
 class GameEngine;
 
+#define NB_SPIRAL 180
+
 class Supernova : public Obstacle
 {
 public:
     Supernova(qreal _dX, qreal _dY,GameEngine *_gameEngine);
     ~Supernova();
 
+    TypeItem getTypeObject() const {return tSupernova;}
     QRectF boundingRect() const;
     QPainterPath shape() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=0);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
 private:
-	static const int nbSpirales = 360;
+    static const int nbSpirales = NB_SPIRAL;
 
     GameEngine* gameEngine;
 };

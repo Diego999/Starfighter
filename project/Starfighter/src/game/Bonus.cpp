@@ -3,9 +3,6 @@
 #include "include/engine/GameEngine.h"
 #include "include/game/Spaceship.h"
 
-#define DELTA_X_B 100
-#define NB_SEC 1
-
 Bonus::Bonus(GameEngine *_gameEngine, Spaceship *_spaceShip)
     :Displayable(0,0,new QPixmap(":/images/game/bonus")),
     gameEngine(_gameEngine),spaceship(_spaceShip),directionX(1),direction(1)
@@ -71,7 +68,7 @@ Bonus::~Bonus()
 
 void Bonus::playSound()
 {
-    QSound::play("res/musics/beep.wav");
+    //QSound::play("res/musics/beep.wav");
 }
 
 void Bonus::advance(int _step)
