@@ -600,7 +600,7 @@ void DisplayEngine::endGame(Spaceship* _ship)
     {
         QString playerName;
         if(_ship==gameEngine->ship1())
-            playerName = QString(gameEngine->ship2()->getPlayerName());
+            playerName = QString(gameEngine->ship1()->getPlayerName());
         else if(_ship==gameEngine->ship2())
             playerName = QString(gameEngine->ship2()->getPlayerName());
         QMessageBox::information(this,

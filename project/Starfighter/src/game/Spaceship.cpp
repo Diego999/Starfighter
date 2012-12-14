@@ -47,8 +47,8 @@ QPainterPath Spaceship::shape() const
 void Spaceship::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option, QWidget *_widget)
 {
     _painter->drawPixmap(0,0,*getPixmap());
-    _painter->setPen(QPen(QColor(255,0,0)));
-    _painter->drawPath(shape());
+//    _painter->setPen(QPen(QColor(255,0,0)));
+//    _painter->drawPath(shape());
 }
 
 qreal Spaceship::getPercentageSpeed() const

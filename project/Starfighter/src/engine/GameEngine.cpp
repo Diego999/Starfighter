@@ -32,8 +32,8 @@ void GameEngine::createSpaceship()
     int width = de->sceneSize().width();
     int height = de->sceneSize().height();
 
-    spaceship[0] = new Spaceship(0,height/2,Player1,"Diego",5,100,100,50,this);//Change with the parameter of a spaceship
-    spaceship[1] = new Spaceship(width,height/2,Player2,"Bianca",5,100,100,50,this);
+    spaceship[0] = new Spaceship(0,height/2,Player1,"Diego",5,100,100,100,this);//Change with the parameter of a spaceship
+    spaceship[1] = new Spaceship(width,height/2,Player2,"Bianca",5,100,100,100,this);
 
     de->addShip(spaceship[0]);
     de->addShip(spaceship[1]);

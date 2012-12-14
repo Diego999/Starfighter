@@ -33,7 +33,7 @@ void Projectile::paint(QPainter *_painter, const QStyleOptionGraphicsItem *, QWi
 {
     _painter->setBrush(*color);
     _painter->drawEllipse(-RADIUS_PROJECTILE/2,-RADIUS_PROJECTILE/2,RADIUS_PROJECTILE,RADIUS_PROJECTILE);
-    _painter->setPen(QPen(QColor(255,0,0)));
+    _painter->setPen(QPen(QColor(0,255,0)));
     _painter->drawPath(shape());
 }
 
