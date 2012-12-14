@@ -25,7 +25,7 @@ SpawnEngine::SpawnEngine(int difficulty, GameEngine *_ge)
     totalProba = spawnAsteroids ? kProbAsteroid : 0;
     totalProba += spawnAlienMothership ? kProbAlien : 0;
     totalProba += spawnSatellites ? kProbSat : 0;
-    totalProba += spawnSatellites ? kProbSupernova : 0;
+    totalProba += spawnSupernovae ? kProbSupernova : 0;
 
     intervalAsteroid = spawnAsteroids ? kProbAsteroid : 0;
     intervalAlien = spawnAlienMothership ? intervalAsteroid + kProbAlien : intervalAsteroid;
