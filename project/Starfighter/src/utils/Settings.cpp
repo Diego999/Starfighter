@@ -69,7 +69,7 @@ QMap<Action, Qt::Key> Settings::playersControls()
     controls.insert(aBottom1, Qt::Key_S);
     controls.insert(aBottom2, Qt::Key_Down);
     controls.insert(aShoot1, Qt::Key_E);
-    controls.insert(aShoot2, Qt::Key_Enter);
+    controls.insert(aShoot2, Qt::Key_Return);
     controls.insert(aEscape, Qt::Key_Escape);
 
     qse->beginGroup(PLAYERS_CONTROLS);
