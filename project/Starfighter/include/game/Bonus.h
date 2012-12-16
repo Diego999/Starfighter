@@ -4,7 +4,6 @@
 #include "include/game/Displayable.h"
 
 class GameEngine;
-class Spaceship;
 
 #define DELTA_X_B 100
 #define NB_SEC 1
@@ -13,7 +12,7 @@ class Bonus : public QObject, public Displayable
 {
     Q_OBJECT
 public:
-    Bonus(GameEngine *_gameEngine, Spaceship *_spaceShip);
+    Bonus(GameEngine *_gameEngine);
     virtual ~Bonus();
 
     TypeItem getTypeObject() const {return tBonus;}
@@ -27,7 +26,6 @@ private slots:
 
 private:
     GameEngine *gameEngine;
-    Spaceship *spaceship;
 
     static const qreal kIntervalArgument = 0.10;
 

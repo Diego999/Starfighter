@@ -5,12 +5,11 @@
 #include "include/enum/Enum.h"
 
 class GameEngine;
-class Spaceship;
 
 class BonusProjectile : public Bonus
 {
 public:
-    BonusProjectile(TypeProjectiles _type, int _expiration, GameEngine *_gameEngine, Spaceship *_spaceShip);
+    BonusProjectile(TypeProjectiles _type, int _expiration, GameEngine *_gameEngine);
     ~BonusProjectile();
 
     TypeProjectiles getType() const {return type;}

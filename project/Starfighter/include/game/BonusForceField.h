@@ -9,7 +9,7 @@ class Spaceship;
 class BonusForceField : public Bonus
 {
 public:
-    BonusForceField(GameEngine *_gameEngine, Spaceship *_spaceShip);
+    BonusForceField(GameEngine *_gameEngine);
     ~BonusForceField();
 };
 #endif

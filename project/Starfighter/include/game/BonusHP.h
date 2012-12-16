@@ -4,12 +4,11 @@
 #include "include/game/Bonus.h"
 
 class GameEngine;
-class Spaceship;
 
 class BonusHP : public Bonus
 {
 public:
-    BonusHP(qreal _dHealthPoint, GameEngine *_gameEngine, Spaceship *_spaceShip);
+    BonusHP(qreal _dHealthPoint, GameEngine *_gameEngine);
     ~BonusHP();
     qreal getHealthPoint() const {return dHealthPoint;}
 private:

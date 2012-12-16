@@ -4,12 +4,11 @@
 #include "include/game/Bonus.h"
 
 class GameEngine;
-class Spaceship;
 
 class BonusSpeed : public Bonus
 {
 public:
-    BonusSpeed(qreal _dSpeed, int _expiration, GameEngine *_gameEngine, Spaceship *_spaceShip);
+    BonusSpeed(qreal _dSpeed, int _expiration, GameEngine *_gameEngine);
     ~BonusSpeed();
 
     qreal getSpeed() const {return dSpeed;}

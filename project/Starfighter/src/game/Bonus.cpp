@@ -3,9 +3,9 @@
 #include "include/engine/GameEngine.h"
 #include "include/game/Spaceship.h"
 
-Bonus::Bonus(GameEngine *_gameEngine, Spaceship *_spaceShip)
+Bonus::Bonus(GameEngine *_gameEngine)
     :Displayable(0,0,new QPixmap(":/images/game/bonus")),
-    gameEngine(_gameEngine),spaceship(_spaceShip),directionX(1),direction(1)
+    gameEngine(_gameEngine),directionX(1),direction(1)
 {
     /*Generate the position of the AlienSpaceship
       For more informations cf the specification file*/

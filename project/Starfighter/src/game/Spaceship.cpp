@@ -70,12 +70,10 @@ void Spaceship::addBonus(Bonus *_bonus)
     }
     else if(BonusProjectile* bp = dynamic_cast<BonusProjectile*>(_bonus))
     {
-        if(bonusSpeed==NULL)
-        {
-            type = bp->getType();
-            bonusProjectile = bp;
-            QTimer::singleShot(bp->getExpiration(),this,SLOT(removeProjectileBonus()));
-        }
+        qDebug() << type;
+        type = bp->getType();
+        bonusProjectile = bp;
+        QTimer::singleShot(bp->getExpiration(),this,SLOT(removeProjectileBonus()));
     }
     else if(BonusForceField* bff = dynamic_cast<BonusForceField*>(_bonus))
     {
@@ -84,7 +82,7 @@ void Spaceship::addBonus(Bonus *_bonus)
     }
     else if(BonusSpeed* bs = dynamic_cast<BonusSpeed*>(_bonus))
     {
-        if(bonusSpeed==NULL)
+        if(bonusSpeed==0)
         {
             bonusSpeed = bs;
             dSpeed+=bs->getSpeed();
@@ -96,7 +94,7 @@ void Spaceship::addBonus(Bonus *_bonus)
 void Spaceship::removeProjectileBonus()
 {
     delete bonusProjectile;
-    bonusProjectile = NULL;
+    bonusProjectile = 0;
     type = PROJ_SPACESHIP_DEF;
 }
 
@@ -104,7 +102,7 @@ void Spaceship::removeSpeedBonus()
 {
     dSpeed-=bonusSpeed->getSpeed();
     delete bonusSpeed;
-    bonusSpeed = NULL;
+    bonusSpeed = 0;
 }
 
 void Spaceship::receiveAttack(qreal _dPower)

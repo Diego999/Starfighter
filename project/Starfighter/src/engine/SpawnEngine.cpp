@@ -75,16 +75,16 @@ void SpawnEngine::timerFired()
             switch(satType)
             {
             case 0:
-                bonus = new BonusForceField(ge, NULL);
+                bonus = new BonusForceField(ge);
                 break;
             case 1:
-                bonus = new BonusHP(irand(BONUS_HEALTH_MIN, BONUS_HEALTH_MAX), ge, NULL);
+                bonus = new BonusHP(irand(BONUS_HEALTH_MIN, BONUS_HEALTH_MAX), ge);
                 break;
             case 2:
-                bonus = new BonusProjectile((TypeProjectiles)irand(BONUS_TYPE_PROJECTILES_MIN, BONUS_TYPE_PROJECTILES_MAX), BONUS_PROJECTILE_DURATION, ge, NULL);
+                bonus = new BonusProjectile((TypeProjectiles)irand(BONUS_TYPE_PROJECTILES_MIN, BONUS_TYPE_PROJECTILES_MAX), BONUS_PROJECTILE_DURATION, ge);
                 break;
             case 3:
-                bonus = new BonusSpeed(irand(BONUS_SPEED_MIN, BONUS_SPEED_MAX), BONUS_SPEED_DURATION, ge, NULL);
+                bonus = new BonusSpeed(irand(BONUS_SPEED_MIN, BONUS_SPEED_MAX), BONUS_SPEED_DURATION, ge);
                 break;
             }
 
