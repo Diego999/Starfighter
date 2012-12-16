@@ -92,16 +92,18 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
 
 DisplayEngine::~DisplayEngine()
 {
+    mutex->lock();
+    scene->clear();
+    clearList(listProjectile);
+    clearList(listAsteroide);
+    clearList(listSmallAsteroide);
+    clearList(listBonus);
+    clearList(listAlienSpaceship);
+    clearList(listSupernova);
+    //Spaceship delete in GameEngine
+    mutex->unlock();
     delete affiche;
     delete mutex;
-
-    qDeleteAll(listProjectile);
-    qDeleteAll(listAsteroide);
-    qDeleteAll(listSmallAsteroide);
-    qDeleteAll(listBonus);
-    qDeleteAll(listSpaceship);
-    qDeleteAll(listAlienSpaceship);
-    qDeleteAll(listSupernova);
 
     //GameEnfine call ~DisplayEngine
 }
@@ -503,7 +505,10 @@ void DisplayEngine::runTestCollision(QList<Displayable*> &list)
 void DisplayEngine::timerEvent(QTimerEvent * event)
 {
     updateScreen();
-
+    if(isTimer)
+    {
+        this->updateGameDataTimer();
+    }
     checkPlayerOutsideScene(listSpaceship);
 
     checkOutsideScene(listProjectile);
@@ -518,7 +523,7 @@ void DisplayEngine::timerEvent(QTimerEvent * event)
         checkCollisionSpaceshipAndList(i,listAsteroide);
         checkCollisionSpaceshipAndList(i,listSmallAsteroide);
     }
-
+    updateGameData();
     //Explode all the supernova
     for(int i = 0;i<listSupernova.size();i++)
     {
@@ -532,13 +537,6 @@ void DisplayEngine::timerEvent(QTimerEvent * event)
 
     runTestCollision(listAsteroide);
     runTestCollision(listSmallAsteroide);
-
-    updateGameData();
-
-    if(isTimer)
-    {
-        this->updateGameDataTimer();
-    }
 }
 
 QRect DisplayEngine::sceneSize() const
@@ -607,7 +605,6 @@ void DisplayEngine::setGameScore2(int _value)
 
 void DisplayEngine::updateGameData()
 {
-
     this->setProgressHP1(gameEngine->ship1()->getHealthPoint());
     this->setProgressHP2(gameEngine->ship2()->getHealthPoint());
 
@@ -637,6 +634,7 @@ void DisplayEngine::endGame(Spaceship* _ship)
 {
     // get point player
     //gameEngine->spaceship;
+    updateGameData();
     if(_ship==0)
     {
         QMessageBox::information(this,
@@ -648,7 +646,9 @@ void DisplayEngine::endGame(Spaceship* _ship)
     {
         QString playerName;
         if(_ship==gameEngine->ship1())
+        {
             playerName = QString(gameEngine->ship2()->getPlayerName());
+        }
         else if(_ship==gameEngine->ship2())
             playerName = QString(gameEngine->ship1()->getPlayerName());
         QMessageBox::information(this,

@@ -5,7 +5,7 @@
 
 class GameEngine;
 
-#define NB_SPIRAL 180
+#define NB_SPIRAL 90
 
 class Supernova : public Obstacle
 {

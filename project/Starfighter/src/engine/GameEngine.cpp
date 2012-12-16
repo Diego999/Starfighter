@@ -33,9 +33,9 @@ GameEngine::~GameEngine()
     delete se;
     delete de;
 
-    Spaceship* s = spaceship[0];
-    delete [] spaceship;
-    s;
+    delete spaceship[0];
+    delete spaceship[1];
+    delete[] spaceship;
 }
 
 void GameEngine::createSpaceship()
@@ -84,6 +84,7 @@ void GameEngine::elemenDestroyed(Destroyable* _destroyItem)
 {
     if(Spaceship* s = dynamic_cast<Spaceship*>(_destroyItem))
     {
+        timerControle();
         de->endGame(s);
         emit endGame();
     }
