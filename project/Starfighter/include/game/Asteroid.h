@@ -11,9 +11,10 @@ class GameEngine;
 #define SPEED_ASTEROID 1
 #define MAX_ASTEROID 5
 #define MIN_ASTEROID 3
-#define ANGLE_ASTEROID 15
 #define POWER_ASTEROID 10
 #define POWER_SMALL_ASTEROID 5
+#define RESISTANCE_SMALL_ASTEROID 1
+#define HEALTHPOINT_SMALL_ASTEROID 50
 
 class Asteroid : public Destroyable, public Obstacle, public Projectile
 {

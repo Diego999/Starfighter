@@ -84,14 +84,32 @@ Asteroid::~Asteroid()
     if(!bSmall)
     {
         int l_nb = gameEngine->randInt(MAX_ASTEROID-MIN_ASTEROID+1)+MIN_ASTEROID;
-        int l_res = 0;
-        int l_hp = 0;
 
-        for(int i = 0;i<l_nb;i++)
-            if(i%2==0)
-                gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x(),pos().y(),Other,l_res,l_hp,gameEngine,ANGLE_ASTEROID*i,true));
-            else
-                gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x(),pos().y(),Other,l_res,l_hp,gameEngine,-ANGLE_ASTEROID*i,true));
+        switch(l_nb)
+        {
+            case 3:
+            gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x()+getPixmap()->width(),pos().y()+getPixmap()->height()/2.0,Other,
+                                                              RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,0,true));
+            gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x(),pos().y(),Other,
+                                                              RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,120,true));
+            gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x(),pos().y()+getPixmap()->height(),Other,
+                                                              RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,240,true));
+                break;
+
+            case 5:
+            gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x()+getPixmap()->width()/2.0,pos().y()+getPixmap()->height()/2.0,Other,
+                                                              RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,0,true));
+            case 4:
+            gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x()+getPixmap()->width(),pos().y(),Other,
+                                                              RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,45,true));
+            gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x(),pos().y(),Other,
+                                                              RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,135,true));
+            gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x(),pos().y()+getPixmap()->height(),Other,
+                                                              RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,225,true));
+            gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x()+getPixmap()->width(),pos().y()+getPixmap()->height(),Other,
+                                                              RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,-45,true));
+                break;
+        }
     }
 }
 
