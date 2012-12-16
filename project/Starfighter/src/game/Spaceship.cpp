@@ -116,6 +116,8 @@ void Spaceship::receiveAttack(qreal _dPower)
     if(dHealthForceField < 0)
         dHealthForceField = 0;
 
+    if(dHealthPoint<=0)
+        dHealthPoint=0;
     isDead();
 }
 
