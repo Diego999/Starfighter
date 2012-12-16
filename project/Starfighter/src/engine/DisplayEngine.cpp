@@ -92,7 +92,7 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
 
 DisplayEngine::~DisplayEngine()
 {
-    mutex->lock();
+    //mutex->lock();
     scene->clear();
     clearList(listProjectile);
     clearList(listAsteroide);
@@ -100,8 +100,9 @@ DisplayEngine::~DisplayEngine()
     clearList(listBonus);
     clearList(listAlienSpaceship);
     clearList(listSupernova);
-    //Spaceship delete in GameEngine
-    mutex->unlock();
+    for(int i = 0;i<listSpaceship.size();i++)
+        listSpaceship.removeAt(i--);
+    //mutex->unlock();
     delete affiche;
     delete mutex;
 
@@ -634,7 +635,6 @@ void DisplayEngine::endGame(Spaceship* _ship)
 {
     // get point player
     //gameEngine->spaceship;
-    updateGameData();
     if(_ship==0)
     {
         QMessageBox::information(this,
@@ -644,6 +644,7 @@ void DisplayEngine::endGame(Spaceship* _ship)
     }
     else
     {
+        updateGameData();
         QString playerName;
         if(_ship==gameEngine->ship1())
         {
@@ -652,7 +653,7 @@ void DisplayEngine::endGame(Spaceship* _ship)
         else if(_ship==gameEngine->ship2())
             playerName = QString(gameEngine->ship1()->getPlayerName());
         QMessageBox::information(this,
-                                 "End of the game",
+                                 tr("End of the game"),
                                  QString(tr("%1 has won !")).arg(playerName),
                                  QMessageBox::Ok);
     }
@@ -664,8 +665,8 @@ void DisplayEngine::escapeGame()
 
     QMessageBox messageExit;
 
-    messageExit.setWindowTitle("Fin de partie");
-    messageExit.setText(tr("Voulez-vous arrêter la partie?"));
+    messageExit.setWindowTitle(tr("End of the game"));
+    messageExit.setText(tr("Do you want to stop the current game ?"));
     messageExit.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     messageExit.setDefaultButton(QMessageBox::No);
 

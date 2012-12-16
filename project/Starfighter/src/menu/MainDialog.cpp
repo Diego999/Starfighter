@@ -3,7 +3,7 @@
 #include "include/menu/NewGameDialog.h"
 #include "include/menu/AboutDialog.h"
 #include "ui_MainDialog.h"
-
+#include "include/engine/GameEngine.h"
 MainDialog::MainDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MainDialog)

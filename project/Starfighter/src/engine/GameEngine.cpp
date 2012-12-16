@@ -29,12 +29,11 @@ GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Shi
 
 GameEngine::~GameEngine()
 {
+    delete de;
     delete uc;
     delete se;
-    delete de;
 
-    delete spaceship[0];
-    delete spaceship[1];
+    //Spaceship deleted in DisplayEngine
     delete[] spaceship;
 }
 
