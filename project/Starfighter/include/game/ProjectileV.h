@@ -3,8 +3,8 @@
 
 #include "include/game/Projectile.h"
 
-#define POWER_V 5
-#define SPEED_V_DEF 3
+#define POWER_V 1000
+#define SPEED_V_DEF 5
 
 class ProjectileV : public Projectile
 {

@@ -144,7 +144,7 @@ void Spaceship::attack()
             break;
 
         case ProjV:
-            gameEngine->displayEngine()->addProjectile(new ProjectileV(l_x,l_y,player,AMPLI_SPACESHIP_PROJ_V,AMPLI_SPACESHIP_PROJ_V));
+            gameEngine->displayEngine()->addProjectile(new ProjectileV(l_x,l_y,player,AMPLI_SPACESHIP_PROJ_V,OMEGA_SPACESHIP_PROJ_V));
             break;
         case ProjAlien:
             break;
