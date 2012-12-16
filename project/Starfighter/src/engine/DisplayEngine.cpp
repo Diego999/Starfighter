@@ -638,7 +638,7 @@ void DisplayEngine::endGame(Spaceship* _ship)
     if(_ship==0)
     {
         QMessageBox::information(this,
-                                 "End of the game",
+                                 tr("End of the game"),
                                  tr("End of the game"),
                                  QMessageBox::Ok);
     }
@@ -647,9 +647,7 @@ void DisplayEngine::endGame(Spaceship* _ship)
         updateGameData();
         QString playerName;
         if(_ship==gameEngine->ship1())
-        {
             playerName = QString(gameEngine->ship2()->getPlayerName());
-        }
         else if(_ship==gameEngine->ship2())
             playerName = QString(gameEngine->ship1()->getPlayerName());
         QMessageBox::information(this,
