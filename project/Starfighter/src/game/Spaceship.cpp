@@ -87,6 +87,8 @@ void Spaceship::addBonus(Bonus *_bonus)
             dSpeed+=bs->getSpeed();
             QTimer::singleShot(bs->getExpiration(),this,SLOT(removeSpeedBonus()));
         }
+        else
+            delete bs;
     }
 }
 
