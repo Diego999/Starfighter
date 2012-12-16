@@ -9,11 +9,15 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
       Projectile(_dX,_dY,_from),
       gameEngine(_gameEngine),dSlope(_dSlope),bSmall(_bSmall)
 {
+    index = 0;
     //If it's a small asteroid, we use dSlope and generate and X-direction
     if(bSmall)
     {
+        numberFrameMin = 20000;
+        numberFrameMax = 20031;
+        currentFrame = numberFrameMin;
         dPower = POWER_SMALL_ASTEROID;
-        setPixmap(new QPixmap(":/images/game/asteroids/rock20000"));
+        setPixmap(new QPixmap(QString(":/images/game/asteroids/rock%1").arg(currentFrame)));
         int l_X = gameEngine->randInt(2);
 
         dSlope=tan(dSlope);
@@ -24,8 +28,11 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
     }
     else
     {
+        numberFrameMin = 10000;
+        numberFrameMax = 10031;
+        currentFrame = numberFrameMin;
         dPower = POWER_ASTEROID;
-        setPixmap(new QPixmap(":/images/game/asteroids/rock10000"));
+        setPixmap(new QPixmap(QString(":/images/game/asteroids/rock%1").arg(currentFrame)));
         QRect sceneSize = gameEngine->displayEngine()->sceneSize();
         /*Generate the position of the Asteroid and its trajectory
           For more informations cf the specification file*/
@@ -127,6 +134,13 @@ QPainterPath Asteroid::shape() const
 
 void Asteroid::paint(QPainter* _painter,const QStyleOptionGraphicsItem* _option, QWidget* _widget)
 {
+    if(index++%2==0)
+    {
+        if(currentFrame==numberFrameMax)
+            currentFrame=numberFrameMin;
+
+        setPixmap(new QPixmap(QString(":/images/game/asteroids/rock%1").arg(++currentFrame)));
+    }
     _painter->drawPixmap(0,0,*getPixmap());
 //    _painter->setPen(QPen(QColor(255,0,0)));
 //    _painter->drawPath(shape());

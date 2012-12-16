@@ -34,6 +34,11 @@ private:
     void advance(int _step);
     qreal trajectoryDraw(qreal _dX);
 
+    int currentFrame;
+    int numberFrameMin;
+    int numberFrameMax;
+    int index;
+
     int direction;
 
     GameEngine* gameEngine;
