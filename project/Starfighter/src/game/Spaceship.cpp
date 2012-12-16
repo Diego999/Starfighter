@@ -70,7 +70,6 @@ void Spaceship::addBonus(Bonus *_bonus)
     }
     else if(BonusProjectile* bp = dynamic_cast<BonusProjectile*>(_bonus))
     {
-        qDebug() << type;
         type = bp->getType();
         bonusProjectile = bp;
         QTimer::singleShot(bp->getExpiration(),this,SLOT(removeProjectileBonus()));
