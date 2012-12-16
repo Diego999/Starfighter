@@ -82,7 +82,7 @@ void AlienSpaceship::attacking()
     isAttacking=true;
 
     for(int i = 0;i<nbSpirales;i++)
-        gameEngine->displayEngine()->addProjectile(new ProjectileAlien(pos().x(),pos().y(),Other,360.0/nbSpirales*(i+1),0));
+        gameEngine->displayEngine()->addProjectile(new ProjectileAlien(pos().x(),pos().y(),Alien,360.0/nbSpirales*(i+1),0));
 
     hasAttacked=true;
     isAttacking=false;

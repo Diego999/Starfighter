@@ -379,7 +379,7 @@ bool DisplayEngine::checkCollisionItemAndList(const int i_list1,QList<Displayabl
     mutex->lock();
     if(list2[0]->getTypeObject() == tAlien && (list1[i_list1]->getTypeObject() == tProj))
         if(Projectile* p = dynamic_cast<Projectile*>(list1[i_list1]))
-            if(p->getFrom()==Other)
+            if(p->getFrom()==Alien)
             {
                 mutex->unlock();
                 return false;
