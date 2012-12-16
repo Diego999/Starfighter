@@ -361,13 +361,11 @@ void DisplayEngine::checkOutsideScene(QList<Displayable*> &list)
 
 void DisplayEngine::checkPlayerOutsideScene(QList<Spaceship*> &list)
 {
-    mutex->lock();
     for(int i = 0;i < list.size();i++)
-        if(list[i]->pos().y()+list[i]->sizePixmap().height() > screenSizeHeight)
+        if(list[i]->pos().y()+list[i]->sizePixmap().height() > sceneHeigth)
             list[i]->top();
         else if(list[i]->pos().y() < 0)
             list[i]->bottom();
-    mutex->unlock();
 }
 
 bool DisplayEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*> &list1,QList<Displayable*> &list2)
@@ -405,6 +403,26 @@ bool DisplayEngine::checkCollisionItemAndList(const int i_list1,QList<Displayabl
 
                     mutex->unlock();
                     return false;
+                }
+                else if(Bonus* b = dynamic_cast<Bonus*>(list2[j]))
+                {
+                    Projectile* p = dynamic_cast<Projectile*>(list1[i_list1]);
+
+                    //We don't delete the pointer here, it'll be deleted in the class spaceship
+                    //We only remove the item from the list
+                    list2[j] = 0;
+                    scene->removeItem(b);
+
+                    if(p->getFrom() == Player1)
+                        gameEngine->ship1()->addBonus(b);
+                    else if(p->getFrom() == Player2)
+                        gameEngine->ship2()->addBonus(b);
+
+                    delete list1[i_list1];
+                    list1[i_list1]=0;
+
+                    mutex->unlock();
+                    return true;
                 }
             }
             else if(list1[i_list1]->getTypeObject() == tAlien)
