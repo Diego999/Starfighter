@@ -69,21 +69,21 @@ void SpawnEngine::timerFired()
         }
         else if(probWhat < intervalSat)
         {
-            int satType = ge->randInt(4);
+            int satType = irand(1, 4);
             Bonus *bonus;
 
             switch(satType)
             {
-            case 0:
+            case 1:
                 bonus = new BonusForceField(ge);
                 break;
-            case 1:
+            case 2:
                 bonus = new BonusHP(irand(BONUS_HEALTH_MIN, BONUS_HEALTH_MAX), ge);
                 break;
-            case 2:
+            case 3:
                 bonus = new BonusProjectile((TypeProjectiles)irand(BONUS_TYPE_PROJECTILES_MIN, BONUS_TYPE_PROJECTILES_MAX), BONUS_PROJECTILE_DURATION, ge);
                 break;
-            case 3:
+            case 4:
                 bonus = new BonusSpeed(irand(BONUS_SPEED_MIN, BONUS_SPEED_MAX), BONUS_SPEED_DURATION, ge);
                 break;
             }
