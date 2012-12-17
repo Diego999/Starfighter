@@ -51,6 +51,9 @@ private:
     Settings& settings;
     int timeGame;
 
+    // For elapsedTime()
+    QElapsedTimer elapsedTimer;
+    qint64 timeAlreadyCounted;
 
     int idTimer;
     bool isRunning;

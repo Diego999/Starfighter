@@ -50,7 +50,7 @@ SpawnEngine::~SpawnEngine()
 
 void SpawnEngine::timerFired()
 {
-    double probSpawn = proba(ge->elapsedTime());
+    double probSpawn = proba(ge->elapsedTime() / 1000.0);
 
     if(ge->randDouble() < probSpawn)
     {
@@ -113,5 +113,5 @@ int SpawnEngine::irand(int min, int max)
 
 double SpawnEngine::proba(double t)
 {
-    return ((arccot(30.0 * t + 100.0)) * 100.0) + t/600.0 + (0.4 * sin(t/20.0) * 0.5 * cos(t/9.0 + 5));
+    return 0.15 + ((arccot(30.0 * t + 100.0)) * 100.0) + t/600.0 + (0.4 * sin(t/20.0) * 0.5 * cos(t/9.0 + 5));
 }

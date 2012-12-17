@@ -3,7 +3,7 @@
 
 #include "include/engine/GameEngine.h"
 
-#define SPAWN_INTERVAL 1000
+#define SPAWN_INTERVAL 400
 
 #define RESISTANCE_ASTEROID 20
 #define RESISTANCE_ALIEN 20

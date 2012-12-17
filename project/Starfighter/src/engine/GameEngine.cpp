@@ -15,7 +15,7 @@
 #include "include/game/BonusSpeed.h"
 #include "include/game/Supernova.h"
 
-GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject *parent = 0):QObject(parent), isRunning(false), settings(Settings::getGlobalSettings())
+GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject *parent = 0):QObject(parent), isRunning(false), settings(Settings::getGlobalSettings()), timeAlreadyCounted(0)
 {
     de = new DisplayEngine(this,0);
     uc = new UserControlsEngine(this);
@@ -25,6 +25,8 @@ GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Shi
 
     timerControle();
     createSpaceship();
+
+    elapsedTimer.start();
 }
 
 GameEngine::~GameEngine()
@@ -56,7 +58,10 @@ void GameEngine::timerEvent(QTimerEvent *event)
 
 int GameEngine::elapsedTime()
 {
-	return 0;
+    if(elapsedTimer.isValid())
+        return timeAlreadyCounted + elapsedTimer.elapsed();
+    else
+        return timeAlreadyCounted;
 }
 
 void GameEngine::spawn(Obstacle* obstacle)
@@ -105,15 +110,21 @@ void GameEngine::timerControle(int tps)
         //qDebug() << isRunning << "Stop Timer 1:" <<idTimer;
         killTimer(idTimer);
         idTimer = -1;
+
+        timeAlreadyCounted += elapsedTimer.elapsed();
+        elapsedTimer.invalidate();
+
         //qDebug() << isRunning<< "Stop Timer 2:" <<idTimer;
         emit signalPause(true);
-
     }
 
     else
     {
         idTimer = startTimer(tps);
         //qDebug() << isRunning<< "startTimer:" <<idTimer;
+
+        elapsedTimer.start();
+
         emit signalPause(false);
     }
     isRunning = !isRunning;

@@ -8,5 +8,6 @@
 #include <QTranslator>
 #include <QLocale>
 #include <QtOpenGL/QGLWidget>
+#include <QElapsedTimer>
 
 #endif // STABLE_H
