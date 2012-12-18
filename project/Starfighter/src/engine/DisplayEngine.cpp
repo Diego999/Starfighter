@@ -91,11 +91,11 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     affiche = new QTime();
     affiche->setHMS(0,0,0,0);
 
-    this->creatHUD();
-    this->gameType();
-
     setLayout(mainScreen);
     mutex = new QMutex();
+
+    this->creatHUD();
+    this->gameType();   
 }
 
 DisplayEngine::~DisplayEngine()
@@ -119,23 +119,29 @@ DisplayEngine::~DisplayEngine()
 void DisplayEngine::creatHUD()
 {
 
-    imSpeed1 = new QLabel();
+    imSpeed1 = new QLabel(this);
     //imSpeed1->setPixmap(*pixSpeed);
+    lBSpeed1 = new QLabel(this);
 
-    imHP1 = new QLabel();
+    imHP1 = new QLabel(this);
     //imHP1->setPixmap(*pixHP);
+    lBHP1 = new QLabel(this);
 
-    imProj1 = new QLabel();
+    imProj1 = new QLabel(this);
     //imProj1->setPixmap(*pixProj);
+    lBProjectile1 = new QLabel(this);
 
-    imSpeed2 = new QLabel();
+    imSpeed2 = new QLabel(this);
     //imSpeed2->setPixmap(*pixSpeed);
+    lBSpeed2 = new QLabel(this);
 
-    imHP2 = new QLabel();
+    imHP2 = new QLabel(this);
     //imHP2->setPixmap(*pixHP);
+    lBHP2 = new QLabel(this);
 
-    imProj2 = new QLabel();
+    imProj2 = new QLabel(this);
     //imProj2->setPixmap(*pixProj);
+    lBProjectile2 = new QLabel(this);
 
 
     QHBoxLayout * downPart = new QHBoxLayout(downHUD);
@@ -174,7 +180,7 @@ void DisplayEngine::creatHUD()
     statuePlayerOne->addLayout(heathP1);
     statuePlayerOne->addLayout(shildP1);
 
-    bonusPlayerOne = new QGridLayout();
+    bonusPlayerOne = new QGridLayout(this);
 
     bonusPlayerOne->addWidget(imSpeed1,0,0,Qt::AlignHCenter);
     bonusPlayerOne->addWidget(lBSpeed1,0,1,Qt::AlignHCenter);
@@ -805,6 +811,7 @@ void DisplayEngine::escapeGame()
 
 void DisplayEngine::keyPressEvent(QKeyEvent *event)
 {
+    qDebug() << event->key();
     switch(event->key())
     {
         case Qt::Key_F12:
