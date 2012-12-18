@@ -12,7 +12,7 @@ class AlienSpaceship : public Destroyable,public Obstacle
 {
 public:
     AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResistance,GameEngine* _gameEngine);
-    ~AlienSpaceship();
+    ~AlienSpaceship(){}
 
     void receiveAttack(qreal _dPower) {Destroyable::receiveAttack(_dPower);}
     QRectF boundingRect() const;

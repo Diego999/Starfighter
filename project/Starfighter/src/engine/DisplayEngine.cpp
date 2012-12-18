@@ -77,6 +77,12 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
 DisplayEngine::~DisplayEngine()
 {
     scene->clear();
+    //Must clear the list in GameEngine
+
+    delete bonusPlayerOne;
+    delete bonusPlayerTwo;
+    delete affiche;
+    //All Layout,QLabel,QLCDNumber,QProgressbar delete with parent of QWidget
 
     //GameEnfine call ~DisplayEngine
 }

@@ -48,7 +48,7 @@ SpawnEngine::~SpawnEngine()
 {
     delete timer;
 
-    //GameEngine delete DisplayEngine and call ~SpawnEngine
+    //GameEngine delete DisplayEngine and SpawnEngine
 }
 
 void SpawnEngine::timerFired()

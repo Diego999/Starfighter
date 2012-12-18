@@ -35,7 +35,7 @@ UserControlsEngine::~UserControlsEngine()
 {
     delete novaeCall;
 
-    //GameEngine delete DisplayEngine and call ~UserControlsEngine
+    //GameEngine delete DisplayEngine and UserControlsEngine
 }
 
 void UserControlsEngine::keyPressEvent(QKeyEvent * event)

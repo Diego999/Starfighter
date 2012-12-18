@@ -57,7 +57,6 @@ private:
     QGraphicsScene * scene;
     QGraphicsView * view;
 
-    QWidget * mainPart;
     QWidget * downHUD;
 
     QGridLayout * bonusPlayerOne;
@@ -71,8 +70,8 @@ private:
     //QPixmap pixHP;
 
     // widget used for the HUD
-    QLCDNumber * timer;
     QTime      * affiche;
+    QLCDNumber * timer;
     QLCDNumber * scoreP1;
     QLCDNumber * scoreP2;
 

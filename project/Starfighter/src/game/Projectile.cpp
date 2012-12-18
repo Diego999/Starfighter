@@ -14,6 +14,11 @@ Projectile::Projectile(qreal _XOrigin, qreal _YOrigin,Shooter _from)
         color = new QColor(qrand() % 256, qrand() % 256, qrand() % 256);
 }
 
+Projectile::~Projectile()
+{
+    delete color;
+}
+
 QRectF Projectile::boundingRect() const
 {
     return QRectF(-RADIUS_PROJECTILE/2,-RADIUS_PROJECTILE/2,RADIUS_PROJECTILE,RADIUS_PROJECTILE);

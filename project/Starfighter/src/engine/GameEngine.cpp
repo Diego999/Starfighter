@@ -14,7 +14,7 @@
 #include "include/game/Supernova.h"
 
 #include "include/utils/Settings.h"
-
+#include "include/stable.h"
 GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject *parent = 0)
     :QObject(parent),
       settings(Settings::getGlobalSettings()),gameMode(gameMode),typeShip1(player1Ship),typeShip2(player2Ship),
@@ -36,9 +36,19 @@ GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Shi
 
 GameEngine::~GameEngine()
 {
-    delete de;
+    delete de;//Delete all the pointers in the different QList, so we must only clear them
     delete uc;
     delete se;
+
+    listProjectile.clear();
+    listAsteroide.clear();
+    listSmallAsteroide.clear();
+    listBonus.clear();
+    listSpaceship.clear();
+    listAlienSpaceship.clear();
+    listSupernova.clear();
+
+    delete mutex;
 }
 
 double GameEngine::randDouble()

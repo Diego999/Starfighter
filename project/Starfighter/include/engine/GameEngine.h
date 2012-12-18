@@ -38,7 +38,7 @@ public:
 
     DisplayEngine* displayEngine() const { return de;}
     UserControlsEngine* userControlsEngine() const {return uc;}
-    SpawnEngine* spawnEngine() const {return se;}
+    //SpawnEngine* spawnEngine() const {return se;}
 
     void timerEvent(QTimerEvent *);
 

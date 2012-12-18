@@ -60,11 +60,6 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
     setPixmap(new QPixmap(":/images/game/spaceship"));
 }
 
-AlienSpaceship::~AlienSpaceship()
-{
-
-}
-
 void AlienSpaceship::advance(int _step)
 {
     Obstacle::advance(_step);
