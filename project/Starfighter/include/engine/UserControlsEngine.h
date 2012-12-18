@@ -1,13 +1,11 @@
 #ifndef USER_CONTROLS_ENGINE_H
 #define USER_CONTROLS_ENGINE_H
 
-
 #include "include/enum/Enum.h"
-#include "include/engine/GameEngine.h"
-#include "include/engine/DisplayEngine.h"
-#include "include/game/Supernova.h"
 
-#include "QKeyEvent"
+class GameEngine;
+class DisplayEngine;
+class QTimer;
 
 class UserControlsEngine : public QObject
 {
@@ -21,8 +19,6 @@ public:
     void keyReleaseEvent(QKeyEvent * event);
 
     void timerEvent(QTimerEvent *event);
-
-
 
 public slots:
     void callSupernovae();

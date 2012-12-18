@@ -1,8 +1,6 @@
 #ifndef SPAWN_ENGINE_H
 #define SPAWN_ENGINE_H
 
-#include "include/engine/GameEngine.h"
-
 #define SPAWN_INTERVAL 400
 
 #define RESISTANCE_ASTEROID 20
@@ -17,6 +15,9 @@
 #define BONUS_SPEED_MIN 8
 #define BONUS_SPEED_MAX 20
 #define BONUS_SPEED_DURATION 10000
+
+class GameEngine;
+class DisplayEngine;
 
 class SpawnEngine : public QObject
 {

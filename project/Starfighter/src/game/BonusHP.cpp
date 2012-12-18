@@ -6,8 +6,3 @@ BonusHP::BonusHP(qreal _dHealthPoint, GameEngine *_gameEngine)
 {
 
 }
-
-BonusHP::~BonusHP()
-{
-
-}

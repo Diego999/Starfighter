@@ -7,7 +7,7 @@ class Obstacle : public virtual Displayable
 {
 public:
     Obstacle(qreal _dX, qreal _dY);
-    virtual ~Obstacle();
+    virtual ~Obstacle() {}
 
 };
 #endif

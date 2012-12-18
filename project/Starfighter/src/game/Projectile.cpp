@@ -12,11 +12,6 @@ Projectile::Projectile(qreal _XOrigin, qreal _YOrigin,Shooter _from)
         color = new QColor(qrand() % 256, qrand() % 256, qrand() % 256);
 }
 
-Projectile::~Projectile()
-{
-
-}
-
 QRectF Projectile::boundingRect() const
 {
     return QRectF(-RADIUS_PROJECTILE/2,-RADIUS_PROJECTILE/2,RADIUS_PROJECTILE,RADIUS_PROJECTILE);
@@ -33,8 +28,6 @@ void Projectile::paint(QPainter *_painter, const QStyleOptionGraphicsItem *, QWi
 {
     _painter->setBrush(*color);
     _painter->drawEllipse(-RADIUS_PROJECTILE/2,-RADIUS_PROJECTILE/2,RADIUS_PROJECTILE,RADIUS_PROJECTILE);
-//    _painter->setPen(QPen(QColor(0,255,0)));
-//    _painter->drawPath(shape());
 }
 
 void Projectile::advance(int _step)

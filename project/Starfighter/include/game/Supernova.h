@@ -16,7 +16,7 @@ public:
     TypeItem getTypeObject() const {return tSupernova;}
     QRectF boundingRect() const;
     QPainterPath shape() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {}
 
 private:
     static const int nbSpirales = NB_SPIRAL;

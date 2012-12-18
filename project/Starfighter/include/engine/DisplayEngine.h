@@ -1,17 +1,18 @@
 #ifndef DISPLAY_ENGINE_H
 #define DISPLAY_ENGINE_H
 
-#include "include/game/Displayable.h"
-#include "include/engine/GameEngine.h"
-#include "QtGui"
+#include "include/enum/Enum.h"
 
-class Asteroid;
-class Projectile;
-class Bonus;
-class Spaceship;
-class AlienSpaceship;
-class Supernova;
-class QMutex;
+class QLCDNumber;
+class QTime;
+class QGridLayout;
+class QGraphicsScene;
+class QGraphicsView;
+class QWidget;
+class QLabel;
+class QProgressBar;
+class GameEngine;
+class Displayable;
 
 class DisplayEngine : public QWidget
 {
@@ -24,6 +25,24 @@ public:
     qreal xminWarzone() const;
     qreal xmaxWarZone() const;
 
+    void addItemScene(Displayable* item);
+    void removeItemScene(Displayable* item);
+
+    void enableTimerData();
+    void updateGameData();
+    void updateGameDataTimer();
+
+protected:
+    void keyPressEvent(QKeyEvent *event);
+    void keyReleaseEvent(QKeyEvent * event);
+
+public slots:
+    void updateScreen();
+
+private:
+    void creatHUD();
+    void switchFullScreen();
+
     void setProgressHP1(int _value);
     void setProgressHP2(int _value);
     void setProgressShield1(int _value);
@@ -33,53 +52,7 @@ public:
     void setBonus1(TypeBonus in, int value = 0);
     void setBonus2(TypeBonus in, int value = 0);
 
-
-    void addProjectile(Projectile *_inProjectile);
-    void addSupernova(Supernova *_inSupernova);
-
-    void addShip(Spaceship *_inSpaceship);  
-    void removeShip(Spaceship *_inSpaceship);
-
-    void addAsteroid(Asteroid *_inAsteroide);
-    void removeAsteroid(Asteroid *_inAsteroide);
-
-    void addSmallAsteroid(Asteroid *_inAsteroide);
-    void removeSmallAsteroid(Asteroid *_inAsteroide);
-
-    void addBonus(Bonus *_inBonus);
-
-    void addAlienSpaceship(AlienSpaceship *_inAlienSpaceship);
-    void removeAlienSpaceship(AlienSpaceship *_inAlienSpaceship);
-
-    void timerEvent(QTimerEvent *);
-    void endGame(Spaceship* _ship=0);
-
-protected:
-    //void paintEvent(QPaintEvent * event);
-    void keyPressEvent(QKeyEvent *event);
-    void keyReleaseEvent(QKeyEvent * event);
-
-public slots:
-    void updateScreen();
-
-private:
-    void gameType();
-    void creatHUD();
-    void switchFullScreen();
-    void updateGameDataTimer();
-    void updateGameData();
-
-    void endGameTimer();
-    void escapeGame();
-
-    void checkOutsideScene(QList<Displayable*> &list);
-    void checkPlayerOutsideScene(QList<Spaceship*> &list);
-    void clearList(QList<Displayable*> &list);
-    bool checkCollisionItemAndList(const int i_list1,QList<Displayable*> &list1,QList<Displayable*> &list2);
-    bool checkCollisionSpaceshipAndList(const int i_list1,QList<Displayable*> &list);
-    void runTestCollision(QList<Displayable*> &list);
-
-    void recoveryTime();
+    GameEngine *gameEngine;
 
     QGraphicsScene * scene;
     QGraphicsView * view;
@@ -87,30 +60,11 @@ private:
     QWidget * mainPart;
     QWidget * downHUD;
 
-    QMutex* mutex;
-
     QGridLayout * bonusPlayerOne;
     QGridLayout * bonusPlayerTwo;
 
-    QList<Displayable*>  listProjectile;
-    QList<Displayable*>  listAsteroide;
-    QList<Displayable*>  listSmallAsteroide;
-    QList<Displayable*>  listBonus;
-    QList<Spaceship*>    listSpaceship;
-    QList<Displayable*>  listAlienSpaceship;
-    QList<Displayable*>  listSupernova;
-
-    //QList<Displayable*> listDisplayable;
-    //Displayable*        displayable[];
-
-    GameEngine *gameEngine;
-
-    // dimension of the screeen
-    int screenSizeWidth;
-    int screenSizeHeight;
-
-    double sceneWidth;
-    double sceneHeigth;
+    bool isFullScreen;
+    bool isTimer;
 
     //QPixmap pixSpeed;
     //QPixmap pixProj;
@@ -130,11 +84,6 @@ private:
     QLabel * lBHP2;
     QLabel * lBProjectile2;
 
-    QProgressBar * HP1;
-    QProgressBar * HP2;
-    QProgressBar * shield1;
-    QProgressBar * shield2;
-
     QLabel * imSpeed1;
     QLabel * imHP1;
     QLabel * imProj1;
@@ -143,7 +92,9 @@ private:
     QLabel * imHP2;
     QLabel * imProj2;
 
-    bool isFullScreen;
-    bool isTimer;
+    QProgressBar * HP1;
+    QProgressBar * HP2;
+    QProgressBar * shield1;
+    QProgressBar * shield2;
 };
 #endif

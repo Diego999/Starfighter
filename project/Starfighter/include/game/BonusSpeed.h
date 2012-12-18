@@ -9,7 +9,7 @@ class BonusSpeed : public Bonus
 {
 public:
     BonusSpeed(qreal _dSpeed, int _expiration, GameEngine *_gameEngine);
-    ~BonusSpeed();
+    ~BonusSpeed() {}
 
     qreal getSpeed() const {return dSpeed;}
     int getExpiration() const {return expiration;}

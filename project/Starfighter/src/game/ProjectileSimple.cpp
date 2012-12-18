@@ -8,16 +8,6 @@ ProjectileSimple::ProjectileSimple(qreal _dXOrigin, qreal _dYOrigin, Shooter _fr
     dSpeed = SPEED_SIMPLE_DEF;
 }
 
-ProjectileSimple::~ProjectileSimple()
-{
-
-}
-
-qreal ProjectileSimple::trajectoryDraw(qreal _dX)
-{
-    return 0*_dX;
-}
-
 void ProjectileSimple::advance(int _step)
 {
     Projectile::advance(_step);

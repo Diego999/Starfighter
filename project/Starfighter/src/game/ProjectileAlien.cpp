@@ -8,16 +8,6 @@ ProjectileAlien::ProjectileAlien(qreal _dXOrigin, qreal _dYOrigin,Shooter _from,
     dPower = POWER_ALIEN;
 }
 
-ProjectileAlien::~ProjectileAlien()
-{
-
-}
-
-qreal ProjectileAlien::trajectoryDraw(qreal _dX)
-{
-    return 0*_dX;
-}
-
 void ProjectileAlien::advance(int _step)
 {
     Projectile::advance(_step);

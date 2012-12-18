@@ -3,6 +3,7 @@
 
 #include "include/game/Obstacle.h"
 #include "include/game/Destroyable.h"
+
 #include "include/enum/Enum.h"
 
 class GameEngine;

@@ -9,11 +9,6 @@ ProjectileCross::ProjectileCross(qreal _dXOrigin, qreal _dYOrigin, Shooter _from
     dPower = POWER_CROSS;
 }
 
-ProjectileCross::~ProjectileCross()
-{
-
-}
-
 qreal ProjectileCross::trajectoryDraw(qreal _dX)
 {
     if(nb == 0)

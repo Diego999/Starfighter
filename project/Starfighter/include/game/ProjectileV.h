@@ -10,7 +10,7 @@ class ProjectileV : public Projectile
 {
 public:
     ProjectileV(qreal _dXOrigin, qreal _dYOrigin, Shooter _from, qreal _ampli, qreal _omega);
-    ~ProjectileV();
+    ~ProjectileV() {}
 
 private:
     void advance(int _step);

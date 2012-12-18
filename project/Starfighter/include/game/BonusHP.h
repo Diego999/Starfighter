@@ -9,7 +9,7 @@ class BonusHP : public Bonus
 {
 public:
     BonusHP(qreal _dHealthPoint, GameEngine *_gameEngine);
-    ~BonusHP();
+    ~BonusHP() {}
     qreal getHealthPoint() const {return dHealthPoint;}
 private:
     qreal dHealthPoint;

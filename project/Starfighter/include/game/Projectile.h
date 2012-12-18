@@ -1,8 +1,9 @@
 #ifndef PROJECTILE_H
 #define PROJECTILE_H
 
-#include "include/enum/Enum.h"
 #include "include/game/Displayable.h"
+
+#include "include/enum/Enum.h"
 
 class QColor;
 
@@ -10,7 +11,7 @@ class Projectile : public virtual Displayable
 {
 public:
     Projectile(qreal _XOrigin, qreal _YOrigin,Shooter _from);
-    virtual ~Projectile();
+    virtual ~Projectile() {}
 
     qreal getPower() const {return dPower;}
     TypeItem getTypeObject() const {return tProj;}

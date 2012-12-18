@@ -1,15 +1,14 @@
 #include "include/engine/UserControlsEngine.h"
+#include "include/engine/GameEngine.h"
+#include "include/engine/DisplayEngine.h"
+
 #include "include/utils/Settings.h"
 
 #include "include/game/Spaceship.h"
-
-#include "include/enum/Enum.h"
-
-#include "QtGui"
+#include "include/game/Supernova.h"
 
 #define REFRESH                10
 #define NOVATIMER              10000    // (ms)
-
 
 UserControlsEngine::UserControlsEngine(GameEngine *ge): gameEngine(ge), hasShoot(false)
 {
@@ -154,5 +153,5 @@ void UserControlsEngine::timerEvent(QTimerEvent *event)
 void UserControlsEngine::callSupernovae()
 {
     Supernova *supernova = new Supernova(display->sceneSize().width() / 2, display->sceneSize().height() / 2, gameEngine);
-    display->addSupernova(supernova);
+    gameEngine->addSupernova(supernova);
 }

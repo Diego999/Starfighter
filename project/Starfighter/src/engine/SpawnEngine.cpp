@@ -1,6 +1,7 @@
 #include "include/engine/SpawnEngine.h"
-
+#include "include/engine/GameEngine.h"
 #include "include/engine/DisplayEngine.h"
+
 #include "include/game/Asteroid.h"
 #include "include/game/AlienSpaceship.h"
 #include "include/game/BonusForceField.h"
@@ -59,13 +60,13 @@ void SpawnEngine::timerFired()
         if(probWhat < intervalAsteroid)
         {
             Asteroid *asteroid = new Asteroid(0, 0, Other, RESISTANCE_ASTEROID, MAX_SPACESHIP_PV, ge);
-            de->addAsteroid(asteroid);
+            ge->addAsteroid(asteroid);
         }
         else if(probWhat < intervalAlien)
         {
             int nbSpirales = irand(ALIEN_SWIRL_MIN, ALIEN_SWIRL_MAX);
             AlienSpaceship *alien = new AlienSpaceship(nbSpirales, MAX_SPACESHIP_PV, RESISTANCE_ALIEN, ge);
-            de->addAlienSpaceship(alien);
+            ge->addAlienSpaceship(alien);
         }
         else if(probWhat < intervalSat)
         {
@@ -88,12 +89,12 @@ void SpawnEngine::timerFired()
                 break;
             }
 
-            de->addBonus(bonus);
+            ge->addBonus(bonus);
         }
         else if(probWhat < intervalSupernova)
         {
             Supernova *supernova = new Supernova(de->sceneSize().width() / 2, de->sceneSize().height() / 2, ge);
-            de->addSupernova(supernova);
+            ge->addSupernova(supernova);
         }
     }
 }

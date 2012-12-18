@@ -10,7 +10,7 @@ class ProjectileCross : public Projectile
 {
 public:
     ProjectileCross(qreal _dXOrigin, qreal _dYOrigin,Shooter _from,int _nb);
-    ~ProjectileCross();
+    ~ProjectileCross() {}
 
 private:
     void advance(int _step);

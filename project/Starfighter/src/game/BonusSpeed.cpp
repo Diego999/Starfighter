@@ -7,8 +7,3 @@ BonusSpeed::BonusSpeed(qreal _dSpeed, int _expiration, GameEngine *_gameEngine)
 {
 
 }
-
-BonusSpeed::~BonusSpeed()
-{
-
-}

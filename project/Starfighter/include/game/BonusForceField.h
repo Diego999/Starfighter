@@ -10,6 +10,6 @@ class BonusForceField : public Bonus
 {
 public:
     BonusForceField(GameEngine *_gameEngine);
-    ~BonusForceField();
+    ~BonusForceField() {}
 };
 #endif

@@ -13,7 +13,7 @@ class Bonus : public QObject, public Displayable
     Q_OBJECT
 public:
     Bonus(GameEngine *_gameEngine);
-    virtual ~Bonus();
+    virtual ~Bonus() {}
 
     TypeItem getTypeObject() const {return tBonus;}
     QRectF boundingRect() const;

@@ -1,8 +1,6 @@
 #ifndef SOUNDENGINE_H
 #define SOUNDENGINE_H
 
-#include <QObject>
-
 class SoundEngine : public QObject
 {
     Q_OBJECT

@@ -3,8 +3,3 @@
 Obstacle::Obstacle(qreal _dX, qreal _dY):Displayable(_dX,_dY)
 {
 }
-
-Obstacle::~Obstacle()
-{
-
-}

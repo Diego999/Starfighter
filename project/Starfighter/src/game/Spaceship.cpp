@@ -6,7 +6,9 @@
 #include "include/game/BonusHP.h"
 #include "include/game/BonusProjectile.h"
 #include "include/game/BonusSpeed.h"
+
 #include "include/engine/DisplayEngine.h"
+#include "include/engine/GameEngine.h"
 
 Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerName,qreal _dSpeed,qreal _dHealthPoint,qreal _dResistance,GameEngine *_gameEngine)
     :Displayable(_dX,_dY),
@@ -136,16 +138,16 @@ void Spaceship::attack()
     switch(type)
     {
         case ProjSimple:
-            gameEngine->displayEngine()->addProjectile(new ProjectileSimple(l_x,l_y,player));
+            gameEngine->addProjectile(new ProjectileSimple(l_x,l_y,player));
             break;
 
         case ProjCross:
             for(int i = 0;i<3;i++)
-                gameEngine->displayEngine()->addProjectile(new ProjectileCross(l_x,l_y,player,i-1));
+                gameEngine->addProjectile(new ProjectileCross(l_x,l_y,player,i-1));
             break;
 
         case ProjV:
-            gameEngine->displayEngine()->addProjectile(new ProjectileV(l_x,l_y,player,AMPLI_SPACESHIP_PROJ_V,OMEGA_SPACESHIP_PROJ_V));
+            gameEngine->addProjectile(new ProjectileV(l_x,l_y,player,AMPLI_SPACESHIP_PROJ_V,OMEGA_SPACESHIP_PROJ_V));
             break;
         case ProjAlien:
             break;

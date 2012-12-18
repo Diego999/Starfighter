@@ -9,11 +9,6 @@ ProjectileV::ProjectileV(qreal _dXOrigin, qreal _dYOrigin,Shooter _from, qreal _
     dSpeed = SPEED_V_DEF;
 }
 
-ProjectileV::~ProjectileV()
-{
-
-}
-
 qreal ProjectileV::trajectoryDraw(qreal _dX)
 {
     qreal l_dX = _dX*M_PI/180.0;

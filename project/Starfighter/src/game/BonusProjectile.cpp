@@ -5,8 +5,3 @@ BonusProjectile::BonusProjectile(TypeProjectiles _type, int _expiration, GameEng
       type(_type),expiration(_expiration)
 {
 }
-
-BonusProjectile::~BonusProjectile()
-{
-
-}

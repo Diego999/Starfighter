@@ -6,7 +6,7 @@ class Destroyable : public QObject
     Q_OBJECT
 public:
     Destroyable(qreal _dHealthPoint,qreal _dResistance);
-    virtual ~Destroyable();
+    virtual ~Destroyable() {}
 
     virtual void receiveAttack(qreal _dPower);
     void isDead();

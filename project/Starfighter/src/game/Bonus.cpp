@@ -1,6 +1,7 @@
-#include "include/game/Bonus.h"
 #include "include/engine/DisplayEngine.h"
 #include "include/engine/GameEngine.h"
+
+#include "include/game/Bonus.h"
 #include "include/game/Spaceship.h"
 
 Bonus::Bonus(GameEngine *_gameEngine)
@@ -59,11 +60,6 @@ Bonus::Bonus(GameEngine *_gameEngine)
     timer->start();
 
     connect(timer,SIGNAL(timeout()),this,SLOT(playSound()));
-}
-
-Bonus::~Bonus()
-{
-
 }
 
 void Bonus::playSound()

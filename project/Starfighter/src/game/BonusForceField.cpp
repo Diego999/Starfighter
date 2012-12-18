@@ -3,9 +3,5 @@
 BonusForceField::BonusForceField(GameEngine *_gameEngine)
     :Bonus(_gameEngine)
 {
-}
-
-BonusForceField::~BonusForceField()
-{
 
 }

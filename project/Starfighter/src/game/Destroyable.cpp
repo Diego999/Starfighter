@@ -7,11 +7,6 @@ Destroyable::Destroyable(qreal _dHealthPoint,qreal _dResistance)
 
 }
 
-Destroyable::~Destroyable()
-{
-
-}
-
 void Destroyable::receiveAttack(qreal _dPower)
 {
     dHealthPoint -= _dPower/dResistance;

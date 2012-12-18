@@ -1,5 +1,7 @@
-#include "include/game/Asteroid.h"
 #include "include/engine/DisplayEngine.h"
+#include "include/engine/GameEngine.h"
+
+#include "include/game/Asteroid.h"
 
 //If _dSlop & _bSmall are defined together. It means that it's a small asteroid
 Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint,GameEngine *_gameEngine,qreal _dSlope,bool _bSmall)
@@ -95,25 +97,25 @@ Asteroid::~Asteroid()
         switch(l_nb)
         {
             case 3:
-            gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x()+getPixmap()->width(),pos().y()+getPixmap()->height()/2.0,Other,
+            gameEngine->addSmallAsteroid(new Asteroid(pos().x()+getPixmap()->width(),pos().y()+getPixmap()->height()/2.0,Other,
                                                               RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,0,true));
-            gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x(),pos().y(),Other,
+            gameEngine->addSmallAsteroid(new Asteroid(pos().x(),pos().y(),Other,
                                                               RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,120,true));
-            gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x(),pos().y()+getPixmap()->height(),Other,
+            gameEngine->addSmallAsteroid(new Asteroid(pos().x(),pos().y()+getPixmap()->height(),Other,
                                                               RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,240,true));
                 break;
 
             case 5:
-            gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x()+getPixmap()->width()/2.0,pos().y()+getPixmap()->height()/2.0,Other,
+            gameEngine->addSmallAsteroid(new Asteroid(pos().x()+getPixmap()->width()/2.0,pos().y()+getPixmap()->height()/2.0,Other,
                                                               RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,0,true));
             case 4:
-            gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x()+getPixmap()->width(),pos().y(),Other,
+            gameEngine->addSmallAsteroid(new Asteroid(pos().x()+getPixmap()->width(),pos().y(),Other,
                                                               RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,45,true));
-            gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x(),pos().y(),Other,
+            gameEngine->addSmallAsteroid(new Asteroid(pos().x(),pos().y(),Other,
                                                               RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,135,true));
-            gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x(),pos().y()+getPixmap()->height(),Other,
+            gameEngine->addSmallAsteroid(new Asteroid(pos().x(),pos().y()+getPixmap()->height(),Other,
                                                               RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,225,true));
-            gameEngine->displayEngine()->addSmallAsteroid(new Asteroid(pos().x()+getPixmap()->width(),pos().y()+getPixmap()->height(),Other,
+            gameEngine->addSmallAsteroid(new Asteroid(pos().x()+getPixmap()->width(),pos().y()+getPixmap()->height(),Other,
                                                               RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,-45,true));
                 break;
         }

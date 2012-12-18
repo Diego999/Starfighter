@@ -3,6 +3,7 @@
 
 #include "include/game/Destroyable.h"
 #include "include/game/Displayable.h"
+
 #include "include/enum/Enum.h"
 
 #define MAX_SPACESHIP_BONUS 2
