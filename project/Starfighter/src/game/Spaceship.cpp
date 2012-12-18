@@ -1,3 +1,6 @@
+#include "include/engine/DisplayEngine.h"
+#include "include/engine/GameEngine.h"
+
 #include "include/game/Spaceship.h"
 #include "include/game/ProjectileCross.h"
 #include "include/game/ProjectileSimple.h"
@@ -7,8 +10,7 @@
 #include "include/game/BonusProjectile.h"
 #include "include/game/BonusSpeed.h"
 
-#include "include/engine/DisplayEngine.h"
-#include "include/engine/GameEngine.h"
+#include "include/config/Define.h"
 
 Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerName,qreal _dSpeed,qreal _dHealthPoint,qreal _dResistance,GameEngine *_gameEngine)
     :Displayable(_dX,_dY),

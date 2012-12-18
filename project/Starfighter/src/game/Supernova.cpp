@@ -1,7 +1,9 @@
-#include "include/game/Supernova.h"
-#include "include/game/ProjectileAlien.h"
 #include "include/engine/GameEngine.h"
 #include "include/engine/DisplayEngine.h"
+
+#include "include/game/Supernova.h"
+#include "include/game/ProjectileAlien.h"
+
 #include "include/enum/Enum.h"
 
 Supernova::Supernova(qreal _dX, qreal _dY,GameEngine *_gameEngine):

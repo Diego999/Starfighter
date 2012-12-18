@@ -80,12 +80,16 @@ private:
     UserControlsEngine *uc;
     Settings& settings;
 
+    GameMode gameMode;
+    SpaceshipType typeShip1;
+    SpaceshipType typeShip2;
+
     QMutex* mutex;
 
     bool isRunning;
     int idTimer;
     bool isTimer;
-    int timeGame;//Really useful ?
+    int timeGame;
 
     // For elapsedTime()
     QElapsedTimer elapsedTimer;

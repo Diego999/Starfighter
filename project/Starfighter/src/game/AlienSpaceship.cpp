@@ -4,6 +4,8 @@
 #include "include/game/AlienSpaceship.h"
 #include "include/game/ProjectileAlien.h"
 
+#include "include/config/Define.h"
+
 AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResistance,GameEngine* _gameEngine)
     :Displayable(0,0),
       Destroyable(_dHealthPoint,_dResistance),

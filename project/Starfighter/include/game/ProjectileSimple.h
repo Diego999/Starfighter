@@ -3,9 +3,6 @@
 
 #include "include/game/Projectile.h"
 
-#define POWER_SIMPLE 1000
-#define SPEED_SIMPLE_DEF 10
-
 class ProjectileSimple : public Projectile
 {
 public:

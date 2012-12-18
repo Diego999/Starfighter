@@ -1,5 +1,7 @@
 #include "include/game/ProjectileSimple.h"
 
+#include "include/config/Define.h"
+
 ProjectileSimple::ProjectileSimple(qreal _dXOrigin, qreal _dYOrigin, Shooter _from)
     :Displayable(_dXOrigin,_dYOrigin),
       Projectile(_dXOrigin,_dYOrigin,_from)

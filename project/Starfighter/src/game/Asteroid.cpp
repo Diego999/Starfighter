@@ -3,6 +3,8 @@
 
 #include "include/game/Asteroid.h"
 
+#include "include/config/Define.h"
+
 //If _dSlop & _bSmall are defined together. It means that it's a small asteroid
 Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint,GameEngine *_gameEngine,qreal _dSlope,bool _bSmall)
     :Displayable(_dX,_dY),

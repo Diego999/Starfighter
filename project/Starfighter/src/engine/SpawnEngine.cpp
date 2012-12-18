@@ -11,6 +11,8 @@
 #include "include/game/Supernova.h"
 #include "include/game/Spaceship.h"
 
+#include "include/config/Define.h"
+
 #define arccot M_PI / 2.0 - atan
 
 SpawnEngine::SpawnEngine(int difficulty, GameEngine *_ge)

@@ -3,8 +3,6 @@
 
 #include "include/enum/Enum.h"
 
-#define RADIUS_PROJECTILE 10
-
 class QPixmap;
 
 class Displayable : public QGraphicsItem

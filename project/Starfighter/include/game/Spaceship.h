@@ -6,13 +6,6 @@
 
 #include "include/enum/Enum.h"
 
-#define MAX_SPACESHIP_BONUS 2
-#define MAX_SPACESHIP_PV 100
-#define AMPLI_SPACESHIP_PROJ_V 60.0
-#define OMEGA_SPACESHIP_PROJ_V 3.0
-#define PROJ_SPACESHIP_DEF ProjSimple
-#define RESISTANCE_FORCE_FIELD 100
-
 class Bonus;
 class BonusSpeed;
 class BonusProjectile;

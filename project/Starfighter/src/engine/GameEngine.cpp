@@ -17,7 +17,8 @@
 
 GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject *parent = 0)
     :QObject(parent),
-      settings(Settings::getGlobalSettings()),isRunning(false),idTimer(-1),isTimer(false),timeGame(0),timeAlreadyCounted(0)
+      settings(Settings::getGlobalSettings()),gameMode(gameMode),typeShip1(player1Ship),typeShip2(player2Ship),
+      isRunning(false),idTimer(-1),isTimer(false),timeGame(duration),timeAlreadyCounted(0)
 {
     de = new DisplayEngine(this,0);
     uc = new UserControlsEngine(this);
@@ -58,8 +59,36 @@ void GameEngine::createSpaceship()
     int width = de->sceneSize().width();
     int height = de->sceneSize().height();
 
-    addShip(new Spaceship(0,height/2,Player1,settings.playerOneName(),5,100,100,this));//Change with the parameter of a spaceship
-    addShip(new Spaceship(width,height/2,Player2,settings.playerTwoName(),5,100,100,this));
+    qreal speed = 0;
+    qreal healthPoint = 0;
+    qreal resistance = 0;
+    if(typeShip1==SpaceshipType1)
+    {
+        speed = SPEED_1;
+        healthPoint = HEALTHPOINT_1;
+        resistance = RESISTANCE_1;
+    }
+    else// if(typeShip1==SpaceshipType2)
+    {
+        speed = SPEED_2;
+        healthPoint = HEALTHPOINT_2;
+        resistance = RESISTANCE_2;
+    }
+    addShip(new Spaceship(0,height/2,Player1,settings.playerOneName(),speed,healthPoint,resistance,this));
+
+    if(typeShip2==SpaceshipType1)
+    {
+        speed = SPEED_1;
+        healthPoint = HEALTHPOINT_1;
+        resistance = RESISTANCE_1;
+    }
+    else// if(typeShip2==SpaceshipType2)
+    {
+        speed = SPEED_2;
+        healthPoint = HEALTHPOINT_2;
+        resistance = RESISTANCE_2;
+    }
+    addShip(new Spaceship(width,height/2,Player2,settings.playerTwoName(),speed,healthPoint,resistance,this));
 }
 
 void GameEngine::timerEvent(QTimerEvent *event)

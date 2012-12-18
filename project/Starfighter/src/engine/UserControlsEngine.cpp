@@ -2,13 +2,11 @@
 #include "include/engine/GameEngine.h"
 #include "include/engine/DisplayEngine.h"
 
-#include "include/utils/Settings.h"
-
 #include "include/game/Spaceship.h"
 #include "include/game/Supernova.h"
 
-#define REFRESH                10
-#define NOVATIMER              10000    // (ms)
+#include "include/utils/Settings.h"
+#include "include/config/Define.h"
 
 UserControlsEngine::UserControlsEngine(GameEngine *ge): gameEngine(ge), hasShoot(false)
 {

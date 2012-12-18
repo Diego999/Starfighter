@@ -1,5 +1,7 @@
 #include "include/game/ProjectileV.h"
 
+#include "include/config/Define.h"
+
 ProjectileV::ProjectileV(qreal _dXOrigin, qreal _dYOrigin,Shooter _from, qreal _ampli, qreal _omega)
     :Displayable(_dXOrigin,_dYOrigin),
       Projectile(_dXOrigin,_dYOrigin,_from),

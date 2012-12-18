@@ -50,7 +50,8 @@ HEADERS += include/stable.h \
            include/menu/NewGameDialog.h \
            include/menu/OptionsDialog.h \
            include/menu/SetKeyDialog.h \
-           include/utils/Settings.h
+           include/utils/Settings.h \
+    include/config/Define.h
 FORMS += res/ui/AboutDialog.ui \
          res/ui/MainDialog.ui \
          res/ui/NewGameDialog.ui \

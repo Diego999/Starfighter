@@ -3,9 +3,6 @@
 
 #include "include/game/Projectile.h"
 
-#define POWER_CROSS 1000
-#define SPEED_CROSS_DEF 10
-
 class ProjectileCross : public Projectile
 {
 public:

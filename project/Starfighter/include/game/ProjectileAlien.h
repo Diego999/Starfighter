@@ -3,8 +3,6 @@
 
 #include "include/game/Projectile.h"
 
-#define POWER_ALIEN 50
-
 class ProjectileAlien : public Projectile
 {
 public:

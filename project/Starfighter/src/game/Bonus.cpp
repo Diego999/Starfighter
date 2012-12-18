@@ -4,6 +4,8 @@
 #include "include/game/Bonus.h"
 #include "include/game/Spaceship.h"
 
+#include "include/config/Define.h"
+
 Bonus::Bonus(GameEngine *_gameEngine)
     :Displayable(0,0,new QPixmap(":/images/game/bonus")),
     gameEngine(_gameEngine),directionX(1),direction(1)
@@ -56,7 +58,7 @@ Bonus::Bonus(GameEngine *_gameEngine)
     playSound();
 
     QTimer* timer = new QTimer(this);
-    timer->setInterval(NB_SEC*1000);
+    timer->setInterval(SOUND_TIMER);
     timer->start();
 
     connect(timer,SIGNAL(timeout()),this,SLOT(playSound()));

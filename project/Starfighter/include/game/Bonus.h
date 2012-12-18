@@ -5,9 +5,6 @@
 
 class GameEngine;
 
-#define DELTA_X_B 100
-#define NB_SEC 1
-
 class Bonus : public QObject, public Displayable
 {
     Q_OBJECT

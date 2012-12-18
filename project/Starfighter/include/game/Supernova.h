@@ -3,9 +3,9 @@
 
 #include "include/game/Obstacle.h"
 
-class GameEngine;
+#include "include/config/Define.h"
 
-#define NB_SPIRAL 90
+class GameEngine;
 
 class Supernova : public Obstacle
 {

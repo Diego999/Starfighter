@@ -8,10 +8,6 @@
 
 class GameEngine;
 
-#define MARGIN_Y 10
-#define DELTA_X 100
-#define NB_SEC 1
-
 class AlienSpaceship : public Destroyable,public Obstacle
 {
 public:

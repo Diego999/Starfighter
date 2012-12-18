@@ -6,10 +6,7 @@
 #include "include/game/Spaceship.h"
 
 #include "include/utils/Settings.h"
-
-#define SPACE_BETWEEN         250
-#define SPACE_INPLAYER        50
-#define BACKGROUND "background/black hole.png"
+#include "include/config/Define.h"
 
 DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     :QWidget(parent),
