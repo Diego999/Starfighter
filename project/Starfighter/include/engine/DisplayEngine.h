@@ -3,6 +3,7 @@
 
 #include "include/game/Displayable.h"
 #include "include/engine/GameEngine.h"
+#include "QtGui"
 
 class Asteroid;
 class Projectile;
@@ -29,8 +30,8 @@ public:
     void setProgressShield2(int _value);
     void setGameScore1(int _value);
     void setGameScore2(int _value);
-    void setBonus1(int in);
-    void setBonus2(int in);
+    void setBonus1(TypeBonus in, int value = 0);
+    void setBonus2(TypeBonus in, int value = 0);
 
     void addProjectile(Projectile *_inProjectile);
     void addSupernova(Supernova *_inSupernova);
@@ -87,6 +88,9 @@ private:
 
     QMutex* mutex;
 
+    QGridLayout * bonusPlayerOne;
+    QGridLayout * bonusPlayerTwo;
+
     QList<Displayable*>  listProjectile;
     QList<Displayable*>  listAsteroide;
     QList<Displayable*>  listSmallAsteroide;
@@ -107,18 +111,36 @@ private:
     double sceneWidth;
     double sceneHeigth;
 
+    QPixmap pixSpeed;
+    QPixmap pixProj;
+    QPixmap pixHP;
+
     // widget used for the HUD
     QLCDNumber * timer;
     QTime      * affiche;
     QLCDNumber * scoreP1;
     QLCDNumber * scoreP2;
-    QLabel * lSpeed1;
-    QLabel * lSpeed2;
+
+    QLabel * lBSpeed1;
+    QLabel * lBHP1;
+    QLabel * lBProjectile1;
+
+    QLabel * lBSpeed2;
+    QLabel * lBHP2;
+    QLabel * lBProjectile2;
 
     QProgressBar * HP1;
     QProgressBar * HP2;
     QProgressBar * shield1;
     QProgressBar * shield2;
+
+    QLabel * imSpeed1;
+    QLabel * imHP1;
+    QLabel * imProj1;
+
+    QLabel * imSpeed2;
+    QLabel * imHP2;
+    QLabel * imProj2;
 
     bool isFullScreen;
     bool isTimer;

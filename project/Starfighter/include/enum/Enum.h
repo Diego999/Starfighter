@@ -42,4 +42,10 @@ enum Difficulty
     Asteroids = 0x00000001, AlienMothership = 0x00000010, Satellites = 0x00000100, Supernovae = 0x00001000
 };
 
+enum TypeBonus
+{
+    TypeBonusHP             = 0,
+    TypeBonusProjectile     = 1,
+    TypeBonusSpeed          = 2
+};
 #endif // ENUMERATION_H

@@ -82,6 +82,10 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     mainScreen->addWidget(view);
     mainScreen->addWidget(downHUD);
 
+    pixSpeed = QPixmap("");
+    pixProj = QPixmap("");
+    pixHP = QPixmap("");
+
     affiche = new QTime();
     affiche->setHMS(0,0,0,0);
 
@@ -113,6 +117,25 @@ DisplayEngine::~DisplayEngine()
 
 void DisplayEngine::creatHUD()
 {
+
+    imSpeed1 = new QLabel();
+    imSpeed1->setPixmap(pixSpeed);
+
+    imHP1 = new QLabel();
+    imHP1->setPixmap(pixHP);
+
+    imProj1 = new QLabel();
+    imProj1->setPixmap(pixProj);
+
+    imSpeed2 = new QLabel();
+    imSpeed2->setPixmap(pixSpeed);
+
+    imHP2 = new QLabel();
+    imHP2->setPixmap(pixHP);
+
+    imProj2 = new QLabel();
+    imProj2->setPixmap(pixProj);
+
 
     QHBoxLayout * downPart = new QHBoxLayout(downHUD);
 
@@ -150,8 +173,16 @@ void DisplayEngine::creatHUD()
     statuePlayerOne->addLayout(heathP1);
     statuePlayerOne->addLayout(shildP1);
 
-    QHBoxLayout * bonusPlayerOne = new QHBoxLayout();
-    lSpeed1 = new QLabel();
+    bonusPlayerOne = new QGridLayout();
+
+    bonusPlayerOne->addWidget(imSpeed1,0,0,Qt::AlignHCenter);
+    bonusPlayerOne->addWidget(lBSpeed1,0,1,Qt::AlignHCenter);
+
+    bonusPlayerOne->addWidget(imHP1,3,0,Qt::AlignHCenter);
+    bonusPlayerOne->addWidget(lBHP1,3,1,Qt::AlignHCenter);
+
+    bonusPlayerOne->addWidget(imProj1,5,0,Qt::AlignHCenter);
+    bonusPlayerOne->addWidget(lBProjectile1,5,1,Qt::AlignHCenter);
 
     /**
       * Timer and point counter
@@ -206,8 +237,20 @@ void DisplayEngine::creatHUD()
     statuePlayerTwo->addLayout(heathP2);
     statuePlayerTwo->addLayout(shildP2);
 
-    QHBoxLayout * bonusPlayerTwo = new QHBoxLayout();
-    lSpeed2 = new QLabel();
+    bonusPlayerTwo = new QGridLayout();
+    lBSpeed2 = new QLabel();
+    lBHP2 = new QLabel();
+    lBProjectile2 = new QLabel();
+
+    bonusPlayerTwo->addWidget(imSpeed2,0,0,Qt::AlignHCenter);
+    bonusPlayerTwo->addWidget(lBSpeed2,0,1,Qt::AlignHCenter);
+
+    bonusPlayerTwo->addWidget(imHP2,3,0,Qt::AlignHCenter);
+    bonusPlayerTwo->addWidget(lBHP2,3,1,Qt::AlignHCenter);
+
+    bonusPlayerTwo->addWidget(imProj2,5,0,Qt::AlignHCenter);
+    bonusPlayerTwo->addWidget(lBProjectile2,5,1,Qt::AlignHCenter);
+
     //QPixmap * icon2 = new QPixmap("./image/game/bonus");
     //bonusPlayerTwo->addWidget(icon2);
 
@@ -610,14 +653,85 @@ void DisplayEngine::setGameScore2(int _value)
     scoreP2->display(_value);
 }
 
-void DisplayEngine::setBonus1(int in)
+void DisplayEngine::setBonus1(TypeBonus in,int value)
 {
-    //lSpeed1->setText();
+
+    if(value != 0)
+    {
+        switch(in)
+        {
+            case TypeBonusHP:
+            imHP1->setPixmap(pixHP);
+            lBSpeed1->setNum(value);
+
+            case TypeBonusProjectile :
+            imProj1->setPixmap(pixProj);
+            lBProjectile1->setText("");
+
+            case TypeBonusSpeed :
+            imSpeed1->setPixmap(pixSpeed);
+            lBSpeed1->setText("");
+        }
+    }
+
+    else
+    {
+        switch(in)
+        {
+            case TypeBonusHP:
+            imHP1->setText("");
+            lBSpeed1->setText("");
+            break;
+
+            case TypeBonusProjectile :
+            imProj1->setText("");
+            lBProjectile1->setText("");
+
+            case TypeBonusSpeed :
+            imSpeed1->setText("");
+            lBSpeed1->setText("");
+        }
+    }
 }
 
-void DisplayEngine::setBonus2(int in)
+void DisplayEngine::setBonus2(TypeBonus in,int value)
 {
-    //lSpeed2->setText();
+    if(value != 0)
+    {
+        switch(in)
+        {
+            case TypeBonusHP:
+            imHP2->setPixmap(pixHP);
+            lBSpeed2->setNum(value);
+
+            case TypeBonusProjectile :
+            imProj2->setPixmap(pixProj);
+            lBProjectile2->setText("");
+
+            case TypeBonusSpeed :
+            imSpeed2->setPixmap(pixSpeed);
+            lBSpeed2->setText("");
+        }
+    }
+
+    else
+    {
+        switch(in)
+        {
+            case TypeBonusHP:
+            imHP2->setText("");
+            lBSpeed2->setText("");
+            break;
+
+            case TypeBonusProjectile :
+            imProj2->setText("");
+            lBProjectile2->setText("");
+
+            case TypeBonusSpeed :
+            imSpeed2->setText("");
+            lBSpeed2->setText("");
+        }
+    }
 }
 
 void DisplayEngine::updateGameData()
