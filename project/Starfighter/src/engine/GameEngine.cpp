@@ -164,16 +164,20 @@ void GameEngine::endGameDeathMatch(Spaceship* _ship)
     }
     else
     {
-        de->updateGameData();
-        QString playerName;
-        if(_ship==ship1())
-            playerName = QString(ship2()->getPlayerName());
-        else if(_ship==ship2())
-            playerName = QString(ship1()->getPlayerName());
-        QMessageBox::information(de,
-                                 tr("End of the game"),
-                                 QString(tr("%1 has won !")).arg(playerName),
-                                 QMessageBox::Ok);
+        static int i = 0;
+        if(i++==0)
+        {
+            de->updateGameData();
+            QString playerName;
+            if(_ship==ship1())
+                playerName = QString(ship2()->getPlayerName());
+            else if(_ship==ship2())
+                playerName = QString(ship1()->getPlayerName());
+            QMessageBox::information(de,
+                                     tr("End of the game"),
+                                     QString(tr("%1 has won !")).arg(playerName),
+                                     QMessageBox::Ok);
+        }
     }
 }
 
