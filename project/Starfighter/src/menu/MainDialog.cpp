@@ -4,6 +4,8 @@
 #include "include/menu/AboutDialog.h"
 #include "ui_MainDialog.h"
 #include "include/engine/GameEngine.h"
+#include "include/engine/DisplayEngine.h"
+
 MainDialog::MainDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MainDialog)
@@ -43,5 +45,8 @@ void MainDialog::setGameEngine(GameEngine *ge)
 void MainDialog::endGame()
 {
     if(ge != 0)
-        delete ge;
+    {
+        ge->deleteLater();
+        ge=0;
+    }
 }

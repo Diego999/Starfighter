@@ -70,7 +70,6 @@ QMap<Action, Qt::Key> Settings::playersControls()
     controls.insert(aBottom2, Qt::Key_Down);
     controls.insert(aShoot1, Qt::Key_E);
     controls.insert(aShoot2, Qt::Key_Return);
-    controls.insert(aEscape, Qt::Key_Escape);
 
     qse->beginGroup(PLAYERS_CONTROLS);
     QStringListIterator it(qse->childKeys());

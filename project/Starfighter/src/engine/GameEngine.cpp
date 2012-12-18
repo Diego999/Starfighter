@@ -15,7 +15,7 @@
 #include "include/game/BonusSpeed.h"
 #include "include/game/Supernova.h"
 
-GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject *parent = 0):QObject(parent), isRunning(false), settings(Settings::getGlobalSettings()), timeAlreadyCounted(0)
+GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject *parent = 0):QObject(parent), settings(Settings::getGlobalSettings()), timeAlreadyCounted(0),isRunning(false)
 {
     de = new DisplayEngine(this,0);
     uc = new UserControlsEngine(this);

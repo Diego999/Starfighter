@@ -8,8 +8,7 @@ enum Action
     aBottom1 = 21,
     aBottom2 = 22,
     aShoot1 = 31,
-    aShoot2 = 32,
-    aEscape = 4
+    aShoot2 = 32
 };
 
 enum Shooter

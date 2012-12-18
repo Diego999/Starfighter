@@ -55,8 +55,9 @@ private:
     QElapsedTimer elapsedTimer;
     qint64 timeAlreadyCounted;
 
-    int idTimer;
     bool isRunning;
+    int idTimer;
+
 
 signals:
     void endGame();

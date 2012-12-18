@@ -18,6 +18,7 @@
 
 #include <QList>
 #include <QMutex>
+#include <QMutexLocker>
 #include <QGraphicsScene>
 
 #define SPACE_BETWEEN         250
@@ -98,19 +99,18 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
 
 DisplayEngine::~DisplayEngine()
 {
-    //mutex->lock();
     scene->clear();
-    clearList(listProjectile);
-    clearList(listAsteroide);
-    clearList(listSmallAsteroide);
-    clearList(listBonus);
-    clearList(listAlienSpaceship);
-    clearList(listSupernova);
-    for(int i = 0;i<listSpaceship.size();i++)
-        listSpaceship.removeAt(i--);
-    //mutex->unlock();
+    listProjectile.clear();
+    listAsteroide.clear();
+    listSmallAsteroide.clear();
+    listBonus.clear();
+    listAlienSpaceship.clear();
+    listSupernova.clear();
+    listSpaceship.clear();
+
     delete affiche;
     delete mutex;
+    mutex = 0;
 
     //GameEnfine call ~DisplayEngine
 }
@@ -392,7 +392,7 @@ void DisplayEngine::checkOutsideScene(QList<Displayable*> &list)
 
         if(list[i]==0)
             continue;
-        mutex->lock();
+        QMutexLocker l(mutex);
         if(list[i]->isPixmap())
         {
             l_w = list[i]->sizePixmap().width();
@@ -405,7 +405,6 @@ void DisplayEngine::checkOutsideScene(QList<Displayable*> &list)
                 delete list[i];
                 list[i] = 0;
             }
-        mutex->unlock();
     }
 
     clearList(list);
@@ -428,21 +427,16 @@ bool DisplayEngine::checkCollisionItemAndList(const int i_list1,QList<Displayabl
     if(list2[0] == 0 || list1[i_list1]==0)
         return false;
 
-    mutex->lock();
+    QMutexLocker l(mutex);
     if(list2[0]->getTypeObject() == tAlien && (list1[i_list1]->getTypeObject() == tProj))
         if(Projectile* p = dynamic_cast<Projectile*>(list1[i_list1]))
             if(p->getFrom()==Alien)
-            {
-                mutex->unlock();
                 return false;
-            }
-    mutex->unlock();
 
     for(int j = 0;j<list2.size();j++)
     {
         if(list2[j]==0)
             continue;
-        mutex->lock();
         if(list1[i_list1] != list2[j] && list1[i_list1]->collidesWithItem(list2[j],Qt::IntersectsItemShape))
         {
             if(list1[i_list1]->getTypeObject() == tProj)
@@ -453,7 +447,6 @@ bool DisplayEngine::checkCollisionItemAndList(const int i_list1,QList<Displayabl
                     delete list1[i_list1];
                     list1[i_list1] = 0;
 
-                    mutex->unlock();
                     return false;
                 }
                 else if(Bonus* b = dynamic_cast<Bonus*>(list2[j]))
@@ -473,7 +466,6 @@ bool DisplayEngine::checkCollisionItemAndList(const int i_list1,QList<Displayabl
                     delete list1[i_list1];
                     list1[i_list1]=0;
 
-                    mutex->unlock();
                     return true;
                 }
             }
@@ -485,7 +477,6 @@ bool DisplayEngine::checkCollisionItemAndList(const int i_list1,QList<Displayabl
                     delete list2[j];
                     list2[j] = 0;
 
-                    mutex->unlock();
                     return false;
                 }
             }
@@ -498,10 +489,8 @@ bool DisplayEngine::checkCollisionItemAndList(const int i_list1,QList<Displayabl
                 delete list2[j];
                 list2[j] = 0;
             }
-            mutex->unlock();
             return true;
         }
-        mutex->unlock();
     }
 
     return false;
@@ -514,23 +503,30 @@ bool DisplayEngine::checkCollisionSpaceshipAndList(const int i,QList<Displayable
 
     for(int j = 0;j<list.size();j++)
     {
-        mutex->lock();
+        QMutexLocker* l = new QMutexLocker(mutex);
         if(list[j]==0)
         {
-            mutex->unlock();
+            delete l;
             return false;
         }
 
         if(listSpaceship[i]->collidesWithItem(list[j],Qt::IntersectsItemShape))
         {
             listSpaceship[i]->receiveAttack(list[j]->getPower());
-            delete list[j];
-            list[j] = 0;
-            clearList(list);
-            mutex->unlock();
+            if(l->mutex()!=0)
+            {
+                //
+                //    qDebug() << "T";
+                delete list[j];
+                list[j] = 0;
+                clearList(list);
+                delete l;
+            }
+
             return true;
         }
-        mutex->unlock();
+        else
+            delete l;
     }
 
     return false;
