@@ -29,6 +29,8 @@ public:
     void setProgressShield2(int _value);
     void setGameScore1(int _value);
     void setGameScore2(int _value);
+    void setBonus1(int in);
+    void setBonus2(int in);
 
     void addProjectile(Projectile *_inProjectile);
     void addSupernova(Supernova *_inSupernova);
@@ -110,6 +112,8 @@ private:
     QTime      * affiche;
     QLCDNumber * scoreP1;
     QLCDNumber * scoreP2;
+    QLabel * lSpeed1;
+    QLabel * lSpeed2;
 
     QProgressBar * HP1;
     QProgressBar * HP2;

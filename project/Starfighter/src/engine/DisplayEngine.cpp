@@ -14,6 +14,8 @@
 
 #include "include/enum/Enum.h"
 
+#include "QtGui"
+
 #include <QList>
 #include <QMutex>
 #include <QGraphicsScene>
@@ -30,14 +32,14 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     // get screen dimension
     QDesktopWidget * desktop = QApplication::desktop();
 
-    screenSizeHeight = desktop->height();
-    screenSizeWidth = desktop->width();
+    screenSizeHeight = desktop->screenGeometry(this).height();
+    screenSizeWidth = desktop->screenGeometry(this).width();
 
 //    screenSizeWidth = 1440;
 //    screenSizeHeight = 900;
 
-    sceneWidth = (screenSizeWidth);///desktop->screenCount();
-    sceneHeigth = (screenSizeHeight*0.85);///desktop->screenCount();
+    sceneWidth = screenSizeWidth;
+    sceneHeigth = screenSizeHeight*0.85;
     //double sceneHeigth = screenSizeHeight;
 
     QVBoxLayout * mainScreen = new QVBoxLayout(this);
@@ -149,6 +151,7 @@ void DisplayEngine::creatHUD()
     statuePlayerOne->addLayout(shildP1);
 
     QHBoxLayout * bonusPlayerOne = new QHBoxLayout();
+    lSpeed1 = new QLabel();
 
     /**
       * Timer and point counter
@@ -204,6 +207,9 @@ void DisplayEngine::creatHUD()
     statuePlayerTwo->addLayout(shildP2);
 
     QHBoxLayout * bonusPlayerTwo = new QHBoxLayout();
+    lSpeed2 = new QLabel();
+    //QPixmap * icon2 = new QPixmap("./image/game/bonus");
+    //bonusPlayerTwo->addWidget(icon2);
 
     downPart->addLayout(playerOneNamu);
     downPart->addSpacing(SPACE_INPLAYER);
@@ -604,6 +610,16 @@ void DisplayEngine::setGameScore2(int _value)
     scoreP2->display(_value);
 }
 
+void DisplayEngine::setBonus1(int in)
+{
+    //lSpeed1->setText();
+}
+
+void DisplayEngine::setBonus2(int in)
+{
+    //lSpeed2->setText();
+}
+
 void DisplayEngine::updateGameData()
 {
     this->setProgressHP1(gameEngine->ship1()->getHealthPoint());
@@ -647,9 +663,9 @@ void DisplayEngine::endGame(Spaceship* _ship)
         updateGameData();
         QString playerName;
         if(_ship==gameEngine->ship1())
-            playerName = QString(gameEngine->ship2()->getPlayerName());
-        else if(_ship==gameEngine->ship2())
             playerName = QString(gameEngine->ship1()->getPlayerName());
+        else if(_ship==gameEngine->ship2())
+            playerName = QString(gameEngine->ship2()->getPlayerName());
         QMessageBox::information(this,
                                  tr("End of the game"),
                                  QString(tr("%1 has won !")).arg(playerName),
