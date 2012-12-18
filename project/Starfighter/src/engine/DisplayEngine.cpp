@@ -73,7 +73,8 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
 
     this->setWindowModality(Qt::ApplicationModal);
     // Param of the screen
-    showFullScreen();
+    //showFullScreen();
+    switchFullScreen();
     //setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint);
     view->move(0,0);
 
@@ -83,9 +84,9 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent): QWidget(parent), 
     mainScreen->addWidget(view);
     mainScreen->addWidget(downHUD);
 
-    pixSpeed = QPixmap("");
-    pixProj = QPixmap("");
-    pixHP = QPixmap("");
+    //pixSpeed = new QPixmap("");
+    //pixProj = new QPixmap("");
+    //pixHP = new QPixmap("");
 
     affiche = new QTime();
     affiche->setHMS(0,0,0,0);
@@ -119,22 +120,22 @@ void DisplayEngine::creatHUD()
 {
 
     imSpeed1 = new QLabel();
-    imSpeed1->setPixmap(pixSpeed);
+    //imSpeed1->setPixmap(*pixSpeed);
 
     imHP1 = new QLabel();
-    imHP1->setPixmap(pixHP);
+    //imHP1->setPixmap(*pixHP);
 
     imProj1 = new QLabel();
-    imProj1->setPixmap(pixProj);
+    //imProj1->setPixmap(*pixProj);
 
     imSpeed2 = new QLabel();
-    imSpeed2->setPixmap(pixSpeed);
+    //imSpeed2->setPixmap(*pixSpeed);
 
     imHP2 = new QLabel();
-    imHP2->setPixmap(pixHP);
+    //imHP2->setPixmap(*pixHP);
 
     imProj2 = new QLabel();
-    imProj2->setPixmap(pixProj);
+    //imProj2->setPixmap(*pixProj);
 
 
     QHBoxLayout * downPart = new QHBoxLayout(downHUD);
@@ -657,15 +658,15 @@ void DisplayEngine::setBonus1(TypeBonus in,int value)
         switch(in)
         {
             case TypeBonusHP:
-            imHP1->setPixmap(pixHP);
+            //imHP1->setPixmap(pixHP);
             lBSpeed1->setNum(value);
 
             case TypeBonusProjectile :
-            imProj1->setPixmap(pixProj);
+            //imProj1->setPixmap(pixProj);
             lBProjectile1->setText("");
 
             case TypeBonusSpeed :
-            imSpeed1->setPixmap(pixSpeed);
+            //imSpeed1->setPixmap(pixSpeed);
             lBSpeed1->setText("");
         }
     }
@@ -675,16 +676,16 @@ void DisplayEngine::setBonus1(TypeBonus in,int value)
         switch(in)
         {
             case TypeBonusHP:
-            imHP1->setText("");
+            //imHP1->setText("");
             lBSpeed1->setText("");
             break;
 
             case TypeBonusProjectile :
-            imProj1->setText("");
+            //imProj1->setText("");
             lBProjectile1->setText("");
 
             case TypeBonusSpeed :
-            imSpeed1->setText("");
+            //imSpeed1->setText("");
             lBSpeed1->setText("");
         }
     }
@@ -697,15 +698,15 @@ void DisplayEngine::setBonus2(TypeBonus in,int value)
         switch(in)
         {
             case TypeBonusHP:
-            imHP2->setPixmap(pixHP);
+            //imHP2->setPixmap(pixHP);
             lBSpeed2->setNum(value);
 
             case TypeBonusProjectile :
-            imProj2->setPixmap(pixProj);
+            //imProj2->setPixmap(pixProj);
             lBProjectile2->setText("");
 
             case TypeBonusSpeed :
-            imSpeed2->setPixmap(pixSpeed);
+            //imSpeed2->setPixmap(pixSpeed);
             lBSpeed2->setText("");
         }
     }
@@ -715,16 +716,16 @@ void DisplayEngine::setBonus2(TypeBonus in,int value)
         switch(in)
         {
             case TypeBonusHP:
-            imHP2->setText("");
+            //imHP2->setText("");
             lBSpeed2->setText("");
             break;
 
             case TypeBonusProjectile :
-            imProj2->setText("");
+            //imProj2->setText("");
             lBProjectile2->setText("");
 
             case TypeBonusSpeed :
-            imSpeed2->setText("");
+            //imSpeed2->setText("");
             lBSpeed2->setText("");
         }
     }

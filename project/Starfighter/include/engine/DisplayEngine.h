@@ -33,6 +33,7 @@ public:
     void setBonus1(TypeBonus in, int value = 0);
     void setBonus2(TypeBonus in, int value = 0);
 
+
     void addProjectile(Projectile *_inProjectile);
     void addSupernova(Supernova *_inSupernova);
 
@@ -111,9 +112,9 @@ private:
     double sceneWidth;
     double sceneHeigth;
 
-    QPixmap pixSpeed;
-    QPixmap pixProj;
-    QPixmap pixHP;
+    //QPixmap pixSpeed;
+    //QPixmap pixProj;
+    //QPixmap pixHP;
 
     // widget used for the HUD
     QLCDNumber * timer;
