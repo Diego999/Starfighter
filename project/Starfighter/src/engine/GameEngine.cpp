@@ -14,7 +14,8 @@
 #include "include/game/Supernova.h"
 
 #include "include/utils/Settings.h"
-#include "include/stable.h"
+#include "include/config/Define.h"
+
 GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject *parent = 0)
     :QObject(parent),
       settings(Settings::getGlobalSettings()),gameMode(gameMode),typeShip1(player1Ship),typeShip2(player2Ship),
@@ -72,33 +73,40 @@ void GameEngine::createSpaceship()
     qreal speed = 0;
     qreal healthPoint = 0;
     qreal resistance = 0;
+    QString path;
     if(typeShip1==SpaceshipType1)
     {
         speed = SPEED_1;
         healthPoint = HEALTHPOINT_1;
         resistance = RESISTANCE_1;
+        path = QString(PICTURE_SPACESHIP_1);
     }
     else// if(typeShip1==SpaceshipType2)
     {
         speed = SPEED_2;
         healthPoint = HEALTHPOINT_2;
         resistance = RESISTANCE_2;
+        path = QString(PICTURE_SPACESHIP_2);
     }
     addShip(new Spaceship(0,height/2,Player1,settings.playerOneName(),speed,healthPoint,resistance,this));
+    listSpaceship[0]->setPixmap(new QPixmap(path));
 
     if(typeShip2==SpaceshipType1)
     {
         speed = SPEED_1;
         healthPoint = HEALTHPOINT_1;
         resistance = RESISTANCE_1;
+        path = QString(PICTURE_SPACESHIP_1);
     }
     else// if(typeShip2==SpaceshipType2)
     {
         speed = SPEED_2;
         healthPoint = HEALTHPOINT_2;
         resistance = RESISTANCE_2;
+        path = QString(PICTURE_SPACESHIP_2);
     }
     addShip(new Spaceship(width,height/2,Player2,settings.playerTwoName(),speed,healthPoint,resistance,this));
+    listSpaceship[1]->setPixmap(new QPixmap(path));
 }
 
 void GameEngine::timerEvent(QTimerEvent *event)

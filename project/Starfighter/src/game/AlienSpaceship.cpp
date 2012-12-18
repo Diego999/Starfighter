@@ -57,7 +57,7 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
     dModule = sqrt((l_x1-dX0)*(l_x1-dX0)+(l_y1-dY0)*(l_y1-dY0));
     dArgument = atan((dY0-l_y1)/(l_x1-dX0))*180.0/M_PI;
 
-    setPixmap(new QPixmap(":/images/game/spaceship"));
+    setPixmap(new QPixmap(PICTURE_ALIENSPACESHIP));
 }
 
 void AlienSpaceship::advance(int _step)

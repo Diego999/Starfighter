@@ -25,7 +25,7 @@ public:
 
     QPixmap* getPixmap() const {return pxmPicture;}
     void setPos(qreal _dX, qreal _dY);
-    void setPixmap(QPixmap* _pxmPixmap);
+    virtual void setPixmap(QPixmap* _pxmPixmap);
 private:
     qreal dX;
     qreal dY;

@@ -21,12 +21,15 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
     type = PROJ_SPACESHIP_DEF;
     bonusSpeed = 0;
     bonusProjectile = 0;
-    setPixmap(new QPixmap(":/images/game/spaceship"));
+}
 
-    if(_player == Player2)
+void Spaceship::setPixmap(QPixmap *_pxmPixmap)
+{
+    Displayable::setPixmap(_pxmPixmap);
+    if(player == Player2)
     {
-        setPixmap(new QPixmap(getPixmap()->transformed(QTransform().rotate(180))));
-        setPos(_dX-getPixmap()->size().width(),_dY);
+        Displayable::setPixmap(new QPixmap(getPixmap()->transformed(QTransform().rotate(180))));
+        setPos(pos().x()-getPixmap()->size().width(),pos().y());
     }
 }
 

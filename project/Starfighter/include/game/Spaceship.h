@@ -32,6 +32,7 @@ public:
     BonusProjectile* getBonusProjectile() const {return bonusProjectile;}
     qreal getPercentageSpeed() const;
 
+    void setPixmap(QPixmap* _pxmPixmap);
     void addBonus(Bonus* _bonus);
     QRectF boundingRect() const;
     QPainterPath shape() const;

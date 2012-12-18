@@ -31,6 +31,7 @@
 //AlienSpaceShip
 #define MARGIN_Y                            10
 #define DELTA_X                             100
+#define PICTURE_ALIENSPACESHIP              ":/images/game/spaceship"
 
 //Asteroid
 #define SPEED_ASTEROID                      1
@@ -40,6 +41,14 @@
 #define POWER_SMALL_ASTEROID                5
 #define RESISTANCE_SMALL_ASTEROID           1
 #define HEALTHPOINT_SMALL_ASTEROID          50
+
+#define PICTURE_ASTEROID                    ":/images/game/asteroids/rock%1"
+#define NB_PICTURE_ASTEROID_MIN             10000
+#define NB_PICTURE_ASTEROID_MAX             10031
+
+#define PICTURE_SMALL_ASTEROID              ":/images/game/asteroids/rock%1"
+#define NB_PICTURE_SMALL_ASTEROID_MIN       20000
+#define NB_PICTURE_SMALL_ASTEROID_MAX       20031
 
 //Bonus
 #define DELTA_X_B                           100
@@ -71,6 +80,8 @@
 #define PROJ_SPACESHIP_DEF                  ProjSimple
 #define RESISTANCE_FORCE_FIELD              100
 
+#define PICTURE_SPACESHIP_1                 ":/images/game/spaceship"
+#define PICTURE_SPACESHIP_2                 ":/images/game/spaceship"
 #define HEALTHPOINT_1                       100
 #define HEALTHPOINT_2                       100
 #define RESISTANCE_1                        100

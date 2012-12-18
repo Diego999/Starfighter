@@ -17,11 +17,11 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
     //If it's a small asteroid, we use dSlope and generate and X-direction
     if(bSmall)
     {
-        numberFrameMin = 20000;
-        numberFrameMax = 20031;
+        numberFrameMin = NB_PICTURE_SMALL_ASTEROID_MIN;
+        numberFrameMax = NB_PICTURE_SMALL_ASTEROID_MAX;
         currentFrame = numberFrameMin;
         dPower = POWER_SMALL_ASTEROID;
-        setPixmap(new QPixmap(QString(":/images/game/asteroids/rock%1").arg(currentFrame)));
+        setPixmap(new QPixmap(QString(PICTURE_SMALL_ASTEROID).arg(currentFrame)));
         //int l_X = gameEngine->randInt(2);
 
         dSlope=tan(_dSlope*M_PI/180.0);
@@ -35,11 +35,11 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
     }
     else
     {
-        numberFrameMin = 10000;
-        numberFrameMax = 10031;
+        numberFrameMin = NB_PICTURE_ASTEROID_MIN;
+        numberFrameMax = NB_PICTURE_ASTEROID_MAX;
         currentFrame = numberFrameMin;
         dPower = POWER_ASTEROID;
-        setPixmap(new QPixmap(QString(":/images/game/asteroids/rock%1").arg(currentFrame)));
+        setPixmap(new QPixmap(QString(PICTURE_ASTEROID).arg(currentFrame)));
         QRect sceneSize = gameEngine->displayEngine()->sceneSize();
         /*Generate the position of the Asteroid and its trajectory
           For more informations cf the specification file*/
