@@ -22,13 +22,16 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
         currentFrame = numberFrameMin;
         dPower = POWER_SMALL_ASTEROID;
         setPixmap(new QPixmap(QString(":/images/game/asteroids/rock%1").arg(currentFrame)));
-        int l_X = gameEngine->randInt(2);
+        //int l_X = gameEngine->randInt(2);
 
-        dSlope=tan(dSlope);
-        if(l_X==0)
-            direction = 1;
-        else
+        dSlope=tan(_dSlope*M_PI/180.0);
+        direction = 1;
+
+        if(_dSlope>90 && _dSlope<=270)
+        {
             direction = -1;
+            dSlope*=-1;
+        }
     }
     else
     {
@@ -90,36 +93,35 @@ TypeItem Asteroid::getTypeObject() const
     return (bSmall)?tSmallAsteroid:tAsteroid;
 }
 
+bool Asteroid::doubleCompare(qreal a, qreal b)
+{
+    qreal e = 1e-5;
+    return fabs(a-b) < e;
+}
+
 Asteroid::~Asteroid()
 {
     if(!bSmall)
     {
         int l_nb = gameEngine->randInt(MAX_ASTEROID-MIN_ASTEROID+1)+MIN_ASTEROID;
 
-        switch(l_nb)
+        for(int i = 0;i<l_nb;i++)
         {
-            case 3:
-            gameEngine->addSmallAsteroid(new Asteroid(pos().x()+getPixmap()->width(),pos().y()+getPixmap()->height()/2.0,Other,
-                                                              RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,0,true));
-            gameEngine->addSmallAsteroid(new Asteroid(pos().x(),pos().y(),Other,
-                                                              RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,120,true));
-            gameEngine->addSmallAsteroid(new Asteroid(pos().x(),pos().y()+getPixmap()->height(),Other,
-                                                              RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,240,true));
-                break;
+            qreal angle = 360.0/l_nb*i;
+            angle += 360.0/l_nb/2.0;
 
-            case 5:
-            gameEngine->addSmallAsteroid(new Asteroid(pos().x()+getPixmap()->width()/2.0,pos().y()+getPixmap()->height()/2.0,Other,
-                                                              RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,0,true));
-            case 4:
-            gameEngine->addSmallAsteroid(new Asteroid(pos().x()+getPixmap()->width(),pos().y(),Other,
-                                                              RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,45,true));
-            gameEngine->addSmallAsteroid(new Asteroid(pos().x(),pos().y(),Other,
-                                                              RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,135,true));
-            gameEngine->addSmallAsteroid(new Asteroid(pos().x(),pos().y()+getPixmap()->height(),Other,
-                                                              RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,225,true));
-            gameEngine->addSmallAsteroid(new Asteroid(pos().x()+getPixmap()->width(),pos().y()+getPixmap()->height(),Other,
-                                                              RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,-45,true));
-                break;
+            qreal l_x = 0;
+            qreal l_y = 0;
+
+            if(cos(angle*M_PI/180.0)>0)
+                l_x += getPixmap()->width();
+
+            if(sin(angle*M_PI/180.0)<0)
+                l_y += getPixmap()->height();
+            else if(Asteroid::doubleCompare(sin(angle*M_PI/180.0),0))
+                l_y += getPixmap()->height()/2.0;
+
+            gameEngine->addSmallAsteroid(new Asteroid(pos().x()+l_x,pos().y()+l_y,Other,RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,angle,true));
         }
     }
 }

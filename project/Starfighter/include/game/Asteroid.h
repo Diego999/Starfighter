@@ -24,6 +24,8 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
 private:
+    static bool doubleCompare(qreal a,qreal b);
+
     void advance(int _step);
     qreal trajectoryDraw(qreal _dX);
 
