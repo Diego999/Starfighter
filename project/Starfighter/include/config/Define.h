@@ -53,6 +53,7 @@
 //Bonus
 #define DELTA_X_B                           100
 #define SOUND_TIMER                         1000 // (ms)
+#define PICTURE_BONUS                       ":/images/game/bonus"
 
 //Projectile
 #define RADIUS_PROJECTILE                   10

@@ -7,7 +7,7 @@
 #include "include/config/Define.h"
 
 Bonus::Bonus(GameEngine *_gameEngine)
-    :Displayable(0,0,new QPixmap(":/images/game/bonus")),
+    :Displayable(0,0,new QPixmap(PICTURE_BONUS)),
     gameEngine(_gameEngine),directionX(1),direction(1)
 {
     /*Generate the position of the AlienSpaceship
