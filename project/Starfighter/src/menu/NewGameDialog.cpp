@@ -15,10 +15,10 @@ NewGameDialog::NewGameDialog(QWidget *parent) :
     ui->cbbGametype->addItem(tr("Deathmatch"), DeathMatch);
     ui->cbbGametype->addItem(tr("Timer"), Timer);
 
-    ui->cbbP1ship->addItem(tr("Vaisseau 1"), SpaceshipType1);
-    ui->cbbP1ship->addItem(tr("Vaisseau 2"), SpaceshipType2);
-    ui->cbbP2ship->addItem(tr("Vaisseau 1"), SpaceshipType1);
-    ui->cbbP2ship->addItem(tr("Vaisseau 2"), SpaceshipType2);
+    ui->cbbP1ship->addItem(tr("Ship 1"), SpaceshipType1);
+    ui->cbbP1ship->addItem(tr("Ship 2"), SpaceshipType2);
+    ui->cbbP2ship->addItem(tr("Ship 1"), SpaceshipType1);
+    ui->cbbP2ship->addItem(tr("Ship 2"), SpaceshipType2);
 }
 
 NewGameDialog::~NewGameDialog()
