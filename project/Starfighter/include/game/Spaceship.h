@@ -10,6 +10,7 @@ class Bonus;
 class BonusSpeed;
 class BonusProjectile;
 class GameEngine;
+class QTimer;
 
 class Spaceship : public Destroyable, public virtual Displayable
 {
@@ -50,6 +51,8 @@ private:
     TypeProjectiles type;
     qreal dHealthForceField;
     qreal dResistanceForceField;
+
+    QTimer *timerProjectile;
 
     BonusSpeed *bonusSpeed;
     BonusProjectile *bonusProjectile;

@@ -11,12 +11,18 @@
 #include "include/game/BonusSpeed.h"
 
 #include "include/config/Define.h"
+#include "include/stable.h"
 
 Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerName,qreal _dSpeed,qreal _dHealthPoint,qreal _dResistance,GameEngine *_gameEngine)
     :Displayable(_dX,_dY),
       Destroyable(_dHealthPoint,_dResistance),
       player(_player),playerName(_playerName),dSpeed(_dSpeed),dResistanceForceField(RESISTANCE_FORCE_FIELD),gameEngine(_gameEngine)
 {
+    timerProjectile = new QTimer(this);
+    timerProjectile->setSingleShot(true);
+
+    connect(timerProjectile,SIGNAL(timeout()),this,SLOT(removeProjectileBonus()));
+
     dHealthForceField = MAX_SPACESHIP_PV;
     type = PROJ_SPACESHIP_DEF;
     bonusSpeed = 0;
@@ -54,8 +60,6 @@ QPainterPath Spaceship::shape() const
 void Spaceship::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option, QWidget *_widget)
 {
     _painter->drawPixmap(0,0,*getPixmap());
-//    _painter->setPen(QPen(QColor(255,0,0)));
-//    _painter->drawPath(shape());
 }
 
 qreal Spaceship::getPercentageSpeed() const
@@ -77,9 +81,13 @@ void Spaceship::addBonus(Bonus *_bonus)
     }
     else if(BonusProjectile* bp = dynamic_cast<BonusProjectile*>(_bonus))
     {
+        if(timerProjectile->isActive())
+            removeProjectileBonus();
+
         type = bp->getType();
         bonusProjectile = bp;
-        QTimer::singleShot(bp->getExpiration(),this,SLOT(removeProjectileBonus()));
+
+        timerProjectile->start(bp->getExpiration());
     }
     else if(BonusForceField* bff = dynamic_cast<BonusForceField*>(_bonus))
     {
@@ -103,6 +111,7 @@ void Spaceship::removeProjectileBonus()
 {
     delete bonusProjectile;
     bonusProjectile = 0;
+    timerProjectile->stop();
     type = PROJ_SPACESHIP_DEF;
 }
 
