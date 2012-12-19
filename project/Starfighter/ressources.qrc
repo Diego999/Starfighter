@@ -77,4 +77,9 @@
         <file alias="rock20030">res/images/game/asteroid2/rock20030.png</file>
         <file alias="rock20031">res/images/game/asteroid2/rock20031.png</file>
     </qresource>
+    <qresource prefix="/sounds">
+	<file alias="sat">res/sounds/beep.mp3</file>
+	<file alias="laser">res/sounds/laser.mp3</file>
+	<file alias="bgmusic">res/sounds/music.mp3</file>
+    </qresource>
 </RCC>

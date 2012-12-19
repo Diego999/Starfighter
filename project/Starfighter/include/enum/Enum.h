@@ -47,4 +47,10 @@ enum TypeBonus
     TypeBonusProjectile     = 1,
     TypeBonusSpeed          = 2
 };
+
+enum Sounds
+{
+    SatelliteSound = 1, ShootSound = 2
+};
+
 #endif // ENUMERATION_H

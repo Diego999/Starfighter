@@ -2,6 +2,7 @@
 #include "include/engine/DisplayEngine.h"
 #include "include/engine/SpawnEngine.h"
 #include "include/engine/UserControlsEngine.h"
+#include "include/engine/SoundEngine.h"
 
 #include "include/game/Spaceship.h"
 #include "include/game/Destroyable.h"
@@ -21,6 +22,7 @@ GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Shi
       settings(Settings::getGlobalSettings()),gameMode(gameMode),typeShip1(player1Ship),typeShip2(player2Ship),
       isRunning(false),idTimer(-1),isTimer(false),timeGame(duration),timeAlreadyCounted(0)
 {
+    soe = new SoundEngine(settings.soundEffectsVolume(), settings.musicVolume(), this);
     de = new DisplayEngine(this,0);
     uc = new UserControlsEngine(this);
     se = new SpawnEngine(difficulty, this);
@@ -40,6 +42,7 @@ GameEngine::~GameEngine()
     delete de;//Delete all the pointers in the different QList, so we must only clear them
     delete uc;
     delete se;
+    delete soe;
 
     listProjectile.clear();
     listAsteroide.clear();
@@ -285,6 +288,7 @@ void GameEngine::removeShip(Spaceship *_inSpaceship)
 void GameEngine::addBonus(Bonus *_inBonus)
 {
     de->addItemScene(_inBonus);
+    soe->playSound(SatelliteSound);
     listBonus.append(_inBonus);
 }
 
@@ -425,6 +429,7 @@ bool GameEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*>
                     //We only remove the item from the list
                     list2[j] = 0;
                     de->removeItemScene(b);
+                    b->stopSound();
 
                     if(p->getFrom() == Player1)
                         ship1()->addBonus(b);

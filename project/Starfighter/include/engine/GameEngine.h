@@ -6,6 +6,7 @@
 class DisplayEngine;
 class SpawnEngine;
 class UserControlsEngine;
+class SoundEngine;
 class Projectile;
 class Supernova;
 class Spaceship;
@@ -36,6 +37,7 @@ public:
     Spaceship * ship1() const {return listSpaceship[0];}
     Spaceship * ship2() const {return listSpaceship[1];}
 
+    SoundEngine* soundEngine() const { return soe;}
     DisplayEngine* displayEngine() const { return de;}
     UserControlsEngine* userControlsEngine() const {return uc;}
     //SpawnEngine* spawnEngine() const {return se;}
@@ -75,6 +77,7 @@ private:
     bool checkCollisionSpaceshipAndList(const int i_list1,QList<Displayable*> &list);
     void runTestCollision(QList<Displayable*> &list);
 
+    SoundEngine *soe;
     DisplayEngine *de;
     SpawnEngine *se;
     UserControlsEngine *uc;

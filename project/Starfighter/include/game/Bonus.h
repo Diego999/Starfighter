@@ -10,16 +10,14 @@ class Bonus : public QObject, public Displayable
     Q_OBJECT
 public:
     Bonus(GameEngine *_gameEngine);
-    virtual ~Bonus() {}
+    virtual ~Bonus();
 
     TypeItem getTypeObject() const {return tBonus;}
     QRectF boundingRect() const;
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void advance(int _step);
-
-private slots:
-    void playSound();
+    void stopSound();
 
 private:
     GameEngine *gameEngine;
@@ -33,5 +31,6 @@ private:
     qreal dY0;
     int directionX;
     int direction;
+    bool soundStopped;
 };
 #endif

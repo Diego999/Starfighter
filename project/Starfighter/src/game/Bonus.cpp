@@ -1,5 +1,6 @@
 #include "include/engine/DisplayEngine.h"
 #include "include/engine/GameEngine.h"
+#include "include/engine/SoundEngine.h"
 
 #include "include/game/Bonus.h"
 #include "include/game/Spaceship.h"
@@ -8,7 +9,7 @@
 
 Bonus::Bonus(GameEngine *_gameEngine)
     :Displayable(0,0,new QPixmap(PICTURE_BONUS)),
-    gameEngine(_gameEngine),directionX(1),direction(1)
+      gameEngine(_gameEngine),directionX(1),direction(1),soundStopped(false)
 {
     /*Generate the position of the AlienSpaceship
       For more informations cf the specification file*/
@@ -53,20 +54,12 @@ Bonus::Bonus(GameEngine *_gameEngine)
     setPos(l_x1,l_y1);
 
     dModule = sqrt((l_x1-dX0)*(l_x1-dX0)+(l_y1-dY0)*(l_y1-dY0));
-    dArgument = atan((dY0-l_y1)/(l_x1-dX0))*180.0/M_PI;
-
-    playSound();
-
-    QTimer* timer = new QTimer(this);
-    timer->setInterval(SOUND_TIMER);
-    timer->start();
-
-    connect(timer,SIGNAL(timeout()),this,SLOT(playSound()));
+    dArgument = atan((dY0-l_y1)/(l_x1-dX0))*180.0/M_PI; 
 }
 
-void Bonus::playSound()
+Bonus::~Bonus()
 {
-    //QSound::play("res/musics/beep.wav");
+    stopSound();
 }
 
 void Bonus::advance(int _step)
@@ -96,4 +89,13 @@ void Bonus::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option, QW
     _painter->drawPixmap(0,0,*getPixmap());
 //    _painter->setPen(QPen(QColor(255,0,0)));
 //    _painter->drawPath(shape());
+}
+
+void Bonus::stopSound()
+{
+    if(!soundStopped)
+    {
+        gameEngine->soundEngine()->stopSound(SatelliteSound);
+        soundStopped = true;
+    }
 }

@@ -10,4 +10,6 @@
 #include <QtOpenGL/QGLWidget>
 #include <QElapsedTimer>
 
+#include <Phonon>
+
 #endif // STABLE_H

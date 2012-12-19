@@ -1,5 +1,6 @@
 #include "include/engine/DisplayEngine.h"
 #include "include/engine/GameEngine.h"
+#include "include/engine/SoundEngine.h"
 
 #include "include/game/Spaceship.h"
 #include "include/game/ProjectileCross.h"
@@ -72,6 +73,8 @@ qreal Spaceship::getPercentageSpeed() const
 
 void Spaceship::addBonus(Bonus *_bonus)
 {
+    gameEngine->soundEngine()->stopSound(SatelliteSound);
+
     if(BonusHP* bhp = dynamic_cast<BonusHP*>(_bonus))
     {
         dHealthPoint+=bhp->getHealthPoint();
@@ -148,6 +151,8 @@ void Spaceship::attack()
         l_x = pos().x();//Don't need to remove the width of the QPixmap,already done in the constructor
 
     l_y = pos().y()+getPixmap()->height()/2;
+
+    gameEngine->soundEngine()->playSound(ShootSound);
 
     switch(type)
     {
