@@ -34,7 +34,7 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
 
     view->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
     view->setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
-    view->setViewport(new QGLWidget(QGLFormat(QGL::SampleBuffers),this));
+    view->setViewport(new QGLWidget(QGLFormat(QGL::DoubleBuffer),this));
 
     //Better performance if we don't use random access in the scene.
     //It's the case because we use QList for Item process
