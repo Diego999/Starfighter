@@ -430,6 +430,12 @@ void DisplayEngine::keyReleaseEvent(QKeyEvent * event)
     gameEngine->userControlsEngine()->keyReleaseEvent(event);
 }
 
+void DisplayEngine::closeEvent(QCloseEvent *event)
+{
+    gameEngine->escapeGame();
+    event->ignore();
+}
+
 void DisplayEngine::switchFullScreen()
 {
     if(isFullScreen)

@@ -35,6 +35,7 @@ public:
 protected:
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent * event);
+    void closeEvent(QCloseEvent *event);
 
 public slots:
     void updateScreen();
