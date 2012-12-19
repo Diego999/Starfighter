@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.0" language="fr_FR" sourcelanguage="en">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -36,25 +36,56 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DisplayEngine</name>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="105"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="161"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="127"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="192"/>
         <source>Name : %1</source>
         <translation type="unfinished">Nom : %1</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="597"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="134"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="198"/>
+        <source>HP:	</source>
+        <translation type="unfinished">PV :</translation>
+    </message>
+    <message>
+        <location filename="src/engine/DisplayEngine.cpp" line="143"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="207"/>
+        <source>Shield:	</source>
+        <translation type="unfinished">Bouclier :</translation>
+    </message>
+    <message>
+        <location filename="src/engine/DisplayEngine.cpp" line="180"/>
+        <source>:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>End of the game</source>
+        <translation type="obsolete">Fin du jeu</translation>
+    </message>
+    <message>
+        <source>%1 has won !</source>
+        <translation type="obsolete">%1 a gagné !</translation>
+    </message>
+</context>
+<context>
+    <name>GameEngine</name>
+    <message>
+        <location filename="src/engine/GameEngine.cpp" line="172"/>
+        <location filename="src/engine/GameEngine.cpp" line="173"/>
+        <location filename="src/engine/GameEngine.cpp" line="188"/>
+        <location filename="src/engine/GameEngine.cpp" line="201"/>
         <source>End of the game</source>
         <translation type="unfinished">Fin du jeu</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="609"/>
+        <location filename="src/engine/GameEngine.cpp" line="189"/>
         <source>%1 has won !</source>
         <translation type="unfinished">%1 a gagné !</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="623"/>
-        <source>Voulez-vous arrêter la partie?</source>
-        <translation type="unfinished"></translation>
+        <location filename="src/engine/GameEngine.cpp" line="202"/>
+        <source>Do you want to stop the current game ?</source>
+        <translation type="unfinished">Voulez-vous quitter le jeu en cours ?</translation>
     </message>
 </context>
 <context>
@@ -165,14 +196,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="src/menu/NewGameDialog.cpp" line="18"/>
         <location filename="src/menu/NewGameDialog.cpp" line="20"/>
-        <source>Vaisseau 1</source>
-        <translation type="unfinished"></translation>
+        <source>Ship 1</source>
+        <translation type="unfinished">Vaisseau 1</translation>
     </message>
     <message>
         <location filename="src/menu/NewGameDialog.cpp" line="19"/>
         <location filename="src/menu/NewGameDialog.cpp" line="21"/>
-        <source>Vaisseau 2</source>
-        <translation type="unfinished"></translation>
+        <source>Ship 2</source>
+        <translation type="unfinished">Vaisseau 2</translation>
     </message>
 </context>
 <context>
