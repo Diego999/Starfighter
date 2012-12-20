@@ -14,6 +14,9 @@ class QProgressBar;
 class GameEngine;
 class Displayable;
 
+class BonusProjectile;
+class BonusSpeed;
+
 class DisplayEngine : public QWidget
 {
     Q_OBJECT
@@ -50,8 +53,12 @@ private:
     void setProgressShield2(int _value);
     void setGameScore1(int _value);
     void setGameScore2(int _value);
-    void setBonus1(TypeBonus in, int value = 0);
-    void setBonus2(TypeBonus in, int value = 0);
+
+    void setBonusProject1(TypeProjectiles _value = ProjSimple);
+    void setBonusProject2(TypeProjectiles _value = ProjSimple);
+
+    void setBonusSpeed1(int _value = 0);
+    void setBonusSpeed2(int _value = 0);
 
     GameEngine *gameEngine;
 
@@ -66,9 +73,9 @@ private:
     bool isFullScreen;
     bool isTimer;
 
-    //QPixmap pixSpeed;
-    //QPixmap pixProj;
-    //QPixmap pixHP;
+    QPixmap pixSpeed;
+    QPixmap pixProj;
+    QPixmap pixHP;
 
     // widget used for the HUD
     QTime      * affiche;
