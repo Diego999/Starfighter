@@ -176,7 +176,7 @@ void GameEngine::endGameTimer()
         if(ship1()->getScore()>ship2()->getScore())
             playerName = QString(ship1()->getPlayerName());
         else if(ship1()->getScore()<ship2()->getScore())
-            playerName = QString(ship1()->getPlayerName());
+            playerName = QString(ship2()->getPlayerName());
 
         if(ship1()->getScore()!=ship2()->getScore())
             QMessageBox::information(de,
