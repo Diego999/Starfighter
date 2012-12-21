@@ -64,10 +64,11 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     mainScreen->setSpacing(0);
 
     mainScreen->addWidget(view);
+    mainScreen->addSpacing(30);
     mainScreen->addWidget(downHUD);
 
-    pixSpeed = QPixmap();
-    pixProj = QPixmap();
+    pixSpeed = QPixmap(ICON_BSPEED);
+    pixProj = QPixmap(ICON_BATTACK);
     pixHP = QPixmap();
 
     affiche = new QTime();
@@ -412,18 +413,9 @@ void DisplayEngine::updateGameData()
     else
         this->setBonusProject2();
 
+    this->setBonusSpeed1(gameEngine->ship1()->getPercentageSpeed());
+    this->setBonusSpeed2(gameEngine->ship2()->getPercentageSpeed());
 
-    BonusSpeed * speed = gameEngine->ship1()->getBonusSpeed();
-    if(speed != NULL)
-        this->setBonusSpeed1(speed->getSpeed());
-    else
-        this->setBonusSpeed1();
-
-    speed = gameEngine->ship2()->getBonusSpeed();
-    if(speed != NULL)
-        this->setBonusSpeed2(speed->getSpeed());
-    else
-        this->setBonusSpeed2();
 }
 
 void DisplayEngine::updateGameDataTimer()

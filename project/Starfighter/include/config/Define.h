@@ -7,6 +7,8 @@
 #define SPACE_BETWEEN                       250
 #define SPACE_INPLAYER                      50
 #define BACKGROUND                          "" //A METTRE
+#define ICON_BATTACK                        ":/images/game/icon/attack"
+#define ICON_BSPEED                         ":/images/game/icon/speed"
 
 //SpawnEngine
 #define PROB_ASTEROID                       100

@@ -78,8 +78,12 @@
         <file alias="rock20031">res/images/game/asteroid2/rock20031.png</file>
     </qresource>
     <qresource prefix="/sounds">
-	<file alias="sat">res/sounds/beep.mp3</file>
-	<file alias="laser">res/sounds/laser.mp3</file>
-	<file alias="bgmusic">res/sounds/music.mp3</file>
+        <file alias="sat">res/sounds/beep.mp3</file>
+        <file alias="laser">res/sounds/laser.mp3</file>
+        <file alias="bgmusic">res/sounds/music.mp3</file>
+    </qresource>
+    <qresource prefix="/images/game/icon">
+        <file alias="speed">res/images/game/bonusSpeed.jpg</file>
+        <file alias="attack">res/images/game/boutonAttack.jpg</file>
     </qresource>
 </RCC>
