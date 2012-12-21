@@ -23,7 +23,7 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     int screenSizeWidth = desktop->screenGeometry(this).width();
 
     int sceneWidth = screenSizeWidth;
-    int sceneHeigth = screenSizeHeight*0.85;
+    int sceneHeigth = screenSizeHeight*0.90;
 
     QVBoxLayout * mainScreen = new QVBoxLayout(this);
     //QGridLayout * mainScreen = new QGridLayout(this);

@@ -38,7 +38,7 @@
 //AlienSpaceShip
 #define MARGIN_Y                            10
 #define DELTA_X                             100
-#define PICTURE_ALIENSPACESHIP              ":/images/game/spaceship"
+#define PICTURE_ALIENSPACESHIP              ":/images/game/mothership"
 
 //Asteroid
 #define SPEED_ASTEROID                      1
