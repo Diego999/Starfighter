@@ -5,6 +5,7 @@
 
 class GameEngine;
 class DisplayEngine;
+class QTimer;
 
 class SpawnEngine : public QObject
 {

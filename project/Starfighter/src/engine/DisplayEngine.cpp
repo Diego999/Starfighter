@@ -136,16 +136,16 @@ void DisplayEngine::creatHUD()
 
     bonusPlayerOne = new QGridLayout();
 
-    imSpeed1 = new QLabel();
+    imSpeed1 = new QLabel(downHUD);
     imSpeed1->setPixmap(pixSpeed);
-    imHP1 = new QLabel();
+    imHP1 = new QLabel(downHUD);
     imHP1->setPixmap(pixHP);
-    imProj1 = new QLabel();
+    imProj1 = new QLabel(downHUD);
     imProj1->setPixmap(pixProj);
 
-    lBSpeed1 = new QLabel("1");
-    lBHP1 = new QLabel();
-    lBProjectile1 = new QLabel("Tir normal");
+    lBSpeed1 = new QLabel(tr("1"),downHUD);
+    lBHP1 = new QLabel(downHUD);
+    lBProjectile1 = new QLabel(tr("Normal Shot"),downHUD);
 
     bonusPlayerOne->addWidget(imSpeed1,0,0,Qt::AlignHCenter);
     bonusPlayerOne->addWidget(lBSpeed1,1,0,Qt::AlignHCenter);
@@ -162,8 +162,8 @@ void DisplayEngine::creatHUD()
         /**
           * Timer and point counter
           */
-        timeAndScore = new QVBoxLayout();
-        QHBoxLayout * score = new QHBoxLayout();
+        timeAndScore = new QVBoxLayout(downHUD);
+        QHBoxLayout * score = new QHBoxLayout(downHUD);
         timer = new QLCDNumber(downHUD);
         timer->setDigitCount(5);
 
@@ -173,7 +173,7 @@ void DisplayEngine::creatHUD()
         scoreP1->setDigitCount(5);
         scoreP2->setDigitCount(5);
         score->addWidget(scoreP1);
-        score->addWidget(new QLabel(tr(":")));
+        score->addWidget(new QLabel(tr(":"),downHUD));
         score->addWidget(scoreP2);
 
         timeAndScore->addWidget(timer);
@@ -215,18 +215,18 @@ void DisplayEngine::creatHUD()
 
     bonusPlayerTwo = new QGridLayout();
 
-    imSpeed2 = new QLabel();
+    imSpeed2 = new QLabel(downHUD);
     imSpeed2->setPixmap(pixSpeed);
 
-    imHP2 = new QLabel();
+    imHP2 = new QLabel(downHUD);
     imHP2->setPixmap(pixHP);
 
-    imProj2 = new QLabel();
+    imProj2 = new QLabel(downHUD);
     imProj2->setPixmap(pixProj);
 
-    lBSpeed2 = new QLabel("1");
-    lBHP2 = new QLabel();
-    lBProjectile2 = new QLabel("Tir normal");
+    lBSpeed2 = new QLabel(tr("1"),downHUD);
+    lBHP2 = new QLabel(downHUD);
+    lBProjectile2 = new QLabel(tr("Normal Shot"),downHUD);
 
     bonusPlayerTwo->addWidget(imSpeed2,0,0,Qt::AlignHCenter);
     bonusPlayerTwo->addWidget(lBSpeed2,1,0,Qt::AlignHCenter);
@@ -326,7 +326,7 @@ void DisplayEngine::setBonusProject1(TypeProjectiles _value)
     {
         case ProjSimple:
         imProj1->setText("");
-        lBProjectile1->setText(tr("Standard shot"));
+        lBProjectile1->setText(tr("Standard Shot"));
         break;
 
         case ProjCross:
@@ -354,7 +354,7 @@ void DisplayEngine::setBonusProject2(TypeProjectiles _value)
     {
         case ProjSimple:
         imProj2->setText("");
-        lBProjectile2->setText(tr("Standard shot"));
+        lBProjectile2->setText(tr("Standard Shot"));
         break;
 
         case ProjCross:
