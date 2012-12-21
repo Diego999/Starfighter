@@ -41,7 +41,7 @@ public:
     DisplayEngine* displayEngine() const { return de;}
     UserControlsEngine* userControlsEngine() const {return uc;}
     GameMode getGameMode() const {return gameMode;}
-
+    bool getHasSomeonWon() const {return hasSomeoneWon;}
     void timerEvent(QTimerEvent *);
 
     void addProjectile(Projectile *_inProjectile);
@@ -69,7 +69,6 @@ public slots:
 
 private:
     void checkOutsideScene(QList<Displayable*> &list);
-    void checkPlayerOutsideScene(QList<Spaceship*> &list);
     void clearList(QList<Displayable*> &list);
     bool checkCollisionItemAndList(const int i_list1,QList<Displayable*> &list1,QList<Displayable*> &list2);
     bool checkCollisionSpaceshipAndList(const int i_list1,QList<Displayable*> &list);

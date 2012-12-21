@@ -128,8 +128,6 @@ void GameEngine::timerEvent(QTimerEvent *event)
             de->updateGameDataTimer(delta/1000);
     }
 
-    checkPlayerOutsideScene(listSpaceship);
-
     checkOutsideScene(listProjectile);
     checkOutsideScene(listAsteroide);
     checkOutsideScene(listSmallAsteroide);
@@ -415,15 +413,6 @@ void GameEngine::checkOutsideScene(QList<Displayable*> &list)
     }
 
     clearList(list);
-}
-
-void GameEngine::checkPlayerOutsideScene(QList<Spaceship*> &list)
-{
-    for(int i = 0;i < list.size();i++)
-        if(list[i]->pos().y()+list[i]->sizePixmap().height() > de->sceneSize().height())
-            list[i]->top();
-        else if(list[i]->pos().y() < 0)
-            list[i]->bottom();
 }
 
 bool GameEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*> &list1,QList<Displayable*> &list2)

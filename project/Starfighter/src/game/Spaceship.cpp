@@ -184,10 +184,16 @@ void Spaceship::attack()
 
 void Spaceship::top()
 {
-    setPos(pos().x(),pos().y()-dSpeed);
+    if((pos().y()-dSpeed)<=gameEngine->displayEngine()->sceneSize().y())
+        setPos(pos().x(),gameEngine->displayEngine()->sceneSize().y());
+    else
+        setPos(pos().x(),pos().y()-dSpeed);
 }
 
 void Spaceship::bottom()
 {
-    setPos(pos().x(),pos().y()+dSpeed);
+    if((pos().y()+getPixmap()->height()+dSpeed)>=gameEngine->displayEngine()->sceneSize().height())
+        setPos(pos().x(),gameEngine->displayEngine()->sceneSize().height()-getPixmap()->height());
+    else
+        setPos(pos().x(),pos().y()+dSpeed);
 }
