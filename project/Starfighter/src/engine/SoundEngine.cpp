@@ -53,8 +53,6 @@ void SoundEngine::playSat()
 {
     if(satCounter > 0)
     {
-        qDebug() << "Counter : " << satCounter;
-
         satMediaObject->seek(0);
         satMediaObject->play();
 
