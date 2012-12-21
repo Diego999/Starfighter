@@ -156,25 +156,29 @@ void DisplayEngine::creatHUD()
     bonusPlayerOne->addWidget(imProj1,0,5,Qt::AlignHCenter);
     bonusPlayerOne->addWidget(lBProjectile1,1,5,Qt::AlignHCenter);
 
-    /**
-      * Timer and point counter
-      */
-    QVBoxLayout * timeAndScore   = new QVBoxLayout();
-    QHBoxLayout * score = new QHBoxLayout();
-    timer = new QLCDNumber(downHUD);
-    timer->setDigitCount(5);
+    QVBoxLayout * timeAndScore;
+    if(gameEngine->getGameMode()==Timer)
+    {
+        /**
+          * Timer and point counter
+          */
+        timeAndScore = new QVBoxLayout();
+        QHBoxLayout * score = new QHBoxLayout();
+        timer = new QLCDNumber(downHUD);
+        timer->setDigitCount(5);
 
-    scoreP1 = new QLCDNumber(downHUD);
-    scoreP2 = new QLCDNumber(downHUD);
+        scoreP1 = new QLCDNumber(downHUD);
+        scoreP2 = new QLCDNumber(downHUD);
 
-    scoreP1->setDigitCount(2);
-    scoreP2->setDigitCount(2);
-    score->addWidget(scoreP1);
-    score->addWidget(new QLabel(tr(":")));
-    score->addWidget(scoreP2);
+        scoreP1->setDigitCount(5);
+        scoreP2->setDigitCount(5);
+        score->addWidget(scoreP1);
+        score->addWidget(new QLabel(tr(":")));
+        score->addWidget(scoreP2);
 
-    timeAndScore->addWidget(timer);
-    timeAndScore->addLayout(score);
+        timeAndScore->addWidget(timer);
+        timeAndScore->addLayout(score);
+    }
 
     /**
       * Player no2 part
@@ -242,7 +246,8 @@ void DisplayEngine::creatHUD()
     downPart->addSpacing(SPACE_INPLAYER);
     downPart->addLayout(bonusPlayerOne);
     downPart->addSpacing(SPACE_BETWEEN);
-    downPart->addLayout(timeAndScore);
+    if(gameEngine->getGameMode()==Timer)
+        downPart->addLayout(timeAndScore);
     downPart->addSpacing(SPACE_BETWEEN);
     downPart->addLayout(playerTwoNamu);
     downPart->addSpacing(SPACE_INPLAYER);
@@ -277,13 +282,6 @@ void DisplayEngine::addItemScene(Displayable* item)
 void DisplayEngine::removeItemScene(Displayable *item)
 {
     scene->removeItem(item);
-}
-
-void DisplayEngine::enableTimerData()
-{
-    timer->setEnabled(true);
-    scoreP1->setEnabled(true);
-    scoreP2->setEnabled(true);
 }
 
 void DisplayEngine::updateScreen()
@@ -421,14 +419,14 @@ void DisplayEngine::updateGameData()
 
 }
 
-void DisplayEngine::updateGameDataTimer()
+void DisplayEngine::updateGameDataTimer(int s)
 {
-    int deltaTime = gameEngine->timeGamevalue() - gameEngine->elapsedTime();
+    affiche->setHMS(0,s/60,s%60);
 
     timer->display(affiche->toString("mm:ss"));
+    scoreP1->display(gameEngine->ship1()->getScore());
+    scoreP2->display(gameEngine->ship2()->getScore());
 
-    if(deltaTime <= 0)
-        gameEngine->endGameTimer();
 }
 
 

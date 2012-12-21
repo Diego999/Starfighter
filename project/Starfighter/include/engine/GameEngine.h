@@ -40,7 +40,7 @@ public:
     SoundEngine* soundEngine() const { return soe;}
     DisplayEngine* displayEngine() const { return de;}
     UserControlsEngine* userControlsEngine() const {return uc;}
-    //SpawnEngine* spawnEngine() const {return se;}
+    GameMode getGameMode() const {return gameMode;}
 
     void timerEvent(QTimerEvent *);
 
@@ -65,11 +65,9 @@ signals:
     void signalPause(bool); // true = isPause
 
 public slots:
-    void elemenDestroyed(Destroyable* destroyItem);
+    void elemenDestroyed(Destroyable* destroyItem,int nbPoint,Shooter forShip);
 
 private:
-    void gameType();
-
     void checkOutsideScene(QList<Displayable*> &list);
     void checkPlayerOutsideScene(QList<Spaceship*> &list);
     void clearList(QList<Displayable*> &list);

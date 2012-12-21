@@ -31,9 +31,8 @@ public:
     void addItemScene(Displayable* item);
     void removeItemScene(Displayable* item);
 
-    void enableTimerData();
     void updateGameData();
-    void updateGameDataTimer();
+    void updateGameDataTimer(int s);
 
 protected:
     void keyPressEvent(QKeyEvent *event);

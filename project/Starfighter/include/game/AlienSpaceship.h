@@ -14,7 +14,7 @@ public:
     AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResistance,GameEngine* _gameEngine);
     ~AlienSpaceship(){}
 
-    void receiveAttack(qreal _dPower) {Destroyable::receiveAttack(_dPower);}
+    //void receiveAttack(qreal _dPower) {Destroyable::receiveAttack(_dPower);}
     QRectF boundingRect() const;
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);

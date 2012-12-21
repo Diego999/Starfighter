@@ -13,6 +13,7 @@ public:
 
     QSize sizePixmap() const {return isPixmap()?pxmPicture->size():QSize();}
     bool isPixmap() const {return !pxmPicture==0;}
+    int getNbPoint() const {return nbPoint;}
 
     virtual TypeItem getTypeObject() const=0;
     virtual qreal getPower() const {return 0.0;}
@@ -26,6 +27,8 @@ public:
     QPixmap* getPixmap() const {return pxmPicture;}
     void setPos(qreal _dX, qreal _dY);
     virtual void setPixmap(QPixmap* _pxmPixmap);
+protected:
+    int nbPoint;
 private:
     qreal dX;
     qreal dY;

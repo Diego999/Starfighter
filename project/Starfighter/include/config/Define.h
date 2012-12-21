@@ -39,6 +39,7 @@
 #define MARGIN_Y                            10
 #define DELTA_X                             100
 #define PICTURE_ALIENSPACESHIP              ":/images/game/mothership"
+#define NB_POINT_ALIENSPACESHIP             500
 
 //Asteroid
 #define SPEED_ASTEROID                      1
@@ -48,6 +49,9 @@
 #define POWER_SMALL_ASTEROID                5
 #define RESISTANCE_SMALL_ASTEROID           1
 #define HEALTHPOINT_SMALL_ASTEROID          50
+
+#define NB_POINT_ASTEROID                   50
+#define NB_POINT_SMALL_ASTEROID             80
 
 #define PICTURE_ASTEROID                    ":/images/game/asteroids/rock%1"
 #define NB_PICTURE_ASTEROID_MIN             10000
@@ -61,10 +65,11 @@
 #define DELTA_X_B                           100
 #define SOUND_TIMER                         1000 // (ms)
 #define PICTURE_BONUS                       ":/images/game/bonus"
+#define NB_POINT_BONUS                      300
 
 //Projectile
 #define RADIUS_PROJECTILE                   10
-
+#define NB_POINT_PROJECTILE                 10 //When a spaceship touchs another one
 //ProjectileAlien
 #define POWER_ALIEN                         1000
 

@@ -13,10 +13,12 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
       Projectile(_dX,_dY,_from),
       gameEngine(_gameEngine),dSlope(_dSlope),bSmall(_bSmall),bInvicible(false),dModule(0)
 {
+    nbPoint = NB_POINT_ASTEROID;
     index = 0;
     //If it's a small asteroid, we use dSlope and generate and X-direction
     if(bSmall)
     {
+        nbPoint = NB_POINT_SMALL_ASTEROID;
         bInvicible=true;
         QTimer::singleShot(300,this,SLOT(removeInvicibility()));
 

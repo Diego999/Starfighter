@@ -7,8 +7,10 @@ Destroyable::Destroyable(qreal _dHealthPoint,qreal _dResistance)
 
 }
 
-void Destroyable::receiveAttack(qreal _dPower)
+void Destroyable::receiveAttack(qreal _dPower, int point, Shooter forShip)
 {
+    this->pointToGive = point;
+    this->forShip = forShip;
     dHealthPoint -= _dPower/dResistance;
     isDead();
 }
@@ -16,5 +18,5 @@ void Destroyable::receiveAttack(qreal _dPower)
 void Destroyable::isDead()
 {
     if(dHealthPoint<=0)
-        emit destroyed(this);
+        emit destroyed(this,pointToGive,forShip);
 }

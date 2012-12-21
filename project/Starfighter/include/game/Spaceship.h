@@ -32,6 +32,8 @@ public:
     BonusSpeed* getBonusSpeed() const {return bonusSpeed;}
     BonusProjectile* getBonusProjectile() const {return bonusProjectile;}
     qreal getPercentageSpeed() const;
+    void addPoint(int point);
+    int getScore() const{return score;}
 
     void setPixmap(QPixmap* _pxmPixmap);
     void addBonus(Bonus* _bonus);
@@ -47,6 +49,7 @@ private:
     Shooter player;
 	QString playerName;
     qreal dSpeed;
+    int score;
 
     TypeProjectiles type;
     qreal dHealthForceField;

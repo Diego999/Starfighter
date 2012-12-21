@@ -17,8 +17,9 @@
 Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerName,qreal _dSpeed,qreal _dHealthPoint,qreal _dResistance,GameEngine *_gameEngine)
     :Displayable(_dX,_dY),
       Destroyable(_dHealthPoint,_dResistance),
-      player(_player),playerName(_playerName),dSpeed(_dSpeed),dResistanceForceField(RESISTANCE_FORCE_FIELD),gameEngine(_gameEngine)
+      player(_player),playerName(_playerName),dSpeed(_dSpeed),dResistanceForceField(RESISTANCE_FORCE_FIELD),gameEngine(_gameEngine),score(0)
 {
+    nbPoint = 0;
     timerProjectile = new QTimer(this);
     timerProjectile->setSingleShot(true);
 
@@ -28,6 +29,11 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
     type = PROJ_SPACESHIP_DEF;
     bonusSpeed = 0;
     bonusProjectile = 0;
+}
+
+void Spaceship::addPoint(int point)
+{
+     score+=point;
 }
 
 void Spaceship::setPixmap(QPixmap *_pxmPixmap)

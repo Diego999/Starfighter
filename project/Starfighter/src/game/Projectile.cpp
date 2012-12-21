@@ -6,6 +6,7 @@ Projectile::Projectile(qreal _XOrigin, qreal _YOrigin,Shooter _from)
     :Displayable(_XOrigin,_YOrigin),
       dXOrigin(_XOrigin),dYOrigin(_YOrigin),from(_from)
 {
+    nbPoint = NB_POINT_PROJECTILE;
     if(from == Player1)
         color = new QColor(0,0,255);
     else if(from == Player2)

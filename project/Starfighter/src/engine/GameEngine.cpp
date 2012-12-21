@@ -16,12 +16,16 @@
 
 #include "include/utils/Settings.h"
 #include "include/config/Define.h"
+#include "include/stable.h"
 
 GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject *parent = 0)
     :QObject(parent),
       settings(Settings::getGlobalSettings()),gameMode(gameMode),typeShip1(player1Ship),typeShip2(player2Ship),
       isRunning(false),idTimer(-1),isTimer(false),timeGame(duration),hasSomeoneWon(false),timeAlreadyCounted(0)
 {
+    if(this->gameMode==Timer)
+        isTimer=true;
+
     soe = new SoundEngine(settings.soundEffectsVolume(), settings.musicVolume(), this);
     de = new DisplayEngine(this,0);
     uc = new UserControlsEngine(this);
@@ -84,7 +88,7 @@ void GameEngine::createSpaceship()
         resistance = RESISTANCE_1;
         path = QString(PICTURE_SPACESHIP_1);
     }
-    else// if(typeShip1==SpaceshipType2)
+    else if(typeShip1==SpaceshipType2)
     {
         speed = SPEED_2;
         healthPoint = HEALTHPOINT_2;
@@ -116,7 +120,13 @@ void GameEngine::timerEvent(QTimerEvent *event)
 {
     de->updateScreen();
     if(isTimer)
-        de->updateGameDataTimer();
+    {
+        int delta = timeGame*1000-elapsedTime();
+        if(delta<=0)
+            endGameTimer();
+        else
+            de->updateGameDataTimer(delta/1000);
+    }
 
     checkPlayerOutsideScene(listSpaceship);
 
@@ -159,8 +169,29 @@ int GameEngine::elapsedTime()
 
 void GameEngine::endGameTimer()
 {
-    //int score1;
-    //int score2;
+    timerControle();
+    if(!hasSomeoneWon)
+    {
+        hasSomeoneWon = true;
+        QString playerName;
+
+        if(ship1()->getScore()>ship2()->getScore())
+            playerName = QString(ship1()->getPlayerName());
+        else if(ship1()->getScore()<ship2()->getScore())
+            playerName = QString(ship1()->getPlayerName());
+
+        if(ship1()->getScore()!=ship2()->getScore())
+            QMessageBox::information(de,
+                                     tr("End of the game"),
+                                     QString(tr("%1 has won !")).arg(playerName),
+                                     QMessageBox::Ok);
+        else
+            QMessageBox::information(de,
+                                     tr("End of the game"),
+                                     QString(tr("No one has won ... Egality !")),
+                                     QMessageBox::Ok);
+        emit endGame();
+    }
 }
 
 void GameEngine::endGameDeathMatch(Spaceship* _ship)
@@ -210,7 +241,7 @@ void GameEngine::escapeGame()
     timerControle();
 }
 
-void GameEngine::elemenDestroyed(Destroyable* _destroyItem)
+void GameEngine::elemenDestroyed(Destroyable* _destroyItem, int nbPoint, Shooter forShip)
 {
     if(Spaceship* s = dynamic_cast<Spaceship*>(_destroyItem))
     {
@@ -218,15 +249,24 @@ void GameEngine::elemenDestroyed(Destroyable* _destroyItem)
         endGameDeathMatch(s);
         emit endGame();
     }
-    else if(Asteroid* a = dynamic_cast<Asteroid*>(_destroyItem))
+    else
     {
-        if(a->isSmall())
-            removeSmallAsteroid(a);
-        else
-            removeAsteroid(a);
+        if(forShip==Player1)
+            ship1()->addPoint(nbPoint);
+        else if(forShip==Player2)
+            ship2()->addPoint(nbPoint);
+
+        if(Asteroid* a = dynamic_cast<Asteroid*>(_destroyItem))
+        {
+
+            if(a->isSmall())
+                removeSmallAsteroid(a);
+            else
+                removeAsteroid(a);
+        }
+        else if(AlienSpaceship* a = dynamic_cast<AlienSpaceship*>(_destroyItem))
+            removeAlienSpaceship(a);
     }
-    else if(AlienSpaceship* a = dynamic_cast<AlienSpaceship*>(_destroyItem))
-        removeAlienSpaceship(a);
 }
 
 void GameEngine::timerControle(int tps)
@@ -256,12 +296,6 @@ void GameEngine::timerControle(int tps)
     isRunning = !isRunning;
 }
 
-void GameEngine::gameType()
-{
-    if(isTimer)
-        de->enableTimerData();
-}
-
 void GameEngine::addProjectile(Projectile * _inProjectile)
 {
     de->addItemScene(_inProjectile);
@@ -273,7 +307,7 @@ void GameEngine::addShip(Spaceship *_inSpaceship)
 
     de->addItemScene(_inSpaceship);
     listSpaceship.append(_inSpaceship);
-    connect(_inSpaceship,SIGNAL(destroyed(Destroyable*)),this,SLOT(elemenDestroyed(Destroyable*)));
+    connect(_inSpaceship,SIGNAL(destroyed(Destroyable*,int,Shooter)),this,SLOT(elemenDestroyed(Destroyable*,int,Shooter)));
 }
 
 void GameEngine::removeShip(Spaceship *_inSpaceship)
@@ -297,21 +331,21 @@ void GameEngine::addAsteroid(Asteroid *_inAsteroid)
 {
     de->addItemScene(_inAsteroid);
     listAsteroide.append(_inAsteroid);
-    connect(_inAsteroid,SIGNAL(destroyed(Destroyable*)),this,SLOT(elemenDestroyed(Destroyable*)));
+    connect(_inAsteroid,SIGNAL(destroyed(Destroyable*,int,Shooter)),this,SLOT(elemenDestroyed(Destroyable*,int,Shooter)));
 }
 
 void GameEngine::addSmallAsteroid(Asteroid *_inAsteroid)
 {
     de->addItemScene(_inAsteroid);
     listSmallAsteroide.append(_inAsteroid);
-    connect(_inAsteroid,SIGNAL(destroyed(Destroyable*)),this,SLOT(elemenDestroyed(Destroyable*)));
+    connect(_inAsteroid,SIGNAL(destroyed(Destroyable*,int,Shooter)),this,SLOT(elemenDestroyed(Destroyable*,int,Shooter)));
 }
 
 void GameEngine::addAlienSpaceship(AlienSpaceship *_inAlienSpaceship)
 {
     de->addItemScene(_inAlienSpaceship);
     listAlienSpaceship.append(_inAlienSpaceship);
-    connect(_inAlienSpaceship,SIGNAL(destroyed(Destroyable*)),this,SLOT(elemenDestroyed(Destroyable*)));
+    connect(_inAlienSpaceship,SIGNAL(destroyed(Destroyable*,int,Shooter)),this,SLOT(elemenDestroyed(Destroyable*,int,Shooter)));
 }
 
 void GameEngine::addSupernova(Supernova *_inSupernova)
@@ -416,7 +450,14 @@ bool GameEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*>
             {
                 if(Destroyable* d = dynamic_cast<Destroyable*>(list2[j]))
                 {
-                    d->receiveAttack(list1[i_list1]->getPower());
+                    d->receiveAttack(list1[i_list1]->getPower(),list2[j]->getNbPoint(),dynamic_cast<Projectile*>(list1[i_list1])->getFrom());
+
+                    /*if(gameMode==Timer)
+                        if(dynamic_cast<Projectile*>(list1[i_list1])->getFrom()==Player1)
+                            ship1()->addPoint(list2[j]->getNbPoint());
+                        else if(dynamic_cast<Projectile*>(list1[i_list1])->getFrom()==Player2)
+                            ship2()->addPoint(list2[j]->getNbPoint());*/
+
                     delete list1[i_list1];
                     list1[i_list1] = 0;
 
@@ -426,6 +467,13 @@ bool GameEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*>
                 {
                     Projectile* p = dynamic_cast<Projectile*>(list1[i_list1]);
 
+                    if(gameMode==Timer)
+                    {
+                        if(p->getFrom()==Player1)
+                            ship1()->addPoint(b->getNbPoint());
+                        else if(p->getFrom()==Player2)
+                            ship2()->addPoint(b->getNbPoint());
+                    }
                     //We don't delete the pointer here, it'll be deleted in the class spaceship
                     //We only remove the item from the list
                     list2[j] = 0;
@@ -452,7 +500,7 @@ bool GameEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*>
             {
                 if(Destroyable* d = dynamic_cast<Destroyable*>(list1[i_list1]))
                 {
-                    d->receiveAttack(list2[j]->getPower());
+                    d->receiveAttack(list2[j]->getPower(),list1[i_list1]->getNbPoint(),dynamic_cast<Projectile*>(list2[j])->getFrom());
                     delete list2[j];
                     list2[j] = 0;
 
@@ -491,7 +539,15 @@ bool GameEngine::checkCollisionSpaceshipAndList(const int i,QList<Displayable*> 
 
         if(listSpaceship[i]->collidesWithItem(list[j],Qt::IntersectsItemShape))
         {
-            listSpaceship[i]->receiveAttack(list[j]->getPower());
+            if(gameMode==DeathMatch)
+                listSpaceship[i]->receiveAttack(list[j]->getPower());
+            else if(gameMode==Timer && list[j]->getTypeObject() ==tProj)
+            {
+                if(dynamic_cast<Projectile*>(list[j])->getFrom()==Player1)
+                    ship1()->addPoint(list[j]->getNbPoint());
+                else if(dynamic_cast<Projectile*>(list[j])->getFrom()==Player2)
+                    ship2()->addPoint(list[j]->getNbPoint());
+            }
             if(l->mutex()!=0)
             {
                 delete list[j];

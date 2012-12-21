@@ -12,6 +12,7 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
       Obstacle(0,0),
       gameEngine(_gameEngine),nbSpirales(_nbSpirales),dYStop(gameEngine->displayEngine()->sceneSize().y()),isAttacking(false),hasAttacked(false),directionX(1),direction(1)
 {
+    Displayable::nbPoint = NB_POINT_ALIENSPACESHIP;
     /*Generate the position of the AlienSpaceship
       For more informations cf the specification file*/
     int l_Xmin = gameEngine->displayEngine()->xminWarzone();

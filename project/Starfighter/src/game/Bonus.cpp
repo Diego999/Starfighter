@@ -11,6 +11,7 @@ Bonus::Bonus(GameEngine *_gameEngine)
     :Displayable(0,0,new QPixmap(PICTURE_BONUS)),
       gameEngine(_gameEngine),directionX(1),direction(1),soundStopped(false)
 {
+    nbPoint = NB_POINT_BONUS;
     /*Generate the position of the AlienSpaceship
       For more informations cf the specification file*/
     int l_xmin = gameEngine->displayEngine()->xminWarzone();
