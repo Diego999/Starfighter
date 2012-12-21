@@ -162,8 +162,8 @@ void DisplayEngine::creatHUD()
         /**
           * Timer and point counter
           */
-        timeAndScore = new QVBoxLayout(downHUD);
-        QHBoxLayout * score = new QHBoxLayout(downHUD);
+        timeAndScore = new QVBoxLayout();
+        QHBoxLayout * score = new QHBoxLayout();
         timer = new QLCDNumber(downHUD);
         timer->setDigitCount(5);
 
