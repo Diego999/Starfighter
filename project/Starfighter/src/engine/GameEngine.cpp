@@ -65,7 +65,7 @@ int GameEngine::randInt(int range)
     if(range == 0)
         return 0;
     else
-        return qrand() % range;
+        return qrand() % (range+1);
 }
 
 void GameEngine::createSpaceship()

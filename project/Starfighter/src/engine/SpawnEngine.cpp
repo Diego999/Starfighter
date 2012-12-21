@@ -74,7 +74,7 @@ void SpawnEngine::timerFired()
         {
             int satType = irand(1, 4);
             Bonus *bonus;
-
+            qDebug() << satType;
             switch(satType)
             {
             case 1:

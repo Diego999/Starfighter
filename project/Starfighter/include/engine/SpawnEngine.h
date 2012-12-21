@@ -1,6 +1,8 @@
 #ifndef SPAWN_ENGINE_H
 #define SPAWN_ENGINE_H
 
+#include "include/config/Define.h"
+
 class GameEngine;
 class DisplayEngine;
 
@@ -27,10 +29,10 @@ private:
     bool spawnSupernovae;
     QTimer *timer;
 
-    const static int kProbAsteroid = 100;
-    const static int kProbAlien = 50;
-    const static int kProbSat = 20;
-    const static int kProbSupernova = 1;
+    const static int kProbAsteroid = PROB_ASTEROID;
+    const static int kProbAlien = PROB_ALIEN;
+    const static int kProbSat = PROB_SAT;
+    const static int kProbSupernova = PROB_SUPERNOVA;
 
     int totalProba;
     int intervalAsteroid;

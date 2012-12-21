@@ -9,6 +9,11 @@
 #define BACKGROUND                          "" //A METTRE
 
 //SpawnEngine
+#define PROB_ASTEROID                       100
+#define PROB_ALIEN                          50
+#define PROB_SAT                            20
+#define PROB_SUPERNOVA                      1
+
 #define SPAWN_INTERVAL                      400
 #define RESISTANCE_ASTEROID                 20
 #define RESISTANCE_ALIEN                    20
