@@ -93,6 +93,7 @@ private:
     int idTimer;
     bool isTimer;
     int timeGame;
+    bool hasSomeoneWon;
 
     // For elapsedTime()
     QElapsedTimer elapsedTimer;

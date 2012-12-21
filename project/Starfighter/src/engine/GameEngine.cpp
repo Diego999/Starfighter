@@ -20,7 +20,7 @@
 GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject *parent = 0)
     :QObject(parent),
       settings(Settings::getGlobalSettings()),gameMode(gameMode),typeShip1(player1Ship),typeShip2(player2Ship),
-      isRunning(false),idTimer(-1),isTimer(false),timeGame(duration),timeAlreadyCounted(0)
+      isRunning(false),idTimer(-1),isTimer(false),timeGame(duration),hasSomeoneWon(false),timeAlreadyCounted(0)
 {
     soe = new SoundEngine(settings.soundEffectsVolume(), settings.musicVolume(), this);
     de = new DisplayEngine(this,0);
@@ -145,6 +145,7 @@ void GameEngine::timerEvent(QTimerEvent *event)
     clearList(listProjectile);
 
     runTestCollision(listAsteroide);
+    if(listSmallAsteroide.size() !=0)
     runTestCollision(listSmallAsteroide);
 }
 
@@ -175,9 +176,9 @@ void GameEngine::endGameDeathMatch(Spaceship* _ship)
     }
     else
     {
-        static int i = 0;
-        if(i++==0)
+        if(!hasSomeoneWon)
         {
+            hasSomeoneWon = true;
             de->updateGameData();
             QString playerName;
             if(_ship==ship1())
@@ -441,6 +442,11 @@ bool GameEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*>
 
                     return true;
                 }
+            }
+            else if(list1[i_list1]->getTypeObject() == tSmallAsteroid && list2[j]->getTypeObject() == tSmallAsteroid)
+            {
+                if(dynamic_cast<Asteroid*>(list1[i_list1])->isInvicible() && dynamic_cast<Asteroid*>(list2[j])->isInvicible())
+                    return false;
             }
             else if(list1[i_list1]->getTypeObject() == tAlien)
             {
