@@ -1,11 +1,14 @@
 #include "include/menu/SetKeyDialog.h"
-#include <QKeyEvent>
-#include <QLabel>
+#include "include/stable.h"
 
 SetKeyDialog::SetKeyDialog(QWidget *parent) :
     QDialog(parent)
 {
-    new QLabel(tr("Please press the key now"), this);
+    QLabel *label = new QLabel(tr("Please press the key now"), this);
+    label->setStyleSheet("font-size:13pt;");
+
+    label->setAlignment(Qt::AlignCenter);
+    setFixedSize(400,30);
 }
 
 void SetKeyDialog::keyPressEvent(QKeyEvent *event)

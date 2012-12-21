@@ -58,18 +58,27 @@ void OptionsDialog::on_btnBack_clicked()
 
 void OptionsDialog::on_btnSave_clicked()
 {
-    Settings& s = Settings::getGlobalSettings();
+    // Vérification que les toutes les touches sont différentes
+    if(QSet<Qt::Key>::fromList(controls->values()).count() < 6)
+    {
+        QMessageBox::critical(this, tr("Invalid keys"), tr("Two or more keys are set to the same value"));
+    }
+    else
+    {
+        Settings& s = Settings::getGlobalSettings();
 
-    s.setPlayerOneName(ui->ledP1name->text());
-    s.setPlayerTwoName(ui->ledP2name->text());
+        s.setPlayerOneName(ui->ledP1name->text());
+        s.setPlayerTwoName(ui->ledP2name->text());
 
-    s.setMusicVolume(ui->sliderMusicVolume->value());
-    s.setSoundEffectsVolume(ui->sliderSoundEffectsVolume->value());
+        s.setMusicVolume(ui->sliderMusicVolume->value());
+        s.setSoundEffectsVolume(ui->sliderSoundEffectsVolume->value());
 
-    s.setPlayersControls(*controls);
+        s.setPlayersControls(*controls);
 
-    QMessageBox::information(this, tr("Saved"), tr("The settings were successfully saved"));
-    this->close();
+
+        QMessageBox::information(this, tr("Saved"), tr("The settings were successfully saved"));
+        this->close();
+    }
 }
 
 void OptionsDialog::showKeys()
