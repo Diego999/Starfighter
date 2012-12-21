@@ -12,13 +12,13 @@ NewGameDialog::NewGameDialog(QWidget *parent) :
 
     ui->setupUi(this);
 
-    ui->cbbGametype->addItem(tr("Deathmatch"), DeathMatch);
-    ui->cbbGametype->addItem(tr("Timer"), Timer);
+    ui->cbbGametype->addItem(tr("Deathmatch"), QVariant(DeathMatch));
+    ui->cbbGametype->addItem(tr("Timer"), QVariant(Timer));
 
-    ui->cbbP1ship->addItem(tr("Ship 1"), SpaceshipType1);
-    ui->cbbP1ship->addItem(tr("Ship 2"), SpaceshipType2);
-    ui->cbbP2ship->addItem(tr("Ship 1"), SpaceshipType1);
-    ui->cbbP2ship->addItem(tr("Ship 2"), SpaceshipType2);
+    ui->cbbP1ship->addItem(tr("Ship 1"), QVariant(SpaceshipType1));
+    ui->cbbP1ship->addItem(tr("Ship 2"), QVariant(SpaceshipType2));
+    ui->cbbP2ship->addItem(tr("Ship 1"), QVariant(SpaceshipType1));
+    ui->cbbP2ship->addItem(tr("Ship 2"), QVariant(SpaceshipType2));
 }
 
 NewGameDialog::~NewGameDialog()
@@ -33,10 +33,10 @@ void NewGameDialog::on_btnBack_clicked()
 
 void NewGameDialog::on_btnStart_clicked()
 {
-    GameMode gameMode = (GameMode)(int)(ui->cbbGametype->userData(ui->cbbGametype->currentIndex()));
+    GameMode gameMode = (GameMode)(ui->cbbGametype->itemData(ui->cbbGametype->currentIndex()).toInt());
     int duration = ui->sbxDuration->value();
-    SpaceshipType player1 = (SpaceshipType)(int)(ui->cbbP1ship->userData(ui->cbbP1ship->currentIndex()));
-    SpaceshipType player2 = (SpaceshipType)(int)(ui->cbbP2ship->userData(ui->cbbP2ship->currentIndex()));
+    SpaceshipType player1 = (SpaceshipType)(int)(ui->cbbP1ship->itemData(ui->cbbP1ship->currentIndex()).toInt());
+    SpaceshipType player2 = (SpaceshipType)(int)(ui->cbbP2ship->itemData(ui->cbbP2ship->currentIndex()).toInt());
     int difficulty = 0;
     difficulty |= ((ui->cbxAlien->checkState() / Qt::Checked) * AlienMothership);
     difficulty |= ((ui->cbxAsteroid->checkState() / Qt::Checked) * Asteroids);
