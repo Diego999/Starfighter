@@ -32,7 +32,7 @@
 #define BONUS_SPEED_DURATION                10000
 
 //UserControlsEngine
-#define REFRESH                             10
+#define REFRESH                             17
 #define NOVATIMER                           10000 // (ms)
 
 //AlienSpaceShip
