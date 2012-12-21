@@ -67,7 +67,7 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     mainScreen->setSpacing(0);
 
     mainScreen->addWidget(view);
-    mainScreen->addSpacing(30);
+    mainScreen->addStretch();
     mainScreen->addWidget(downHUD);
 
     pixSpeed = QPixmap(ICON_BSPEED);
