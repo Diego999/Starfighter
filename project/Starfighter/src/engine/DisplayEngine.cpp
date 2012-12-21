@@ -325,17 +325,17 @@ void DisplayEngine::setBonusProject1(TypeProjectiles _value)
     {
         case ProjSimple:
         imProj1->setText("");
-        lBProjectile1->setText("Standart shot");
+        lBProjectile1->setText(tr("Standard shot"));
         break;
 
         case ProjCross:
         imProj1->setPixmap(pixProj);
-        lBProjectile1->setText("Cross Shot");
+        lBProjectile1->setText(tr("Cross Shot"));
         break;
 
         case ProjV:
         imProj1->setPixmap(pixProj);
-        lBProjectile1->setText("V Shot");
+        lBProjectile1->setText(tr("V Shot"));
         break;
 
         case ProjAlien:
@@ -353,17 +353,17 @@ void DisplayEngine::setBonusProject2(TypeProjectiles _value)
     {
         case ProjSimple:
         imProj2->setText("");
-        lBProjectile2->setText("Standart shot");
+        lBProjectile2->setText(tr("Standard shot"));
         break;
 
         case ProjCross:
         imProj2->setPixmap(pixProj);
-        lBProjectile2->setText("Cross Shot");
+        lBProjectile2->setText(tr("Cross Shot"));
         break;
 
         case ProjV:
         imProj2->setPixmap(pixProj);
-        lBProjectile2->setText("V Shot");
+        lBProjectile2->setText(tr("V Shot"));
         break;
 
         case ProjAlien:
