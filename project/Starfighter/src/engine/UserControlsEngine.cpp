@@ -152,4 +152,5 @@ void UserControlsEngine::callSupernovae()
 {
     Supernova *supernova = new Supernova(display->sceneSize().width() / 2, display->sceneSize().height() / 2, gameEngine);
     gameEngine->addSupernova(supernova);
+    novaeCall->start(NOVATIMER);
 }
