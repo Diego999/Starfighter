@@ -48,9 +48,12 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     view->setFocusPolicy(Qt::NoFocus);
 
     // Set background
-    QPixmap bg( BACKGROUND );//TODO
-    //scene->setBackgroundBrush(bg);
-    scene->setBackgroundBrush(Qt::black);
+    QPixmap bg( BACKGROUND );
+    bg = bg.scaled(sceneWidth, sceneHeigth, Qt::KeepAspectRatioByExpanding);
+
+
+    scene->setBackgroundBrush(bg);
+    //scene->setBackgroundBrush(Qt::black);
     this->setFixedSize(screenSizeWidth,screenSizeHeight);
 
     this->setWindowModality(Qt::ApplicationModal);
