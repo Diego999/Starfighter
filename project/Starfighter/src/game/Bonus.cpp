@@ -1,3 +1,20 @@
+/*==============================================================*
+ | Implementation file Bonus.cpp
+ |        implements : Bonus class
+ |
+ |
+ | summary : Entity class that represents a bonus.
+ |           For more information, please consult the specification file
+ |
+ | Creator : Diego Antognini
+ | Creation date : 27/11/2012
+ | Copyright: EIAJ, all rights reserved
+ |
+ |
+ | Version of the file : 1.0.0
+ |
+ *==============================================================*/
+
 #include "include/engine/DisplayEngine.h"
 #include "include/engine/GameEngine.h"
 #include "include/engine/SoundEngine.h"
@@ -5,19 +22,23 @@
 #include "include/game/Bonus.h"
 #include "include/game/Spaceship.h"
 
-#include "include/config/Define.h"
-
 Bonus::Bonus(GameEngine *_gameEngine)
     :Displayable(0,0,new QPixmap(PICTURE_BONUS)),
-      gameEngine(_gameEngine),directionX(1),direction(1),soundStopped(false)
+      gameEngine(_gameEngine),//GameEngine
+      bSoundStopped(false),//If the sound has stopped
+      directionX(1),//Default X-direction
+      directionY(1),//Default Y-direction
+      directionArg(1)//Defaut Arg-direction
 {
+    //Points for the timer Mode
     nbPoint = NB_POINT_BONUS;
-    /*Generate the position of the AlienSpaceship
-      For more informations cf the specification file*/
-    int l_xmin = gameEngine->displayEngine()->xminWarzone();
-    int l_xmax = gameEngine->displayEngine()->xmaxWarZone();
 
-    int l_x1 = gameEngine->randInt((l_xmax-DELTA_X_B)-(l_xmin+DELTA_X_B))+l_xmin;
+    /*Generate the position of the Bonus
+      For more informations cf the specification file*/
+    int l_Xmin = gameEngine->displayEngine()->xminWarzone();
+    int l_Xmax = gameEngine->displayEngine()->xmaxWarZone();
+
+    int l_x1 = gameEngine->randInt((l_Xmax-DELTA_X_B)-(l_Xmin+DELTA_X_B))+l_Xmin;
     int l_x2 = gameEngine->randInt(2*DELTA_X_B)-DELTA_X_B+l_x1;
     int l_x3 = l_x1;
 
@@ -31,20 +52,27 @@ Bonus::Bonus(GameEngine *_gameEngine)
     3) Bottom->Top x2<xg
     4) Bottom->Top x2>=xg
     */
-    if(l_x2<l_x1)
+    if(l_x2>l_x1)
+        directionArg=-1;
+    else
     {
-        dArgument+=180.0;
         directionX=-1;
-        direction=-1;
-    }
-    if(gameEngine->randInt(2)==1)//1 = bottom,0 = top
-    {
-        direction*=-1;
-        l_y1=gameEngine->displayEngine()->sceneSize().height();
-        l_y3=gameEngine->displayEngine()->sceneSize().y();
+        directionY=-1;
     }
 
-    dYStop = l_y2;
+    if(gameEngine->randInt(2)==1)//1 = bottom,0 = top
+    {
+        directionArg*=-1;
+        l_y1=gameEngine->displayEngine()->sceneSize().height();
+        l_y3=gameEngine->displayEngine()->sceneSize().y();
+        //Rotate the picture if it's coming by the bottom size
+        Displayable::setPixmap(new QPixmap(getPixmap()->transformed(QTransform().rotate(180))));
+    }
+
+    //Change Y location if the case where the Bonus comes by the top,
+    //we should remove the height to have a better apparition
+    if(l_y1==gameEngine->displayEngine()->sceneSize().y())
+        l_y1-=getPixmap()->height();
 
     dX0 = (l_x3*l_x3*(l_y1-l_y2)+(l_x1*l_x1+(l_y1-l_y2)*(l_y1-l_y3))*(l_y2-l_y3)+l_x2*l_x2*(l_y3-l_y1))
             /(2.0*(l_x3*(l_y1-l_y2)+l_x1*(l_y2-l_y3)+l_x2*(l_y3-l_y1)));
@@ -52,10 +80,10 @@ Bonus::Bonus(GameEngine *_gameEngine)
     dY0 = (-l_x2*l_x2*l_x3+l_x1*l_x1*(l_x3-l_x2)+l_x3*(l_y1-l_y2)*(l_y1+l_y2)+l_x1*(l_x2*l_x2-l_x3*l_x3+l_y2*l_y2-l_y3*l_y3)+l_x2*(l_x3*l_x3-l_y1*l_y1+l_y3*l_y3))
             /(2.0*(l_x3*(l_y1-l_y2)+l_x1*(l_y2-l_y3)+l_x2*(l_y3-l_y1)));
 
-    setPos(l_x1,l_y1);
-
     dModule = sqrt((l_x1-dX0)*(l_x1-dX0)+(l_y1-dY0)*(l_y1-dY0));
-    dArgument = atan((dY0-l_y1)/(l_x1-dX0))*180.0/M_PI; 
+    dArgument += atan((dY0-l_y1)/(l_x1-dX0))*180.0/M_PI;
+
+    setPos(l_x1,l_y1);
 }
 
 Bonus::~Bonus()
@@ -67,10 +95,10 @@ void Bonus::advance(int _step)
 {
     Displayable::advance(_step);
 
-    dArgument-=direction*kIntervalArgument;
+    dArgument+=directionArg*kIntervalArgument;
 
-    setPos(dX0+directionX*dModule*cos(dArgument*M_PI/180.0),
-           dY0-dModule*sin(dArgument*M_PI/180.0));
+    setPos(dX0+directionX*dModule*cos(dArgument*M_PI/180.0)
+           ,dY0-directionY*dModule*sin(dArgument*M_PI/180.0));
 }
 
 QRectF Bonus::boundingRect() const
@@ -88,15 +116,13 @@ QPainterPath Bonus::shape() const
 void Bonus::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option, QWidget *_widget)
 {
     _painter->drawPixmap(0,0,*getPixmap());
-//    _painter->setPen(QPen(QColor(255,0,0)));
-//    _painter->drawPath(shape());
 }
 
 void Bonus::stopSound()
 {
-    if(!soundStopped)
+    if(!bSoundStopped)
     {
         gameEngine->soundEngine()->stopSound(SatelliteSound);
-        soundStopped = true;
+        bSoundStopped = true;
     }
 }

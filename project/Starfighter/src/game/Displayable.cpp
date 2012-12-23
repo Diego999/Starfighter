@@ -1,7 +1,27 @@
+/*==============================================================*
+ | Implementation file Displayable.cpp
+ |        implements : Displayable class
+ |
+ |
+ | summary : Represents all objects that will be in the scene.
+ |
+ | Creator : Diego Antognini
+ | Creation date : 27/11/2012
+ | Copyright: EIAJ, all rights reserved
+ |
+ |
+ | Version of the file : 1.0.0
+ |
+ *==============================================================*/
+
 #include "include/game/Displayable.h"
 
 Displayable::Displayable(qreal _dX, qreal _dY, QPixmap* _pixmap)
-    :dX(_dX),dY(_dY),pxmPicture(_pixmap)
+    :nbPoint(0),//Number of point
+      dX(_dX),//X coordinate
+      dY(_dY),//Y coordinate
+      pxmPicture(_pixmap)//Picture
+
 {
     setPos(dX,dY);
 }

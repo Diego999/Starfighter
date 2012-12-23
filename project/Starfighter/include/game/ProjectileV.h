@@ -1,3 +1,12 @@
+/*=====================================================================*
+ | Declaration file ProjectileV.h
+ |      declares :  ProjectileV class
+ |
+ | For more informations (creation date, creator, etc.), please see the
+ | corresponding .cpp file
+ |
+ *=====================================================================*/
+
 #ifndef PROJECTILE_V_H
 #define PROJECTILE_V_H
 

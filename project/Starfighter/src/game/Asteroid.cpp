@@ -1,3 +1,20 @@
+/*==============================================================*
+ | Implementation file Asteroid.cpp
+ |        implements : Asteroid class
+ |
+ |
+ | summary : Entity class that represents an asteroid & small asteroid.
+ |           For more information, please consult the specification file
+ |
+ | Creator : Diego Antognini
+ | Creation date : 27/11/2012
+ | Copyright: EIAJ, all rights reserved
+ |
+ |
+ | Version of the file : 1.0.0
+ |
+ *==============================================================*/
+
 #include "include/engine/DisplayEngine.h"
 #include "include/engine/GameEngine.h"
 
@@ -6,47 +23,47 @@
 #include "include/config/Define.h"
 
 //If _dSlop & _bSmall are defined together. It means that it's a small asteroid
-Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint,GameEngine *_gameEngine,qreal _dSlope,bool _bSmall)
-    :Displayable(_dX,_dY),
+Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint,GameEngine *_gameEngine,qreal _dSlope,qreal _dAngle,bool _bSmall)
+    ://Displayable(_dX,_dY),
       Destroyable(_dHealthPoint,_dResistance),
-      Obstacle(_dX,_dY),
       Projectile(_dX,_dY,_from),
-      gameEngine(_gameEngine),dSlope(_dSlope),bSmall(_bSmall),bInvicible(false),dModule(0)
+      gameEngine(_gameEngine),//GameEngine
+      index(0),//Index to count the number of frame since the last picture change
+      directionX(1),//Default X-direction
+      dSlope(fabs(_dSlope)),//Slope of the parent asteroid (only for small asteroid)
+      dModule(0),//Defaut module (only for small asteroid)
+      dAngle(_dAngle),//Angle of start to define the direction where to go, when a parent asteroid is destroyed (only for small asteroid)
+      bSmall(_bSmall),//If it's a small asteroid
+      bInvicible(false)//If it's invicible (use for small asteroid, when a parent asteroid is destroyed,
+                       //we need a little time where they aren't destroyable, otherwise they'll be destroyed
 {
     nbPoint = NB_POINT_ASTEROID;
-    index = 0;
+
     //If it's a small asteroid, we use dSlope and generate and X-direction
     if(bSmall)
     {
         nbPoint = NB_POINT_SMALL_ASTEROID;
         bInvicible=true;
-        QTimer::singleShot(300,this,SLOT(removeInvicibility()));
+        QTimer::singleShot(INVIBILITY_TIME_SMALL_ASTEROID,this,SLOT(removeInvicibility()));
 
         numberFrameMin = NB_PICTURE_SMALL_ASTEROID_MIN;
         numberFrameMax = NB_PICTURE_SMALL_ASTEROID_MAX;
         currentFrame = numberFrameMin;
+
         dPower = POWER_SMALL_ASTEROID;
         setPixmap(new QPixmap(QString(PICTURE_SMALL_ASTEROID).arg(currentFrame)));
-        //int l_X = gameEngine->randInt(2);
-
-        //dSlope=tan(_dSlope*M_PI/180.0);
-        dSlope=_dSlope;
-        direction = 1;
-
-        /*if(_dSlope>90 && _dSlope<=270)
-        {
-            direction = -1;
-            dSlope*=-1;
-        }*/
     }
     else
     {
         numberFrameMin = NB_PICTURE_ASTEROID_MIN;
         numberFrameMax = NB_PICTURE_ASTEROID_MAX;
         currentFrame = numberFrameMin;
+
         dPower = POWER_ASTEROID;
         setPixmap(new QPixmap(QString(PICTURE_ASTEROID).arg(currentFrame)));
+
         QRect sceneSize = gameEngine->displayEngine()->sceneSize();
+
         /*Generate the position of the Asteroid and its trajectory
           For more informations cf the specification file*/
         int l_xmin = sceneSize.topLeft().x();
@@ -67,7 +84,6 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
         //LEFT
         if(l_xg <= l_xc)
         {
-            direction = 1;
             qreal l_dXl = (l_xc*l_yc-l_n*l_ymax)/(l_yc-l_ymax);
             qreal l_dXf = gameEngine->randInt(l_dXl-l_xc)+l_xc;
 
@@ -79,7 +95,7 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
         //RIGHT
         else
         {
-            direction = -1;
+            directionX = -1;
             qreal l_dXl = (l_xc*l_yc-l_m*l_ymax)/(l_yc-l_ymax);
             qreal l_dXf = l_xc-gameEngine->randInt(fabs(l_dXl-l_xc));
             if(l_yg == 0)//Top Left
@@ -87,35 +103,27 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
             else
                 dSlope = -l_ymax/(l_dXf-l_xg);
         }
+
         if(l_yg == 0)
-            setPos(l_xg,l_ymin);
+            //we should remove the height to have a better apparition
+            setPos(l_xg,l_ymin-getPixmap()->height());
         else
             setPos(l_xg,l_ymax);
     }
 }
 
-TypeItem Asteroid::getTypeObject() const
+bool Asteroid::doubleCompare(qreal _dA, qreal _dB)
 {
-    return (bSmall)?tSmallAsteroid:tAsteroid;
+    qreal l_e = 1e-5;
+    return fabs(_dA-_dB) < l_e;
 }
 
-void Asteroid::removeInvicibility()
+bool Asteroid::isDeltaAngleEnough(int _angles[], int _size, int _angle)
 {
-    bInvicible = false;
-}
+    int l_delta = DELTA_ANGLE;
 
-bool Asteroid::doubleCompare(qreal a, qreal b)
-{
-    qreal e = 1e-5;
-    return fabs(a-b) < e;
-}
-
-bool Asteroid::isDeltaAngleEnough(int angles[], int size, int angle)
-{
-    int l_delta = 30;
-
-    for(int i = 0;i<size;i++)
-        if(fabs(angles[i]-angle)<l_delta)
+    for(int i = 0;i<_size;i++)
+        if(fabs(_angles[i]-_angle)<l_delta)
             return false;
 
     return true;
@@ -139,7 +147,7 @@ Asteroid::~Asteroid()
             l_angles[i] = angle;
 
             gameEngine->addSmallAsteroid(new Asteroid(pos().x()+getPixmap()->width()/2.0,pos().y()+getPixmap()->height()/2.0,
-                                                      Other,RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,angle,true));
+                                                      Other,RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,dSlope,angle,true));
         }
         delete l_angles;
     }
@@ -159,30 +167,32 @@ QPainterPath Asteroid::shape() const
 
 void Asteroid::paint(QPainter* _painter,const QStyleOptionGraphicsItem* _option, QWidget* _widget)
 {
-    if(index++%2==0)
+    //Number of frame before changing the picture
+    if(index++%NUMBER_FRAME_BEFORE_CHANGING_PIC==0)
     {
         if(currentFrame==numberFrameMax)
             currentFrame=numberFrameMin;
 
-        setPixmap(new QPixmap(QString(":/images/game/asteroids/rock%1").arg(++currentFrame)));
+        if(bSmall)
+            setPixmap(new QPixmap(QString(PICTURE_SMALL_ASTEROID).arg(++currentFrame)));
+        else
+            setPixmap(new QPixmap(QString(PICTURE_ASTEROID).arg(++currentFrame)));
     }
     _painter->drawPixmap(0,0,*getPixmap());
-//    _painter->setPen(QPen(QColor(255,0,0)));
-//    _painter->drawPath(shape());
 }
 
 void Asteroid::advance(int _step)
 {
-    Obstacle::advance(_step);
+    Displayable::advance(_step);
 
     if(!bSmall)
-        setPos(pos().x()+direction*SPEED_ASTEROID,
+        setPos(pos().x()+directionX*SPEED_ASTEROID,
             pos().y()-trajectoryDraw(SPEED_ASTEROID));
     else
     {
         dModule+=kIntervalModule;
-        setPos(dXOrigin+dModule*cos(dSlope*M_PI/180.0),
-               dYOrigin-dModule*sin(dSlope*M_PI/180.0));
+        setPos(dXOrigin+dModule*cos(dAngle*M_PI/180.0),
+               dYOrigin-dModule*sin(dAngle*M_PI/180.0));
     }
 }
 

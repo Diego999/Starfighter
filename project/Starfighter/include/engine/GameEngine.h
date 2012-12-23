@@ -102,7 +102,7 @@ private:
     QList<Displayable*>  listBonus;
     QList<Spaceship*>    listSpaceship;
     QList<Displayable*>  listAlienSpaceship;
-    QList<Displayable*>  listSupernova;
+    QList<Supernova*>    listSupernova;
 
 
 };

@@ -1,3 +1,12 @@
+/*=====================================================================*
+ | Declaration file BonusSpeed.h
+ |      declares :  BonusSpeed class
+ |
+ | For more informations (creation date, creator, etc.), please see the
+ | corresponding .cpp file
+ |
+ *=====================================================================*/
+
 #ifndef BONUS_SPEED_H
 #define BONUS_SPEED_H
 

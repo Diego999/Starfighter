@@ -1,3 +1,12 @@
+/*=====================================================================*
+ | Declaration file Spaceship.h
+ |      declares :  Spaceship class
+ |
+ | For more informations (creation date, creator, etc.), please see the
+ | corresponding .cpp file
+ |
+ *=====================================================================*/
+
 #ifndef SPACESHIP_H
 #define SPACESHIP_H
 
@@ -12,7 +21,7 @@ class BonusProjectile;
 class GameEngine;
 class QTimer;
 
-class Spaceship : public Destroyable, public virtual Displayable
+class Spaceship : public Destroyable, public Displayable
 {
     Q_OBJECT
 public:
@@ -29,11 +38,11 @@ public:
     QString getPlayerName() const {return playerName;}
     qreal getHealthPoint() const {return dHealthPoint;}
     qreal getHealthForceField() const {return dHealthForceField;}
-    BonusSpeed* getBonusSpeed() const {return bonusSpeed;}
     BonusProjectile* getBonusProjectile() const {return bonusProjectile;}
     qreal getPercentageSpeed() const;
-    void addPoint(int point);
     int getScore() const{return score;}
+
+    void addPoint(int _point) {score+=_point;}
 
     void setPixmap(QPixmap* _pxmPixmap);
     void addBonus(Bonus* _bonus);
@@ -46,19 +55,20 @@ private slots:
     void removeProjectileBonus();
 
 private:
+    GameEngine *gameEngine;
+
     Shooter player;
 	QString playerName;
-    qreal dSpeed;
-    int score;
-
-    TypeProjectiles type;
-    qreal dHealthForceField;
-    qreal dResistanceForceField;
-
-    QTimer *timerProjectile;
 
     BonusSpeed *bonusSpeed;
     BonusProjectile *bonusProjectile;
-    GameEngine *gameEngine;
+    QTimer *timerProjectile;
+
+    TypeProjectiles type;
+
+    qreal dHealthForceField;
+    qreal dResistanceForceField;
+    qreal dSpeed;
+    int score;
 };
 #endif

@@ -1,3 +1,21 @@
+/*==============================================================*
+ | Implementation file Spaceship.cpp
+ |        implements : Spaceship class
+ |
+ |
+ | summary : Entity class that represents a spaceship.
+ |           A spaceship can move,fire,collect bonus,receive damage.
+ |           For more information about the damage, please consult the specification file.
+ |
+ | Creator : Diego Antognini
+ | Creation date : 27/11/2012
+ | Copyright: EIAJ, all rights reserved
+ |
+ |
+ | Version of the file : 1.0.0
+ |
+ *==============================================================*/
+
 #include "include/engine/DisplayEngine.h"
 #include "include/engine/GameEngine.h"
 #include "include/engine/SoundEngine.h"
@@ -12,28 +30,25 @@
 #include "include/game/BonusSpeed.h"
 
 #include "include/config/Define.h"
-#include "include/stable.h"
 
 Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerName,qreal _dSpeed,qreal _dHealthPoint,qreal _dResistance,GameEngine *_gameEngine)
-    :Displayable(_dX,_dY),
-      Destroyable(_dHealthPoint,_dResistance),
-      player(_player),playerName(_playerName),dSpeed(_dSpeed),dResistanceForceField(RESISTANCE_FORCE_FIELD),gameEngine(_gameEngine),score(0)
+    :Destroyable(_dHealthPoint,_dResistance),
+      Displayable(_dX,_dY),
+      gameEngine(_gameEngine),//GameEngine
+      player(_player),//Kind of player (Player1 or Player2)
+      playerName(_playerName),//Name
+      bonusSpeed(0),//NULL pointer until the player receive a speed bonus
+      bonusProjectile(0),//NULL pointer until the player receive a speed bonus
+      timerProjectile(new QTimer(this)),//Initialize the timer for the projectile bonus, waiting to get one
+      type(PROJ_SPACESHIP_DEF),//Default kind of projectile
+      dHealthForceField(MAX_SPACESHIP_PV),//Health point of the force field
+      dResistanceForceField(RESISTANCE_FORCE_FIELD),//Resistance of the forcefield
+      dSpeed(_dSpeed),//Speed
+      score(0)//Number of point, only use in timerMode
 {
-    nbPoint = 0;
-    timerProjectile = new QTimer(this);
     timerProjectile->setSingleShot(true);
 
     connect(timerProjectile,SIGNAL(timeout()),this,SLOT(removeProjectileBonus()));
-
-    dHealthForceField = MAX_SPACESHIP_PV;
-    type = PROJ_SPACESHIP_DEF;
-    bonusSpeed = 0;
-    bonusProjectile = 0;
-}
-
-void Spaceship::addPoint(int point)
-{
-     score+=point;
 }
 
 void Spaceship::setPixmap(QPixmap *_pxmPixmap)
@@ -41,6 +56,7 @@ void Spaceship::setPixmap(QPixmap *_pxmPixmap)
     Displayable::setPixmap(_pxmPixmap);
     if(player == Player2)
     {
+        //Rotate the picture for the player2
         Displayable::setPixmap(new QPixmap(getPixmap()->transformed(QTransform().rotate(180))));
         setPos(pos().x()-getPixmap()->size().width(),pos().y());
     }
@@ -50,6 +66,7 @@ Spaceship::~Spaceship()
 {
     delete bonusSpeed;
     delete bonusProjectile;
+    delete timerProjectile;
 }
 
 QRectF Spaceship::boundingRect() const
@@ -74,7 +91,7 @@ qreal Spaceship::getPercentageSpeed() const
     if(bonusSpeed==0)
         return 100.0;
     else
-        return 100+bonusSpeed->getSpeed()/(dSpeed-bonusSpeed->getSpeed())*100;
+        return 100.0+bonusSpeed->getSpeed()/(dSpeed-bonusSpeed->getSpeed())*100.0;
 }
 
 void Spaceship::addBonus(Bonus *_bonus)
@@ -90,6 +107,7 @@ void Spaceship::addBonus(Bonus *_bonus)
     }
     else if(BonusProjectile* bp = dynamic_cast<BonusProjectile*>(_bonus))
     {
+        //If a timer for projectile is already started, we need to stop it and start anothero ne
         if(timerProjectile->isActive())
             removeProjectileBonus();
 

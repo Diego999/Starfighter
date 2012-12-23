@@ -26,7 +26,7 @@
 #define MAX_SPACESHIP_PV                    100
 #define BONUS_PROJECTILE_DURATION           10000
 #define BONUS_TYPE_PROJECTILES_MIN          2
-#define BONUS_TYPE_PROJECTILES_MAX          4
+#define BONUS_TYPE_PROJECTILES_MAX          3
 #define BONUS_SPEED_MIN                     8
 #define BONUS_SPEED_MAX                     20
 #define BONUS_SPEED_DURATION                10000
@@ -40,16 +40,22 @@
 #define DELTA_X                             100
 #define PICTURE_ALIENSPACESHIP              ":/images/game/mothership"
 #define NB_POINT_ALIENSPACESHIP             500
+#define ARG_INCREMENTATION_ALIENSPACESHIP   0.010
 
 //Asteroid
 #define SPEED_ASTEROID                      1
+#define SPEED_SMALL_ASTEROID                2.0
 #define MAX_ASTEROID                        5
 #define MIN_ASTEROID                        3
 #define POWER_ASTEROID                      10
 #define POWER_SMALL_ASTEROID                5
 #define RESISTANCE_SMALL_ASTEROID           1
 #define HEALTHPOINT_SMALL_ASTEROID          50
+#define DELTA_ANGLE                         30
 
+#define NUMBER_FRAME_BEFORE_CHANGING_PIC    2
+
+#define INVIBILITY_TIME_SMALL_ASTEROID      300
 #define NB_POINT_ASTEROID                   50
 #define NB_POINT_SMALL_ASTEROID             80
 
@@ -66,6 +72,7 @@
 #define SOUND_TIMER                         1000 // (ms)
 #define PICTURE_BONUS                       ":/images/game/bonus"
 #define NB_POINT_BONUS                      300
+#define ARG_INCREMENTATION_BONUS            0.10 //Speed
 
 //Projectile
 #define RADIUS_PROJECTILE                   10

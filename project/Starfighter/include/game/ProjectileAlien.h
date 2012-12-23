@@ -1,3 +1,12 @@
+/*=====================================================================*
+ | Declaration file ProjectileAlien.h
+ |      declares :  ProjectileAlien class
+ |
+ | For more informations (creation date, creator, etc.), please see the
+ | corresponding .cpp file
+ |
+ *=====================================================================*/
+
 #ifndef PROJECTILE_ALIEN_H
 #define PROJECTILE_ALIEN_H
 

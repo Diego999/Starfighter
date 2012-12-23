@@ -1,7 +1,18 @@
+/*=====================================================================*
+ | Declaration file Bonus.h
+ |      declares :  Bonus class
+ |
+ | For more informations (creation date, creator, etc.), please see the
+ | corresponding .cpp file
+ |
+ *=====================================================================*/
+
 #ifndef BONUS_H
 #define BONUS_H
 
 #include "include/game/Displayable.h"
+
+#include "include/config/Define.h"
 
 class GameEngine;
 
@@ -12,25 +23,29 @@ public:
     Bonus(GameEngine *_gameEngine);
     virtual ~Bonus();
 
-    TypeItem getTypeObject() const {return tBonus;}
     QRectF boundingRect() const;
     QPainterPath shape() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    void paint(QPainter *_painter, const QStyleOptionGraphicsItem *_option, QWidget *_widget);
+
+    TypeItem getTypeObject() const {return tBonus;}
     void advance(int _step);
     void stopSound();
 
 private:
+    static const qreal kIntervalArgument = ARG_INCREMENTATION_BONUS;
+
     GameEngine *gameEngine;
 
-    static const qreal kIntervalArgument = 0.10;
+    bool bSoundStopped;
 
-    qreal dYStop;
     qreal dArgument;
     qreal dModule;
     qreal dX0;
     qreal dY0;
+
     int directionX;
-    int direction;
-    bool soundStopped;
+    int directionY;
+    int directionArg;
+
 };
 #endif

@@ -72,7 +72,7 @@ void SpawnEngine::timerFired()
         {
             int satType = irand(1, 4);
             Bonus *bonus;
-
+            satType = 3;
             switch(satType)
             {
             case 1:

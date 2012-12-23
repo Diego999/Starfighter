@@ -1,3 +1,12 @@
+/*=====================================================================*
+ | Declaration file BonusProjectile.h
+ |      declares :  BonusProjectile class
+ |
+ | For more informations (creation date, creator, etc.), please see the
+ | corresponding .cpp file
+ |
+ *=====================================================================*/
+
 #ifndef BONUS_PROJECTILE_H
 #define BONUS_PROJECTILE_H
 

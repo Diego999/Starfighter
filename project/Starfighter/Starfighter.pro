@@ -37,7 +37,6 @@ HEADERS += include/stable.h \
            include/game/BonusSpeed.h \
            include/game/Destroyable.h \
            include/game/Displayable.h \
-           include/game/Obstacle.h \
            include/game/Projectile.h \
            include/game/ProjectileAlien.h \
            include/game/ProjectileCross.h \
@@ -71,7 +70,6 @@ SOURCES += src/main.cpp \
            src/game/BonusSpeed.cpp \
            src/game/Destroyable.cpp \
            src/game/Displayable.cpp \
-           src/game/Obstacle.cpp \
            src/game/Projectile.cpp \
            src/game/ProjectileAlien.cpp \
            src/game/ProjectileCross.cpp \

@@ -1,3 +1,12 @@
+/*=====================================================================*
+ | Declaration file BonusHP.h
+ |      declares :  BonusHP class
+ |
+ | For more informations (creation date, creator, etc.), please see the
+ | corresponding .cpp file
+ |
+ *=====================================================================*/
+
 #ifndef BONUS_H_P_H
 #define BONUS_H_P_H
 

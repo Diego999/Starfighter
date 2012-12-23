@@ -1,3 +1,12 @@
+/*=====================================================================*
+ | Declaration file Projectile.h
+ |      declares :  Projectile class
+ |
+ | For more informations (creation date, creator, etc.), please see the
+ | corresponding .cpp file
+ |
+ *=====================================================================*/
+
 #ifndef PROJECTILE_H
 #define PROJECTILE_H
 
@@ -7,7 +16,7 @@
 
 class QColor;
 
-class Projectile : public virtual Displayable
+class Projectile : public Displayable
 {
 public:
     Projectile(qreal _XOrigin, qreal _YOrigin,Shooter _from);
@@ -16,11 +25,10 @@ public:
     qreal getPower() const {return dPower;}
     TypeItem getTypeObject() const {return tProj;}
     Shooter getFrom() const {return from;}
+
     QRectF boundingRect() const;
     QPainterPath shape() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-
-    virtual void advance(int _step);
+    void paint(QPainter *_painter, const QStyleOptionGraphicsItem *_option, QWidget *_widget);
 
 protected:
     virtual qreal trajectoryDraw(qreal _dX)=0;

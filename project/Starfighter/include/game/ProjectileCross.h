@@ -1,3 +1,12 @@
+/*=====================================================================*
+ | Declaration file ProjectileCross.h
+ |      declares :  ProjectileCross class
+ |
+ | For more informations (creation date, creator, etc.), please see the
+ | corresponding .cpp file
+ |
+ *=====================================================================*/
+
 #ifndef PROJECTILE_CROSS_H
 #define PROJECTILE_CROSS_H
 
@@ -13,6 +22,6 @@ private:
     void advance(int _step);
     qreal trajectoryDraw(qreal _dX);
 
-    int nb;
+    int currentNb;
 };
 #endif
