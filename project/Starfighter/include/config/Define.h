@@ -43,15 +43,14 @@
 #define ARG_INCREMENTATION_ALIENSPACESHIP   0.010
 
 //Asteroid
-#define SPEED_ASTEROID                      1
-#define SPEED_SMALL_ASTEROID                2.0
+#define SPEED_ASTEROID                      1.5
+#define SPEED_SMALL_ASTEROID                1.5
 #define MAX_ASTEROID                        5
 #define MIN_ASTEROID                        3
 #define POWER_ASTEROID                      10
 #define POWER_SMALL_ASTEROID                5
 #define RESISTANCE_SMALL_ASTEROID           1
 #define HEALTHPOINT_SMALL_ASTEROID          50
-#define DELTA_ANGLE                         30
 
 #define NUMBER_FRAME_BEFORE_CHANGING_PIC    2
 

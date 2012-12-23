@@ -20,29 +20,23 @@ class GameEngine;
 
 class Asteroid : public Destroyable, public Projectile
 {
-    Q_OBJECT
 public:
     //Slope is define ONLY FOR THE LITTLE ASTEROIDES
-    Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint, GameEngine *_gameEngine,qreal _dSlope=0,qreal _dAngle=0,bool _bSmall=false);
+    Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint, GameEngine *_gameEngine,int _idParent=0,qreal _dAngleParent=0,qreal _dAngle=0);
     ~Asteroid();
 
     bool isSmall() const {return bSmall;}
-    bool isInvicible() const {return bInvicible;}
+    int getIdParent() const {return idParent;}
     TypeItem getTypeObject() const {return (bSmall)?tSmallAsteroid:tAsteroid;}
     QRectF boundingRect() const;
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
-private slots:
-    void removeInvicibility() {bInvicible=false;}
-
 private:
-    static bool isDeltaAngleEnough(int _angles[],int _size,int _angle);
-    static bool doubleCompare(qreal _dA,qreal _dB);
     static const qreal kIntervalModule = SPEED_SMALL_ASTEROID;
 
     void advance(int _step);
-    qreal trajectoryDraw(qreal _dX);
+    qreal trajectoryDraw(qreal _dX) {return 0*_dX;}
 
     GameEngine* gameEngine;
 
@@ -51,12 +45,10 @@ private:
     int numberFrameMax;
     int index;
 
-    int directionX;
-    qreal dSlope;
-    qreal dModule;
+    int idParent;
+
     qreal dAngle;
 
     bool bSmall;
-    bool bInvicible;
 };
 #endif

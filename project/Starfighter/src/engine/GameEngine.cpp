@@ -482,8 +482,18 @@ bool GameEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*>
             }
             else if(list1[i_list1]->getTypeObject() == tSmallAsteroid && list2[j]->getTypeObject() == tSmallAsteroid)
             {
-                if(dynamic_cast<Asteroid*>(list1[i_list1])->isInvicible() && dynamic_cast<Asteroid*>(list2[j])->isInvicible())
+                if(dynamic_cast<Asteroid*>(list1[i_list1])->getIdParent() == dynamic_cast<Asteroid*>(list2[j])->getIdParent() && dynamic_cast<Asteroid*>(list2[j])->getIdParent()!=0)
                     return false;
+                else
+                {
+                    delete list1[i_list1];
+                    list1[i_list1] = 0;
+
+                    delete list2[j];
+                    list2[j] = 0;
+
+                    return true;
+                }
             }
             else if(list1[i_list1]->getTypeObject() == tAlien)
             {
