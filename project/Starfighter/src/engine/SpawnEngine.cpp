@@ -59,19 +59,14 @@ void SpawnEngine::timerFired()
 
         if(probWhat < intervalAsteroid)
         {
-            static int i = 0;
-            if(i++==0)
-            {
             Asteroid *asteroid = new Asteroid(0, 0, Other, RESISTANCE_ASTEROID, MAX_SPACESHIP_PV, ge);
-            ge->addAsteroid(asteroid);}
+            ge->addAsteroid(asteroid);
         }
         else if(probWhat < intervalAlien)
         {
-            static int i = 0;
-            if(i++>=0){
             int nbSpirales = irand(ALIEN_SWIRL_MIN, ALIEN_SWIRL_MAX);
             AlienSpaceship *alien = new AlienSpaceship(nbSpirales, MAX_SPACESHIP_PV, RESISTANCE_ALIEN, ge);
-            ge->addAlienSpaceship(alien);}
+            ge->addAlienSpaceship(alien);
         }
         else if(probWhat < intervalSat)
         {
