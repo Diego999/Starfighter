@@ -18,10 +18,5 @@ public:
     ProjectileCross(qreal _dXOrigin, qreal _dYOrigin,Shooter _from,int _nb);
     ~ProjectileCross() {}
 
-private:
-    void advance(int _step);
-    qreal trajectoryDraw(qreal _dX);
-
-    int currentNb;
 };
 #endif

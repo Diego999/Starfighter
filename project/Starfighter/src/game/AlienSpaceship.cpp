@@ -32,6 +32,8 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
       directionY(1),//Default Y-direction
       directionArg(1)//Defaut Arg-direction
 {
+    dAngle = M_PI/2.0;
+
     //Points for the timer Mode
     Displayable::nbPoint = NB_POINT_ALIENSPACESHIP;
 
@@ -40,8 +42,27 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
     int l_Xmin = gameEngine->displayEngine()->xminWarzone();
     int l_Xmax = gameEngine->displayEngine()->xmaxWarZone();
 
-    int l_x1 = gameEngine->randInt((l_Xmax-DELTA_X)-(l_Xmin+DELTA_X))+l_Xmin;
-    int l_x2 = gameEngine->randInt(2*DELTA_X)-DELTA_X+l_x1;
+    int l_x1 = gameEngine->randInt((l_Xmax-getPixmap()->width()-l_Xmin));
+
+    if(l_x1>=(l_Xmax-l_Xmin)/2.0)
+        l_x1-=DELTA_X;
+    else
+        l_x1+=DELTA_X;
+
+    int l_x2 = l_x1;
+    do
+    {
+        l_x2 = gameEngine->randInt(DELTA_X)-DELTA_X+l_x1;
+    }while(l_x1==l_x2);
+
+    if(fabs(l_x2-l_x1)<DELTA_X/2.0)
+    {
+        if(l_x2>l_x1)
+            l_x2-=DELTA_X/2.0;
+        else
+            l_x2+=DELTA_X/2.0;
+    }
+
     int l_x3 = l_x1;
 
     int l_y1 = gameEngine->displayEngine()->sceneSize().y();
@@ -54,6 +75,15 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
     3) Bottom->Top x2<xg
     4) Bottom->Top x2>=xg
     */
+
+    if(fabs(l_x1-l_x2)<DELTA_X_MIN)
+    {
+        if(l_x2>l_x1)
+            l_x2=l_x1+DELTA_X_MIN;
+        else
+            l_x2=l_x1-DELTA_X_MIN;
+    }
+
     if(l_x2>l_x1)
         directionArg=-1;
     else
@@ -65,6 +95,7 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
     if(gameEngine->randInt(2)==1)//1 = bottom,0 = top
     {
         directionArg*=-1;
+        dAngle=-M_PI/2.0;
         l_y1=gameEngine->displayEngine()->sceneSize().height();
         l_y3=gameEngine->displayEngine()->sceneSize().y();
         //Rotate the picture if it's coming by the bottom size
@@ -86,14 +117,15 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
             /(2.0*(l_x3*(l_y1-l_y2)+l_x1*(l_y2-l_y3)+l_x2*(l_y3-l_y1)));
 
     dModule = sqrt((l_x1-dX0)*(l_x1-dX0)+(l_y1-dY0)*(l_y1-dY0));
-    dArgument += atan((dY0-l_y1)/(l_x1-dX0))*180.0/M_PI;
+    dArgument = atan((dY0-l_y1)/(l_x1-dX0));
 
     setPos(l_x1,l_y1);
 }
 
 void AlienSpaceship::advance(int _step)
 {
-    Displayable::advance(_step);
+    if (!_step)
+        return;
 
     if(!isAttacking)
     {
@@ -102,8 +134,8 @@ void AlienSpaceship::advance(int _step)
 
         dArgument+=directionArg*kIntervalArgument;
 
-        setPos(dX0+directionX*dModule*cos(dArgument*M_PI/180.0)
-               ,dY0-directionY*dModule*sin(dArgument*M_PI/180.0));
+        setPos(dX0+directionX*dModule*cos(dArgument)
+               ,dY0-directionY*dModule*sin(dArgument));
     }
 }
 
@@ -113,7 +145,7 @@ void AlienSpaceship::attacking()
 
     //Shoot the projectiles
     for(int i = 0;i<nbSpirales;i++)
-        gameEngine->addProjectile(new ProjectileAlien(pos().x(),pos().y(),Alien,360.0/nbSpirales*(i+1),0));
+        gameEngine->addProjectile(new ProjectileAlien(pos().x(),pos().y(),Alien,static_cast<double>(2*M_PI)/nbSpirales*(i+1),0));
 
     hasAttacked=true;
     isAttacking=false;

@@ -30,16 +30,37 @@ Bonus::Bonus(GameEngine *_gameEngine)
       directionY(1),//Default Y-direction
       directionArg(1)//Defaut Arg-direction
 {
+    dAngle = M_PI/2.0;
+
     //Points for the timer Mode
     nbPoint = NB_POINT_BONUS;
 
-    /*Generate the position of the Bonus
+    /*Generate the position of the AlienSpaceship
       For more informations cf the specification file*/
     int l_Xmin = gameEngine->displayEngine()->xminWarzone();
     int l_Xmax = gameEngine->displayEngine()->xmaxWarZone();
 
-    int l_x1 = gameEngine->randInt((l_Xmax-DELTA_X_B)-(l_Xmin+DELTA_X_B))+l_Xmin;
-    int l_x2 = gameEngine->randInt(2*DELTA_X_B)-DELTA_X_B+l_x1;
+    int l_x1 = gameEngine->randInt((l_Xmax-getPixmap()->width()-l_Xmin));
+
+    if(l_x1>=(l_Xmax-l_Xmin)/2.0)
+        l_x1-=DELTA_X;
+    else
+        l_x1+=DELTA_X;
+
+    int l_x2 = l_x1;
+    do
+    {
+        l_x2 = gameEngine->randInt(DELTA_X_B)-DELTA_X_B+l_x1;
+    }while(l_x1==l_x2);
+
+    if(fabs(l_x2-l_x1)<DELTA_X_B/2.0)
+    {
+        if(l_x2>l_x1)
+            l_x2-=DELTA_X_B/2.0;
+        else
+            l_x2+=DELTA_X_B/2.0;
+    }
+
     int l_x3 = l_x1;
 
     int l_y1 = gameEngine->displayEngine()->sceneSize().y();
@@ -52,6 +73,7 @@ Bonus::Bonus(GameEngine *_gameEngine)
     3) Bottom->Top x2<xg
     4) Bottom->Top x2>=xg
     */
+
     if(l_x2>l_x1)
         directionArg=-1;
     else
@@ -63,13 +85,14 @@ Bonus::Bonus(GameEngine *_gameEngine)
     if(gameEngine->randInt(2)==1)//1 = bottom,0 = top
     {
         directionArg*=-1;
+        dAngle=-M_PI/2.0;
         l_y1=gameEngine->displayEngine()->sceneSize().height();
         l_y3=gameEngine->displayEngine()->sceneSize().y();
         //Rotate the picture if it's coming by the bottom size
         Displayable::setPixmap(new QPixmap(getPixmap()->transformed(QTransform().rotate(180))));
     }
 
-    //Change Y location if the case where the Bonus comes by the top,
+    //Change Y location if the case where the alienspaceship comes by the top,
     //we should remove the height to have a better apparition
     if(l_y1==gameEngine->displayEngine()->sceneSize().y())
         l_y1-=getPixmap()->height();
@@ -81,7 +104,7 @@ Bonus::Bonus(GameEngine *_gameEngine)
             /(2.0*(l_x3*(l_y1-l_y2)+l_x1*(l_y2-l_y3)+l_x2*(l_y3-l_y1)));
 
     dModule = sqrt((l_x1-dX0)*(l_x1-dX0)+(l_y1-dY0)*(l_y1-dY0));
-    dArgument += atan((dY0-l_y1)/(l_x1-dX0))*180.0/M_PI;
+    dArgument = atan((dY0-l_y1)/(l_x1-dX0));
 
     setPos(l_x1,l_y1);
 }
@@ -93,12 +116,13 @@ Bonus::~Bonus()
 
 void Bonus::advance(int _step)
 {
-    Displayable::advance(_step);
+    if (!_step)
+        return;
 
     dArgument+=directionArg*kIntervalArgument;
 
-    setPos(dX0+directionX*dModule*cos(dArgument*M_PI/180.0)
-           ,dY0-directionY*dModule*sin(dArgument*M_PI/180.0));
+    setPos(dX0+directionX*dModule*cos(dArgument)
+           ,dY0-directionY*dModule*sin(dArgument));
 }
 
 QRectF Bonus::boundingRect() const

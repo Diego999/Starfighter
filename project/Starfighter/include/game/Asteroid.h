@@ -32,11 +32,11 @@ public:
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
+    void collision(qreal _dAngle);
 private:
     static const qreal kIntervalModule = SPEED_SMALL_ASTEROID;
 
     void advance(int _step);
-    qreal trajectoryDraw(qreal _dX) {return 0*_dX;}
 
     GameEngine* gameEngine;
 
@@ -46,8 +46,6 @@ private:
     int index;
 
     int idParent;
-
-    qreal dAngle;
 
     bool bSmall;
 };

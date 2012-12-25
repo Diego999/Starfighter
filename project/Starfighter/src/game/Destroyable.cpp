@@ -32,6 +32,17 @@ void Destroyable::receiveAttack(qreal _dPower, int _point, Shooter _forShip)
     isDead();
 }
 
+bool Destroyable::gonnaDead(qreal _dPower)
+{
+    qreal l_dHealthPoint = dHealthPoint;
+    l_dHealthPoint -= _dPower/dResistance;
+
+    if(l_dHealthPoint<=0)
+        return true;
+    else
+        return false;
+}
+
 void Destroyable::isDead()
 {
     if(dHealthPoint<=0)

@@ -25,14 +25,7 @@ ProjectileSimple::ProjectileSimple(qreal _dXOrigin, qreal _dYOrigin, Shooter _fr
 {
     dPower = POWER_SIMPLE;
     dSpeed = SPEED_SIMPLE_DEF;
-}
-
-void ProjectileSimple::advance(int _step)
-{
-    Displayable::advance(_step);
-
-    if(from == Player1)
-        setPos(pos().x()+dSpeed,pos().y()+trajectoryDraw(dSpeed));
-    else//Player2
-        setPos(pos().x()-dSpeed,pos().y()+trajectoryDraw(dSpeed));
+    dAngle = 0;
+    if(_from==Player2)
+        dAngle+=M_PI;
 }

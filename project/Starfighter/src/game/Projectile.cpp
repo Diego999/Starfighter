@@ -27,9 +27,15 @@ Projectile::Projectile(qreal _XOrigin, qreal _YOrigin,Shooter _from)
 {
     nbPoint = NB_POINT_PROJECTILE;
     if(from == Player1)
+    {
         color = new QColor(0,0,255);
+        dAngle = 0;
+    }
     else if(from == Player2)
+    {
         color = new QColor(255,0,0);
+        dAngle = M_PI;
+    }
     else
         color = new QColor(qrand() % 256, qrand() % 256, qrand() % 256);
 }
@@ -57,4 +63,10 @@ void Projectile::paint(QPainter *_painter, const QStyleOptionGraphicsItem * _opt
     _painter->drawEllipse(-RADIUS_PROJECTILE/2,-RADIUS_PROJECTILE/2,RADIUS_PROJECTILE,RADIUS_PROJECTILE);
 }
 
+void Projectile::advance(int _step)
+{
+    if (!_step)
+        return;
 
+    moveBy(dSpeed*cos(dAngle),-dSpeed*sin(dAngle));
+}

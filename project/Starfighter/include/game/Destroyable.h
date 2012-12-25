@@ -20,12 +20,13 @@ public:
     virtual ~Destroyable() {}
 
     virtual void receiveAttack(qreal _dPower,int _point,Shooter _forShip);
-    void isDead();
-
+    bool gonnaDead(qreal _dPower);
 signals:
     void destroyed(Destroyable* _destroyItem,int _nbPoint,Shooter _forShip);
 
 protected:
+    void isDead();
+
     qreal dHealthPoint;
     qreal dResistance;
     int pointToGive;

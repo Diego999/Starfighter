@@ -27,7 +27,9 @@ public:
 
     virtual TypeItem getTypeObject() const=0;
     virtual qreal getPower() const {return 0.0;}
-    virtual void advance(int _step);
+    virtual void advance(int _step)=0;
+
+    qreal getAngle() const {return dAngle;}
 
     virtual QRectF boundingRect() const=0;
     virtual QPainterPath shape() const=0;
@@ -39,7 +41,7 @@ public:
 
 protected:
     int nbPoint;
-
+    qreal dAngle;
 private:
     qreal dX;
     qreal dY;

@@ -46,6 +46,10 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
       dSpeed(_dSpeed),//Speed
       score(0)//Number of point, only use in timerMode
 {
+    if(_player == Player1)
+        dAngle = 0;
+    else if(_player == Player2)
+        dAngle = M_PI;
     timerProjectile->setSingleShot(true);
 
     connect(timerProjectile,SIGNAL(timeout()),this,SLOT(removeProjectileBonus()));
@@ -214,4 +218,10 @@ void Spaceship::bottom()
         setPos(pos().x(),gameEngine->displayEngine()->sceneSize().height()-getPixmap()->height());
     else
         setPos(pos().x(),pos().y()+dSpeed);
+}
+
+void Spaceship::advance(int _step)
+{
+    if (!_step)
+        return;
 }

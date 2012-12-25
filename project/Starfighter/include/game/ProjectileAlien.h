@@ -11,6 +11,7 @@
 #define PROJECTILE_ALIEN_H
 
 #include "include/game/Projectile.h"
+#include "include/config/Define.h"
 
 class ProjectileAlien : public Projectile
 {
@@ -19,13 +20,10 @@ public:
     ~ProjectileAlien() {}
 
 private:
-    static const qreal kIntervalModule = 2.0;
-    static const qreal kIntervalArgument = 0.00;
+    static const qreal kIntervalModule = MODULE_INCREMENT_ALIEN;
 
     void advance(int step);
-    qreal trajectoryDraw(qreal _dX) {return 0;}
 
-    qreal dArgument;
     qreal dModule;
 };
 #endif

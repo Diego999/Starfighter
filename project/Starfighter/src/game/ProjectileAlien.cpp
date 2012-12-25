@@ -22,19 +22,19 @@
 ProjectileAlien::ProjectileAlien(qreal _dXOrigin, qreal _dYOrigin,Shooter _from, qreal _dArgument, qreal _dModule)
     ://Displayable(_dXOrigin,_dYOrigin),
       Projectile(_dXOrigin,_dYOrigin,_from),
-      dArgument(_dArgument),//Argument
       dModule(_dModule)//Module
 {
+    dAngle = _dArgument;
     dPower = POWER_ALIEN;
 }
 
 void ProjectileAlien::advance(int _step)
 {
-    Displayable::advance(_step);
+    if (!_step)
+        return;
 
     dModule+=ProjectileAlien::kIntervalModule;
-    dArgument+=ProjectileAlien::kIntervalArgument;
 
-    setPos(dXOrigin+dModule*cos(dArgument*M_PI/180.0),
-           dYOrigin-dModule*sin(dArgument*M_PI/180.0));
+    setPos(dXOrigin+dModule*cos(dAngle),
+           dYOrigin-dModule*sin(dAngle));
 }

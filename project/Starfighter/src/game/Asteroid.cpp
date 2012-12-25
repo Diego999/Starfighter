@@ -30,19 +30,19 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
       gameEngine(_gameEngine),//GameEngine
       index(0),//Index to count the number of frame since the last picture change
       idParent(_idParent),
-      dAngle(_dAngle),//Angle of start to define the direction where to go, when a parent asteroid is destroyed (only for small asteroid)
       bSmall(_idParent?true:false)//If it's a small asteroid
 {
     nbPoint = NB_POINT_ASTEROID;
+    dAngle = _dAngle;//Angle of start to define the direction where to go, when a parent asteroid is destroyed (only for small asteroid)
 
     //If it's a small asteroid, we use dSlope and generate and X-direction
     if(bSmall)
     {
-        qreal l_dCosAngleParent = cos(_dAngleParent);
+        //qreal l_dCosAngleParent = cos(_dAngleParent);
         //if(l_dCosAngleParent<0)
         //    directionX=-1;
 
-        if(cos(dAngle)<0 && cos(l_dCosAngleParent)<0)
+        if(cos(dAngle)<0 && cos(_dAngleParent)<0)
             dAngle+=M_PI;
 
         nbPoint = NB_POINT_SMALL_ASTEROID;
@@ -88,7 +88,7 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
             qreal l_dXl = (l_xc*l_yc-l_n*l_ymax)/(l_yc-l_ymax);
             qreal l_dXf = gameEngine->randInt(l_dXl-l_xc)+l_xc;
 
-            if(l_yg == 0)//Top
+            if(l_yg == 1)//Bottom
                 dAngle = atan(-l_ymax/(l_dXf-l_xg));
             else//Bottom
                 dAngle = atan(l_ymax/(l_dXf-l_xg));
@@ -99,7 +99,7 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
             qreal l_dXl = (l_xc*l_yc-l_m*l_ymax)/(l_yc-l_ymax);
             qreal l_dXf = l_xc-gameEngine->randInt(fabs(l_dXl-l_xc));
 
-            if(l_yg == 0)//Top
+            if(l_yg == 1)//Bottom
                 dAngle = atan(l_ymax/(fabs(l_dXf-l_xg)))+M_PI;
             else//Bottom
                 dAngle = atan(-l_ymax/(fabs(l_dXf-l_xg)))+M_PI;
@@ -111,20 +111,21 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
         else
             setPos(l_xg,l_ymax);
     }
+
 }
 
-Asteroid::~Asteroid()
+void Asteroid::collision(qreal _dAngle)
 {
     if(!bSmall)
     {
-        int l_nb = gameEngine->randInt(MAX_ASTEROID-MIN_ASTEROID+1)+MIN_ASTEROID;
+        int l_nb = gameEngine->randInt(MAX_ASTEROID-MIN_ASTEROID)+MIN_ASTEROID;
         static int l_id = 1;
 
         for(int i = 0;i<l_nb;i++)
         {
-            qreal angle = dAngle/2.0;
-            qreal angle2 = static_cast<double>(M_PI)/l_nb;
-            qreal anglei = angle2*i+angle;
+            qreal angle = (_dAngle+dAngle)/2.0;
+            qreal angle2 = static_cast<double>(M_PI)/(l_nb-1);
+            qreal anglei = angle2*i+angle+M_PI/2.0;
 
             if(anglei>2*M_PI)
                 anglei-=(2*M_PI);
@@ -134,6 +135,11 @@ Asteroid::~Asteroid()
         }
         l_id++;
     }
+}
+
+Asteroid::~Asteroid()
+{
+
 }
 
 QRectF Asteroid::boundingRect() const
@@ -166,8 +172,9 @@ void Asteroid::paint(QPainter* _painter,const QStyleOptionGraphicsItem* _option,
 
 void Asteroid::advance(int _step)
 {
-    Displayable::advance(_step);
+    if (!_step)
+        return;
 
     moveBy(SPEED_ASTEROID*cos(dAngle),
-           -SPEED_ASTEROID*sin(dAngle));
+           SPEED_ASTEROID*sin(dAngle));
 }

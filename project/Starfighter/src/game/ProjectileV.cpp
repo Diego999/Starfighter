@@ -25,23 +25,19 @@ ProjectileV::ProjectileV(qreal _dXOrigin, qreal _dYOrigin,Shooter _from, qreal _
       dAmplitude(_ampli),//Amplitude
       dOmega(_omega)//Omega
 {
+    dAngle = 0;
+    if(_from == Player2)
+        dAngle += M_PI;
+
     dPower = POWER_V;
     dSpeed = SPEED_V_DEF;
 }
 
-qreal ProjectileV::trajectoryDraw(qreal _dX)
-{
-    qreal l_dX = _dX*M_PI/180.0;
-    return dAmplitude*sin(dOmega*l_dX);
-}
-
 void ProjectileV::advance(int _step)
 {
-    Displayable::advance(_step);
+    if (!_step)
+        return;
 
-    if(from == Player1)
-        setPos(pos().x()+dSpeed,dYOrigin-trajectoryDraw(dXOrigin-pos().x()));
-    else//Player2
-        setPos(pos().x()-dSpeed,dYOrigin-trajectoryDraw(dXOrigin-pos().x()));
+    moveBy(dSpeed*cos(dAngle),-dAmplitude*cos(dOmega*(pos().x()-dXOrigin)));
 
 }

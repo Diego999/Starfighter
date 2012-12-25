@@ -23,18 +23,13 @@ Displayable::Displayable(qreal _dX, qreal _dY, QPixmap* _pixmap)
       pxmPicture(_pixmap)//Picture
 
 {
+    dAngle = 0;
     setPos(dX,dY);
 }
 
 Displayable::~Displayable()
 {
     delete pxmPicture;
-}
-
-void Displayable::advance(int _step)
-{
-    if (!_step)
-        return;
 }
 
 void Displayable::setPos(qreal _dX, qreal _dY)

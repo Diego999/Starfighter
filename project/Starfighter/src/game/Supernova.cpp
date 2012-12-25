@@ -30,5 +30,5 @@ Supernova::Supernova(qreal _dX, qreal _dY,GameEngine *_gameEngine):
 Supernova::~Supernova()
 {
     for(int i = 0;i<nbSpirales;i++)
-        gameEngine->addProjectile(new ProjectileAlien(dX,dY,Other,360.0/nbSpirales*(i+1),0));
+        gameEngine->addProjectile(new ProjectileAlien(dX,dY,Other,static_cast<double>(2*M_PI)/nbSpirales*(i+1),0));
 }

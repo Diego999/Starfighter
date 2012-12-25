@@ -21,32 +21,19 @@
 
 ProjectileCross::ProjectileCross(qreal _dXOrigin, qreal _dYOrigin, Shooter _from,int _nb)
     ://Displayable(_dXOrigin,_dYOrigin),
-      Projectile(_dXOrigin,_dYOrigin,_from),
-      currentNb(_nb)//Number of the current projectile
+      Projectile(_dXOrigin,_dYOrigin,_from)
 {
     dSpeed = SPEED_CROSS_DEF;
     dPower = POWER_CROSS;
+
+    dAngle = 0;
+
+    if(_nb==-1)
+        dAngle = -M_PI/8;
+    else if(_nb==1)
+        dAngle = M_PI/8;
+
+    if(_from==Player2)
+        dAngle+=M_PI;
 }
 
-qreal ProjectileCross::trajectoryDraw(qreal _dX)
-{
-    if(currentNb == 0)
-        return 0;
-    else if(currentNb == -1)
-        return -_dX/10;
-    else
-        return _dX/10;
-}
-
-void ProjectileCross::advance(int _step)
-{
-    Displayable::advance(_step);
-
-    if(from == Player1)
-        setPos(pos().x()+dSpeed,
-               dYOrigin-trajectoryDraw(dXOrigin-pos().x()));
-    else//Player2
-        setPos(pos().x()-dSpeed,
-               dYOrigin-trajectoryDraw(dXOrigin-pos().x()));
-
-}

@@ -23,6 +23,7 @@ public:
     virtual ~Projectile();
 
     qreal getPower() const {return dPower;}
+
     TypeItem getTypeObject() const {return tProj;}
     Shooter getFrom() const {return from;}
 
@@ -30,9 +31,9 @@ public:
     QPainterPath shape() const;
     void paint(QPainter *_painter, const QStyleOptionGraphicsItem *_option, QWidget *_widget);
 
-protected:
-    virtual qreal trajectoryDraw(qreal _dX)=0;
+    virtual void advance(int _step);
 
+protected:
     qreal dPower;
     qreal dXOrigin;
     qreal dYOrigin;

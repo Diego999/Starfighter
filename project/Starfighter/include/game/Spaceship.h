@@ -55,6 +55,8 @@ private slots:
     void removeProjectileBonus();
 
 private:
+    void advance(int _step);
+
     GameEngine *gameEngine;
 
     Shooter player;

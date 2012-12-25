@@ -20,7 +20,6 @@ public:
 
 private:
     void advance(int _step);
-    qreal trajectoryDraw(qreal _dX);
 
     qreal dAmplitude;
     qreal dOmega;
