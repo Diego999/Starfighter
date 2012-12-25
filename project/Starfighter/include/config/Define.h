@@ -45,6 +45,8 @@
 #define SPEED_SMALL_ASTEROID                3 //Factor, keep the same than SPEED_ASTEROID
 #define MAX_ASTEROID                        5 //Number max of small asteroids
 #define MIN_ASTEROID                        3 //Number min of small asteroids
+#define DELTA_ANGLE_BETWEEN_180_AXES        M_PI/3
+
 #define POWER_ASTEROID                      10
 #define POWER_SMALL_ASTEROID                5
 #define RESISTANCE_SMALL_ASTEROID           1 // Min : 1 Max : 100
@@ -67,7 +69,7 @@
 #define SOUND_TIMER                         1000 // (ms)
 #define PICTURE_BONUS                       ":/images/game/bonus"
 #define NB_POINT_BONUS                      300
-#define ARG_INCREMENTATION_BONUS            0.010 // rad
+#define ARG_INCREMENTATION_BONUS            0.0010 // rad
 
 //Projectile
 #define RADIUS_PROJECTILE                   10 // px
@@ -93,7 +95,7 @@
 //Spaceship
 //PV -> cf SpawnEngine
 #define MAX_SPACESHIP_BONUS                 2
-#define AMPLI_SPACESHIP_PROJ_V              10.0 //px
+#define AMPLI_SPACESHIP_PROJ_V              20.0 //px
 #define OMEGA_SPACESHIP_PROJ_V              0.040 // rad/s
 #define PROJ_SPACESHIP_DEF                  ProjSimple
 #define RESISTANCE_FORCE_FIELD              100

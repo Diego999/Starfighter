@@ -35,7 +35,7 @@ Bonus::Bonus(GameEngine *_gameEngine)
     //Points for the timer Mode
     nbPoint = NB_POINT_BONUS;
 
-    /*Generate the position of the AlienSpaceship
+    /*Generate the position of the Bonus
       For more informations cf the specification file*/
     int l_Xmin = gameEngine->displayEngine()->xminWarzone();
     int l_Xmax = gameEngine->displayEngine()->xmaxWarZone();
@@ -51,8 +51,9 @@ Bonus::Bonus(GameEngine *_gameEngine)
     do
     {
         l_x2 = gameEngine->randInt(DELTA_X_B)-DELTA_X_B+l_x1;
-    }while(l_x1==l_x2);
+    }while(l_x1==l_x2);//If l_x1=l_x2 we have a nice bug because the solution of the equation doesn't exist
 
+    //To avoid to enter in the player's zone
     if(fabs(l_x2-l_x1)<DELTA_X_B/2.0)
     {
         if(l_x2>l_x1)
@@ -92,7 +93,7 @@ Bonus::Bonus(GameEngine *_gameEngine)
         Displayable::setPixmap(new QPixmap(getPixmap()->transformed(QTransform().rotate(180))));
     }
 
-    //Change Y location if the case where the alienspaceship comes by the top,
+    //Change Y location if the case where the Bonus comes by the top,
     //we should remove the height to have a better apparition
     if(l_y1==gameEngine->displayEngine()->sceneSize().y())
         l_y1-=getPixmap()->height();

@@ -20,8 +20,7 @@
 #include "include/config/Define.h"
 
 ProjectileV::ProjectileV(qreal _dXOrigin, qreal _dYOrigin,Shooter _from, qreal _ampli, qreal _omega)
-    ://Displayable(_dXOrigin,_dYOrigin),
-      Projectile(_dXOrigin,_dYOrigin,_from),
+    :Projectile(_dXOrigin,_dYOrigin,_from),
       dAmplitude(_ampli),//Amplitude
       dOmega(_omega)//Omega
 {
@@ -39,5 +38,4 @@ void ProjectileV::advance(int _step)
         return;
 
     moveBy(dSpeed*cos(dAngle),-dAmplitude*cos(dOmega*(pos().x()-dXOrigin)));
-
 }

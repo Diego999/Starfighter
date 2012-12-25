@@ -442,7 +442,7 @@ bool GameEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*>
                 {
                     if(d->gonnaDead(list1[i_list1]->getPower()))
                         if(list2[j]->getTypeObject()==tAsteroid)
-                            dynamic_cast<Asteroid*>(list2[j])->collision(list1[i_list1]->getPower());
+                            dynamic_cast<Asteroid*>(list2[j])->collision(list1[i_list1]->getAngle());
 
                     d->receiveAttack(list1[i_list1]->getPower(),list2[j]->getNbPoint(),dynamic_cast<Projectile*>(list1[i_list1])->getFrom());
 

@@ -21,6 +21,7 @@ public:
 
     virtual void receiveAttack(qreal _dPower,int _point,Shooter _forShip);
     bool gonnaDead(qreal _dPower);
+
 signals:
     void destroyed(Destroyable* _destroyItem,int _nbPoint,Shooter _forShip);
 
@@ -31,6 +32,5 @@ protected:
     qreal dResistance;
     int pointToGive;
     Shooter forShip;
-
 };
 #endif

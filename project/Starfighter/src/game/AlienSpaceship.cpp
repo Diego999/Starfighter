@@ -25,7 +25,7 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
     :Displayable(0,0,new QPixmap(PICTURE_ALIENSPACESHIP)),
       Destroyable(_dHealthPoint,_dResistance),
       gameEngine(_gameEngine),//GameEngine
-      nbSpirales(_nbSpirales),//Number of spirales that will fired
+      nbSpirales(_nbSpirales),//Number of spirales that will be fired
       isAttacking(false),//If the alienspaceship is attacking (Will block the moving)
       hasAttacked(false),//If the alienspaceship has already fired, in this case, it won't fire again
       directionX(1),//Default X-direction
@@ -35,7 +35,7 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
     dAngle = M_PI/2.0;
 
     //Points for the timer Mode
-    Displayable::nbPoint = NB_POINT_ALIENSPACESHIP;
+    nbPoint = NB_POINT_ALIENSPACESHIP;
 
     /*Generate the position of the AlienSpaceship
       For more informations cf the specification file*/
@@ -53,8 +53,9 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
     do
     {
         l_x2 = gameEngine->randInt(DELTA_X)-DELTA_X+l_x1;
-    }while(l_x1==l_x2);
+    }while(l_x1==l_x2);//If l_x1=l_x2 we have a nice bug because the solution of the equation doesn't exist
 
+    //If DELTA_X is so small, the alienspaceship's speed will be very high, so we take so precaution
     if(fabs(l_x2-l_x1)<DELTA_X/2.0)
     {
         if(l_x2>l_x1)
@@ -76,6 +77,7 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
     4) Bottom->Top x2>=xg
     */
 
+    //To avoid to enter in the player's zone
     if(fabs(l_x1-l_x2)<DELTA_X_MIN)
     {
         if(l_x2>l_x1)

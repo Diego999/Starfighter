@@ -20,8 +20,7 @@
 #include "include/config/Define.h"
 
 ProjectileCross::ProjectileCross(qreal _dXOrigin, qreal _dYOrigin, Shooter _from,int _nb)
-    ://Displayable(_dXOrigin,_dYOrigin),
-      Projectile(_dXOrigin,_dYOrigin,_from)
+    :Projectile(_dXOrigin,_dYOrigin,_from)
 {
     dSpeed = SPEED_CROSS_DEF;
     dPower = POWER_CROSS;

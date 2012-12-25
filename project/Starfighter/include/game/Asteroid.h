@@ -21,9 +21,8 @@ class GameEngine;
 class Asteroid : public Destroyable, public Projectile
 {
 public:
-    //Slope is define ONLY FOR THE LITTLE ASTEROIDES
     Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint, GameEngine *_gameEngine,int _idParent=0,qreal _dAngleParent=0,qreal _dAngle=0);
-    ~Asteroid();
+    ~Asteroid() {}
 
     bool isSmall() const {return bSmall;}
     int getIdParent() const {return idParent;}
@@ -35,8 +34,6 @@ public:
     void collision(qreal _dAngle);
 private:
     static const qreal kIntervalModule = SPEED_SMALL_ASTEROID;
-
-    void advance(int _step);
 
     GameEngine* gameEngine;
 
