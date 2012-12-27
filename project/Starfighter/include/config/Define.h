@@ -83,6 +83,7 @@
 //ProjectileCross
 #define POWER_CROSS                         1000
 #define SPEED_CROSS_DEF                     20 // dx
+#define SLOPE_CROSS                         M_PI/16
 
 //ProjectileSimple
 #define POWER_SIMPLE                        1000

@@ -28,9 +28,9 @@ ProjectileCross::ProjectileCross(qreal _dXOrigin, qreal _dYOrigin, Shooter _from
     dAngle = 0;
 
     if(_nb==-1)
-        dAngle = -M_PI/8;
+        dAngle = -SLOPE_CROSS;
     else if(_nb==1)
-        dAngle = M_PI/8;
+        dAngle = SLOPE_CROSS;
 
     if(_from==Player2)
         dAngle+=M_PI;
