@@ -17,8 +17,9 @@ public:
 
     void keyPressEvent(QKeyEvent * event);
     void keyReleaseEvent(QKeyEvent * event);
-
     void timerEvent(QTimerEvent *event);
+
+    void clearActionList();
 
 public slots:
     void callSupernovae();

@@ -10,8 +10,6 @@
 #include "include/utils/Settings.h"
 #include "include/config/Define.h"
 
-#include "QtGui"
-
 DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     :QWidget(parent),
       gameEngine(ge), isFullScreen(true), isTimer(false)
@@ -417,6 +415,11 @@ void DisplayEngine::updateGameData()
     this->setBonusSpeed1(gameEngine->ship1()->getPercentageSpeed());
     this->setBonusSpeed2(gameEngine->ship2()->getPercentageSpeed());
 
+
+    if(gameEngine->getHasSomeonWon())
+    {
+        gameEngine->userControlsEngine()->clearActionList();
+    }
 }
 
 void DisplayEngine::updateGameDataTimer(int s)
@@ -432,6 +435,7 @@ void DisplayEngine::updateGameDataTimer(int s)
 
 void DisplayEngine::keyPressEvent(QKeyEvent *event)
 {
+
     switch(event->key())
     {
         case Qt::Key_F12:
@@ -446,6 +450,7 @@ void DisplayEngine::keyPressEvent(QKeyEvent *event)
         gameEngine->userControlsEngine()->keyPressEvent(event);
         break;
     }
+
 }
 
 

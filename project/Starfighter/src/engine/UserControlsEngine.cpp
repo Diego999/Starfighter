@@ -68,6 +68,7 @@ void UserControlsEngine::keyPressEvent(QKeyEvent * event)
         break;
     }
 
+
     if((!event->isAutoRepeat() && (action == aShoot1)))
     {
         gameEngine->ship1()->attack();
@@ -153,4 +154,9 @@ void UserControlsEngine::callSupernovae()
     Supernova *supernova = new Supernova(display->sceneSize().width() / 2, display->sceneSize().height() / 2, gameEngine);
     gameEngine->addSupernova(supernova);
     novaeCall->start(NOVATIMER);
+}
+
+void UserControlsEngine::clearActionList()
+{
+    actionList.clear();
 }
