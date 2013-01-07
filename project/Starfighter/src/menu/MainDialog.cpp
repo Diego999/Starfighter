@@ -11,6 +11,7 @@ MainDialog::MainDialog(QWidget *parent) :
     ui(new Ui::MainDialog)
 {
     ui->setupUi(this);
+    setWindowIcon(QIcon(":/images/taskbar-icon"));
     ge = 0;
     ngd = 0;
 }

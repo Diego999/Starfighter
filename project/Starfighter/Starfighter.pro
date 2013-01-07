@@ -84,6 +84,7 @@ SOURCES += src/main.cpp \
            src/menu/SetKeyDialog.cpp \
            src/utils/Settings.cpp
 RESOURCES += ressources.qrc
+RC_FILE = icon.rc
 TRANSLATIONS += starfighter_fr.ts
 QT += opengl \
       phonon
