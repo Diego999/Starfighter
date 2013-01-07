@@ -12,8 +12,8 @@
 
 //SpawnEngine
 #define PROB_ASTEROID                       75
-#define PROB_ALIEN                          60
-#define PROB_SAT                            10
+#define PROB_ALIEN                          25
+#define PROB_SAT                            15
 #define PROB_SUPERNOVA                      1
 
 #define SPAWN_INTERVAL                      250 // (ms)
@@ -40,8 +40,8 @@
 #define ARG_INCREMENTATION_ALIENSPACESHIP   0.0005 // rad
 
 //Asteroid
-#define SPEED_ASTEROID                      2 //Factor
-#define SPEED_SMALL_ASTEROID                2 //Factor, keep the same than SPEED_ASTEROID
+#define SPEED_ASTEROID                      3 //Factor
+#define SPEED_SMALL_ASTEROID                3 //Factor, keep the same than SPEED_ASTEROID
 #define MAX_ASTEROID                        5 //Number max of small asteroids
 #define MIN_ASTEROID                        3 //Number min of small asteroids
 #define DELTA_ANGLE_BETWEEN_180_AXES        M_PI/3
@@ -83,16 +83,16 @@
 
 //ProjectileCross
 #define POWER_CROSS                         750
-#define SPEED_CROSS_DEF                     20 // dx
+#define SPEED_CROSS_DEF                     25 // dx
 #define SLOPE_CROSS                         M_PI/16
 
 //ProjectileSimple
 #define POWER_SIMPLE                        1000
-#define SPEED_SIMPLE_DEF                    50 // dx
+#define SPEED_SIMPLE_DEF                    25 // dx
 
 //ProjectileV
 #define POWER_V                             750
-#define SPEED_V_DEF                         20 // dx
+#define SPEED_V_DEF                         25 // dx
 
 //Spaceship
 //PV -> cf SpawnEngine
