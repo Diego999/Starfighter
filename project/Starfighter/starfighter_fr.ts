@@ -5,30 +5,16 @@
     <name>AboutDialog</name>
     <message>
         <location filename="res/ui/AboutDialog.ui" line="26"/>
-        <source>Dialog</source>
+        <source>About</source>
         <translation type="unfinished">À propos</translation>
     </message>
-    <message utf8="true">
-        <location filename="res/ui/AboutDialog.ui" line="123"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;title&gt;About&lt;/title&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:18px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Starfighter&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Développé par : &lt;/span&gt;&lt;/p&gt;
-&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; font-size:8pt;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Andy Cheung &lt;/li&gt;
-&lt;li style=&quot; font-size:8pt;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Diego Antognini &lt;/li&gt;
-&lt;li style=&quot; font-size:8pt;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Sébastien Vaucher &lt;/li&gt;&lt;/ul&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Copyright 2012&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
-        <location filename="res/ui/AboutDialog.ui" line="136"/>
+        <location filename="res/ui/AboutDialog.ui" line="282"/>
         <source>qrc:/strings/about</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="res/ui/AboutDialog.ui" line="146"/>
+        <location filename="res/ui/AboutDialog.ui" line="292"/>
         <source>Back</source>
         <translation type="unfinished">Retour</translation>
     </message>
@@ -36,53 +22,57 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DisplayEngine</name>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="109"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="189"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="107"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="187"/>
         <source>Name : %1</source>
         <translation type="unfinished">Nom : %1</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="116"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="195"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="114"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="193"/>
         <source>HP:	</source>
         <translation type="unfinished">PV :</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="125"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="204"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="123"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="202"/>
         <source>Shield:	</source>
         <translation type="unfinished">Bouclier :</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="176"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="144"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="225"/>
+        <source>1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/engine/DisplayEngine.cpp" line="146"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="227"/>
+        <source>Normal Shot</source>
+        <translation type="unfinished">Tir normal</translation>
+    </message>
+    <message>
+        <location filename="src/engine/DisplayEngine.cpp" line="174"/>
         <source>:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="329"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="357"/>
-        <source>Standard shot</source>
+        <location filename="src/engine/DisplayEngine.cpp" line="327"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="355"/>
+        <source>Standard Shot</source>
         <translation type="unfinished">Tir standard</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="334"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="362"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="332"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="360"/>
         <source>Cross Shot</source>
         <translation type="unfinished">Tir croisé</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="339"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="367"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="337"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="365"/>
         <source>V Shot</source>
         <translation type="unfinished">Tir en V</translation>
-    </message>
-    <message>
-        <source>End of the game</source>
-        <translation type="obsolete">Fin du jeu</translation>
-    </message>
-    <message>
-        <source>%1 has won !</source>
-        <translation type="obsolete">%1 a gagné !</translation>
     </message>
 </context>
 <context>
@@ -117,27 +107,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainDialog</name>
     <message>
-        <location filename="res/ui/MainDialog.ui" line="14"/>
+        <location filename="res/ui/MainDialog.ui" line="32"/>
         <source>Starfighter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="res/ui/MainDialog.ui" line="52"/>
+        <location filename="res/ui/MainDialog.ui" line="70"/>
         <source>Play</source>
         <translation type="unfinished">Jouer</translation>
     </message>
     <message>
-        <location filename="res/ui/MainDialog.ui" line="59"/>
+        <location filename="res/ui/MainDialog.ui" line="77"/>
         <source>Options</source>
         <translation type="unfinished">Options</translation>
     </message>
     <message>
-        <location filename="res/ui/MainDialog.ui" line="66"/>
+        <location filename="res/ui/MainDialog.ui" line="84"/>
         <source>About</source>
         <translation type="unfinished">À propos</translation>
     </message>
     <message>
-        <location filename="res/ui/MainDialog.ui" line="73"/>
+        <location filename="res/ui/MainDialog.ui" line="91"/>
         <source>Quit</source>
         <translation type="unfinished">Quitter</translation>
     </message>
@@ -212,12 +202,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="src/menu/NewGameDialog.cpp" line="15"/>
         <source>Deathmatch</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Match à mort</translation>
     </message>
     <message>
         <location filename="src/menu/NewGameDialog.cpp" line="16"/>
         <source>Timer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Durée déterminée</translation>
     </message>
     <message>
         <location filename="src/menu/NewGameDialog.cpp" line="18"/>
@@ -310,22 +300,22 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Valider</translation>
     </message>
     <message>
-        <location filename="src/menu/OptionsDialog.cpp" line="64"/>
+        <location filename="src/menu/OptionsDialog.cpp" line="65"/>
         <source>Invalid keys</source>
         <translation type="unfinished">Touches invalides</translation>
     </message>
     <message>
-        <location filename="src/menu/OptionsDialog.cpp" line="64"/>
+        <location filename="src/menu/OptionsDialog.cpp" line="65"/>
         <source>Two or more keys are set to the same value</source>
         <translation type="unfinished">Une même touche est utilisée plusieurs fois</translation>
     </message>
     <message>
-        <location filename="src/menu/OptionsDialog.cpp" line="79"/>
+        <location filename="src/menu/OptionsDialog.cpp" line="80"/>
         <source>Saved</source>
         <translation type="unfinished">Enregistré</translation>
     </message>
     <message>
-        <location filename="src/menu/OptionsDialog.cpp" line="79"/>
+        <location filename="src/menu/OptionsDialog.cpp" line="80"/>
         <source>The settings were successfully saved</source>
         <translation type="unfinished">Les options ont été correctement enregistrées</translation>
     </message>
