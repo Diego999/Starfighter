@@ -54,6 +54,7 @@ void OptionsDialog::keyChange(int iKey)
 void OptionsDialog::on_btnBack_clicked()
 {
     this->close();
+    delete this;
 }
 
 void OptionsDialog::on_btnSave_clicked()
@@ -79,6 +80,7 @@ void OptionsDialog::on_btnSave_clicked()
         QMessageBox::information(this, tr("Saved"), tr("The settings were successfully saved"));
         this->close();
     }
+    delete this;
 }
 
 void OptionsDialog::showKeys()

@@ -11,6 +11,8 @@ MainDialog::MainDialog(QWidget *parent) :
     ui(new Ui::MainDialog)
 {
     ui->setupUi(this);
+    ge = 0;
+    ngd = 0;
 }
 
 MainDialog::~MainDialog()
@@ -20,7 +22,7 @@ MainDialog::~MainDialog()
 
 void MainDialog::on_btnPlay_clicked()
 {
-    NewGameDialog *ngd = new NewGameDialog(this);
+    ngd = new NewGameDialog(this);
     ngd->exec();
 }
 
@@ -38,15 +40,14 @@ void MainDialog::on_btnAbout_clicked()
 
 void MainDialog::setGameEngine(GameEngine *ge)
 {
-    if(ge != NULL)
+    if(ge != 0)
         this->ge = ge;
 }
 
 void MainDialog::endGame()
 {
-    if(ge != 0)
-    {
-        ge->deleteLater();
-        ge=0;
-    }
+    ge->deleteLater();
+    ngd->deleteLater();
+    ngd=0;
+    ge=0;
 }

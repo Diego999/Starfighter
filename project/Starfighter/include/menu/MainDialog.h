@@ -2,6 +2,7 @@
 #define MAINDIALOG_H
 
 class GameEngine;
+class NewGameDialog;
 
 namespace Ui {
 class MainDialog;
@@ -29,6 +30,7 @@ private slots:
 private:
     Ui::MainDialog *ui;
     GameEngine *ge;
+    NewGameDialog *ngd;
 };
 
 #endif // MAINDIALOG_H

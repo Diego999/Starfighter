@@ -16,4 +16,5 @@ AboutDialog::~AboutDialog()
 void AboutDialog::on_btnBack_clicked()
 {
     this->close();
+    delete this;
 }

@@ -47,6 +47,7 @@ GameEngine::~GameEngine()
     delete uc;
     delete se;
     delete soe;
+    delete mutex;
 
     listProjectile.clear();
     listAsteroide.clear();
@@ -55,8 +56,6 @@ GameEngine::~GameEngine()
     listSpaceship.clear();
     listAlienSpaceship.clear();
     listSupernova.clear();
-
-    delete mutex;
 }
 
 double GameEngine::randDouble()

@@ -29,6 +29,7 @@ NewGameDialog::~NewGameDialog()
 void NewGameDialog::on_btnBack_clicked()
 {
     close();
+    delete this;
 }
 
 void NewGameDialog::on_btnStart_clicked()

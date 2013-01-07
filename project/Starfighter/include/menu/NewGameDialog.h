@@ -14,7 +14,7 @@ class NewGameDialog : public QDialog
 public:
     explicit NewGameDialog(QWidget *parent = 0);
     ~NewGameDialog();
-    
+
 private slots:
     void on_btnBack_clicked();
 
