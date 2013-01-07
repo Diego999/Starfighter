@@ -102,8 +102,8 @@
 #define PROJ_SPACESHIP_DEF                  ProjSimple
 #define RESISTANCE_FORCE_FIELD              100
 
-#define PICTURE_SPACESHIP_1                 ":/images/game/spaceship"
-#define PICTURE_SPACESHIP_2                 ":/images/game/spaceship"
+#define PICTURE_SPACESHIP_1                 ":/images/game/ship1"
+#define PICTURE_SPACESHIP_2                 ":/images/game/ship2"
 #define HEALTHPOINT_1                       100
 #define HEALTHPOINT_2                       100
 #define RESISTANCE_1                        100
