@@ -64,7 +64,7 @@
 //Bonus
 #define SOUND_TIMER                         1000 // (ms)
 #define PICTURE_BONUS                       ":/images/game/bonus"
-#define ARG_INCREMENTATION_BONUS            0.0010 // rad
+#define ARG_INCREMENTATION_BONUS            0.0060 // rad
 
 //Projectile
 #define RADIUS_PROJECTILE                   10 // px
@@ -108,8 +108,8 @@
 #define HEALTHPOINT_2                       100
 #define RESISTANCE_1                        100
 #define RESISTANCE_2                        75
-#define SPEED_1                             5 // dy
-#define SPEED_2                             6 // dy
+#define SPEED_1                             8 // dy
+#define SPEED_2                             10 // dy
 
 //Supernova
 #define NB_SPIRAL                           90
