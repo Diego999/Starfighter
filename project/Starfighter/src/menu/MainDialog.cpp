@@ -5,13 +5,14 @@
 #include "ui_MainDialog.h"
 #include "include/engine/GameEngine.h"
 #include "include/engine/DisplayEngine.h"
+#include "include/config/Define.h"
 
 MainDialog::MainDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MainDialog)
 {
     ui->setupUi(this);
-    setWindowIcon(QIcon(":/images/taskbar-icon"));
+    setWindowIcon(QIcon(ICON_TASKBAR));
     ge = 0;
     ngd = 0;
 }

@@ -9,7 +9,7 @@
 #define BACKGROUND                          ":/images/game/background"
 #define ICON_BATTACK                        ":/images/game/icon/attack"
 #define ICON_BSPEED                         ":/images/game/icon/speed"
-
+#define ICON_TASKBAR                        ":/images/taskbar-icon"
 //SpawnEngine
 #define PROB_ASTEROID                       75
 #define PROB_ALIEN                          25
