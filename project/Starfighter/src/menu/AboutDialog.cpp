@@ -6,6 +6,8 @@ AboutDialog::AboutDialog(QWidget *parent) :
     ui(new Ui::AboutDialog)
 {
     ui->setupUi(this);
+
+    ui->textBrowser->setSource(tr("qrc:/strings/about"));
 }
 
 AboutDialog::~AboutDialog()

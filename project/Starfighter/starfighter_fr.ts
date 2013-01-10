@@ -9,14 +9,15 @@
         <translation type="unfinished">À propos</translation>
     </message>
     <message>
-        <location filename="res/ui/AboutDialog.ui" line="282"/>
-        <source>qrc:/strings/about</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="res/ui/AboutDialog.ui" line="292"/>
+        <location filename="res/ui/AboutDialog.ui" line="53"/>
         <source>Back</source>
         <translation type="unfinished">Retour</translation>
+    </message>
+    <message>
+        <location filename="src/menu/AboutDialog.cpp" line="10"/>
+        <source>qrc:/strings/about</source>
+        <oldsource>:/strings/about</oldsource>
+        <translation type="unfinished">qrc:/strings/about_fr</translation>
     </message>
 </context>
 <context>

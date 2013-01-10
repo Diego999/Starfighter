@@ -5,8 +5,9 @@
         <file alias="taskbar-icon">res/images/taskbar-icon.png</file>
     </qresource>
     <qresource prefix="/strings">
-        <file alias="about">res/strings/about.html</file>
         <file alias="starfighter_fr">res/strings/starfighter_fr.qm</file>
+        <file alias="about">res/strings/about.html</file>
+        <file alias="about_fr">res/strings/about_fr.html</file>
     </qresource>
     <qresource prefix="/images/game">
         <file alias="bonus">res/images/game/satellite.png</file>
