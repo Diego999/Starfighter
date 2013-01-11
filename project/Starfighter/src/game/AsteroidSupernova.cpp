@@ -1,0 +1,19 @@
+#include "include/game/AsteroidSupernova.h"
+#include "include/engine/GameEngine.h"
+
+AsteroidSupernova::AsteroidSupernova(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint, GameEngine *_gameEngine,int idParent,qreal _dAngle)
+    :Asteroid(_dX,_dY,_from,_dResistance,_dHealthPoint,_gameEngine,1)
+{
+    dPower = POWER_SUPERNOVA;
+    dSpeed = SPEED_SUPERNOVA;
+    dAngle = _dAngle;
+
+    numberFrameMin = NB_PICTURE_SUPERNOVA_ASTEROID_MIN;
+    numberFrameMax = NB_PICTURE_SUPERNOVA_ASTEROID_MAX;
+    currentFrame = _gameEngine->randInt(numberFrameMax-numberFrameMin)+numberFrameMin;
+
+    dPower = POWER_SMALL_ASTEROID;
+    setPixmap(new QPixmap(QString(PICTURE_SUPERNOVA_ASTEROID).arg(currentFrame)));
+
+    setPos(_dX+_gameEngine->randInt(100)-50,_dY+_gameEngine->randInt(100)-50);
+}
