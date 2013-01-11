@@ -9,6 +9,7 @@
 
 #include "include/utils/Settings.h"
 #include "include/config/Define.h"
+#include "QtGui"
 
 DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     :QWidget(parent),
@@ -102,35 +103,37 @@ void DisplayEngine::creatHUD()
       * Player no1 part
       */
     QHBoxLayout * playerOneNamu = new QHBoxLayout();
+    //QGridLayout * playerOneNamu = new QGridLayout();
+    //playerOneNamu->setColumnMinimumWidth(0,2);
+
     QLabel * player1Name = new QLabel(downHUD);
     //player1Name->setText("Name: player1");
     player1Name->setText(tr("Name : %1").arg(Settings::getGlobalSettings().playerOneName()));
     playerOneNamu->addWidget(player1Name);
 
 
-    QVBoxLayout * statuePlayerOne = new QVBoxLayout();
+    QGridLayout * statuePlayerOne = new QGridLayout();
 
     QHBoxLayout * heathP1 = new QHBoxLayout();
+   // QGridLayout * heathP1 = new QGridLayout();
+
+
     QLabel * lHP1 = new QLabel(tr("HP:\t"),downHUD);
     HP1= new QProgressBar(downHUD);
     HP1->setRange(0,100);
     HP1->setValue(100);
 
-    heathP1->addWidget(lHP1);
-    heathP1->addWidget(HP1);
 
-    QHBoxLayout * shildP1 = new QHBoxLayout();
     QLabel * lShild1 = new QLabel(tr("Shield:\t"),downHUD);
     shield1= new QProgressBar(downHUD);
     shield1->setRange(0,100);
     shield1->setValue(100);
 
-    shildP1->addWidget(lShild1);
-    shildP1->addWidget(shield1);
-
     // Add all layout status
-    statuePlayerOne->addLayout(heathP1);
-    statuePlayerOne->addLayout(shildP1);
+    statuePlayerOne->addWidget(lHP1,0,0);
+    statuePlayerOne->addWidget(HP1,0,1);
+    statuePlayerOne->addWidget(lShild1,1,0);
+    statuePlayerOne->addWidget(shield1,1,1);
 
     bonusPlayerOne = new QGridLayout();
 
@@ -187,7 +190,7 @@ void DisplayEngine::creatHUD()
     player2Name->setText(tr("Name : %1").arg(Settings::getGlobalSettings().playerTwoName()));
     playerTwoNamu->addWidget(player2Name);
 
-    QVBoxLayout * statuePlayerTwo = new QVBoxLayout();
+    QGridLayout * statuePlayerTwo = new QGridLayout();
 
     QHBoxLayout * heathP2 = new QHBoxLayout();
     QLabel * lHP2 = new QLabel(tr("HP:\t"),downHUD);
@@ -204,12 +207,11 @@ void DisplayEngine::creatHUD()
     shield2->setRange(0,100);
     shield2->setValue(100);
 
-    shildP2->addWidget(lShild2);
-    shildP2->addWidget(shield2);
-
-    // Add all layout status
-    statuePlayerTwo->addLayout(heathP2);
-    statuePlayerTwo->addLayout(shildP2);
+     // Add all layout status
+    statuePlayerTwo->addWidget(lHP2,0,0);
+    statuePlayerTwo->addWidget(HP2,0,1);
+    statuePlayerTwo->addWidget(lShild2,1,0);
+    statuePlayerTwo->addWidget(shield2,1,1);
 
     bonusPlayerTwo = new QGridLayout();
 
