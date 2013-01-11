@@ -147,7 +147,7 @@ void AlienSpaceship::attacking()
 
     //Shoot the projectiles
     for(int i = 0;i<nbSpirales;i++)
-        gameEngine->addProjectile(new ProjectileAlien(pos().x(),pos().y(),Alien,static_cast<double>(2*M_PI)/nbSpirales*(i+1),0));
+        gameEngine->addProjectile(new ProjectileAlien(pos().x()+getPixmap()->width()/2,pos().y()+getPixmap()->height()/2,Alien,static_cast<double>(2*M_PI)/nbSpirales*(i+1),0));
 
     hasAttacked=true;
     isAttacking=false;

@@ -15,5 +15,5 @@ AsteroidSupernova::AsteroidSupernova(qreal _dX, qreal _dY,Shooter _from, qreal _
     dPower = POWER_SMALL_ASTEROID;
     setPixmap(new QPixmap(QString(PICTURE_SUPERNOVA_ASTEROID).arg(currentFrame)));
 
-    setPos(_dX+_gameEngine->randInt(100)-50,_dY+_gameEngine->randInt(100)-50);
+    setPos(_dX+_gameEngine->randInt(DELTA_X_SUPERNOVA)-DELTA_X_SUPERNOVA/2,_dY+_gameEngine->randInt(DELTA_Y_SUPERNOVA)-DELTA_Y_SUPERNOVA/2);
 }

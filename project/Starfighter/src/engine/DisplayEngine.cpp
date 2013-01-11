@@ -49,7 +49,6 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     QPixmap bg( BACKGROUND );
     bg = bg.scaled(sceneWidth, sceneHeigth, Qt::KeepAspectRatioByExpanding);
 
-
     scene->setBackgroundBrush(bg);
     //scene->setBackgroundBrush(Qt::black);
     this->setFixedSize(screenSizeWidth,screenSizeHeight);

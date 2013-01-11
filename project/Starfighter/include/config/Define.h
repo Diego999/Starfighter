@@ -119,6 +119,8 @@
 #define NB_SPIRAL                           45
 #define POWER_SUPERNOVA                     7500
 #define SPEED_SUPERNOVA                     5
+#define DELTA_X_SUPERNOVA                   100
+#define DELTA_Y_SUPERNOVA                   100
 
 //Do not touch
 

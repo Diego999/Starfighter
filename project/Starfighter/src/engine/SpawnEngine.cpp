@@ -93,10 +93,8 @@ void SpawnEngine::timerFired()
         }
         else if(probWhat < intervalSupernova)
         {
-            static int i = 0;
-            if(i++==0){
             Supernova *supernova = new Supernova(de->sceneSize().width() / 2, de->sceneSize().height() / 2, ge);
-            ge->addSupernova(supernova);}
+            ge->addSupernova(supernova);
         }
     }
 }
