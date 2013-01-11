@@ -1,7 +1,10 @@
 #ifndef NEWGAMEDIALOG_H
 #define NEWGAMEDIALOG_H
 
+#include "include/enum/Enum.h"
+
 class MainDialog;
+class QLabel;
 
 namespace Ui {
 class NewGameDialog;
@@ -17,14 +20,17 @@ public:
 
 private slots:
     void on_btnBack_clicked();
-
     void on_btnStart_clicked();
 
     void on_cbbGametype_currentIndexChanged(int index);
 
+    void on_cbbP1ship_currentIndexChanged(int index);
+    void on_cbbP2ship_currentIndexChanged(int index);
+
 private:
     Ui::NewGameDialog *ui;
     MainDialog *md;
+    void setPixmapForLabelWithSpaceshipType(SpaceshipType sType, QLabel *lbl);
 };
 
 #endif // NEWGAMEDIALOG_H

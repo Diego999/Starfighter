@@ -166,37 +166,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="80"/>
+        <location filename="res/ui/NewGameDialog.ui" line="106"/>
         <source>Difficulty</source>
         <translation type="unfinished">Difficulté</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="87"/>
+        <location filename="res/ui/NewGameDialog.ui" line="113"/>
         <source>Asteroids</source>
         <translation type="unfinished">Astéroïdes</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="97"/>
+        <location filename="res/ui/NewGameDialog.ui" line="123"/>
         <source>Alien mothership</source>
         <translation type="unfinished">Vaisseau mère alien</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="107"/>
+        <location filename="res/ui/NewGameDialog.ui" line="133"/>
         <source>Satellites</source>
         <translation type="unfinished">Satellites</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="117"/>
+        <location filename="res/ui/NewGameDialog.ui" line="143"/>
         <source>Supernovae</source>
         <translation type="unfinished">Supernovas</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="142"/>
+        <location filename="res/ui/NewGameDialog.ui" line="168"/>
         <source>Back</source>
         <translation type="unfinished">Retour</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="149"/>
+        <location filename="res/ui/NewGameDialog.ui" line="175"/>
         <source>Start</source>
         <translation type="unfinished">Démarrer partie</translation>
     </message>
@@ -221,6 +221,16 @@
         <location filename="src/menu/NewGameDialog.cpp" line="21"/>
         <source>Ship 2</source>
         <translation type="unfinished">Vaisseau 2</translation>
+    </message>
+    <message>
+        <location filename="src/menu/NewGameDialog.cpp" line="49"/>
+        <source>Supernovae only</source>
+        <translation type="unfinished">Supernovas uniquement</translation>
+    </message>
+    <message>
+        <location filename="src/menu/NewGameDialog.cpp" line="49"/>
+        <source>Sorry, you cannot play with supernovae only.</source>
+        <translation type="unfinished">Désolé, il n&apos;est pas possible de jouer qu&apos;avec des supernovas.</translation>
     </message>
 </context>
 <context>

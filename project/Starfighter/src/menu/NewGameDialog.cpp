@@ -1,8 +1,8 @@
 #include "include/menu/NewGameDialog.h"
 #include "include/menu/MainDialog.h"
 #include "ui_NewGameDialog.h"
-#include "include/enum/Enum.h"
 #include "include/engine/GameEngine.h"
+#include "include/config/Define.h"
 
 NewGameDialog::NewGameDialog(QWidget *parent) :
     QDialog(parent),
@@ -44,11 +44,17 @@ void NewGameDialog::on_btnStart_clicked()
     difficulty |= ((ui->cbxSatellite->checkState() / Qt::Checked) * Satellites);
     difficulty |= ((ui->cbxSupernova->checkState() / Qt::Checked) * Supernovae);
 
-
-    GameEngine *ge = new GameEngine(gameMode, duration, player1, player2, difficulty, this);
-    md->setGameEngine(ge);
-    connect(ge, SIGNAL(endGame()), md, SLOT(endGame()));
-    close();
+    if(difficulty == Supernovae)
+    {
+        QMessageBox::warning(this, tr("Supernovae only"), tr("Sorry, you cannot play with supernovae only."));
+    }
+    else
+    {
+        GameEngine *ge = new GameEngine(gameMode, duration, player1, player2, difficulty, this);
+        md->setGameEngine(ge);
+        connect(ge, SIGNAL(endGame()), md, SLOT(endGame()));
+        close();
+    }
 }
 
 void NewGameDialog::on_cbbGametype_currentIndexChanged(int index)
@@ -61,4 +67,32 @@ void NewGameDialog::on_cbbGametype_currentIndexChanged(int index)
     {
         ui->sbxDuration->setEnabled(true);
     }
+}
+
+void NewGameDialog::setPixmapForLabelWithSpaceshipType(SpaceshipType sType, QLabel *lbl)
+{
+    if(lbl == NULL)
+        return;
+
+    switch(sType)
+    {
+    case SpaceshipType1:
+        lbl->setPixmap(QPixmap(PICTURE_SPACESHIP_1));
+        break;
+    case SpaceshipType2:
+        lbl->setPixmap(QPixmap(PICTURE_SPACESHIP_2));
+        break;
+    }
+}
+
+void NewGameDialog::on_cbbP1ship_currentIndexChanged(int index)
+{
+    SpaceshipType player1 = (SpaceshipType)(int)(ui->cbbP1ship->itemData(ui->cbbP1ship->currentIndex()).toInt());
+    setPixmapForLabelWithSpaceshipType(player1, ui->imgP1);
+}
+
+void NewGameDialog::on_cbbP2ship_currentIndexChanged(int index)
+{
+    SpaceshipType player2 = (SpaceshipType)(int)(ui->cbbP2ship->itemData(ui->cbbP2ship->currentIndex()).toInt());
+    setPixmapForLabelWithSpaceshipType(player2, ui->imgP2);
 }
