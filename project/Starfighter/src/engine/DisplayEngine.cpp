@@ -137,7 +137,7 @@ void DisplayEngine::creatHUD()
 
     QGridLayout * statuePlayerOne = new QGridLayout();
 
-    QHBoxLayout * heathP1 = new QHBoxLayout();
+    //QHBoxLayout * heathP1 = new QHBoxLayout();
    // QGridLayout * heathP1 = new QGridLayout();
 
 
@@ -224,7 +224,7 @@ void DisplayEngine::creatHUD()
     heathP2->addWidget(lHP2);
     heathP2->addWidget(HP2);
 
-    QHBoxLayout * shildP2 = new QHBoxLayout();
+    //QHBoxLayout * shildP2 = new QHBoxLayout();
     QLabel * lShild2 = new QLabel(tr("Shield:\t"),downHUD);
     shield2= new QProgressBar(downHUD);
     shield2->setRange(0,100);
