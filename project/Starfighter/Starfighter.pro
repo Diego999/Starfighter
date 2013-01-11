@@ -50,7 +50,8 @@ HEADERS += include/stable.h \
            include/menu/OptionsDialog.h \
            include/menu/SetKeyDialog.h \
            include/utils/Settings.h \
-    include/config/Define.h
+    include/config/Define.h \
+    include/game/AsteroidSupernova.h
 FORMS += res/ui/AboutDialog.ui \
          res/ui/MainDialog.ui \
          res/ui/NewGameDialog.ui \
@@ -82,7 +83,8 @@ SOURCES += src/main.cpp \
            src/menu/NewGameDialog.cpp \
            src/menu/OptionsDialog.cpp \
            src/menu/SetKeyDialog.cpp \
-           src/utils/Settings.cpp
+           src/utils/Settings.cpp \
+    src/game/AsteroidSupernova.cpp
 RESOURCES += ressources.qrc
 RC_FILE = icon.rc
 TRANSLATIONS += starfighter_fr.ts

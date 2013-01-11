@@ -29,17 +29,17 @@ public:
     TypeItem getTypeObject() const {return (bSmall)?tSmallAsteroid:tAsteroid;}
     QRectF boundingRect() const;
     QPainterPath shape() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
     void collision(qreal _dAngle);
-private:
-    static const qreal kIntervalModule = SPEED_SMALL_ASTEROID;
-
-    GameEngine* gameEngine;
-
+protected:
     int currentFrame;
     int numberFrameMin;
     int numberFrameMax;
+
+private:
+    GameEngine* gameEngine;
+
     int index;
 
     int idParent;

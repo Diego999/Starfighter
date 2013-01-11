@@ -42,7 +42,7 @@ private:
     qreal dModule;
     qreal dX0;
     qreal dY0;
-
+    int k;
     int directionX;
     int directionY;
     int directionArg;

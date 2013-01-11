@@ -9,7 +9,6 @@
 
 #include "include/utils/Settings.h"
 #include "include/config/Define.h"
-#include "QtGui"
 
 DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     :QWidget(parent),
@@ -73,6 +72,15 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     pixProj = QPixmap(ICON_BATTACK);
     pixHP = QPixmap();
 
+    explosionPicture = new QPixmap(screenSizeWidth,screenSizeHeight);
+    explosionPicture->fill(Qt::transparent);
+
+    QPainter painter(explosionPicture);
+    painter.setBrush(QBrush(QColor(255,255,255,200)));
+    painter.drawRect(0,0,screenSizeWidth,screenSizeHeight);
+
+    splash = new QSplashScreen(*explosionPicture);
+
     affiche = new QTime();
     affiche->setHMS(0,0,0,0);
 
@@ -89,9 +97,25 @@ DisplayEngine::~DisplayEngine()
     delete bonusPlayerOne;
     delete bonusPlayerTwo;
     delete affiche;
+    delete explosionPicture;
+    delete splash;
+
     //All Layout,QLabel,QLCDNumber,QProgressbar delete with parent of QWidget
 
     //GameEnfine call ~DisplayEngine
+}
+
+void DisplayEngine::explosionScreen()
+{
+    splash->showFullScreen();
+    splash->raise();
+
+    QTimer::singleShot(300,this,SLOT(removeExplosionScreen()));
+}
+
+void DisplayEngine::removeExplosionScreen()
+{
+    splash->finish(this);
 }
 
 void DisplayEngine::creatHUD()

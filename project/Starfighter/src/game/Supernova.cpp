@@ -16,10 +16,10 @@
  *==============================================================*/
 
 #include "include/engine/GameEngine.h"
-
+#include "include/engine/DisplayEngine.h"
 #include "include/game/Supernova.h"
-#include "include/game/ProjectileAlien.h"
-
+#include "include/game/AsteroidSupernova.h"
+#include "include/stable.h"
 Supernova::Supernova(qreal _dX, qreal _dY,GameEngine *_gameEngine):
     gameEngine(_gameEngine),//GameEngine
     dX(_dX),
@@ -29,6 +29,8 @@ Supernova::Supernova(qreal _dX, qreal _dY,GameEngine *_gameEngine):
 
 Supernova::~Supernova()
 {
+    gameEngine->displayEngine()->explosionScreen();
+    static int j = 100;
     for(int i = 0;i<nbSpirales;i++)
-        gameEngine->addProjectile(new ProjectileAlien(dX,dY,Other,static_cast<double>(2*M_PI)/nbSpirales*(i+1),0));
+        gameEngine->addAsteroid(new AsteroidSupernova(dX,dY,Other,100,100,gameEngine,j++,static_cast<double>(2*M_PI)/nbSpirales*(i+1)));
 }

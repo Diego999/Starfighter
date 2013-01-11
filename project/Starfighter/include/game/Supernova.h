@@ -21,10 +21,6 @@ public:
     Supernova(qreal _dX, qreal _dY,GameEngine *_gameEngine);
     ~Supernova();
 
-    QRectF boundingRect() const;
-    QPainterPath shape() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {}
-
     TypeItem getTypeObject() const {return tSupernova;}
 
 private:

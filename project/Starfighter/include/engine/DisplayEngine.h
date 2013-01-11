@@ -13,6 +13,8 @@ class QLabel;
 class QProgressBar;
 class GameEngine;
 class Displayable;
+class QPixmap;
+class QSplashScreen;
 
 class BonusProjectile;
 class BonusSpeed;
@@ -34,6 +36,8 @@ public:
     void updateGameData();
     void updateGameDataTimer(int s);
 
+    void explosionScreen();
+
 protected:
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent * event);
@@ -41,6 +45,9 @@ protected:
 
 public slots:
     void updateScreen();
+
+private slots:
+    void removeExplosionScreen();
 
 private:
     void creatHUD();
@@ -60,6 +67,8 @@ private:
     void setBonusSpeed2(int _value = 0);
 
     GameEngine *gameEngine;
+    QPixmap *explosionPicture;
+    QSplashScreen *splash;
 
     QGraphicsScene * scene;
     QGraphicsView * view;

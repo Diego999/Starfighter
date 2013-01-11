@@ -10,6 +10,7 @@
 #define ICON_BATTACK                        ":/images/game/icon/attack"
 #define ICON_BSPEED                         ":/images/game/icon/speed"
 #define ICON_TASKBAR                        ":/images/taskbar-icon"
+
 //SpawnEngine
 #define PROB_ASTEROID                       75
 #define PROB_ALIEN                          25
@@ -61,8 +62,12 @@
 #define NB_PICTURE_SMALL_ASTEROID_MIN       20000
 #define NB_PICTURE_SMALL_ASTEROID_MAX       20031
 
+#define PICTURE_SUPERNOVA_ASTEROID          ":/images/game/asteroids/rock%1"
+#define NB_PICTURE_SUPERNOVA_ASTEROID_MIN   30000
+#define NB_PICTURE_SUPERNOVA_ASTEROID_MAX   30031
+
 //Bonus
-#define SOUND_TIMER                         1000 // (ms)
+#define SOUND_TIMER                         500 // (ms)
 #define PICTURE_BONUS                       ":/images/game/bonus"
 #define ARG_INCREMENTATION_BONUS            0.0060 // rad
 
@@ -77,7 +82,6 @@
 #define NB_POINT_BONUS                      100
 
 //ProjectileAlien
-//Power is the same for supernova and AlienSpaceShip
 #define POWER_ALIEN                         7500
 #define MODULE_INCREMENT_ALIEN              4.0
 
@@ -112,7 +116,9 @@
 #define SPEED_2                             10 // dy
 
 //Supernova
-#define NB_SPIRAL                           90
+#define NB_SPIRAL                           45
+#define POWER_SUPERNOVA                     7500
+#define SPEED_SUPERNOVA                     5
 
 //Do not touch
 
