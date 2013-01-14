@@ -25,7 +25,6 @@
 Bonus::Bonus(GameEngine *_gameEngine)
     :Displayable(0,0,new QPixmap(PICTURE_BONUS)),
       gameEngine(_gameEngine),//GameEngine
-      bSoundStopped(false),//If the sound has stopped
       directionX(1),//Default X-direction
       directionY(1),//Default Y-direction
       directionArg(1)//Defaut Arg-direction
@@ -112,7 +111,6 @@ Bonus::Bonus(GameEngine *_gameEngine)
 
 Bonus::~Bonus()
 {
-    stopSound();
 }
 
 void Bonus::advance(int _step)
@@ -141,13 +139,4 @@ QPainterPath Bonus::shape() const
 void Bonus::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option, QWidget *_widget)
 {
     _painter->drawPixmap(0,0,*getPixmap());
-}
-
-void Bonus::stopSound()
-{
-    if(!bSoundStopped)
-    {
-        gameEngine->soundEngine()->stopSound(SatelliteSound);
-        bSoundStopped = true;
-    }
 }

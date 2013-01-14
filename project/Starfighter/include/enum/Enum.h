@@ -50,7 +50,7 @@ enum TypeBonus
 
 enum Sounds
 {
-    SatelliteSound = 1, ShootSound = 2
+    SatelliteSound = 1, ShootSound = 2, SupernovaSound = 3
 };
 
 #endif // ENUMERATION_H

@@ -14,18 +14,16 @@ public:
 signals:
 
 private:
-    int satCounter;
     Phonon::MediaObject *satMediaObject;
     Phonon::MediaObject *shootMediaObject;
+    Phonon::MediaObject *snovaMediaObject;
     Phonon::MediaObject *musicMediaObject;
 
 private slots:
-    void playSat();
     void musicFinished();
     
 public slots:
     void playSound(Sounds);
-    void stopSound(Sounds);
     
 };
 

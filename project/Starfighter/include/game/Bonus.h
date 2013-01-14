@@ -29,14 +29,11 @@ public:
 
     TypeItem getTypeObject() const {return tBonus;}
     void advance(int _step);
-    void stopSound();
 
 private:
     static const qreal kIntervalArgument = ARG_INCREMENTATION_BONUS;
 
     GameEngine *gameEngine;
-
-    bool bSoundStopped;
 
     qreal dArgument;
     qreal dModule;

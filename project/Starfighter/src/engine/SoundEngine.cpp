@@ -1,7 +1,7 @@
 #include "include/engine/SoundEngine.h"
 
 SoundEngine::SoundEngine(int soundEffectsVolume, int musicVolume, QObject *parent) :
-    QObject(parent), satCounter(0)
+    QObject(parent)
 {
     Phonon::AudioOutput *shootOutput = new Phonon::AudioOutput(Phonon::GameCategory, this);
     shootOutput->setVolume(soundEffectsVolume / 100.0);
@@ -19,6 +19,10 @@ SoundEngine::SoundEngine(int soundEffectsVolume, int musicVolume, QObject *paren
     satMediaObject->setCurrentSource(Phonon::MediaSource(":/sounds/sat"));
     Phonon::createPath(satMediaObject, satOutput);
 
+    snovaMediaObject = new Phonon::MediaObject(this);
+    snovaMediaObject->setCurrentSource(Phonon::MediaSource(":/sounds/supernova"));
+    Phonon::createPath(snovaMediaObject, satOutput);
+
     musicMediaObject = new Phonon::MediaObject(this);
     musicMediaObject->setCurrentSource(Phonon::MediaSource(":/sounds/bgmusic"));
     Phonon::createPath(musicMediaObject, musicOutput);
@@ -30,33 +34,18 @@ void SoundEngine::playSound(Sounds toPlay)
 {
     if(toPlay == SatelliteSound)
     {
-        if(++satCounter <= 1)
-        {
-            playSat();
-            QTimer::singleShot(SAT_INTERVAL, this, SLOT(playSat()));
-        }
+        satMediaObject->seek(0);
+        satMediaObject->play();
     }
     else if(toPlay == ShootSound)
     {
         shootMediaObject->seek(0);
         shootMediaObject->play();
     }
-}
-
-void SoundEngine::stopSound(Sounds toStop)
-{
-    if(toStop == SatelliteSound)
-        --satCounter;
-}
-
-void SoundEngine::playSat()
-{
-    if(satCounter > 0)
+    else if(toPlay == SupernovaSound)
     {
-        satMediaObject->seek(0);
-        satMediaObject->play();
-
-        QTimer::singleShot(SAT_INTERVAL, this, SLOT(playSat()));
+        snovaMediaObject->seek(0);
+        snovaMediaObject->play();
     }
 }
 

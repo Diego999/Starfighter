@@ -100,8 +100,6 @@ qreal Spaceship::getPercentageSpeed() const
 
 void Spaceship::addBonus(Bonus *_bonus)
 {
-    gameEngine->soundEngine()->stopSound(SatelliteSound);
-
     if(BonusHP* bhp = dynamic_cast<BonusHP*>(_bonus))
     {
         dHealthPoint+=bhp->getHealthPoint();

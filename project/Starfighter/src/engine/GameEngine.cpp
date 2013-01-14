@@ -321,6 +321,7 @@ void GameEngine::removeShip(Spaceship *_inSpaceship)
 void GameEngine::addBonus(Bonus *_inBonus)
 {
     de->addItemScene(_inBonus);
+    qDebug("Beep");
     soe->playSound(SatelliteSound);
     listBonus.append(_inBonus);
 }
@@ -465,7 +466,6 @@ bool GameEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*>
                     //We only remove the item from the list
                     list2[j] = 0;
                     de->removeItemScene(b);
-                    b->stopSound();
 
                     if(p->getFrom() == Player1)
                         ship1()->addBonus(b);
