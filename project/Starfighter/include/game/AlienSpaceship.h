@@ -30,7 +30,7 @@ public:
 
     TypeItem getTypeObject() const {return tAlien;}
 private:
-    void advance(int step);
+    void advance(int _step);
     void attacking();
 
     static const qreal kIntervalArgument = ARG_INCREMENTATION_ALIENSPACESHIP;

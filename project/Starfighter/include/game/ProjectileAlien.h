@@ -22,7 +22,7 @@ public:
 private:
     static const qreal kIntervalModule = MODULE_INCREMENT_ALIEN;
 
-    void advance(int step);
+    void advance(int _step);
 
     qreal dModule;
 };

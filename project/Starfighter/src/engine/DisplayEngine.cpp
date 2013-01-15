@@ -348,18 +348,18 @@ void DisplayEngine::setBonusProject1(TypeProjectiles _value)
     switch(_value)
     {
         case ProjSimple:
-        imProj1->setText("");
-        lBProjectile1->setText(tr("Standard Shot"));
+            imProj1->setText("");
+            lBProjectile1->setText(tr("Standard Shot"));
         break;
 
         case ProjCross:
-        imProj1->setPixmap(pixProj);
-        lBProjectile1->setText(tr("Cross Shot"));
+            imProj1->setPixmap(pixProj);
+            lBProjectile1->setText(tr("Cross Shot"));
         break;
 
         case ProjV:
-        imProj1->setPixmap(pixProj);
-        lBProjectile1->setText(tr("V Shot"));
+            imProj1->setPixmap(pixProj);
+            lBProjectile1->setText(tr("V Shot"));
         break;
 
         case ProjAlien:
@@ -376,13 +376,13 @@ void DisplayEngine::setBonusProject2(TypeProjectiles _value)
     switch(_value)
     {
         case ProjSimple:
-        imProj2->setText("");
-        lBProjectile2->setText(tr("Standard Shot"));
+            imProj2->setText("");
+            lBProjectile2->setText(tr("Standard Shot"));
         break;
 
         case ProjCross:
-        imProj2->setPixmap(pixProj);
-        lBProjectile2->setText(tr("Cross Shot"));
+            imProj2->setPixmap(pixProj);
+            lBProjectile2->setText(tr("Cross Shot"));
         break;
 
         case ProjV:
@@ -401,19 +401,17 @@ void DisplayEngine::setBonusProject2(TypeProjectiles _value)
 void DisplayEngine::setBonusSpeed1(int _value)
 {
     if(_value != 1)
-    lBSpeed1->setNum(_value);
-
+        lBSpeed1->setText(QString("%1%").arg(_value));
     else
-    lBSpeed1->setNum(1);
+        lBSpeed1->setNum(1);
 }
 
 void DisplayEngine::setBonusSpeed2(int _value)
 {
     if(_value != 1)
-    lBSpeed2->setNum(_value);
-
+        lBSpeed2->setText(QString("%1%").arg(_value));
     else
-    lBSpeed2->setNum(1);
+        lBSpeed2->setNum(1);
 }
 
 

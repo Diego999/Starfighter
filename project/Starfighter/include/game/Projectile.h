@@ -19,7 +19,7 @@ class QColor;
 class Projectile : public Displayable
 {
 public:
-    Projectile(qreal _XOrigin, qreal _YOrigin,Shooter _from);
+    Projectile(qreal _dXOrigin, qreal _dYOrigin,Shooter _from);
     virtual ~Projectile();
 
     qreal getPower() const {return dPower;}

@@ -7,7 +7,7 @@
 class AsteroidSupernova : public Asteroid
 {
 public:
-    AsteroidSupernova(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint, GameEngine *_gameEngine,int idParent,qreal _dAngle);
+    AsteroidSupernova(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint, GameEngine *_gameEngine,qreal _dAngle);
     ~AsteroidSupernova() {}
 };
 

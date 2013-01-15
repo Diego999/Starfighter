@@ -15,7 +15,7 @@
 class ProjectileV : public Projectile
 {
 public:
-    ProjectileV(qreal _dXOrigin, qreal _dYOrigin, Shooter _from, qreal _ampli, qreal _omega);
+    ProjectileV(qreal _dXOrigin, qreal _dYOrigin, Shooter _from, qreal _dAmpli, qreal _dOmega);
     ~ProjectileV() {}
 
 private:

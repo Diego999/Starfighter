@@ -101,8 +101,8 @@
 //Spaceship
 //PV -> cf SpawnEngine
 #define MAX_SPACESHIP_BONUS                 2
-#define AMPLI_SPACESHIP_PROJ_V              20.0 //px
-#define OMEGA_SPACESHIP_PROJ_V              0.040 // rad/s
+#define AMPLI_SPACESHIP_PROJ_V              60.0 //px
+#define OMEGA_SPACESHIP_PROJ_V              0.020 // rad/s
 #define PROJ_SPACESHIP_DEF                  ProjSimple
 #define RESISTANCE_FORCE_FIELD              100
 

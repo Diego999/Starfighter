@@ -19,10 +19,10 @@
 
 #include "include/config/Define.h"
 
-ProjectileV::ProjectileV(qreal _dXOrigin, qreal _dYOrigin,Shooter _from, qreal _ampli, qreal _omega)
+ProjectileV::ProjectileV(qreal _dXOrigin, qreal _dYOrigin,Shooter _from, qreal _dAmpli, qreal _dOmega)
     :Projectile(_dXOrigin,_dYOrigin,_from),
-      dAmplitude(_ampli),//Amplitude
-      dOmega(_omega)//Omega
+      dAmplitude(_dAmpli),//Amplitude
+      dOmega(_dOmega)//Omega
 {
     dAngle = 0;
     if(_from == Player2)

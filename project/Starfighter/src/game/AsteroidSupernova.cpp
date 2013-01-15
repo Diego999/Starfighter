@@ -1,7 +1,7 @@
 #include "include/game/AsteroidSupernova.h"
 #include "include/engine/GameEngine.h"
 
-AsteroidSupernova::AsteroidSupernova(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint, GameEngine *_gameEngine,int idParent,qreal _dAngle)
+AsteroidSupernova::AsteroidSupernova(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint, GameEngine *_gameEngine,qreal _dAngle)
     :Asteroid(_dX,_dY,_from,_dResistance,_dHealthPoint,_gameEngine,1)
 {
     dPower = POWER_SUPERNOVA;
