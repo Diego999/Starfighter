@@ -23,6 +23,7 @@ public:
 
 public slots:
     void callSupernovae();
+    void pauseGame(bool etat);
 
 private:
     QMap<int,Action>        actions;
@@ -31,8 +32,11 @@ private:
     DisplayEngine *         display;
     QList<Action>           actionList;
     QTimer *                novaeCall;
+    QElapsedTimer           countTimer;
 
     bool hasShoot;
+    bool hasBegin;
+    int getPauseTime;
 
 
 };

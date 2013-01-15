@@ -8,7 +8,9 @@
 #include "include/utils/Settings.h"
 #include "include/config/Define.h"
 
-UserControlsEngine::UserControlsEngine(GameEngine *ge): gameEngine(ge), hasShoot(false)
+#include "QtGui"
+
+UserControlsEngine::UserControlsEngine(GameEngine *ge): gameEngine(ge), hasShoot(false), getPauseTime(NOVATIMER),hasBegin(true)
 {
     myKey = Settings::getGlobalSettings().playersControls();
 
@@ -25,9 +27,11 @@ UserControlsEngine::UserControlsEngine(GameEngine *ge): gameEngine(ge), hasShoot
     novaeCall = new QTimer(this);
     novaeCall->setSingleShot(true);
     novaeCall->start(NOVATIMER);
+    countTimer.start();
     startTimer(REFRESH);
 
     connect(novaeCall,SIGNAL(timeout()),this,SLOT(callSupernovae()));
+    connect(gameEngine,SIGNAL(signalPause(bool)),this,SLOT(pauseGame(bool)));
 
 }
 
@@ -73,12 +77,14 @@ void UserControlsEngine::keyPressEvent(QKeyEvent * event)
     {
         gameEngine->ship1()->attack();
         novaeCall->start(NOVATIMER);
+        countTimer.restart();
     }
 
     if((!event->isAutoRepeat() && (action == aShoot2)))
     {
         gameEngine->ship2()->attack();
         novaeCall->start(NOVATIMER);
+        countTimer.restart();
     }
 
 }
@@ -116,6 +122,8 @@ void UserControlsEngine::keyReleaseEvent(QKeyEvent * event)
 
 void UserControlsEngine::timerEvent(QTimerEvent *event)
 {
+    hasBegin = false;
+
     QList<Action>::iterator values;
 
     for(values = actionList.begin(); values != actionList.end(); values++)
@@ -149,11 +157,33 @@ void UserControlsEngine::timerEvent(QTimerEvent *event)
     }
 }
 
+void UserControlsEngine::pauseGame(bool etat)
+{
+    if(!hasBegin)
+    {
+        if(etat)
+        {
+            novaeCall->stop();
+            getPauseTime = countTimer.elapsed();
+        }
+
+        else if(!etat)
+        {
+            getPauseTime = NOVATIMER-getPauseTime;
+            novaeCall->start(getPauseTime);
+            countTimer.restart();
+        }
+    }
+}
+
+
 void UserControlsEngine::callSupernovae()
 {
     Supernova *supernova = new Supernova(display->sceneSize().width() / 2, display->sceneSize().height() / 2, gameEngine);
     gameEngine->addSupernova(supernova);
     novaeCall->start(NOVATIMER);
+    countTimer.restart();
+
 }
 
 void UserControlsEngine::clearActionList()
