@@ -15,6 +15,13 @@ MainDialog::MainDialog(QWidget *parent) :
     setWindowIcon(QIcon(ICON_TASKBAR));
     ge = 0;
     ngd = 0;
+
+    Phonon::AudioOutput *musicOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
+    menuMusic = new Phonon::MediaObject(this);
+    menuMusic->setCurrentSource(Phonon::MediaSource(":/sounds/menumusic"));
+    Phonon::createPath(menuMusic, musicOutput);
+    connect(menuMusic, SIGNAL(aboutToFinish()), this, SLOT(musicFinished()));
+    menuMusic->play();
 }
 
 MainDialog::~MainDialog()
@@ -46,10 +53,23 @@ void MainDialog::setGameEngine(GameEngine *ge)
         this->ge = ge;
 }
 
+void MainDialog::musicFinished()
+{
+    menuMusic->seek(0);
+    menuMusic->play();
+}
+
+void MainDialog::stopMusic()
+{
+    menuMusic->stop();
+}
+
 void MainDialog::endGame()
 {
     ge->deleteLater();
     ngd->deleteLater();
     ngd=0;
     ge=0;
+
+    musicFinished();
 }

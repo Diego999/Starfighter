@@ -7,6 +7,8 @@ SoundEngine::SoundEngine(int soundEffectsVolume, int musicVolume, QObject *paren
     shootOutput->setVolume(soundEffectsVolume / 100.0);
     Phonon::AudioOutput *satOutput = new Phonon::AudioOutput(Phonon::GameCategory, this);
     satOutput->setVolume(soundEffectsVolume / 100.0);
+    Phonon::AudioOutput *snovaOutput = new Phonon::AudioOutput(Phonon::GameCategory, this);
+    snovaOutput->setVolume(soundEffectsVolume / 100.0);
 
     Phonon::AudioOutput *musicOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
     musicOutput->setVolume(musicVolume / 100.0);
@@ -21,7 +23,7 @@ SoundEngine::SoundEngine(int soundEffectsVolume, int musicVolume, QObject *paren
 
     snovaMediaObject = new Phonon::MediaObject(this);
     snovaMediaObject->setCurrentSource(Phonon::MediaSource(":/sounds/supernova"));
-    Phonon::createPath(snovaMediaObject, satOutput);
+    Phonon::createPath(snovaMediaObject, snovaOutput);
 
     musicMediaObject = new Phonon::MediaObject(this);
     musicMediaObject->setCurrentSource(Phonon::MediaSource(":/sounds/bgmusic"));

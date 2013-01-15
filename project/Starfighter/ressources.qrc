@@ -117,8 +117,9 @@
     <qresource prefix="/sounds">
         <file alias="sat">res/sounds/beep.mp3</file>
         <file alias="laser">res/sounds/laser.mp3</file>
-        <file alias="bgmusic">res/sounds/music.mp3</file>
         <file alias="supernova">res/sounds/supernova.mp3</file>
+        <file alias="bgmusic">res/sounds/game.mp3</file>
+        <file alias="menumusic">res/sounds/menu.mp3</file>
     </qresource>
     <qresource prefix="/images/game/icon">
         <file alias="attack">res/images/game/bonusAttaque.png</file>

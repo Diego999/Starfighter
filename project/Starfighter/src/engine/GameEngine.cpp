@@ -321,7 +321,6 @@ void GameEngine::removeShip(Spaceship *_inSpaceship)
 void GameEngine::addBonus(Bonus *_inBonus)
 {
     de->addItemScene(_inBonus);
-    qDebug("Beep");
     soe->playSound(SatelliteSound);
     listBonus.append(_inBonus);
 }

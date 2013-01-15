@@ -19,6 +19,7 @@ public:
 
 public slots:
     void endGame();
+    void stopMusic();
     
 private slots:
     void on_btnPlay_clicked();
@@ -27,10 +28,14 @@ private slots:
 
     void on_btnAbout_clicked();
 
+    void musicFinished();
+
 private:
     Ui::MainDialog *ui;
     GameEngine *ge;
     NewGameDialog *ngd;
+
+    Phonon::MediaObject *menuMusic;
 };
 
 #endif // MAINDIALOG_H
