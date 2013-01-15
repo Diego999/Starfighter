@@ -16,9 +16,6 @@ class Displayable;
 class QPixmap;
 class QSplashScreen;
 
-class BonusProjectile;
-class BonusSpeed;
-
 class DisplayEngine : public QWidget
 {
     Q_OBJECT

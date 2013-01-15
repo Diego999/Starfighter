@@ -36,7 +36,7 @@ private:
 
     bool hasShoot;
     bool hasBegin;
-    int getPauseTime;
+    int pauseTime;
 
 
 };

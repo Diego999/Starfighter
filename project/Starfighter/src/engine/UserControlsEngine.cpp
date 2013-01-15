@@ -8,9 +8,7 @@
 #include "include/utils/Settings.h"
 #include "include/config/Define.h"
 
-#include "QtGui"
-
-UserControlsEngine::UserControlsEngine(GameEngine *ge): gameEngine(ge), hasShoot(false), getPauseTime(NOVATIMER),hasBegin(true)
+UserControlsEngine::UserControlsEngine(GameEngine *ge): gameEngine(ge), hasShoot(false), pauseTime(NOVATIMER),hasBegin(true)
 {
     myKey = Settings::getGlobalSettings().playersControls();
 
@@ -164,13 +162,12 @@ void UserControlsEngine::pauseGame(bool etat)
         if(etat)
         {
             novaeCall->stop();
-            getPauseTime = countTimer.elapsed();
+            pauseTime = countTimer.elapsed();
         }
-
-        else if(!etat)
+        else
         {
-            getPauseTime = NOVATIMER-getPauseTime;
-            novaeCall->start(getPauseTime);
+            pauseTime = NOVATIMER-pauseTime;
+            novaeCall->start(pauseTime);
             countTimer.restart();
         }
     }
