@@ -19,6 +19,11 @@ NewGameDialog::NewGameDialog(QWidget *parent) :
     ui->cbbP1ship->addItem(tr("Ship 2"), QVariant(SpaceshipType2));
     ui->cbbP2ship->addItem(tr("Ship 1"), QVariant(SpaceshipType1));
     ui->cbbP2ship->addItem(tr("Ship 2"), QVariant(SpaceshipType2));
+
+    resMax = (RESISTANCE_1 > RESISTANCE_2) ? RESISTANCE_1 : RESISTANCE_2;
+    speedMax = (SPEED_1 > SPEED_2) ? SPEED_1 : SPEED_2;
+
+    updateSpaceshipsStats();
 }
 
 NewGameDialog::~NewGameDialog()
@@ -86,14 +91,51 @@ void NewGameDialog::setPixmapForLabelWithSpaceshipType(SpaceshipType sType, QLab
     }
 }
 
-void NewGameDialog::on_cbbP1ship_currentIndexChanged(int index)
+void NewGameDialog::updateSpaceshipsStats()
 {
     SpaceshipType player1 = (SpaceshipType)(int)(ui->cbbP1ship->itemData(ui->cbbP1ship->currentIndex()).toInt());
+    SpaceshipType player2 = (SpaceshipType)(int)(ui->cbbP2ship->itemData(ui->cbbP2ship->currentIndex()).toInt());
+
     setPixmapForLabelWithSpaceshipType(player1, ui->imgP1);
+    setPixmapForLabelWithSpaceshipType(player2, ui->imgP2);
+
+    int res1 = 0, speed1 = 0, res2 = 0, speed2 = 0;
+
+    switch(player1)
+    {
+    case SpaceshipType1:
+        res1 = RESISTANCE_1;
+        speed1 = SPEED_1;
+        break;
+    case SpaceshipType2:
+        res1 = RESISTANCE_2;
+        speed1 = SPEED_2;
+        break;
+    }
+    switch(player2)
+    {
+    case SpaceshipType1:
+        res2 = RESISTANCE_1;
+        speed2 = SPEED_1;
+        break;
+    case SpaceshipType2:
+        res2 = RESISTANCE_2;
+        speed2 = SPEED_2;
+        break;
+    }
+
+    ui->resP1->setValue((res1 / (double)resMax) * 100.0);
+    ui->resP2->setValue((res2 / (double)resMax) * 100.0);
+    ui->speedP1->setValue((speed1 / (double)speedMax) * 100.0);
+    ui->speedP2->setValue((speed2 / (double)speedMax) * 100.0);
+}
+
+void NewGameDialog::on_cbbP1ship_currentIndexChanged(int index)
+{
+    updateSpaceshipsStats();
 }
 
 void NewGameDialog::on_cbbP2ship_currentIndexChanged(int index)
 {
-    SpaceshipType player2 = (SpaceshipType)(int)(ui->cbbP2ship->itemData(ui->cbbP2ship->currentIndex()).toInt());
-    setPixmapForLabelWithSpaceshipType(player2, ui->imgP2);
+    updateSpaceshipsStats();
 }

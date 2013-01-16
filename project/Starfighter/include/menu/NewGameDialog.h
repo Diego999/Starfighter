@@ -31,6 +31,10 @@ private:
     Ui::NewGameDialog *ui;
     MainDialog *md;
     void setPixmapForLabelWithSpaceshipType(SpaceshipType sType, QLabel *lbl);
+    void updateSpaceshipsStats();
+
+    int resMax;
+    int speedMax;
 };
 
 #endif // NEWGAMEDIALOG_H

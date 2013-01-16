@@ -23,55 +23,55 @@
 <context>
     <name>DisplayEngine</name>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="107"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="187"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="136"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="215"/>
         <source>Name : %1</source>
         <translation type="unfinished">Nom : %1</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="114"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="193"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="146"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="221"/>
         <source>HP:	</source>
         <translation type="unfinished">PV :</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="123"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="202"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="152"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="230"/>
         <source>Shield:	</source>
         <translation type="unfinished">Bouclier :</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="144"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="225"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="172"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="252"/>
         <source>1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="146"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="227"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="174"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="254"/>
         <source>Normal Shot</source>
         <translation type="unfinished">Tir normal</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="174"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="202"/>
         <source>:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="327"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="355"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="354"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="382"/>
         <source>Standard Shot</source>
         <translation type="unfinished">Tir standard</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="332"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="360"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="359"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="387"/>
         <source>Cross Shot</source>
         <translation type="unfinished">Tir croisé</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="337"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="365"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="364"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="392"/>
         <source>V Shot</source>
         <translation type="unfinished">Tir en V</translation>
     </message>
@@ -136,67 +136,79 @@
 <context>
     <name>NewGameDialog</name>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="14"/>
+        <location filename="res/ui/NewGameDialog.ui" line="20"/>
         <source>Create game</source>
         <translation type="unfinished">Créer partie</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="25"/>
+        <location filename="res/ui/NewGameDialog.ui" line="31"/>
         <source>Game type</source>
         <translation type="unfinished">Type de jeu</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="35"/>
+        <location filename="res/ui/NewGameDialog.ui" line="41"/>
         <source>Duration</source>
         <translation type="unfinished">Durée</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="42"/>
+        <location filename="res/ui/NewGameDialog.ui" line="48"/>
         <source>Player 1 spaceship</source>
         <translation type="unfinished">Vaisseau joueur 1</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="52"/>
+        <location filename="res/ui/NewGameDialog.ui" line="58"/>
         <source>Player 2 spaceship</source>
         <translation type="unfinished">Vaisseau joueur 2</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="62"/>
+        <location filename="res/ui/NewGameDialog.ui" line="68"/>
         <source> s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="106"/>
+        <location filename="res/ui/NewGameDialog.ui" line="138"/>
+        <location filename="res/ui/NewGameDialog.ui" line="156"/>
+        <source>Resistance</source>
+        <translation type="unfinished">Résistance</translation>
+    </message>
+    <message>
+        <location filename="res/ui/NewGameDialog.ui" line="145"/>
+        <location filename="res/ui/NewGameDialog.ui" line="163"/>
+        <source>Speed</source>
+        <translation type="unfinished">Vitesse</translation>
+    </message>
+    <message>
+        <location filename="res/ui/NewGameDialog.ui" line="200"/>
         <source>Difficulty</source>
         <translation type="unfinished">Difficulté</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="113"/>
+        <location filename="res/ui/NewGameDialog.ui" line="207"/>
         <source>Asteroids</source>
         <translation type="unfinished">Astéroïdes</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="123"/>
+        <location filename="res/ui/NewGameDialog.ui" line="217"/>
         <source>Alien mothership</source>
         <translation type="unfinished">Vaisseau mère alien</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="133"/>
+        <location filename="res/ui/NewGameDialog.ui" line="227"/>
         <source>Satellites</source>
         <translation type="unfinished">Satellites</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="143"/>
+        <location filename="res/ui/NewGameDialog.ui" line="237"/>
         <source>Supernovae</source>
         <translation type="unfinished">Supernovas</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="168"/>
+        <location filename="res/ui/NewGameDialog.ui" line="262"/>
         <source>Back</source>
         <translation type="unfinished">Retour</translation>
     </message>
     <message>
-        <location filename="res/ui/NewGameDialog.ui" line="175"/>
+        <location filename="res/ui/NewGameDialog.ui" line="269"/>
         <source>Start</source>
         <translation type="unfinished">Démarrer partie</translation>
     </message>
@@ -223,12 +235,12 @@
         <translation type="unfinished">Vaisseau 2</translation>
     </message>
     <message>
-        <location filename="src/menu/NewGameDialog.cpp" line="49"/>
+        <location filename="src/menu/NewGameDialog.cpp" line="54"/>
         <source>Supernovae only</source>
         <translation type="unfinished">Supernovas uniquement</translation>
     </message>
     <message>
-        <location filename="src/menu/NewGameDialog.cpp" line="49"/>
+        <location filename="src/menu/NewGameDialog.cpp" line="54"/>
         <source>Sorry, you cannot play with supernovae only.</source>
         <translation type="unfinished">Désolé, il n&apos;est pas possible de jouer qu&apos;avec des supernovas.</translation>
     </message>
