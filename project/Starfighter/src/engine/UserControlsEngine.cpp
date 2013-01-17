@@ -8,7 +8,7 @@
 #include "include/utils/Settings.h"
 #include "include/config/Define.h"
 
-UserControlsEngine::UserControlsEngine(GameEngine *ge): gameEngine(ge), hasShoot(false), pauseTime(NOVATIMER),hasBegin(true)
+UserControlsEngine::UserControlsEngine(GameEngine *ge): gameEngine(ge), hasShoot(false),hasBegin(true),pauseTime(NOVATIMER)
 {
     myKey = Settings::getGlobalSettings().playersControls();
 
