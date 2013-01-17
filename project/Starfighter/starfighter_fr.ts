@@ -23,55 +23,55 @@
 <context>
     <name>DisplayEngine</name>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="136"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="215"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="134"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="213"/>
         <source>Name : %1</source>
         <translation type="unfinished">Nom : %1</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="146"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="221"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="144"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="219"/>
         <source>HP:	</source>
         <translation type="unfinished">PV :</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="152"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="230"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="150"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="228"/>
         <source>Shield:	</source>
         <translation type="unfinished">Bouclier :</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="172"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="252"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="170"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="250"/>
         <source>1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="174"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="254"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="172"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="252"/>
         <source>Normal Shot</source>
         <translation type="unfinished">Tir normal</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="202"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="200"/>
         <source>:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="354"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="382"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="352"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="380"/>
         <source>Standard Shot</source>
         <translation type="unfinished">Tir standard</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="359"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="387"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="357"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="385"/>
         <source>Cross Shot</source>
         <translation type="unfinished">Tir croisé</translation>
     </message>
     <message>
-        <location filename="src/engine/DisplayEngine.cpp" line="364"/>
-        <location filename="src/engine/DisplayEngine.cpp" line="392"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="362"/>
+        <location filename="src/engine/DisplayEngine.cpp" line="390"/>
         <source>V Shot</source>
         <translation type="unfinished">Tir en V</translation>
     </message>
@@ -103,6 +103,16 @@
         <location filename="src/engine/GameEngine.cpp" line="232"/>
         <source>Do you want to stop the current game ?</source>
         <translation type="unfinished">Voulez-vous quitter le jeu en cours ?</translation>
+    </message>
+    <message>
+        <location filename="src/engine/GameEngine.cpp" line="236"/>
+        <source>Yes</source>
+        <translation type="unfinished">Oui</translation>
+    </message>
+    <message>
+        <location filename="src/engine/GameEngine.cpp" line="237"/>
+        <source>No</source>
+        <translation type="unfinished">Non</translation>
     </message>
 </context>
 <context>

@@ -233,6 +233,8 @@ void GameEngine::escapeGame()
     messageExit.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     messageExit.setDefaultButton(QMessageBox::No);
 
+    messageExit.setButtonText(QMessageBox::Yes,tr("Yes"));
+    messageExit.setButtonText(QMessageBox::No,tr("No"));
 
     if(messageExit.exec() == QMessageBox::Yes)
         emit endGame();
