@@ -71,7 +71,7 @@ void SpawnEngine::timerFired()
         else if(probWhat < intervalSat)
         {
             int satType = irand(1, 4);
-            Bonus *bonus;
+            Bonus *bonus=0;
 
             switch(satType)
             {

@@ -180,7 +180,7 @@ void DisplayEngine::creatHUD()
     bonusPlayerOne->addWidget(imProj1,0,5,Qt::AlignHCenter);
     bonusPlayerOne->addWidget(lBProjectile1,1,5,Qt::AlignHCenter);
 
-    QVBoxLayout * timeAndScore;
+    QVBoxLayout * timeAndScore=0;
     if(gameEngine->getGameMode()==Timer)
     {
         /**
