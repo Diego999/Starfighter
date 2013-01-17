@@ -2,7 +2,7 @@
 #include "include/stable.h"
 
 SetKeyDialog::SetKeyDialog(QWidget *parent) :
-    QDialog(parent)
+    QDialog(parent, Qt::WindowSystemMenuHint | Qt::WindowTitleHint)
 {
     QLabel *label = new QLabel(tr("Please press the key now"), this);
     label->setStyleSheet("font-size:13pt;");

@@ -5,7 +5,7 @@
 #include "include/config/Define.h"
 
 NewGameDialog::NewGameDialog(QWidget *parent) :
-    QDialog(parent),
+    QDialog(parent, Qt::WindowSystemMenuHint | Qt::WindowTitleHint),
     ui(new Ui::NewGameDialog)
 {
     md = (MainDialog *)parent;

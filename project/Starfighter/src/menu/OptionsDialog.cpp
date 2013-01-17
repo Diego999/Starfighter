@@ -6,7 +6,7 @@
 #include "include/menu/SetKeyDialog.h"
 
 OptionsDialog::OptionsDialog(QWidget *parent) :
-    QDialog(parent),
+    QDialog(parent, Qt::WindowSystemMenuHint | Qt::WindowTitleHint),
     ui(new Ui::OptionsDialog)
 {
     ui->setupUi(this);
