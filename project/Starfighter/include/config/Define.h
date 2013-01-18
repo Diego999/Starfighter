@@ -108,12 +108,16 @@
 
 #define PICTURE_SPACESHIP_1                 ":/images/game/ship1"
 #define PICTURE_SPACESHIP_2                 ":/images/game/ship2"
+#define PICTURE_SPACESHIP_3                 ":/images/game/ship3"
 #define HEALTHPOINT_1                       100
 #define HEALTHPOINT_2                       100
+#define HEALTHPOINT_3                       100
 #define RESISTANCE_1                        100
 #define RESISTANCE_2                        75
+#define RESISTANCE_3                        120
 #define SPEED_1                             8 // dy
 #define SPEED_2                             10 // dy
+#define SPEED_3                             7
 
 //Supernova
 #define NB_SPIRAL                           45

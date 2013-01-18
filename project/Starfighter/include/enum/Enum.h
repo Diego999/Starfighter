@@ -33,7 +33,7 @@ enum GameMode
 
 enum SpaceshipType
 {
-    SpaceshipType1 = 1, SpaceshipType2 = 2
+    SpaceshipType1 = 1, SpaceshipType2 = 2, SpaceshipType3 = 3
 };
 
 enum Difficulty

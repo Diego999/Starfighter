@@ -15,6 +15,7 @@
         <file alias="mothership">res/images/game/Mothership.png</file>
         <file alias="ship1">res/images/game/ship1.png</file>
         <file alias="ship2">res/images/game/ship2.png</file>
+        <file alias="ship3">res/images/game/ship3.png</file>
     </qresource>
     <qresource prefix="/images/game/asteroids">
         <file alias="rock10000">res/images/game/asteroid1/rock10000.png</file>

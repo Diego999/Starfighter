@@ -79,38 +79,38 @@
 <context>
     <name>GameEngine</name>
     <message>
-        <location filename="src/engine/GameEngine.cpp" line="183"/>
-        <location filename="src/engine/GameEngine.cpp" line="188"/>
+        <location filename="src/engine/GameEngine.cpp" line="197"/>
         <location filename="src/engine/GameEngine.cpp" line="202"/>
-        <location filename="src/engine/GameEngine.cpp" line="203"/>
-        <location filename="src/engine/GameEngine.cpp" line="218"/>
-        <location filename="src/engine/GameEngine.cpp" line="231"/>
+        <location filename="src/engine/GameEngine.cpp" line="216"/>
+        <location filename="src/engine/GameEngine.cpp" line="217"/>
+        <location filename="src/engine/GameEngine.cpp" line="232"/>
+        <location filename="src/engine/GameEngine.cpp" line="245"/>
         <source>End of the game</source>
         <translation type="unfinished">Fin de la partie</translation>
     </message>
     <message>
-        <location filename="src/engine/GameEngine.cpp" line="184"/>
-        <location filename="src/engine/GameEngine.cpp" line="219"/>
+        <location filename="src/engine/GameEngine.cpp" line="198"/>
+        <location filename="src/engine/GameEngine.cpp" line="233"/>
         <source>%1 has won !</source>
         <translation type="unfinished">%1 a gagné !</translation>
     </message>
     <message>
-        <location filename="src/engine/GameEngine.cpp" line="189"/>
+        <location filename="src/engine/GameEngine.cpp" line="203"/>
         <source>No one has won ... Egality !</source>
         <translation type="unfinished">Personne n&apos;a gagné... Égalité !</translation>
     </message>
     <message>
-        <location filename="src/engine/GameEngine.cpp" line="232"/>
+        <location filename="src/engine/GameEngine.cpp" line="246"/>
         <source>Do you want to stop the current game ?</source>
         <translation type="unfinished">Voulez-vous quitter le jeu en cours ?</translation>
     </message>
     <message>
-        <location filename="src/engine/GameEngine.cpp" line="236"/>
+        <location filename="src/engine/GameEngine.cpp" line="250"/>
         <source>Yes</source>
         <translation type="unfinished">Oui</translation>
     </message>
     <message>
-        <location filename="src/engine/GameEngine.cpp" line="237"/>
+        <location filename="src/engine/GameEngine.cpp" line="251"/>
         <source>No</source>
         <translation type="unfinished">Non</translation>
     </message>
@@ -234,23 +234,29 @@
     </message>
     <message>
         <location filename="src/menu/NewGameDialog.cpp" line="18"/>
-        <location filename="src/menu/NewGameDialog.cpp" line="20"/>
+        <location filename="src/menu/NewGameDialog.cpp" line="21"/>
         <source>Ship 1</source>
         <translation type="unfinished">Vaisseau 1</translation>
     </message>
     <message>
         <location filename="src/menu/NewGameDialog.cpp" line="19"/>
-        <location filename="src/menu/NewGameDialog.cpp" line="21"/>
+        <location filename="src/menu/NewGameDialog.cpp" line="22"/>
         <source>Ship 2</source>
         <translation type="unfinished">Vaisseau 2</translation>
     </message>
+	<message>
+        <location filename="src/menu/NewGameDialog.cpp" line="20"/>
+        <location filename="src/menu/NewGameDialog.cpp" line="23"/>
+        <source>Ship 3</source>
+        <translation type="unfinished">Vaisseau 3</translation>
+    </message>
     <message>
-        <location filename="src/menu/NewGameDialog.cpp" line="54"/>
+        <location filename="src/menu/NewGameDialog.cpp" line="83"/>
         <source>Supernovae only</source>
         <translation type="unfinished">Supernovas uniquement</translation>
     </message>
     <message>
-        <location filename="src/menu/NewGameDialog.cpp" line="54"/>
+        <location filename="src/menu/NewGameDialog.cpp" line="83"/>
         <source>Sorry, you cannot play with supernovae only.</source>
         <translation type="unfinished">Désolé, il n&apos;est pas possible de jouer qu&apos;avec des supernovas.</translation>
     </message>

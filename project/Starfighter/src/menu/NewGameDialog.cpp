@@ -17,11 +17,40 @@ NewGameDialog::NewGameDialog(QWidget *parent) :
 
     ui->cbbP1ship->addItem(tr("Ship 1"), QVariant(SpaceshipType1));
     ui->cbbP1ship->addItem(tr("Ship 2"), QVariant(SpaceshipType2));
+    ui->cbbP1ship->addItem(tr("Ship 3"), QVariant(SpaceshipType3));
     ui->cbbP2ship->addItem(tr("Ship 1"), QVariant(SpaceshipType1));
     ui->cbbP2ship->addItem(tr("Ship 2"), QVariant(SpaceshipType2));
+    ui->cbbP2ship->addItem(tr("Ship 3"), QVariant(SpaceshipType3));
 
-    resMax = (RESISTANCE_1 > RESISTANCE_2) ? RESISTANCE_1 : RESISTANCE_2;
-    speedMax = (SPEED_1 > SPEED_2) ? SPEED_1 : SPEED_2;
+    if(RESISTANCE_1 > RESISTANCE_2)
+    {
+        if(RESISTANCE_1 > RESISTANCE_3)
+            resMax = RESISTANCE_1;
+        else
+            resMax = RESISTANCE_3;
+    }
+    else
+    {
+        if(RESISTANCE_2 > RESISTANCE_3)
+            resMax = RESISTANCE_2;
+        else
+            resMax = RESISTANCE_3;
+    }
+
+    if(SPEED_1 > SPEED_2)
+    {
+        if(SPEED_1 > SPEED_3)
+            speedMax = SPEED_1;
+        else
+            speedMax = SPEED_3;
+    }
+    else
+    {
+        if(SPEED_2 > SPEED_3)
+            speedMax = SPEED_2;
+        else
+            speedMax = SPEED_3;
+    }
 
     updateSpaceshipsStats();
 }
@@ -88,6 +117,9 @@ void NewGameDialog::setPixmapForLabelWithSpaceshipType(SpaceshipType sType, QLab
     case SpaceshipType2:
         lbl->setPixmap(QPixmap(PICTURE_SPACESHIP_2));
         break;
+    case SpaceshipType3:
+        lbl->setPixmap(QPixmap(PICTURE_SPACESHIP_3));
+        break;
     }
 }
 
@@ -111,6 +143,10 @@ void NewGameDialog::updateSpaceshipsStats()
         res1 = RESISTANCE_2;
         speed1 = SPEED_2;
         break;
+    case SpaceshipType3:
+        res1 = RESISTANCE_3;
+        speed1 = SPEED_3;
+        break;
     }
     switch(player2)
     {
@@ -121,6 +157,10 @@ void NewGameDialog::updateSpaceshipsStats()
     case SpaceshipType2:
         res2 = RESISTANCE_2;
         speed2 = SPEED_2;
+        break;
+    case SpaceshipType3:
+        res2 = RESISTANCE_3;
+        speed2 = SPEED_3;
         break;
     }
 

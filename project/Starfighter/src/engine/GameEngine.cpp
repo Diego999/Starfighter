@@ -94,6 +94,13 @@ void GameEngine::createSpaceship()
         resistance = RESISTANCE_2;
         path = QString(PICTURE_SPACESHIP_2);
     }
+    else if(typeShip1==SpaceshipType3)
+    {
+        speed = SPEED_3;
+        healthPoint = HEALTHPOINT_3;
+        resistance = RESISTANCE_3;
+        path = QString(PICTURE_SPACESHIP_3);
+    }
     addShip(new Spaceship(0,height/2,Player1,settings.playerOneName(),speed,healthPoint,resistance,this));
     listSpaceship[0]->setPixmap(new QPixmap(path));
 
@@ -104,12 +111,19 @@ void GameEngine::createSpaceship()
         resistance = RESISTANCE_1;
         path = QString(PICTURE_SPACESHIP_1);
     }
-    else// if(typeShip2==SpaceshipType2)
+    else if(typeShip2==SpaceshipType2)
     {
         speed = SPEED_2;
         healthPoint = HEALTHPOINT_2;
         resistance = RESISTANCE_2;
         path = QString(PICTURE_SPACESHIP_2);
+    }
+    else if(typeShip2==SpaceshipType3)
+    {
+        speed = SPEED_3;
+        healthPoint = HEALTHPOINT_3;
+        resistance = RESISTANCE_3;
+        path = QString(PICTURE_SPACESHIP_3);
     }
     addShip(new Spaceship(width,height/2,Player2,settings.playerTwoName(),speed,healthPoint,resistance,this));
     listSpaceship[1]->setPixmap(new QPixmap(path));
