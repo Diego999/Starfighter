@@ -185,6 +185,8 @@ void GameEngine::endGameTimer()
     if(!hasSomeoneWon)
     {
         hasSomeoneWon = true;
+
+        emit endGame();
         QString playerName;
 
         if(ship1()->getScore()>ship2()->getScore())
@@ -202,7 +204,6 @@ void GameEngine::endGameTimer()
                                      tr("End of the game"),
                                      QString(tr("No one has won ... Egality !")),
                                      QMessageBox::Ok);
-        emit endGame();
     }
 }
 

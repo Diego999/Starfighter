@@ -8,7 +8,7 @@
 #include "include/utils/Settings.h"
 #include "include/config/Define.h"
 
-UserControlsEngine::UserControlsEngine(GameEngine *ge): gameEngine(ge), hasShoot(false),hasBegin(true),pauseTime(NOVATIMER)
+UserControlsEngine::UserControlsEngine(GameEngine *ge): gameEngine(ge), hasEnd(false), pauseTime(NOVATIMER),hasBegin(true)
 {
     myKey = Settings::getGlobalSettings().playersControls();
 
@@ -26,10 +26,11 @@ UserControlsEngine::UserControlsEngine(GameEngine *ge): gameEngine(ge), hasShoot
     novaeCall->setSingleShot(true);
     novaeCall->start(NOVATIMER);
     countTimer.start();
-    startTimer(REFRESH);
+    idTimer = startTimer(REFRESH);
 
     connect(novaeCall,SIGNAL(timeout()),this,SLOT(callSupernovae()));
     connect(gameEngine,SIGNAL(signalPause(bool)),this,SLOT(pauseGame(bool)));
+    connect(gameEngine,SIGNAL(endGame()),this,SLOT(endGame()));
 
 }
 
@@ -126,31 +127,29 @@ void UserControlsEngine::timerEvent(QTimerEvent *event)
 
     for(values = actionList.begin(); values != actionList.end(); values++)
     {
+        switch(*values)
         {
-            switch(*values)
-            {
-                case(aTop1):
-                gameEngine->ship1()->top();
-                break;
+            case(aTop1):
+            gameEngine->ship1()->top();
+            break;
 
-                case(aBottom1):
-                gameEngine->ship1()->bottom();
-                break;
+            case(aBottom1):
+            gameEngine->ship1()->bottom();
+            break;
 
-                case(aShoot1):
-                break;
+            case(aShoot1):
+            break;
 
-                case(aTop2):
-                gameEngine->ship2()->top();
-                break;
+            case(aTop2):
+            gameEngine->ship2()->top();
+            break;
 
-                case(aBottom2):
-                gameEngine->ship2()->bottom();
-                break;
+            case(aBottom2):
+            gameEngine->ship2()->bottom();
+            break;
 
-                case(aShoot2):
-                break;
-            }
+            case(aShoot2):
+            break;
         }
     }
 }
@@ -173,6 +172,10 @@ void UserControlsEngine::pauseGame(bool etat)
     }
 }
 
+void UserControlsEngine::clearActionList()
+{
+    actionList.clear();
+}
 
 void UserControlsEngine::callSupernovae()
 {
@@ -180,10 +183,11 @@ void UserControlsEngine::callSupernovae()
     gameEngine->addSupernova(supernova);
     novaeCall->start(NOVATIMER);
     countTimer.restart();
-
 }
 
-void UserControlsEngine::clearActionList()
+void UserControlsEngine::endGame()
 {
-    actionList.clear();
+    hasEnd = true;
+    clearActionList();
+    killTimer(idTimer);
 }
