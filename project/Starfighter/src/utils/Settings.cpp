@@ -68,8 +68,8 @@ QMap<Action, Qt::Key> Settings::playersControls()
     controls.insert(aTop2, Qt::Key_Up);
     controls.insert(aBottom1, Qt::Key_S);
     controls.insert(aBottom2, Qt::Key_Down);
-    controls.insert(aShoot1, Qt::Key_E);
-    controls.insert(aShoot2, Qt::Key_Return);
+    controls.insert(aShoot1, Qt::Key_D);
+    controls.insert(aShoot2, Qt::Key_Left);
 
     qse->beginGroup(PLAYERS_CONTROLS);
     QStringListIterator it(qse->childKeys());
