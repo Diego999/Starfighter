@@ -16,7 +16,6 @@
 
 #include "include/utils/Settings.h"
 #include "include/config/Define.h"
-#include "include/stable.h"
 
 GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject *parent = 0)
     :QObject(parent),
