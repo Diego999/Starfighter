@@ -39,7 +39,7 @@ Bonus::Bonus(GameEngine *_gameEngine)
     int l_Xmin = gameEngine->displayEngine()->xminWarzone();
     int l_Xmax = gameEngine->displayEngine()->xmaxWarZone();
 
-    int l_x1 = gameEngine->randInt((l_Xmax-getPixmap()->width()-l_Xmin));
+    int l_x1 = gameEngine->randInt(l_Xmax-getPixmap()->width()-l_Xmin)+l_Xmin;
 
     if(l_x1>=(l_Xmax-l_Xmin)/2.0)
         l_x1-=DELTA_X;
@@ -47,10 +47,11 @@ Bonus::Bonus(GameEngine *_gameEngine)
         l_x1+=DELTA_X;
 
     int l_x2 = l_x1;
-    do
-    {
-        l_x2 = gameEngine->randInt(DELTA_X_B)-DELTA_X_B+l_x1;
-    }while(l_x1==l_x2);//If l_x1=l_x2 we have a nice bug because the solution of the equation doesn't exist
+
+    if(gameEngine->randInt(1))
+        l_x2+=DELTA_X_B;
+    else
+        l_x2-=DELTA_X_B;
 
     //To avoid to enter in the player's zone
     if(fabs(l_x2-l_x1)<DELTA_X_B/2.0)

@@ -42,7 +42,7 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
     int l_Xmin = gameEngine->displayEngine()->xminWarzone();
     int l_Xmax = gameEngine->displayEngine()->xmaxWarZone();
 
-    int l_x1 = gameEngine->randInt((l_Xmax-getPixmap()->width()-l_Xmin));
+    int l_x1 = gameEngine->randInt(l_Xmax-getPixmap()->width()-l_Xmin)+l_Xmin;
 
     if(l_x1>=(l_Xmax-l_Xmin)/2.0)
         l_x1-=DELTA_X;
@@ -50,10 +50,11 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
         l_x1+=DELTA_X;
 
     int l_x2 = l_x1;
-    do
-    {
-        l_x2 = gameEngine->randInt(DELTA_X)-DELTA_X+l_x1;
-    }while(l_x1==l_x2);//If l_x1=l_x2 we have a nice bug because the solution of the equation doesn't exist
+
+    if(gameEngine->randInt(1))
+        l_x2+=DELTA_X;
+    else
+        l_x2-=DELTA_X;
 
     //If DELTA_X is so small, the alienspaceship's speed will be very high, so we take so precaution
     if(fabs(l_x2-l_x1)<DELTA_X/2.0)
