@@ -19,7 +19,7 @@
 
 #define SPAWN_INTERVAL                      250 // (ms)
 #define RESISTANCE_ASTEROID                 50
-#define RESISTANCE_ALIEN                    500
+#define RESISTANCE_ALIEN                    425
 #define ALIEN_SWIRL_MIN                     10
 #define ALIEN_SWIRL_MAX                     20
 #define BONUS_HEALTH_MIN                    15
@@ -82,7 +82,7 @@
 #define NB_POINT_BONUS                      100
 
 //ProjectileAlien
-#define POWER_ALIEN                         7500
+#define POWER_ALIEN                         5500
 #define MODULE_INCREMENT_ALIEN              4.0
 
 //ProjectileCross
@@ -114,10 +114,10 @@
 #define HEALTHPOINT_3                       100
 #define RESISTANCE_1                        100
 #define RESISTANCE_2                        75
-#define RESISTANCE_3                        120
+#define RESISTANCE_3                        150
 #define SPEED_1                             8 // dy
-#define SPEED_2                             10 // dy
-#define SPEED_3                             7
+#define SPEED_2                             9 // dy
+#define SPEED_3                             5
 
 //Supernova
 #define NB_SPIRAL                           45
