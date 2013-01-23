@@ -15,12 +15,12 @@ NewGameDialog::NewGameDialog(QWidget *parent) :
     ui->cbbGametype->addItem(tr("Deathmatch"), QVariant(DeathMatch));
     ui->cbbGametype->addItem(tr("Timer"), QVariant(Timer));
 
-    ui->cbbP1ship->addItem(tr("Ship 1"), QVariant(SpaceshipType1));
-    ui->cbbP1ship->addItem(tr("Ship 2"), QVariant(SpaceshipType2));
-    ui->cbbP1ship->addItem(tr("Ship 3"), QVariant(SpaceshipType3));
-    ui->cbbP2ship->addItem(tr("Ship 1"), QVariant(SpaceshipType1));
-    ui->cbbP2ship->addItem(tr("Ship 2"), QVariant(SpaceshipType2));
-    ui->cbbP2ship->addItem(tr("Ship 3"), QVariant(SpaceshipType3));
+    ui->cbbP1ship->addItem("Bermuder", QVariant(SpaceshipType1));
+    ui->cbbP1ship->addItem("Speeder", QVariant(SpaceshipType2));
+    ui->cbbP1ship->addItem("Blaster", QVariant(SpaceshipType3));
+    ui->cbbP2ship->addItem("Bermuder", QVariant(SpaceshipType1));
+    ui->cbbP2ship->addItem("Speeder", QVariant(SpaceshipType2));
+    ui->cbbP2ship->addItem("Blaster", QVariant(SpaceshipType3));
 
     if(RESISTANCE_1 > RESISTANCE_2)
     {
